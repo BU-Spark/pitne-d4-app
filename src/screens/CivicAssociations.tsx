@@ -30,11 +30,11 @@ function CivicAssociations() {
   };
 
   const polygon: Point[] = [
-    { lat: -71.090879, lng: 42.285624 },
-    { lat: -71.091372, lng: 42.284251 },
-    { lat: -71.089634, lng: 42.283894 },
-    { lat: -71.088776, lng: 42.286124 },
-    { lat: -71.090879, lng: 42.285624 },
+    { lng: -71.090879, lat: 42.285624 },
+    { lng: -71.091372, lat: 42.284251 },
+    { lng: -71.089634, lat: 42.283894 },
+    { lng: -71.088776, lat: 42.286124 },
+    { lng: -71.090879, lat: 42.285624 },
   ];
 
   const isPointInPolygon = (point: Point, polygon: Point[]): boolean => {
@@ -49,6 +49,7 @@ function CivicAssociations() {
       if (intersect) inside = !inside;
     }
 
+    console.log(point);
     return inside;
   };
 
@@ -79,9 +80,6 @@ function CivicAssociations() {
     } else if (a.state === "Other") {
       setShowLoading(false);
       setShowError(true);
-    } else if (a.city !== "Boston") {
-      setShowLoading(false);
-      setShowError(true);
     }
     /***Can also implement some sort of address validity checking here before going into the main ArcGIS query check*/
     else {
@@ -92,7 +90,6 @@ function CivicAssociations() {
         .then((response) => response.json())
         .then((data) => {
           if (!data) {
-            console.log("Its working")
             setShowLoading(false);
             setShowAPIError(true);
             return;
@@ -107,19 +104,17 @@ function CivicAssociations() {
         }).then((coords) => {
           // Query ArcGIS Query API to return all layers that contain the point
           // https://bostonopendata-boston.opendata.arcgis.com/datasets/boston::city-council-districts-effective-for-the-2023-municipal-election/about
-          console.log(coords)
+          console.log(coords);
           if (!coords) {
             setShowLoading(false);
             setShowInvalid(true);
             return;
           }
           if (isPointInPolygon(coords, polygon)) {
-            console.log("True");
             setShowLoading(false);
             setShowSuccess(true);
             navigateToNext();
           } else {
-            console.log("False");
             setShowLoading(false);
             setShowError(true);
           }

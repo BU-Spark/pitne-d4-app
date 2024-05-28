@@ -28,7 +28,7 @@ function AddressVerify() {
     setTimeout(() => {
       setShowLoading(false);
       setShowSuccess(true);
-      navigate("/signup"); 
+      navigate("/signup");
     }, 1000);
   };
 
@@ -50,10 +50,10 @@ function AddressVerify() {
     } else if (a.state === "Other") {
       setShowLoading(false);
       setShowError(true);
-    } else if (a.city !== "Boston"){
+    } else if (a.city !== "Boston") {
       setShowLoading(false);
       setShowError(true);
-    } 
+    }
     /***Can also implement some sort of address validity checking here before going into the main ArcGIS query check*/
     else {
       // Get coordinates from address using openstreetmap API
@@ -101,7 +101,8 @@ function AddressVerify() {
                 setShowLoading(false);
                 setShowAPIError(true);
               }
-              else if (arcgisResponse === 4) {
+              else if (arcgisResponse === 7) {
+                console.log('BRO');
                 setShowLoading(false);
                 setShowSuccess(true);
                 navigateToNext();
@@ -132,9 +133,9 @@ function AddressVerify() {
         id="textInput-basic-1"
         type="text"
         placeholder="Apt, suite, unit, building, etc."
-        // onChange={(e) => { // We don't actually need this field, its just for appearances lol
-        //   setAddress2(e);
-        // }}
+      // onChange={(e) => { // We don't actually need this field, its just for appearances lol
+      //   setAddress2(e);
+      // }}
       />
 
       <div className="mt-3 text-start">City</div>
@@ -170,7 +171,7 @@ function AddressVerify() {
       {showError && <AddressErrorBox></AddressErrorBox>}
       {showInvalid && <AddressInvalidBox></AddressInvalidBox>}
       {showAPIError && <AddressAPIErrorBox></AddressAPIErrorBox>}
-      
+
       <div className="text-end mt-5 pt-5">
         <Button
           onClick={submit}
