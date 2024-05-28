@@ -1,33 +1,37 @@
 import React, { useEffect } from "react";
 import { AngleLeftIcon } from "@patternfly/react-icons";
 import { useNavigate } from "react-router-dom";
-import type { tweetData } from "./Home";
+import type { calData } from "./Home";
 import { APIUrl } from "./Home";
+import Events from "../components/home/calendar/Calendar";
 import LogoBar from "../components/home/LogoBar";
-import Announcements from "../components/home/announcements/Announcement";
+import DatePicker from "../components/home/calendar/DatePicker";
+import MonthCalendar from "../components/home/calendar/MonthCalendar";
 
-function AllAnnouncements() {
+function AllEvents() {
   const navigate = useNavigate();
 
-  const [announcements, setAnnouncements] = React.useState<tweetData[]>([]);
+  const [calendarData, setCalendarData] = React.useState<calData[]>([]);
 
   useEffect(() => {
     const fetchUpdates = async () => {
-      fetch(APIUrl + "tweets")
+      fetch(APIUrl + "calendars")
         .then((res) => {
           if (res.ok) {
             res.json().then((json) => {
-              setAnnouncements(json.data);
+                setCalendarData(json.data);
             });
           } else {
             console.log(`status code: ${res.status}`);
-            setAnnouncements([
+            setCalendarData([
               {
                 id: -1,
                 attributes: {
-                  title: "Uh Oh!",
-                  description: "Looks like there was an issue!",
-                  date: "None"
+                    title: "Uh Oh!",
+                    body: "Looks like there was an issue!",
+                    date: "",
+                    location: "",
+                //   content: "Looks like there was an issue!",
                 },
               },
             ]);
@@ -42,14 +46,15 @@ function AllAnnouncements() {
 
   return (
     <div className="container">
-      <LogoBar />
+        <LogoBar />
       <div className="mt-4 ms-4 portal-nav">
         <AngleLeftIcon size="md" onClick={() => navigate("/home")} />
-        All Announcements
+        All Posts
       </div>
-      <Announcements tweets={announcements} vertical={true}/>
+      <MonthCalendar />
+      <Events data={calendarData}/>
     </div>
   );
 }
 
-export default AllAnnouncements;
+export default AllEvents;
