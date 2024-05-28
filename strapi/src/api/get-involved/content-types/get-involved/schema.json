@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "get_involveds",
+  "info": {
+    "singularName": "get-involved",
+    "pluralName": "get-involveds",
+    "displayName": "Get Involved"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    }
+  }
+}
