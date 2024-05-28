@@ -216,12 +216,13 @@ function Home() {
 	  probably be temporary while we figure out what to do with announcements
     */}
 
-      <div className="mt-3 text-start heading">Announcements</div>
+      <div className="mt-3 text-start heading">Announcementsss</div>
       <Announcement {...passTweetData} vertical={false} />
       <ViewAllAnnouncements {...passTweetData}/>
 
       <div className="mt-3 text-start heading">Happening This Week</div>
       <Calendar {...passCalendarData} />
+      <ViewCalendar {...passCalendarData}/>
 
       <div className="my-3 pf-c-title heading text-start">You Pinned</div>
       <Pinned pinned={pinned} />
