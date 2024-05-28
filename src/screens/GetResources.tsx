@@ -7,7 +7,7 @@ import Resources from "../components/home/Resources";
 
 import { AngleLeftIcon } from "@patternfly/react-icons";
 import { APIUrl } from "./Home";
-
+import LogoBar from "../components/home/LogoBar";
 import { IResource } from "../types";
 
 
@@ -60,7 +60,8 @@ function GetResources(){
   
 
   return (
-    <div>
+    <div className="container">
+        <LogoBar />
         <div className="mt-4 ms-4 portal-nav">
             <AngleLeftIcon size="md" onClick={() => navigate("/home")}/>
             Get Resources

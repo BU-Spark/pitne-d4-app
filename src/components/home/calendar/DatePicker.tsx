@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   format,
   subMonths,
@@ -11,10 +12,13 @@ import {
   subWeeks
 } from "date-fns";
 import { AngleLeftIcon, AngleRightIcon } from "@patternfly/react-icons";
-import { useState } from "react";
+import type { calData } from "../../../screens/Home"; // Ensure the type is imported
 
+interface DatePickerProps {
+  data: calData[];
+}
 
-function DatePicker() {
+const DatePicker: React.FC<DatePickerProps> = ({ data }) => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [currentWeek, setCurrentWeek] = useState(getWeek(currentMonth));
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -29,33 +33,26 @@ function DatePicker() {
   };
 
   const changeWeekHandle = (btnType: string) => {
-    //console.log("current week", currentWeek);
     if (btnType === "prev") {
-      //console.log(subWeeks(currentMonth, 1));
       setCurrentMonth(subWeeks(currentMonth, 1));
       setCurrentWeek(getWeek(subWeeks(currentMonth, 1)));
     }
     if (btnType === "next") {
-      //console.log(addWeeks(currentMonth, 1));
       setCurrentMonth(addWeeks(currentMonth, 1));
       setCurrentWeek(getWeek(addWeeks(currentMonth, 1)));
     }
   };
+
   const onDateClickHandle = (day: Date, dayStr: string) => {
     setSelectedDate(day);
   };
 
   const renderHeader = () => {
     const dateFormat = "MMM yyyy";
-    // console.log("selected day", selectedDate);
     return (
       <div className="header row flex-middle my-2">
-        <div className="col col-start">
-        </div>
-        <div className="col col-center ">
+        <div className="col col-center">
           <small>{format(currentMonth, dateFormat)}</small>
-        </div>
-        <div className="col col-end">
         </div>
       </div>
     );
@@ -69,7 +66,6 @@ function DatePicker() {
       days.push(
         <div className="col text-muted" key={i}>
           <small>{format(addDays(startDate, i), dateFormat)}</small>
-
         </div>
       );
     }
@@ -84,6 +80,7 @@ function DatePicker() {
     let days = [];
     let day = startDate;
     let formattedDate = "";
+
     while (day <= endDate) {
       for (let i = 0; i < 7; i++) {
         formattedDate = format(day, dateFormat);
@@ -97,7 +94,6 @@ function DatePicker() {
                 ? "selected"
                 : ""
               }`}
-            // key={}
             onClick={() => {
               const dayStr = format(cloneDay, "ccc dd MMM yy");
               onDateClickHandle(cloneDay, dayStr);
@@ -132,10 +128,8 @@ function DatePicker() {
           {renderCells()}
         </div>
 
-        <div>
-          <div className="ms-2 mt-2" onClick={() => changeWeekHandle("next")}>
-            <AngleRightIcon size="lg" color="#205F00" />
-          </div>
+        <div className="ms-2 mt-2" onClick={() => changeWeekHandle("next")}>
+          <AngleRightIcon size="lg" color="#205F00" />
         </div>
       </div>
     </div>

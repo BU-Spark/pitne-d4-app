@@ -15,7 +15,7 @@ import GetResources from './screens/GetResources';
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
 import AllAnnouncements from "./screens/AllAnnouncements";
-
+import AllEvents from "./screens/AllEvents";
 // init firebase app
 import { initializeApp } from "firebase/app";
 import { config } from "./config/config";
@@ -39,6 +39,7 @@ function App() {
           <Route path="/getresources" element={<GetResources/>} />
           <Route path="/all-posts" element={<AllPosts />} />
           <Route path="/all-announcements" element={<AllAnnouncements/>} />
+          <Route path="/all-events" element={<AllEvents/>} />
         </Routes>
       </BrowserRouter>
     </div>

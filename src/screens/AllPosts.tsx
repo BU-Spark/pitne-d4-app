@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import type { upData } from "./Home";
 import { APIUrl } from "./Home";
 import Updates from "../components/home/Updates";
+import LogoBar from "../components/home/LogoBar";
 
 function AllPosts() {
   const navigate = useNavigate();
@@ -39,7 +40,8 @@ function AllPosts() {
   }, []);
 
   return (
-    <div>
+    <div className="container">
+        <LogoBar />
       <div className="mt-4 ms-4 portal-nav">
         <AngleLeftIcon size="md" onClick={() => navigate("/home")} />
         All Posts
