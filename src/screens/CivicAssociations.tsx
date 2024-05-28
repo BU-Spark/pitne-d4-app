@@ -49,7 +49,6 @@ function CivicAssociations() {
       if (intersect) inside = !inside;
     }
 
-    console.log(point);
     return inside;
   };
 

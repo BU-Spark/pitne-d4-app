@@ -42,6 +42,7 @@ function App() {
           <Route path="/all-posts" element={<AllPosts />} />
           <Route path="/all-announcements" element={<AllAnnouncements />} />
           <Route path="/all-events" element={<AllEvents />} />
+          <Route path="/all-events" element={<AllEvents/>} />
           <Route path="/civic-associations" element={<CivicAssociations />} />
         </Routes>
       </BrowserRouter>
