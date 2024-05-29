@@ -37,6 +37,11 @@ function AddressVerify() {
     setShowInvalid(false);
     setShowAPIError(false);
     setShowLoading(true);
+
+    setShowLoading(false);
+    setShowSuccess(true);
+    navigateToNext();
+    return;
     const a = {
       address,
       city,
