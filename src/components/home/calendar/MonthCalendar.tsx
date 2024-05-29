@@ -2,13 +2,13 @@
 
 import React from "react";
 import { CalendarMonth } from "@patternfly/react-core";
-// import { MonthCalendar } from "../components/home/styles/MonthCalendar"
+import '../../styles/MonthCalendar.css';
 
 function MonthCalendar() {
   return (
     <div>
       <h2>District 4 Events Calendar</h2>
-      <CalendarMonth className="cal" date={new Date()} />
+      <CalendarMonth className="calendar" date={new Date()} />
     </div>
   );
 }
