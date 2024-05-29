@@ -1,6 +1,6 @@
 import * as React from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { doc, getDoc, getFirestore } from "firebase/firestore";
+import { doc, getDoc, getFirestore, collection, getDocs} from "firebase/firestore";
 import Search from "../components/home/Search";
 import { useEffect, useCallback } from "react";
 import Calendar from "../components/home/calendar/Calendar";
@@ -107,10 +107,19 @@ function Home() {
   useEffect(() => {
     const fetchCalendarData = async () => {
       try {
-        const res = await fetch(APIUrl + "calendars");
-        const json = await res.json();
+        // const res = await fetch(APIUrl + "calendars");
+        // const json = await res.json();
+        const eventsCollection = collection(db, "events");
+        // Get all documents from the "events" collection
+        const eventsSnapshot = await getDocs(eventsCollection);
+        // Map through each document and get its data
+        const eventsList = eventsSnapshot.docs.map(doc => ({
+          // id: doc.id,
+          ...doc.data()
+        })) as calData[];
         //set the calendar data
-        setCalendarData(json.data);
+        console.log("events list");
+        setCalendarData(eventsList);
       } catch (error) {
         console.log(error);
       }

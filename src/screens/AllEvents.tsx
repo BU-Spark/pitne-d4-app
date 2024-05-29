@@ -1,5 +1,7 @@
 // Screen with all the calendar and event data
 import React, { useEffect, useState } from "react";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { doc, getDoc, getFirestore, collection, getDocs} from "firebase/firestore";
 import { AngleLeftIcon } from "@patternfly/react-icons";
 import { useNavigate } from "react-router-dom";
 import type { calData } from "./Home";
@@ -11,37 +13,29 @@ import EventButton from "../components/home/calendar/AddEvent";
 
 function AllEvents() {
   const navigate = useNavigate();
+  const auth = getAuth();
+  const db = getFirestore();
   const [calendarData, setCalendarData] = useState<calData[]>([]);
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
   useEffect(() => {
-    const fetchUpdates = async () => {
-      fetch(APIUrl + "calendars")
-        .then((res) => {
-          if (res.ok) {
-            res.json().then((json) => {
-              setCalendarData(json.data);
-            });
-          } else {
-            console.log(`status code: ${res.status}`);
-            setCalendarData([
-              {
-                id: -1,
-                attributes: {
-                  title: "Uh Oh!",
-                  body: "Looks like there was an issue!",
-                  date: "",
-                  location: "",
-                },
-              },
-            ]);
-          }
-        })
-        .catch((e) => {
-          console.error(e);
-        });
+    const fetchCalendarData = async () => {
+      try {
+        const eventsCollection = collection(db, "events");
+        // Get all documents from the "events" collection
+        const eventsSnapshot = await getDocs(eventsCollection);
+        // Map through each document and get its data
+        const eventsList = eventsSnapshot.docs.map(doc => ({
+          ...doc.data()
+        })) as calData[];
+        //set the calendar data
+        console.log("events list");
+        setCalendarData(eventsList);
+      } catch (error) {
+        console.log(error);
+      }
     };
-    fetchUpdates();
+    fetchCalendarData();
   }, []);
 
   const handleDateChange = (date: Date) => {
