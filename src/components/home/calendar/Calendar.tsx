@@ -5,7 +5,7 @@ import DatePicker from "./DatePicker";
 import type {calData} from '../../../screens/Home';
 
 
-function Calendar(props: {data: calData[]}) {
+function Events(props: {data: calData[]}) {
     const data = props.data;
     return (
         <div>
@@ -32,4 +32,4 @@ function Calendar(props: {data: calData[]}) {
     )
 }
 
-export default Calendar;
+export default Events;

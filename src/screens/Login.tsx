@@ -12,6 +12,7 @@ import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { Button, Alert, TextInput } from "@patternfly/react-core";
 import GoogleButton from "react-google-button";
+import Logo from "../components/home/Logo";
 
 export interface Login {}
 
@@ -92,6 +93,12 @@ const Login: React.FunctionComponent<Login> = (props) => {
   };
 
   return (
+    // <div className="container">
+    //   </div
+    <>
+    <div className="container">
+         <Logo />
+    </div>
     <div className="container-padded">
       <div className="mb-3 h4 text-start">Log In</div>
       <div className="text-start">Email</div>
@@ -157,6 +164,7 @@ const Login: React.FunctionComponent<Login> = (props) => {
         See D4 Resources anyway
       </Button>
     </div>
+    </>
   );
 };
 

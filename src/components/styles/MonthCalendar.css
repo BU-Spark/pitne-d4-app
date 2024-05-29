@@ -1,5 +1,5 @@
 .calendar {
-  background-color: #0d1b2a; /* Dark blue background */
+  background-color: white; /* Dark blue background */
   border: 0.1vw solid #1b263b;
   border-radius: 0.5vw;
   padding: 2vw;
@@ -23,7 +23,7 @@
   border-radius: 50%;
   text-align: center;
   cursor: pointer;
-  color: #dedde1;
+  color: black;
   transition: background-color 0.3s;
   font-size: 1.5vw;
 }

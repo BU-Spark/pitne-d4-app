@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { AngleLeftIcon } from "@patternfly/react-icons";
 import { useNavigate } from "react-router-dom";
 import type { calData } from "./Home";
@@ -9,8 +9,8 @@ import MonthCalendar from "../components/home/calendar/MonthCalendar";
 
 function AllEvents() {
   const navigate = useNavigate();
-
-  const [calendarData, setCalendarData] = React.useState<calData[]>([]);
+  const [calendarData, setCalendarData] = useState<calData[]>([]);
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
   useEffect(() => {
     const fetchUpdates = async () => {
@@ -18,7 +18,7 @@ function AllEvents() {
         .then((res) => {
           if (res.ok) {
             res.json().then((json) => {
-                setCalendarData(json.data);
+              setCalendarData(json.data);
             });
           } else {
             console.log(`status code: ${res.status}`);
@@ -26,11 +26,10 @@ function AllEvents() {
               {
                 id: -1,
                 attributes: {
-                    title: "Uh Oh!",
-                    body: "Looks like there was an issue!",
-                    date: "",
-                    location: "",
-                //   content: "Looks like there was an issue!",
+                  title: "Uh Oh!",
+                  body: "Looks like there was an issue!",
+                  date: "",
+                  location: "",
                 },
               },
             ]);
@@ -43,15 +42,29 @@ function AllEvents() {
     fetchUpdates();
   }, []);
 
+  const handleDateChange = (date: Date) => {
+    setSelectedDate(date);
+  };
+
+  const filteredEvents = calendarData.filter(event => {
+    const eventDate = new Date(event.attributes.date);
+    return (
+      eventDate.getFullYear() === selectedDate.getFullYear() &&
+      eventDate.getMonth() === (selectedDate.getMonth()) &&
+      eventDate.getDate() === selectedDate.getDate()
+    );
+    
+  });
+
   return (
     <div className="container">
-        <LogoBar />
+      <LogoBar />
       <div className="mt-4 ms-4 portal-nav">
         <AngleLeftIcon size="md" onClick={() => navigate("/home")} />
         All Posts
       </div>
-      <MonthCalendar />
-      <Events data={calendarData}/>
+      <MonthCalendar onDateChange={handleDateChange} />
+      <Events data={filteredEvents} />
     </div>
   );
 }
