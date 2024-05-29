@@ -4,7 +4,7 @@ import DatePicker from "./DatePicker";
 //import calData type
 import type {calData} from '../../../screens/Home';
 
-
+// Shows event data/all calendar cards
 function Events(props: {data: calData[]}) {
     const data = props.data;
     return (

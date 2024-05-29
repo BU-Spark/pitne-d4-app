@@ -1,3 +1,4 @@
+// Screen with all the calendar and event data
 import React, { useEffect, useState } from "react";
 import { AngleLeftIcon } from "@patternfly/react-icons";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +7,7 @@ import { APIUrl } from "./Home";
 import Events from "../components/home/calendar/Calendar";
 import LogoBar from "../components/home/LogoBar";
 import MonthCalendar from "../components/home/calendar/MonthCalendar";
+import EventButton from "../components/home/calendar/AddEvent";
 
 function AllEvents() {
   const navigate = useNavigate();
@@ -46,9 +48,11 @@ function AllEvents() {
     setSelectedDate(date);
   };
 
+  // Filters events to match the user's selected date
   const filteredEvents = calendarData.filter(event => {
     const eventDate = new Date(event.attributes.date);
     return (
+      // Returns an event if the date matches the selection
       eventDate.getFullYear() === selectedDate.getFullYear() &&
       eventDate.getMonth() === (selectedDate.getMonth()) &&
       eventDate.getDate() === selectedDate.getDate()
@@ -64,6 +68,7 @@ function AllEvents() {
         All Posts
       </div>
       <MonthCalendar onDateChange={handleDateChange} />
+      <EventButton />
       <Events data={filteredEvents} />
     </div>
   );

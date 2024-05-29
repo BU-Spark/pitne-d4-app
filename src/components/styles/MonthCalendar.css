@@ -37,6 +37,11 @@
   color: #0d1b2a; 
 }
 
+.event-button {
+  width: 100px;
+  justify-content: center;
+}
+
 
 
 

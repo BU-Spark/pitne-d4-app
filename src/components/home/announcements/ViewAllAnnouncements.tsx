@@ -2,10 +2,10 @@ import React from "react";
 import { Button } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
 import { tweetData } from "../../../screens/Home";
-function ViewAllPosts(props: { tweets: tweetData[] }) {
+function ViewAllAnnouncements(props: { tweets: tweetData[] }) {
   const navigate = useNavigate();
   //navigate to allPosts
-  const goToPosts = () => {
+  const goToAnnouncements = () => {
     navigate("/all-announcements", {});
   };
 
@@ -14,7 +14,7 @@ function ViewAllPosts(props: { tweets: tweetData[] }) {
       <Button
         className="px-3 py-2 mb-2 pinned pf-u-text-center"
         variant="primary"
-        onClick={() => goToPosts()}
+        onClick={() => goToAnnouncements()}
         style={{
           display: "flex",
           justifyContent: "center",
@@ -26,4 +26,4 @@ function ViewAllPosts(props: { tweets: tweetData[] }) {
   );
 }
 
-export default ViewAllPosts;
+export default ViewAllAnnouncements;
