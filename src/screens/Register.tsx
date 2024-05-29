@@ -23,7 +23,7 @@ const Register: React.FunctionComponent<ILoginScreenProps> = (props) => {
   const SignUp = async () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((response) => {
-        // console.log(response.user.uid);
+        console.log(response.user.uid);
         navigate("/profile");
       })
       .catch((error) => {
