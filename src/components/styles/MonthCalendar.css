@@ -1,6 +1,73 @@
-.cal {
-    text-align: center;
-    font-family: "Red Hat Text", sans-serif;
-    color: #151515;
-    overflow-x: hidden;
+.calendar {
+  background-color: #0d1b2a; /* Dark blue background */
+  border: 0.1vw solid #1b263b;
+  border-radius: 0.5vw;
+  padding: 2vw;
+  color: #5f7719; /* Light grey text */
+  width: fit-content;
+  margin: 2vw auto;
+}
+
+.calendar .pf-c-calendar-month__header {
+  background-color: transparent;
+  color: #6b8227;
+  padding: 1vw;
+  text-align: center;
+  border-radius: 0.5vw 0.5vw 0 0;
+  font-size: 1.5vw;
+}
+
+
+.pf-c-calendar-month__date {
+  border: none;
+  border-radius: 50%;
+  text-align: center;
+  cursor: pointer;
+  color: #dedde1;
+  transition: background-color 0.3s;
+  font-size: 1.5vw;
+}
+
+.pf-c-calendar-month__date:hover {
+  background-color: #043268; 
+}
+
+.pf-c-calendar-month__dates::before {
+  background-color: #f5a623; 
+  color: #0d1b2a; 
+}
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 700px) {
+  .pf-c-calendar-month {
+    padding: 4vw;
+    font-size: 3vw;
   }
+
+  .pf-c-calendar-month__header {
+    padding: 2vw;
+    font-size: 4vw;
+  }
+
+  .pf-c-calendar-month__dates {
+    padding: 2vw;
+    gap: 2vw;
+  }
+
+  .pf-c-calendar-month__date {
+    padding: 2vw;
+    font-size: 3vw;
+  }
+
+  .pf-c-calendar-month__nav {
+    font-size: 4vw;
+  }
+}

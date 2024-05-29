@@ -5,7 +5,6 @@ import type { calData } from "./Home";
 import { APIUrl } from "./Home";
 import Events from "../components/home/calendar/Calendar";
 import LogoBar from "../components/home/LogoBar";
-import DatePicker from "../components/home/calendar/DatePicker";
 import MonthCalendar from "../components/home/calendar/MonthCalendar";
 
 function AllEvents() {
