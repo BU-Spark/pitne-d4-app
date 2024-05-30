@@ -45,11 +45,12 @@ function AllEvents() {
   // Filters events to match the user's selected date
   const filteredEvents = calendarData.filter(event => {
     const eventDate = new Date(event.attributes.date);
+
     return (
       // Returns an event if the date matches the selection
       eventDate.getFullYear() === selectedDate.getFullYear() &&
       eventDate.getMonth() === (selectedDate.getMonth()) &&
-      eventDate.getDate() === selectedDate.getDate()
+      (eventDate.getDate()) === selectedDate.getDate()
     );
     
   });
