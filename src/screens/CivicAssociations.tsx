@@ -8,7 +8,13 @@ import StateSelection from "../components/address/StateSelection";
 import { TextInput, Button } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
 import { ProgressStepperCompact1 } from "../components/home/Progressbar";
-import { NumericLiteral } from "typescript";
+
+//import Graphic from "@arcgis/core/Graphic";
+import Polygon from "@arcgis/core/geometry/Polygon";
+import Point from "@arcgis/core/geometry/Point";
+import * as geometryEngine from "@arcgis/core/geometry/geometryEngine";
+
+//import { NumericLiteral } from "typescript";
 function CivicAssociations() {
   const navigate = useNavigate();
   const [showLoading, setShowLoading] = React.useState(false);
@@ -29,28 +35,31 @@ function CivicAssociations() {
     lng: number;
   };
 
-  const polygon: Point[] = [
-    { lat: -71.090879, lng: 42.285624 },
-    { lat: -71.091372, lng: 42.284251 },
-    { lat: -71.089634, lng: 42.283894 },
-    { lat: -71.088776, lng: 42.286124 },
-    { lat: -71.090879, lng: 42.285624 },
-  ];
+  const polygon = new Polygon({
+    rings: [
+      [
+        [-71.090879, 42.285624],
+        [-71.091372, 42.284251],
+        [-71.089634, 42.283894],
+        [-71.088776, 42.286124],
+        [-71.090879, 42.285624]
+      ]
+    ],
+    spatialReference: { wkid: 4326 }
+  });
+  
 
-  const isPointInPolygon = (point: Point, polygon: Point[]): boolean => {
-    let x = point.lng, y = point.lat;
-    let inside = false;
+  const isPointInPolygon = (coords: Point) => {
+    let point = new Point({
+      longitude: coords.lng,
+      latitude: coords.lat,
+      spatialReference: { wkid: 4326 }
+    });
 
-    for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
-      let xi = polygon[i].lng, yi = polygon[i].lat;
-      let xj = polygon[j].lng, yj = polygon[j].lat;
-
-      let intersect = ((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
-      if (intersect) inside = !inside;
-    }
-
-    return inside;
+    return geometryEngine.contains(polygon, point);
   };
+
+
 
   const navigateToNext = () => {
     setShowLoading(true);
@@ -77,9 +86,6 @@ function CivicAssociations() {
       setShowLoading(false);
       setShowInvalid(true);
     } else if (a.state === "Other") {
-      setShowLoading(false);
-      setShowError(true);
-    } else if (a.city !== "Boston") {
       setShowLoading(false);
       setShowError(true);
     }
@@ -113,7 +119,7 @@ function CivicAssociations() {
             setShowInvalid(true);
             return;
           }
-          if (isPointInPolygon(coords, polygon)) {
+          if (isPointInPolygon(coords)) {
             console.log("True");
             setShowLoading(false);
             setShowSuccess(true);
