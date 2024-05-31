@@ -62,6 +62,17 @@ $RECYCLE.BIN/
 
 
 ############################
+# Logs and databases
+############################
+
+.tmp
+*.log
+*.sql
+*.sqlite
+*.sqlite3
+
+
+############################
 # Misc.
 ############################
 
@@ -88,7 +99,6 @@ node_modules
 # Tests
 ############################
 
-testApp
 coverage
 
 ############################
@@ -98,9 +108,7 @@ coverage
 .env
 license.txt
 exports
-*.cache
+.strapi
 dist
 build
 .strapi-updater.json
-package-lock.json
-yarn.lock
