@@ -4,7 +4,7 @@ import { SearchInput } from "@patternfly/react-core";
 function Search() {
     const [search, setSearch] = React.useState("");
 
-    const onChange = (value: string) => {
+    const onChange = (event: React.FormEvent<HTMLInputElement>, value: string) => {
         setSearch(value);
     };
     
@@ -15,7 +15,7 @@ function Search() {
                 placeholder="Search D7 Resources"
                 value={search}
                 onChange={onChange}
-                onClear={() => onChange("")}
+                onClear={() => setSearch("")} // Adjusted to use setSearch directly
             />
         </div>
     );
