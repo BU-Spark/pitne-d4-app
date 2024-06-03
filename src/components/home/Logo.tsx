@@ -10,13 +10,10 @@ function LogoBar() {
     };
 
     return (
-        <div className="container-horizontal mb-4 mt-4" onClick={handleClick} style={{ cursor: "pointer" }}>
+        <div onClick={handleClick} style={{ cursor: "pointer" }}>
             <div className="logo">
                 D4
             </div>
-            {/* <div style={{ marginLeft: "auto" }}>
-                <LogOut /> 
-            </div> */}
         </div>
     );
 }

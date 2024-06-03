@@ -12,7 +12,7 @@ import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { Button, Alert, TextInput } from "@patternfly/react-core";
 import GoogleButton from "react-google-button";
-import Logo from "../components/home/Logo";
+import LogoBar from "../components/home/LogoBar";
 
 export interface Login {}
 
@@ -97,7 +97,7 @@ const Login: React.FunctionComponent<Login> = (props) => {
     //   </div
     <>
     <div className="container">
-         <Logo />
+         <LogoBar />
     </div>
     <div className="container-padded">
       <div className="mb-3 h4 text-start">Log In</div>
