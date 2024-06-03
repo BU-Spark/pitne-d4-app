@@ -14,7 +14,6 @@
 /.firestore.rules
 /.firestore.exports
 /.firebase/
-/src/config/config.ts
 
 *.log
 *.cache
