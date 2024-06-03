@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { ProgressStepperCompact1 } from "../components/home/Progressbar";
 import { loadModules } from "esri-loader";
 
-function AddressVerify() {
+function CivicAssociations() {
   const navigate = useNavigate();
   const [showLoading, setShowLoading] = React.useState(false);
   const [showSuccess, setShowSuccess] = React.useState(false);
@@ -30,7 +30,7 @@ function AddressVerify() {
     setTimeout(() => {
       setShowLoading(false);
       setShowSuccess(true);
-      navigate("/signup");
+      // navigate("/signup");
     }, 1000);
   };
 
@@ -84,8 +84,10 @@ function AddressVerify() {
               "esri/layers/FeatureLayer",
               "esri/tasks/QueryTask",
               "esri/tasks/support/Query",
-              "esri/geometry/Point"
-            ]).then(([Map, MapView, FeatureLayer, QueryTask, Query, Point]) => {
+              "esri/geometry/Point",
+              "esri/Graphic",
+              "esri/GraphicLayer"
+            ]).then(([Map, MapView, FeatureLayer, QueryTask, Query, Point, Graphic, GraphicLayer]) => {
               const map = new Map({
                 basemap: "streets-navigation-vector"
               });
@@ -101,10 +103,30 @@ function AddressVerify() {
                 url: "https://services.arcgis.com/Vf3WolhywM9gLSJx/arcgis/rest/services/civic_associations_shp/FeatureServer/0"
               });
 
+              map.add(civicAssociationsLayer);
+
               const userLocation = new Point({
                 longitude: coords.lng,
                 latitude: coords.lat
               });
+
+              const markerSymbol = {
+                type: "simple-marker",
+                color: "blue", // You can customize the color and size of the marker
+                size: 10
+              };
+
+              const userLocationGraphic = new Graphic({
+                geometry: userLocation,
+                symbol: markerSymbol
+              });
+
+              // Create a graphics layer and add the user location graphic to it
+              const userLocationGraphicsLayer = new GraphicLayer();
+              userLocationGraphicsLayer.add(userLocationGraphic);
+
+              // Add the graphics layer to the map
+              map.add(userLocationGraphicsLayer);
 
               const query = new Query();
               query.geometry = userLocation;
@@ -211,4 +233,4 @@ function AddressVerify() {
   );
 }
 
-export default AddressVerify;
+export default CivicAssociations;
