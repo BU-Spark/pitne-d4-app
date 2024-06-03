@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
-import { upData } from "../../screens/Home";
+import { upData } from "../../screens/Home.tsx";
 function ViewAllPosts(props: { updates: upData[] }) {
   const navigate = useNavigate();
   //navigate to allPosts

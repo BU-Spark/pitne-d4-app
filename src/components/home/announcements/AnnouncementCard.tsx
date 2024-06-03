@@ -3,8 +3,8 @@ import { Card, Text, Icon } from "@patternfly/react-core";
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { EllipsisVIcon } from "@patternfly/react-icons";
-import Modal from '../Modal';
-import useModal from '../useModal';
+import Modal from '../Modal.tsx';
+import useModal from '../useModal.tsx';
 
 function AnnouncementCard(props: {
   title: string;

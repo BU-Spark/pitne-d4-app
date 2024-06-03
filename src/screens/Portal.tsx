@@ -2,7 +2,7 @@ import { Button } from "@patternfly/react-core";
 import { AngleLeftIcon } from "@patternfly/react-icons";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import LogoBar from "../components/home/LogoBar";
+import LogoBar from "../components/home/LogoBar.tsx";
 
 function Portal() {
     const location = useLocation();

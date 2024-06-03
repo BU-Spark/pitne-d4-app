@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import LogOut from '../../screens/LogOut';
+import LogOut from '../../screens/LogOut.tsx';
 
 function LogoBar() {
     const navigate = useNavigate();

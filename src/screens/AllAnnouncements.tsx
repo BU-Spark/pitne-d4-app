@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { AngleLeftIcon } from "@patternfly/react-icons";
 import { useNavigate } from "react-router-dom";
-import type { tweetData } from "./Home";
-import { APIUrl } from "./Home";
-import LogoBar from "../components/home/LogoBar";
-import Announcements from "../components/home/announcements/Announcement";
+import type { tweetData } from "./Home.tsx";
+import { APIUrl } from "./Home.tsx";
+import LogoBar from "../components/home/LogoBar.tsx";
+import Announcements from "../components/home/announcements/Announcement.tsx";
 
 function AllAnnouncements() {
   const navigate = useNavigate();

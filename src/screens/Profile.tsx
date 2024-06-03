@@ -2,8 +2,8 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { Checkbox, TextInput, Button, Alert } from "@patternfly/react-core";
 import { doc, setDoc, getDoc, getFirestore } from "firebase/firestore";
-import { ProgressStepperCompact3 } from "../components/home/Progressbar";
-import RegisteredSelection from "../components/login/RegisteredSelection";
+import { ProgressStepperCompact3 } from "../components/home/Progressbar.tsx";
+import RegisteredSelection from "../components/login/RegisteredSelection.tsx";
 import { getAuth } from "firebase/auth";
 
 function Profile() {

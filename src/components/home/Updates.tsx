@@ -1,6 +1,6 @@
 import * as React from "react";
-import CalendarCard from "./calendar/CalendarCard";
-import type { upData } from "../../screens/Home";
+import CalendarCard from "./calendar/CalendarCard.tsx";
+import type { upData } from "../../screens/Home.tsx";
 function Updates(props: { updates: upData[]; vertical: boolean }) {
   return (
     <div className={props.vertical ? "vertical-scroll" : "horizontal-scroll"}

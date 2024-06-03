@@ -1,14 +1,14 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
-import App from './App';
-import Login from './screens/Login';
-import Register from './screens/Register';
-import Home from './screens/Home';
-import AddressInfo from './screens/AdressInfo';
-import AddressVerify from './screens/AddressVerify';
-import Profile from './screens/Profile';
-import Interests from './screens/Interests';
+import App from './App.tsx';
+import Login from './screens/Login.tsx';
+import Register from './screens/Register.tsx';
+import Home from './screens/Home.tsx';
+import AddressInfo from './screens/AdressInfo.tsx';
+import AddressVerify from './screens/AddressVerify.tsx';
+import Profile from './screens/Profile.tsx';
+import Interests from './screens/Interests.tsx';
 
 describe('App', () => {
   it('renders all screens without compile warnings', () => {

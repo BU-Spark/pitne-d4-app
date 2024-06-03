@@ -1,7 +1,7 @@
 import { Button } from "@patternfly/react-core";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { APIUrl } from "../../screens/Home";
+import { APIUrl } from "../../screens/Home.tsx";
 
 import { IResource } from "../../types";
 

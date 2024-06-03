@@ -1,19 +1,19 @@
 import * as React from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
-import Search from "../components/home/Search";
+import Search from "../components/home/Search.tsx";
 import { useEffect, useCallback } from "react";
-import Calendar from "../components/home/calendar/Calendar";
-import Pinned from "../components/home/Pinned";
-import Updates from "../components/home/Updates";
-import LogoBar from "../components/home/LogoBar";
-import ViewAllPosts from "../components/home/ViewAllPosts";
-import Announcement from "../components/home/announcements/Announcement";
+import Calendar from "../components/home/calendar/Calendar.tsx";
+import Pinned from "../components/home/Pinned.tsx";
+import Updates from "../components/home/Updates.tsx";
+import LogoBar from "../components/home/LogoBar.tsx";
+import ViewAllPosts from "../components/home/ViewAllPosts.tsx";
+import Announcement from "../components/home/announcements/Announcement.tsx";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@patternfly/react-core";
-import ViewAllAnnouncements from "../components/home/announcements/ViewAllAnnouncements";
-import ViewCalendar from "../components/home/calendar/ViewCalendar";
-import Resources from "../components/home/Resources";
+import ViewAllAnnouncements from "../components/home/announcements/ViewAllAnnouncements.tsx";
+import ViewCalendar from "../components/home/calendar/ViewCalendar.tsx";
+import Resources from "../components/home/Resources.tsx";
 
 
 //for dev,

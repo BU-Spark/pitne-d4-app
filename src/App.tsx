@@ -1,24 +1,24 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Welcome from "./screens/Welcome";
-import AddressInfo from "./screens/AdressInfo";
-import Register from "./screens/Register";
-import AddressVerify from "./screens/AddressVerify";
-import Login from "./screens/Login";
-import UserProfileScreen from "./screens/Profile";
-import Interests from "./screens/Interests";
-import Home from "./screens/Home";
-import Portal from "./screens/Portal";
-import AllPosts from "./screens/AllPosts";
-import GetResources from './screens/GetResources';
+import Welcome from "./screens/Welcome.tsx";
+import AddressInfo from "./screens/AdressInfo.tsx";
+import Register from "./screens/Register.tsx";
+import AddressVerify from "./screens/AddressVerify.tsx";
+import Login from "./screens/Login.tsx";
+import UserProfileScreen from "./screens/Profile.tsx";
+import Interests from "./screens/Interests.tsx";
+import Home from "./screens/Home.tsx";
+import Portal from "./screens/Portal.tsx";
+import AllPosts from "./screens/AllPosts.tsx";
+import GetResources from './screens/GetResources.tsx';
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
-import AllAnnouncements from "./screens/AllAnnouncements";
-import AllEvents from "./screens/AllEvents";
+import AllAnnouncements from "./screens/AllAnnouncements.tsx";
+import AllEvents from "./screens/AllEvents.tsx";
 // init firebase app
 import { initializeApp } from "firebase/app";
-import { config } from "./config/config";
+import { config } from "./config/config.ts";
 
 initializeApp(config.firebaseConfig);
 

@@ -1,6 +1,6 @@
 import { Button } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
-import { APIUrl } from "../../screens/Home";
+import { APIUrl } from "../../screens/Home.tsx";
 
 type resourcesData = {
     id: number;

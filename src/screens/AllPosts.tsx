@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { AngleLeftIcon } from "@patternfly/react-icons";
 import { useNavigate } from "react-router-dom";
-import type { upData } from "./Home";
-import { APIUrl } from "./Home";
-import Updates from "../components/home/Updates";
-import LogoBar from "../components/home/LogoBar";
+import type { upData } from "./Home.tsx";
+import { APIUrl } from "./Home.tsx";
+import Updates from "../components/home/Updates.tsx";
+import LogoBar from "../components/home/LogoBar.tsx";
 
 function AllPosts() {
   const navigate = useNavigate();

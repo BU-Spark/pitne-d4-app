@@ -12,7 +12,7 @@ import {
   subWeeks
 } from "date-fns";
 import { AngleLeftIcon, AngleRightIcon } from "@patternfly/react-icons";
-import type { calData } from "../../../screens/Home"; // Ensure the type is imported
+import type { calData } from "../../../screens/Home.tsx"; // Ensure the type is imported
 
 interface DatePickerProps {
   data: calData[];

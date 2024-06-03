@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { AngleLeftIcon } from "@patternfly/react-icons";
 import { useNavigate } from "react-router-dom";
-import type { calData } from "./Home";
-import { APIUrl } from "./Home";
-import Events from "../components/home/calendar/Calendar";
-import LogoBar from "../components/home/LogoBar";
-import MonthCalendar from "../components/home/calendar/MonthCalendar";
+import type { calData } from "./Home.tsx";
+import { APIUrl } from "./Home.tsx";
+import Events from "../components/home/calendar/Calendar.tsx";
+import LogoBar from "../components/home/LogoBar.tsx";
+import MonthCalendar from "../components/home/calendar/MonthCalendar.tsx";
 
 function AllEvents() {
   const navigate = useNavigate();

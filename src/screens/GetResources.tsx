@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import * as React from "react";
 
-import Resources from "../components/home/Resources";
+import Resources from "../components/home/Resources.tsx";
 
 import { AngleLeftIcon } from "@patternfly/react-icons";
-import { APIUrl } from "./Home";
-import LogoBar from "../components/home/LogoBar";
+import { APIUrl } from "./Home.tsx";
+import LogoBar from "../components/home/LogoBar.tsx";
 import { IResource } from "../types";
 
 

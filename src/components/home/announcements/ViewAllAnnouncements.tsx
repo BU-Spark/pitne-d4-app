@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
-import { tweetData } from "../../../screens/Home";
+import { tweetData } from "../../../screens/Home.tsx";
 function ViewAllPosts(props: { tweets: tweetData[] }) {
   const navigate = useNavigate();
   //navigate to allPosts

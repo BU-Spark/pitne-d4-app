@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { Button, Alert, TextInput } from "@patternfly/react-core";
-import { ProgressStepperCompact2 } from "../components/home/Progressbar";
+import { ProgressStepperCompact2 } from "../components/home/Progressbar.tsx";
 
 export interface ILoginScreenProps {}
 
