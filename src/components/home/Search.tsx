@@ -12,7 +12,7 @@ function Search() {
         <div className="search">
             <SearchInput
                 className="ps-1"
-                placeholder="Search D7 Resources"
+                placeholder="Search D4 Resources"
                 value={search}
                 onChange={onChange}
                 onClear={() => onChange("")}

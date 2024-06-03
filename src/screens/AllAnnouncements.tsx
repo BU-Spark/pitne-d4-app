@@ -44,7 +44,7 @@ function AllAnnouncements() {
     <div className="container">
       <LogoBar />
       <div className="mt-4 ms-4 portal-nav">
-        <AngleLeftIcon size="md" onClick={() => navigate("/home")} />
+        <AngleLeftIcon size="md" onClick={() => navigate("/")} />
         All Announcements
       </div>
       <Announcements tweets={announcements} vertical={true}/>

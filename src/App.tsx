@@ -29,8 +29,8 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login/>} />
           <Route path="/signup" element={<Register/>} />
-          <Route path="/home" element={<Home/>} />
-          <Route path="/" element={<Welcome/>} />
+          {/* <Route path="/home" element={<Home/>} /> */}
+          <Route path="/" element={<Home/>} />
           <Route path="/address-info" element={<AddressInfo/>} />
           <Route path="/address-entry" element={<AddressVerify/>} />
           <Route path="/profile" element={<UserProfileScreen/>} />

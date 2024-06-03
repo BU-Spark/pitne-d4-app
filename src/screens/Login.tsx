@@ -42,7 +42,7 @@ const Login: React.FunctionComponent<Login> = (props) => {
         if (userData.exists()) {
           console.log("Document data:", userData.data());
           if (userData.data().firstName) {
-            navigate("/home");
+            navigate("/");
           } else {
             navigate("/profile");
           }
@@ -72,7 +72,7 @@ const Login: React.FunctionComponent<Login> = (props) => {
           console.log("Document data:", userData.data());
           // Check if first name is set, if not, navigate to user profile
           if (userData.data().firstName) {
-            navigate("/home");
+            navigate("/");
           } else {
             navigate("/profile");
           }
@@ -89,7 +89,7 @@ const Login: React.FunctionComponent<Login> = (props) => {
     navigate("/address-info");
   };
   const navigateToHome = () => {
-    navigate("/home");
+    navigate("/");
   };
 
   return (
