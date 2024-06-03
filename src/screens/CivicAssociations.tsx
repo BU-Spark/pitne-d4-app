@@ -8,8 +8,9 @@ import StateSelection from "../components/address/StateSelection";
 import { TextInput, Button } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
 import { ProgressStepperCompact1 } from "../components/home/Progressbar";
-import { NumericLiteral } from "typescript";
-function CivicAssociations() {
+import { loadModules } from "esri-loader";
+
+function AddressVerify() {
   const navigate = useNavigate();
   const [showLoading, setShowLoading] = React.useState(false);
   const [showSuccess, setShowSuccess] = React.useState(false);
@@ -23,34 +24,6 @@ function CivicAssociations() {
   const [city, setCity] = React.useState("");
   const [state, setState] = React.useState("");
   const [zip, setZip] = React.useState("")
-
-  type Point = {
-    lat: number;
-    lng: number;
-  };
-
-  const polygon: Point[] = [
-    { lng: -71.090879, lat: 42.285624 },
-    { lng: -71.091372, lat: 42.284251 },
-    { lng: -71.089634, lat: 42.283894 },
-    { lng: -71.088776, lat: 42.286124 },
-    { lng: -71.090879, lat: 42.285624 },
-  ];
-
-  const isPointInPolygon = (point: Point, polygon: Point[]): boolean => {
-    let x = point.lng, y = point.lat;
-    let inside = false;
-
-    for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
-      let xi = polygon[i].lng, yi = polygon[i].lat;
-      let xj = polygon[j].lng, yj = polygon[j].lat;
-
-      let intersect = ((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
-      if (intersect) inside = !inside;
-    }
-
-    return inside;
-  };
 
   const navigateToNext = () => {
     setShowLoading(true);
@@ -66,6 +39,10 @@ function CivicAssociations() {
     setShowInvalid(false);
     setShowAPIError(false);
     setShowLoading(true);
+
+    setShowLoading(false);
+    setShowSuccess(true);
+    navigateToNext();
     const a = {
       address,
       city,
@@ -95,28 +72,69 @@ function CivicAssociations() {
           } else {
             // Store the coordinates in state
             if (data.length === 0) {
+              setShowLoading(false)
               setShowInvalid(true);
               return;
             }
-            return { lat: data[0].lat, lng: data[0].lon };
+            const coords = { lat: data[0].lat, lng: data[0].lon };
+            // Perform ArcGIS spatial query to determine civic association
+            loadModules([
+              "esri/Map",
+              "esri/views/MapView",
+              "esri/layers/FeatureLayer",
+              "esri/tasks/QueryTask",
+              "esri/tasks/support/Query",
+              "esri/geometry/Point"
+            ]).then(([Map, MapView, FeatureLayer, QueryTask, Query, Point]) => {
+              const map = new Map({
+                basemap: "streets-navigation-vector"
+              });
+
+              const view = new MapView({
+                container: "viewDiv",
+                map: map,
+                center: [coords.lng, coords.lat],
+                zoom: 13
+              });
+
+              const civicAssociationsLayer = new FeatureLayer({
+                url: "https://services.arcgis.com/Vf3WolhywM9gLSJx/arcgis/rest/services/civic_associations_shp/FeatureServer/0"
+              });
+
+              const userLocation = new Point({
+                longitude: coords.lng,
+                latitude: coords.lat
+              });
+
+              const query = new Query();
+              query.geometry = userLocation;
+              query.spatialRelationship = "intersects";
+              query.returnGeometry = false;
+              query.outFields = ["*"];
+
+              civicAssociationsLayer.queryFeatures(query).then((result: __esri.FeatureSet) => {
+                setShowLoading(false);
+                if (result.features.length > 0) {
+                  const association = result.features[0].attributes["Name"];
+                  alert("You are in the " + association + " civic association.");
+                  setShowSuccess(true);
+                  navigateToNext();
+                } else {
+                  alert("No civic association found for your location.");
+                  setShowInvalid(true);
+                }
+              }).catch(() => {
+                setShowLoading(false);
+                setShowAPIError(true);
+              });
+            }).catch(() => {
+              setShowLoading(false);
+              setShowAPIError(true);
+            });
           }
-        }).then((coords) => {
-          // Query ArcGIS Query API to return all layers that contain the point
-          // https://bostonopendata-boston.opendata.arcgis.com/datasets/boston::city-council-districts-effective-for-the-2023-municipal-election/about
-          console.log(coords);
-          if (!coords) {
-            setShowLoading(false);
-            setShowInvalid(true);
-            return;
-          }
-          if (isPointInPolygon(coords, polygon)) {
-            setShowLoading(false);
-            setShowSuccess(true);
-            navigateToNext();
-          } else {
-            setShowLoading(false);
-            setShowError(true);
-          }
+        }).catch(() => {
+          setShowLoading(false);
+          setShowAPIError(true);
         });
     }
   };
@@ -178,6 +196,8 @@ function CivicAssociations() {
       {showInvalid && <AddressInvalidBox></AddressInvalidBox>}
       {showAPIError && <AddressAPIErrorBox></AddressAPIErrorBox>}
 
+      <div id="viewDiv" style={{ height: 400, width: "100%" }}></div>
+
       <div className="text-end mt-5 pt-5">
         <Button
           onClick={submit}
@@ -191,4 +211,4 @@ function CivicAssociations() {
   );
 }
 
-export default CivicAssociations;
+export default AddressVerify;

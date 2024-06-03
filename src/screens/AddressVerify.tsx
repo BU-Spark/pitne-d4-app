@@ -41,7 +41,6 @@ function AddressVerify() {
     setShowLoading(false);
     setShowSuccess(true);
     navigateToNext();
-    return;
     const a = {
       address,
       city,
