@@ -7,8 +7,12 @@
   font-family: "Red Hat Text", sans-serif;
   color: #151515;
   overflow-x: hidden;
+  background-color: #85C6F5;
 }
 
+body {
+  background-color: #85C6F5;
+}
 .container {
   overflow-x: hidden;
   display: flex;
@@ -76,6 +80,9 @@
   width: 15vw;
   height: 10vh;
   border: 1px solid #D2D2D2;
+  border-radius: 20px;
+  cursor: pointer;
+  background-color: white;
 }
 
 /* Portal Styles */
@@ -96,10 +103,14 @@
 .heading {
   font-family: 'Red Hat Text';
   font-style: normal;
-  font-weight: 600;
-  font-size: 20px;
+  font-weight: 700;
+  font-size: 25px;
   line-height: 22px;
-  color: #123400;
+  color: black;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3px;
 }
 
 .logo{
@@ -108,7 +119,7 @@
   font-weight: 400;
   font-size: 32px;
   line-height: 38px;
-  color: #123400;
+  color: black;
 }
 
 .pinned {
@@ -118,7 +129,7 @@
 
 /* Patternfly Variables #205F00; #123400*/
 .pf-c-button{
-  --pf-global--primary-color--100: #0066CC;
+  --pf-global--primary-color--100: #172466;
   --pf-global--primary-color--200: #0358ae;
 }
 
@@ -157,6 +168,7 @@
   width: 80%;
   height: 60%;
   padding: 1rem;
+  cursor: auto;
 }
 
 @media (min-width:800px){
@@ -187,20 +199,34 @@
 .modal-text{
   margin-top: 20px;
 }
-
+/* 
 .logout-button-div{
   position: "absolute";
   top: 0;
   right: 0;
-}
+} */
 
 .logout-button{
-  background-color: #0066CC;
+  background-color: #172466;
+  border-color: #172466;
   color: #fff;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 5px;
 }
 
 .grab-cursor {
-  cursor: grab;
+  cursor: pointer;
+}
+
+.container .home-button {
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 18px;
+  border-radius: 20px;
+}
+
+.input {
+  border-radius: 20px;
 }

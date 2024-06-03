@@ -62,8 +62,8 @@ function AllEvents() {
       <div className = "grab-cursor">
         <AngleLeftIcon size="md" onClick={() => navigate("/")} />
       </div>
-        All Posts
       </div>
+      <div className="heading">District 4 Events Calendar</div>
       <MonthCalendar onDateChange={handleDateChange} />
       <EventButton />
       <Events data={filteredEvents} />

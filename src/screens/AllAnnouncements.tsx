@@ -47,8 +47,8 @@ function AllAnnouncements() {
         <div className = "grab-cursor">
         <AngleLeftIcon size="md" onClick={() => navigate("/")} />
         </div>
-        All Announcements
       </div>
+      <div className="heading">All Announcements</div>
       <Announcements tweets={announcements} vertical={true}/>
     </div>
   );

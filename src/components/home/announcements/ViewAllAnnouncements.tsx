@@ -12,13 +12,9 @@ function ViewAllAnnouncements(props: { tweets: tweetData[] }) {
   return (
     <div className="container">
       <Button
-        className="px-3 py-2 mb-2 pinned pf-u-text-center"
+        className="home-button px-3 py-2 mb-2"
         variant="primary"
         onClick={() => goToAnnouncements()}
-        style={{
-          display: "flex",
-          justifyContent: "center",
-        }}
       >
         View All Announcements
       </Button>

@@ -217,28 +217,28 @@ function Home() {
   }, [auth.currentUser, fetchdata]);
 
   return (
+    <body>
     <div className="container">
       <LogoBar />
-      <Search />
-
+      {/* <Search /> */}
       {/*
 	  this announcments component here will
 	  probably be temporary while we figure out what to do with announcements
     */}
 
-      <div className="mt-3 text-start heading">Announcements</div>
+      <div className="mt-2 text-start heading">Announcements</div>
       <Announcement {...passTweetData} vertical={false} />
       <ViewAllAnnouncements {...passTweetData}/>
 
-      <div className="mt-3 text-start heading">Upcoming Events</div>
+      <div className="mt-4 text-start heading">Upcoming Events</div>
       <Calendar {...passCalendarData} />
       <ViewCalendar {...passCalendarData}/>
 
-      <div className="my-3 pf-c-title heading text-start">Our Resources</div>
+      <div className="mt-4 my-3 pf-c-title heading text-start">Our Resources</div>
 
       <div className="container">
       <Button
-        className="px-3 py-2 mb-2 pinned "
+        className="home-button px-3 py-2 mb-2"
         variant="primary"
         onClick= { () => navigate("/getresources")}
         >
@@ -248,10 +248,11 @@ function Home() {
       <Resources resources={InvolvedData}/>
       <Resources resources={SubmitandRequestData}/>
       
-      <div className="mt-3 pf-c-title heading text-start">News and Updates</div>
+      <div className="mt-4 pf-c-title heading text-start">News and Updates</div>
       <Updates {...passUpdateData} vertical={false} />
       <ViewAllPosts {...passUpdateData} />
     </div>
+    </body>
   );
 }
 

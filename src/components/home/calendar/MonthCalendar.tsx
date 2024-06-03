@@ -16,7 +16,6 @@ function MonthCalendar({ onDateChange }: MonthCalendarProps) {
 
   return (
     <div>
-      <h2>District 4 Events Calendar</h2>
       <CalendarMonth
         className="calendar"
         date={selectedDate}

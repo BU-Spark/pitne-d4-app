@@ -62,14 +62,16 @@ function GetResources(){
   return (
     <div className="container">
         <LogoBar />
-        <div className="mt-4 ms-4 portal-nav">
+        <div className="mt-4 ms-4 portal-nav pf-u-text-center">
           <div className = "grab-cursor">
             <AngleLeftIcon size="md" onClick={() => navigate("/")}/>
           </div>
-            Get Resources
+        
+        </div>
+        <div className="heading">
+          Get Resources
         </div>
         <div className = "mt-5">
-          
           <Resources resources={resources} />
         </div>
     </div>

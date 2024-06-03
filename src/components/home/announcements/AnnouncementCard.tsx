@@ -22,7 +22,7 @@ function AnnouncementCard(props: {
   const [dateTime, timeWithZ] = dateTimeString.split("T");
   const time = timeWithZ ? timeWithZ.replace("Z", "") : "";
 
-  const finalDate = dateTime + " " + new Date("1970-01-01T" + time + "Z").toLocaleTimeString()
+  const finalDate = dateTime;
 
   return (
     <div onClick={toggle}>
@@ -32,15 +32,10 @@ function AnnouncementCard(props: {
             <div className="col-9">
               <Text className="text-start">{title}</Text>
             </div>
-            <div className="col-1">
-              <Icon isInline className="text-end">
-                <EllipsisVIcon style={{ width: "15px", height: "11px" }} />
-              </Icon>
-            </div>
           </div>
-          <div className="row mt-2 ">
-            <small className="text-start text-secondary">{finalDate}</small>
+          <div className="row">
             <small className="text-start text-secondary">{content}</small>
+            <small className="text-start text-secondary">{finalDate}</small>
             {/* if there's an image, display it */}
             {props.image ? (
               <img
