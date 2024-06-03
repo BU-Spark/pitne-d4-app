@@ -156,13 +156,6 @@ const Login: React.FunctionComponent<Login> = (props) => {
         Sign up
       </Button>
 
-      <Button
-        className="px-5 py-1"
-        variant="secondary"
-        /*onClick={SignUp}*/ onClick={navigateToHome}
-      >
-        See D4 Resources anyway
-      </Button>
     </div>
     </>
   );

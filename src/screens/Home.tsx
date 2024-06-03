@@ -230,14 +230,13 @@ function Home() {
       <Announcement {...passTweetData} vertical={false} />
       <ViewAllAnnouncements {...passTweetData}/>
 
-      <div className="mt-3 text-start heading">Happening This Week</div>
+      <div className="mt-3 text-start heading">Upcoming Events</div>
       <Calendar {...passCalendarData} />
       <ViewCalendar {...passCalendarData}/>
 
-      <div className="my-3 pf-c-title heading text-start">You Pinned</div>
-      <Pinned pinned={pinned} />
-
       <div className="my-3 pf-c-title heading text-start">Our Resources</div>
+
+      <div className="container">
       <Button
         className="px-3 py-2 mb-2 pinned "
         variant="primary"
@@ -245,6 +244,7 @@ function Home() {
         >
         Get Resources
       </Button>
+      </div>
       <Resources resources={InvolvedData}/>
       <Resources resources={SubmitandRequestData}/>
       

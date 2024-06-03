@@ -200,3 +200,7 @@
   border-radius: 5px;
   padding: 5px;
 }
+
+.grab-cursor {
+  cursor: grab;
+}

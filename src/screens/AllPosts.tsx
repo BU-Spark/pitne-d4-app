@@ -43,7 +43,9 @@ function AllPosts() {
     <div className="container">
         <LogoBar />
       <div className="mt-4 ms-4 portal-nav">
-        <AngleLeftIcon size="md" onClick={() => navigate("/")} />
+        <div className = "grab-cursor">
+          <AngleLeftIcon size="md" onClick={() => navigate("/")} />
+        </div>
         All Posts
       </div>
       <Updates updates={updates} vertical={true} />
