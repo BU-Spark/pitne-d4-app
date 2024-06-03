@@ -15,7 +15,6 @@ import ViewAllAnnouncements from "../components/home/announcements/ViewAllAnnoun
 import ViewCalendar from "../components/home/calendar/ViewCalendar";
 import Resources from "../components/home/Resources";
 
-
 //for dev,
 const APIUrl = "https://se-d7-dev.up.railway.app/api/";
 

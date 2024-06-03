@@ -11,7 +11,7 @@
 }
 
 body {
-  background-color: #85C6F5;
+  background-color: #85C6F5 !important;
 }
 .container {
   overflow-x: hidden;
@@ -82,7 +82,7 @@ body {
   border: 1px solid #D2D2D2;
   border-radius: 20px;
   cursor: pointer;
-  background-color: white;
+  background-color: white !important;
 }
 
 /* Portal Styles */
@@ -199,12 +199,6 @@ body {
 .modal-text{
   margin-top: 20px;
 }
-/* 
-.logout-button-div{
-  position: "absolute";
-  top: 0;
-  right: 0;
-} */
 
 .logout-button{
   background-color: #172466;
