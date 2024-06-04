@@ -10,9 +10,11 @@ function LogoBar() {
     };
 
     return (
-        <div onClick={handleClick} style={{ cursor: "pointer" }}>
+        <div onClick={handleClick} style={{
+            cursor: "pointer"
+        }}>
             <div className="logo">
-                D4
+                DISTRICT 4
             </div>
         </div>
     );
