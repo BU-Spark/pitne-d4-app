@@ -32,6 +32,10 @@ function AddressEntry() {
     }, 1000);
   };
 
+  const handleBack = () => {
+    navigate("/address-info");
+  };
+
   const submit = () => {
     setShowError(false);
     setShowInvalid(false);
@@ -95,58 +99,75 @@ function AddressEntry() {
       <div>
         <h1>Address Entry</h1>
       </div>
-      <div className="text-start mt-5">Address</div>
-      <TextInput
-        className="px-2"
-        id="textInput-basic-1"
-        type="text"
-        placeholder="Street Address"
-        onChange={(e) => {
-          setAddress(e.split(" ").join("+"));
-        }}
-      />
-      <div className="mt-3 text-start">City</div>
-      <TextInput
-        className="mb-2"
-        id="textInput-basic-1"
-        type="text"
-        placeholder="City"
-        onChange={(e) => {
-          setCity(e.split(" ").join("+"));
-        }}
-      />
+      <div>
+        <div className="text-start mt-5">Address</div>
+        <TextInput
+          className="mt-2 px-2"
+          id="textInput-basic-1"
+          type="text"
+          placeholder="Street Address"
+          onChange={(e) => {
+            setAddress(e.split(" ").join("+"));
+          }}
+        />
+        <div className="text-start mt-3">City</div>
+        <TextInput
+          className=""
+          id="textInput-basic-1"
+          type="text"
+          placeholder="City"
+          onChange={(e) => {
+            setCity(e.split(" ").join("+"));
+          }}
+        />
 
-      <div className="text-start mt-3">State</div>
-      <StateSelection
-        state={state}
-        setState={setState}
-      />
+        <div className="text-start mt-3">State</div>
+        <StateSelection
+          state={state}
+          setState={setState}
+        />
 
-      <div className="text-start mt-3">Zipcode</div>
-      <TextInput
-        className="mb-5 px-2"
-        id="textInput-basic-1"
-        type="text"
-        placeholder="Zipcode"
-        onChange={(e) => {
-          setZip(e.split(" ").join("+"));
-        }}
-      />
+        <div className="text-start mt-3">Zipcode</div>
+        <TextInput
+          className="mb-5 px-2"
+          id="textInput-basic-1"
+          type="text"
+          placeholder="Zipcode"
+          onChange={(e) => {
+            setZip(e.split(" ").join("+"));
+          }}
+        />
 
-      {showSuccess && <AddressCheckBox></AddressCheckBox>}
-      {showLoading && <AddressCheckBoxLoading></AddressCheckBoxLoading>}
-      {showError && <AddressErrorBox></AddressErrorBox>}
-      {showInvalid && <AddressInvalidBox></AddressInvalidBox>}
-      {showAPIError && <AddressAPIErrorBox></AddressAPIErrorBox>}
+        {showSuccess && <AddressCheckBox></AddressCheckBox>}
+        {showLoading && <AddressCheckBoxLoading></AddressCheckBoxLoading>}
+        {showError && <AddressErrorBox></AddressErrorBox>}
+        {showInvalid && <AddressInvalidBox></AddressInvalidBox>}
+        {showAPIError && <AddressAPIErrorBox></AddressAPIErrorBox>}
+      </div>
 
-      <div className="text-center mt-5 pt-5">
-        <Button
-          onClick={submit}
-          className="px-5 py-1"
-          variant="primary"
-        >
-          Next
-        </Button>
+      <div>
+        {/* Next Button */}
+        <div className='p-2'>
+          <Button
+            onClick={navigateToNext}
+            className="px-5 py-1"
+            variant="primary"
+          >
+            Next
+          </Button>
+        </div>
+
+        {/* Skip Button */}
+        <div className='p-2'>
+          <Button
+            onClick={handleBack}
+            className="px-5 py-1"
+            variant="secondary"
+          >
+            Back
+          </Button>
+        </div>
+
       </div>
       {/* Progress Bar */}
       <div className='bottom-0 start-0 p-5' style={{ width: '100%' }}>
