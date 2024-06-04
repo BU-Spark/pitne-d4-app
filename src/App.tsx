@@ -19,6 +19,7 @@ import AllEvents from "./screens/AllEvents";
 // init firebase app
 import { initializeApp } from "firebase/app";
 import { config } from "./config/config";
+import DownloadApp from "./screens/downloadApp";
 
 initializeApp(config.firebaseConfig);
 
@@ -40,6 +41,7 @@ function App() {
           <Route path="/all-posts" element={<AllPosts />} />
           <Route path="/all-announcements" element={<AllAnnouncements/>} />
           <Route path="/all-events" element={<AllEvents/>} />
+          <Route path="/downloadApp" element={<DownloadApp/>} />
         </Routes>
       </BrowserRouter>
     </div>
