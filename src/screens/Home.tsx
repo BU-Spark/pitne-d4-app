@@ -14,7 +14,7 @@ import { Button } from "@patternfly/react-core";
 import ViewAllAnnouncements from "../components/home/announcements/ViewAllAnnouncements";
 import ViewCalendar from "../components/home/calendar/ViewCalendar";
 import Resources from "../components/home/Resources";
-import DownloadApp from "./downloadApp";
+
 
 
 //for dev,
