@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@patternfly/react-core";
+import { Button } from "@patternfly/react-core"; // Import your CSS file for styling
 
 const HamburgerMenu: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -17,11 +17,11 @@ const HamburgerMenu: React.FC = () => {
 
     return (
         <div className="hamburger-menu-container">
-            <div className="hamburger-icon" onClick={toggleMenu}>
-            &#8801; {/* This is the hamburger icon */}
+            <div className={`hamburger-icon ${isOpen ? 'open' : ''}`} onClick={toggleMenu}>
+                &#8801; {/* This is the hamburger icon */}
             </div>
-            {isOpen && (
-                <div className="menu">
+            <div className={`menu-overlay ${isOpen ? 'open' : ''}`} onClick={toggleMenu}>
+                <div className={`menu ${isOpen ? 'open' : ''}`}>
                     <Button variant="link" onClick={() => handleNavigation("/all-announcements")}>
                         Announcements
                     </Button>
@@ -38,7 +38,7 @@ const HamburgerMenu: React.FC = () => {
                         Login
                     </Button>
                 </div>
-            )}
+            </div>
         </div>
     );
 };

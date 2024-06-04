@@ -218,7 +218,7 @@ function Home() {
   return (
     <body>
     <div className="container">
-      <LogoBar />
+    <LogoBar />
       {/* <Search /> */}
       {/*
 	  this announcments component here will

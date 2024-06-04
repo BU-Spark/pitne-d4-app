@@ -226,28 +226,62 @@ body {
   border-radius: 20px;
 }
 
-.hamburger-menu-container {
-  position: relative;
+ .hamburger-menu-container {
+  position: relative; 
   display: flex;
   align-items: center;
-  height: 100%;
-}
+  height: 100%; 
+} 
 
 .hamburger-icon {
   font-size: 40px;
+  font-family: var(--bs-body-font-family);
   cursor: pointer;
+  z-index: 1100;
+  transition: transform 0.3s ease-out; /* Transition for hamburger icon rotation */
+  position: fixed;
+  top: 20px; /* Adjust top position as needed */
+  right: 20px; /* Adjust right position as needed */
+}
+
+.hamburger-icon.open {
+  transform: rotate(90deg); /* Rotate the icon when menu is open */
+}
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background-color: rgba(0, 0, 0, 0.5); Semi-transparent background */
+  z-index: 1000;
+  transition: opacity 0.3s ease-out; 
+  /* Fade in/out transition for overlay */
+  opacity: 0; /* Start with no opacity */
+  pointer-events: none; /* Do not allow clicks on overlay until opened */
+}
+
+.menu-overlay.open {
+  opacity: 1; /* Make overlay visible */
+  pointer-events: auto; /* Allow clicks on overlay when open */
 }
 
 .menu {
   position: absolute;
-  top: 40px; /* Adjust based on your needs */
-  right: 0;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  padding: 10px;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: white; /* Background color of the menu */
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-out; /* Slide in/out transition for menu */
+  transform: translateX(100%); /* Start off-screen to the left */
+}
+
+.menu.open {
+  transform: translateX(0); /* Slide the menu into view from the left */
 }
 
 .menu button {
