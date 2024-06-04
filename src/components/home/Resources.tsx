@@ -25,7 +25,7 @@ function Resources(props: {resources: { title: string, "links": { title: string,
             {props.resources.map((resource) => {
                 return (
                     <Button
-                        className="px-3 py-2 mb-2 pinned"
+                        className="home-button px-3 py-2 mb-2"
                         variant="primary"
                         onClick={() => goToPortal(resource)}
                     >

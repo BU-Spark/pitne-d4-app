@@ -12,6 +12,7 @@ import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { Button, Alert, TextInput } from "@patternfly/react-core";
 import GoogleButton from "react-google-button";
+import LogoBar from "../components/home/LogoBar.tsx";
 
 export interface Login {}
 
@@ -41,7 +42,7 @@ const Login: React.FunctionComponent<Login> = (props) => {
         if (userData.exists()) {
           console.log("Document data:", userData.data());
           if (userData.data().firstName) {
-            navigate("/home");
+            navigate("/");
           } else {
             navigate("/profile");
           }
@@ -71,7 +72,7 @@ const Login: React.FunctionComponent<Login> = (props) => {
           console.log("Document data:", userData.data());
           // Check if first name is set, if not, navigate to user profile
           if (userData.data().firstName) {
-            navigate("/home");
+            navigate("/");
           } else {
             navigate("/profile");
           }
@@ -88,29 +89,35 @@ const Login: React.FunctionComponent<Login> = (props) => {
     navigate("/address-info");
   };
   const navigateToHome = () => {
-    navigate("/home");
+    navigate("/");
   };
 
   return (
+    // <div className="container">
+    //   </div
+    <>
+    <div className="container">
+         <LogoBar />
+    </div>
     <div className="container-padded">
-      <div className="mb-3 h4 text-start">Log In</div>
+      <div className="heading mb-4 text-start">Log In</div>
       <div className="text-start">Email</div>
 
       <TextInput
-        className="px-2"
+        className="input px-2"
         id="textInput-basic-1"
         type="text"
-        placeholder=""
+        placeholder="Enter email"
         value={email}
         onChange={(e) => {
           setEmail(e);
         }}
       />
-      <div className="text-start">Password</div>
+      <div className="text-start mt-3">Password</div>
       <TextInput
-        className="px-2 mb-3"
+        className="px-2"
         id="textInput-basic-1"
-        placeholder=""
+        placeholder="Enter password"
         value={password}
         onChange={(e) => {
           setPassword(e);
@@ -128,14 +135,14 @@ const Login: React.FunctionComponent<Login> = (props) => {
       )}
       <br />
 
-      <Button className="px-5 py-1 mb-2" variant="primary" onClick={Login}>
+      <Button className="px-5 py-1 mb-3" variant="primary" onClick={Login}>
         Log In
       </Button>
       <div className="center-wrapper">
         <GoogleButton onClick={LoginGoogle} />
       </div>
 
-      <div className="center-wrapper mt-5 mb-5">
+      <div className="center-wrapper mt-3 mb-3">
         <div className="wrapper">
           <div className="page-login-line"></div>
         </div>
@@ -149,14 +156,8 @@ const Login: React.FunctionComponent<Login> = (props) => {
         Sign up
       </Button>
 
-      <Button
-        className="px-5 py-1"
-        variant="secondary"
-        /*onClick={SignUp}*/ onClick={navigateToHome}
-      >
-        See D4 Resources anyway
-      </Button>
     </div>
+    </>
   );
 };
 

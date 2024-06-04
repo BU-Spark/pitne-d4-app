@@ -1,22 +1,18 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import LogOut from '../../screens/LogOut.tsx';
+import LogIn from './LoginButton.tsx';
+import Logo from './Logo.tsx'
 
 function LogoBar() {
     const navigate = useNavigate();
 
-    const handleClick = () => {
-        navigate("/home");
-    };
-
     return (
-        <div className="container-horizontal mb-4 mt-4" onClick={handleClick} style={{ cursor: "pointer" }}>
-            <div className="logo">
-                D4
-            </div>
-            <div style={{ marginLeft: "auto" }}>
-                <LogOut /> 
-            </div>
+        // Incorporates the logo and login components to create a logo bar
+        <div className="container-horizontal mb-4 mt-4" style={{ cursor: "pointer" }}>
+        <Logo /> 
+        <div style={{ marginLeft: "auto" }}>
+            <LogIn /> 
+        </div>
         </div>
     );
 }

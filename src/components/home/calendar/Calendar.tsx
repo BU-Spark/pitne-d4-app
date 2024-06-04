@@ -4,8 +4,8 @@ import DatePicker from "./DatePicker";
 //import calData type
 import type {calData} from '../../../screens/Home.tsx';
 
-
-function Calendar(props: {data: calData[]}) {
+// Shows event data/all calendar cards
+function Events(props: {data: calData[]}) {
     const data = props.data;
     return (
         <div>
@@ -32,4 +32,4 @@ function Calendar(props: {data: calData[]}) {
     )
 }
 
-export default Calendar;
+export default Events;

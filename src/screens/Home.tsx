@@ -1,6 +1,6 @@
 import * as React from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { doc, getDoc, getFirestore } from "firebase/firestore";
+import { doc, getDoc, getFirestore, collection, getDocs} from "firebase/firestore";
 import Search from "../components/home/Search.tsx";
 import { useEffect, useCallback } from "react";
 import Calendar from "../components/home/calendar/Calendar.tsx";
@@ -14,7 +14,6 @@ import { Button } from "@patternfly/react-core";
 import ViewAllAnnouncements from "../components/home/announcements/ViewAllAnnouncements.tsx";
 import ViewCalendar from "../components/home/calendar/ViewCalendar.tsx";
 import Resources from "../components/home/Resources.tsx";
-
 
 //for dev,
 const APIUrl = "https://se-d7-dev.up.railway.app/api/";
@@ -107,10 +106,19 @@ function Home() {
   useEffect(() => {
     const fetchCalendarData = async () => {
       try {
-        const res = await fetch(APIUrl + "calendars");
-        const json = await res.json();
+        // const res = await fetch(APIUrl + "calendars");
+        // const json = await res.json();
+        const eventsCollection = collection(db, "events");
+        // Get all documents from the "events" collection
+        const eventsSnapshot = await getDocs(eventsCollection);
+        // Map through each document and get its data
+        const eventsList = eventsSnapshot.docs.map(doc => ({
+          // id: doc.id,
+          ...doc.data()
+        })) as calData[];
         //set the calendar data
-        setCalendarData(json.data);
+        console.log("events list");
+        setCalendarData(eventsList);
       } catch (error) {
         console.log(error);
       }
@@ -208,41 +216,42 @@ function Home() {
   }, [auth.currentUser, fetchdata]);
 
   return (
+    <body>
     <div className="container">
       <LogoBar />
-      <Search />
-
+      {/* <Search /> */}
       {/*
 	  this announcments component here will
 	  probably be temporary while we figure out what to do with announcements
     */}
 
-      <div className="mt-3 text-start heading">Announcements</div>
+      <div className="mt-2 text-start heading">Announcements</div>
       <Announcement {...passTweetData} vertical={false} />
       <ViewAllAnnouncements {...passTweetData}/>
 
-      <div className="mt-3 text-start heading">Happening This Week</div>
+      <div className="mt-4 text-start heading">Upcoming Events</div>
       <Calendar {...passCalendarData} />
       <ViewCalendar {...passCalendarData}/>
 
-      <div className="my-3 pf-c-title heading text-start">You Pinned</div>
-      <Pinned pinned={pinned} />
+      <div className="mt-4 my-3 pf-c-title heading text-start">Our Resources</div>
 
-      <div className="my-3 pf-c-title heading text-start">Our Resources</div>
+      <div className="container">
       <Button
-        className="px-3 py-2 mb-2 pinned "
+        className="home-button px-3 py-2 mb-2"
         variant="primary"
         onClick= { () => navigate("/getresources")}
         >
         Get Resources
       </Button>
+      </div>
       <Resources resources={InvolvedData}/>
       <Resources resources={SubmitandRequestData}/>
       
-      <div className="mt-3 pf-c-title heading text-start">News and Updates</div>
+      <div className="mt-4 pf-c-title heading text-start">News and Updates</div>
       <Updates {...passUpdateData} vertical={false} />
       <ViewAllPosts {...passUpdateData} />
     </div>
+    </body>
   );
 }
 

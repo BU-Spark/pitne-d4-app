@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { AngleLeftIcon } from "@patternfly/react-icons";
 import { useNavigate } from "react-router-dom";
 import type { upData } from "./Home.tsx";
@@ -8,44 +8,43 @@ import LogoBar from "../components/home/LogoBar.tsx";
 
 function AllPosts() {
   const navigate = useNavigate();
-
-  const [updates, setUpdates] = React.useState<upData[]>([]);
+  const [updates, setUpdates] = useState<upData[]>([]);
 
   useEffect(() => {
     const fetchUpdates = async () => {
-      fetch(APIUrl + "updates")
-        .then((res) => {
-          if (res.ok) {
-            res.json().then((json) => {
-              setUpdates(json.data);
-            });
-          } else {
-            console.log(`status code: ${res.status}`);
-            setUpdates([
-              {
-                id: -1,
-                attributes: {
-                  title: "Uh Oh!",
-                  content: "Looks like there was an issue!",
-                },
+      try {
+        const response = await fetch(APIUrl + "updates");
+        if (response.ok) {
+          const json = await response.json();
+          setUpdates(json.data);
+        } else {
+          console.log(`status code: ${response.status}`);
+          setUpdates([
+            {
+              id: -1,
+              attributes: {
+                title: "Uh Oh!",
+                content: "Looks like there was an issue!",
               },
-            ]);
-          }
-        })
-        .catch((e) => {
-          console.error(e);
-        });
+            },
+          ]);
+        }
+      } catch (error) {
+        console.error(error);
+      }
     };
     fetchUpdates();
   }, []);
 
   return (
     <div className="container">
-        <LogoBar />
+      <LogoBar />
       <div className="mt-4 ms-4 portal-nav">
-        <AngleLeftIcon size="md" onClick={() => navigate("/home")} />
-        All Posts
+        <div className="grab-cursor">
+          <AngleLeftIcon size="md" onClick={() => navigate("/")} />
+        </div>
       </div>
+      <div className="heading">All Posts</div>
       <Updates updates={updates} vertical={true} />
     </div>
   );
