@@ -7,7 +7,6 @@ import AddressAPIErrorBox from "../components/address/AddressAPIErrorBox";
 import StateSelection from "../components/address/StateSelection";
 import { TextInput, Button } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
-import { ProgressStepperCompact1 } from "../components/home/Progressbar";
 
 function AddressEntry() {
   const navigate = useNavigate();
@@ -90,7 +89,6 @@ function AddressEntry() {
 
   return (
     <div className="container-padded">
-      <ProgressStepperCompact1 />
       <div className="text-start mt-5">Address</div>
       <TextInput
         className="px-2"

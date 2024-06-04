@@ -3,7 +3,6 @@ import { Button, Chip } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
 // Import firebase
 import { doc, getFirestore, setDoc } from "firebase/firestore";
-import { ProgressStepperCompact4 } from "../components/home/Progressbar";
 import { APIUrl } from "./Home";
 
 import { IResource } from "../types";
@@ -96,7 +95,6 @@ function Interests() {
 
   return (
     <div className="container-padded">
-      <ProgressStepperCompact4/>
       <div className="pf-c-title mb-3 h5 mt-5">
         Help Us Understand Your Interests
       </div>
