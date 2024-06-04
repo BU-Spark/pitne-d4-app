@@ -7,6 +7,7 @@ import AddressAPIErrorBox from "../components/address/AddressAPIErrorBox";
 import StateSelection from "../components/address/StateSelection";
 import { TextInput, Button } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
+import ProgressBar from "../components/home/Progressbar";
 
 function AddressEntry() {
   const navigate = useNavigate();
@@ -88,7 +89,12 @@ function AddressEntry() {
   };
 
   return (
-    <div className="container-padded">
+    // TODO Navbar
+
+    <div className='p-4 m-3' style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <div>
+        <h1>Address Entry</h1>
+      </div>
       <div className="text-start mt-5">Address</div>
       <TextInput
         className="px-2"
@@ -133,14 +139,18 @@ function AddressEntry() {
       {showInvalid && <AddressInvalidBox></AddressInvalidBox>}
       {showAPIError && <AddressAPIErrorBox></AddressAPIErrorBox>}
 
-      <div className="text-end mt-5 pt-5">
+      <div className="text-center mt-5 pt-5">
         <Button
           onClick={submit}
-          className="px-3 py-1"
+          className="px-5 py-1"
           variant="primary"
         >
           Next
         </Button>
+      </div>
+      {/* Progress Bar */}
+      <div className='bottom-0 start-0 p-5' style={{ width: '100%' }}>
+        <ProgressBar value={66} />
       </div>
     </div>
   );
