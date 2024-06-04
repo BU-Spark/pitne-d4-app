@@ -252,7 +252,7 @@ function Home() {
       <Resources resources={InvolvedData}/>
       <Resources resources={SubmitandRequestData}/>
 
-      <div className="my-3 pf-c-title heading text-start">Our Resources</div>
+      <div className="my-3 pf-c-title heading text-start">Report a Non-Emergency Issue</div>
       <Button
         className="px-3 py-2 mb-2 pinned "
         variant="primary"
