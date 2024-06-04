@@ -5,7 +5,7 @@ import { ProgressStepper, ProgressStep } from '@patternfly/react-core';
 /** File for storing different variation of the progress bar use at different stage of the sign up flow
  * properly more efficient to use React props, come back to fixed later
  * 
- * Address verify
+ * Address Entry 
  */
 
 
@@ -44,7 +44,7 @@ export const ProgressStepperCompact1: React.FunctionComponent = (props) => {
           aria-label="pending step"
         >
         </ProgressStep>
-        
+
       </ProgressStepper>
     </React.Fragment>
   );
@@ -84,7 +84,7 @@ export const ProgressStepperCompact2: React.FunctionComponent = (props) => {
           aria-label="pending step"
         >
         </ProgressStep>
-        
+
       </ProgressStepper>
     </React.Fragment>
   );
@@ -124,7 +124,7 @@ export const ProgressStepperCompact3: React.FunctionComponent = (props) => {
           aria-label="pending step"
         >
         </ProgressStep>
-        
+
       </ProgressStepper>
     </React.Fragment>
   );
@@ -164,7 +164,7 @@ export const ProgressStepperCompact4: React.FunctionComponent = (props) => {
           aria-label="step with info"
         >
         </ProgressStep>
-        
+
       </ProgressStepper>
     </React.Fragment>
   );

@@ -10,6 +10,9 @@ function AddressInfo() {
   };
 
   return (
+    // Navbar
+
+    // Body
     <div className="container-padded">
       <div className="text-start mb-3 pf-c-title h5">Please enter your address to confirm your residency</div>
       <div className="text-start mb-5 pb-5"> We don’t store any of this information, but we need to use it to match you to the resources for your residence. </div>

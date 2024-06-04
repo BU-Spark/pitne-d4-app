@@ -8,7 +8,8 @@ import StateSelection from "../components/address/StateSelection";
 import { TextInput, Button } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
 import { ProgressStepperCompact1 } from "../components/home/Progressbar";
-function AddressVerify() {
+
+function AddressEntry() {
   const navigate = useNavigate();
   const [showLoading, setShowLoading] = React.useState(false);
   const [showSuccess, setShowSuccess] = React.useState(false);
@@ -18,7 +19,6 @@ function AddressVerify() {
 
   // Store the address, city, state, and zip in state
   const [address, setAddress] = React.useState("");
-  // const [address2, setAddress2] = React.useState("");
   const [city, setCity] = React.useState("");
   const [state, setState] = React.useState("");
   const [zip, setZip] = React.useState("")
@@ -28,7 +28,7 @@ function AddressVerify() {
     setTimeout(() => {
       setShowLoading(false);
       setShowSuccess(true);
-      navigate("/signup");
+      navigate("/civic-associations");
     }, 1000);
   };
 
@@ -37,10 +37,6 @@ function AddressVerify() {
     setShowInvalid(false);
     setShowAPIError(false);
     setShowLoading(true);
-
-    setShowLoading(false);
-    setShowSuccess(true);
-    navigateToNext();
     const a = {
       address,
       city,
@@ -52,9 +48,6 @@ function AddressVerify() {
       setShowLoading(false);
       setShowInvalid(true);
     } else if (a.state === "Other") {
-      setShowLoading(false);
-      setShowError(true);
-    } else if (a.city !== "Boston") {
       setShowLoading(false);
       setShowError(true);
     }
@@ -73,48 +66,24 @@ function AddressVerify() {
           } else {
             // Store the coordinates in state
             if (data.length === 0) {
+              setShowLoading(false)
               setShowInvalid(true);
               return;
             }
-            return { lat: data[0].lat, lng: data[0].lon };
+            const coords = { lat: data[0].lat, lng: data[0].lon };
+            console.log(coords);
+            if (!coords) {
+              console.log(coords);
+              setShowLoading(false);
+              setShowInvalid(true);
+              return;
+            }
+            navigateToNext()
           }
-        }).then((coords) => {
-          // Query ArcGIS Query API to return all layers that contain the point
-          // https://bostonopendata-boston.opendata.arcgis.com/datasets/boston::city-council-districts-effective-for-the-2023-municipal-election/about
-          if (!coords) {
-            setShowLoading(false);
-            setShowInvalid(true);
-            return;
-          }
-          const url = "https://services.arcgis.com/sFnw0xNflSi8J0uh/arcgis/rest/services/Docket%201275%20Committee%20Report/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson"
-            + "&geometry=" + coords.lng + "%2C" + coords.lat + "&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects";
-          fetch(url)
-            .then((response) => response.json())
-            .then((data) => {
-              if (!data) {
-                setShowLoading(false);
-                setShowAPIError(true);
-                return -1;
-              } else {
-                // Store the district in state
-                return data.features[0].properties.DISTRICT
-              }
-            }).then((arcgisResponse) => {
-              // Check if the address is in District 7
-              if (arcgisResponse === -1) {
-                setShowLoading(false);
-                setShowAPIError(true);
-              }
-              else if (arcgisResponse === 7) {
-                console.log('BRO');
-                setShowLoading(false);
-                setShowSuccess(true);
-                navigateToNext();
-              } else {
-                setShowLoading(false);
-                setShowError(true);
-              }
-            });
+        }).catch(() => {
+          setShowLoading(false);
+          setShowAPIError(true);
+          return;
         });
     }
   };
@@ -132,16 +101,6 @@ function AddressVerify() {
           setAddress(e.split(" ").join("+"));
         }}
       />
-      <TextInput
-        className="mb-2 px-2"
-        id="textInput-basic-1"
-        type="text"
-        placeholder="Apt, suite, unit, building, etc."
-      // onChange={(e) => { // We don't actually need this field, its just for appearances lol
-      //   setAddress2(e);
-      // }}
-      />
-
       <div className="mt-3 text-start">City</div>
       <TextInput
         className="mb-2"
@@ -189,4 +148,4 @@ function AddressVerify() {
   );
 }
 
-export default AddressVerify;
+export default AddressEntry;
