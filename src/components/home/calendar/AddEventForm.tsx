@@ -6,28 +6,32 @@ import {
   ActionGroup,
   Button,
 } from '@patternfly/react-core';
+import { collection, getFirestore, addDoc } from 'firebase/firestore';
 
 interface FormComponentProps {
   onSubmit: (formData: FormData) => void;
 }
 
-interface FormData {
-  name: string;
+type FormData = {
+  id: number;
+  title: string;
   description: string;
   date: string;
   location: string;
-}
+};
 
 const FormComponent: React.FC<FormComponentProps> = ({ onSubmit }) => {
+
   const [formData, setFormData] = useState<FormData>({
-    name: '',
+    id: 2,
+    title: '',
     description: '',
     date: '',
     location: ''
   });
 
   const handleNameChange = (value: string) => {
-    setFormData({ ...formData, name: value });
+    setFormData({ ...formData, title : value });
   };
 
   const handleDescChange = (value: string) => {
@@ -45,6 +49,33 @@ const FormComponent: React.FC<FormComponentProps> = ({ onSubmit }) => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+    const subTitle = formData.title;
+    const subDesc = formData.description;
+    const subDate = formData.date;
+    const subLoc = formData.location;
+
+    console.log(subTitle, subDesc, subDate, subLoc);
+
+    const calData = {
+      id: formData.id,
+      attributes: {
+        title: subTitle,
+        body: subDesc,
+        date: subDate,
+        location: subLoc
+      }
+    };
+
+    const db = getFirestore();
+    const newCalDataRef = collection(db, 'events');
+    addDoc(newCalDataRef, calData)
+      .then(() => {
+      console.log('Data saved successfully!');
+    })
+    .catch((error) => {
+      console.error('Error saving data:', error);
+    });
+
     onSubmit(formData);
   };
 
@@ -62,7 +93,7 @@ const FormComponent: React.FC<FormComponentProps> = ({ onSubmit }) => {
           id="simple-form-name-01"
           name="simple-form-name-01"
           aria-describedby="simple-form-name-01-helper"
-          value={formData.name}
+          value={formData.title}
           onChange={handleNameChange}
         />
       </FormGroup>
