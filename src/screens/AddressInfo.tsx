@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Button } from '@patternfly/react-core';
 import ProgressBar from '../components/home/Progressbar'; // Adjust the import path as needed
 import { useNavigate } from "react-router-dom";
+import associationsImage from "../images/associations.png";
 
 function AddressInfo() {
   const navigate = useNavigate();
@@ -23,6 +24,12 @@ function AddressInfo() {
       <div>
         <h1>Address Entry</h1>
       </div>
+
+      {/* Image */}
+      <div>
+        <img src={associationsImage} alt='Associations' />
+      </div>
+
 
       {/* Text */}
       <div>
