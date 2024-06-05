@@ -29,13 +29,11 @@ function AnnouncementCard(props: {
       <Card className="ms-1 me-3 my-3 calendar-card">
         <div className=" mx-3 mt-3 mb-5">
           <div className="row">
-            <div className="col-9">
               <Text className="text-start">{title}</Text>
-            </div>
           </div>
           <div className="row">
-            <small className="text-start text-secondary">{content}</small>
-            <small className="text-start text-secondary">{finalDate}</small>
+          {/* <small className="text-start text-secondary">{finalDate}</small> */}
+            {/* <small className="text-start text-secondary">{content}</small> */}
             {/* if there's an image, display it */}
             {props.image ? (
               <img

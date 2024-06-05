@@ -17,15 +17,12 @@ function AllAnnouncements() {
     const fetchAnnounData = async () => {
       try {
         const announsCollection = collection(db, "announcements");
-        // Get all documents from the "events" collection
+    
         const announSnapshot = await getDocs(announsCollection);
-        // Map through each document and get its data
         const announList = announSnapshot.docs.map(doc => ({
           // id: doc.id,
           ...doc.data()
         })) as announData[];
-        //set the calendar data
-        console.log("announ list");
         setAnnounData(announList);
       } catch (error) {
         console.log(error);
