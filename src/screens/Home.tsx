@@ -1,6 +1,7 @@
 import * as React from "react";
+import { useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { doc, getDoc, getFirestore, collection, getDocs} from "firebase/firestore";
+import { doc, getDoc, getFirestore, collection, getDocs, query, where} from "firebase/firestore";
 import Search from "../components/home/Search.tsx";
 import { useEffect, useCallback } from "react";
 import Calendar from "../components/home/calendar/Calendar.tsx";
@@ -14,9 +15,11 @@ import { Button } from "@patternfly/react-core";
 import ViewAllAnnouncements from "../components/home/announcements/ViewAllAnnouncements.tsx";
 import ViewCalendar from "../components/home/calendar/ViewCalendar.tsx";
 import Resources from "../components/home/Resources.tsx";
+import { cursorTo } from "readline";
 
 //for dev,
 const APIUrl = "https://se-d7-dev.up.railway.app/api/";
+
 
 //initialise the type of calendar and tweet data we are getting from strapi
 type calData = {
@@ -45,6 +48,43 @@ type upData = {
     content: string;
   };
 };
+
+function checkIfManager() {
+  return new Promise((resolve, reject) => {
+    const auth = getAuth();
+    const db = getFirestore();
+  
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const userEmail = user.email;
+        const adminCollection = collection(db, 'Admin-Accounts');
+        const q = query(adminCollection, where('admin-email', '==', userEmail));
+  
+        const querySnapshot = await getDocs(q);
+        if (!querySnapshot.empty) {
+          console.log("User is logged in and is an admin.");
+          localStorage.setItem('isManager', 'true');
+          resolve(true);  // Resolve the promise with true
+        } else {
+          console.log("User is logged in but is not an admin.");
+          localStorage.setItem('isManager', 'false');
+          resolve(false); // Resolve the promise with false
+        }
+      } else {
+        console.log("No user is currently logged in.");
+        localStorage.setItem('isManager', 'false');
+        resolve(false); // Resolve the promise with false
+      }
+    });
+  });
+}
+
+// const isManager = localStorage.getItem('isManager') === 'true';
+
+
+// const [isManager, setIsManager] = useState(false);
+
+
 
 function Home() {
   const navigate = useNavigate();
@@ -90,6 +130,18 @@ function Home() {
         console.log("Error getting document:", error);
       });
   }, [db]);
+
+  useEffect(() => {
+    const fetchManagerStatus = async () => {
+      // Only fetch from Firestore if the local storage does not have the manager status
+      if (localStorage.getItem('isManager') === null) {
+        await checkIfManager();
+        console.log("called function check Manager status");
+      }
+    };
+  
+    fetchManagerStatus();
+  }, []);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {

@@ -23,7 +23,6 @@
   border-radius: 50%;
   text-align: center;
   cursor: pointer;
-  color: black;
   transition: background-color 0.3s;
   font-size: 1.5vw;
 }
@@ -41,10 +40,6 @@
   width: 100px;
   justify-content: center;
 }
-
-
-
-
 
 
 
