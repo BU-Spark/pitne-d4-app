@@ -1,6 +1,6 @@
 import * as React from "react";
 import AnnouncementCard from "./AnnouncementCard.tsx";
-import type { tweetData } from "../../../screens/Home.tsx";
+import type { announData } from "../../../screens/Home.tsx";
 
 function Announcement(props: { announs: announData[]; vertical: boolean }) {
   return (
