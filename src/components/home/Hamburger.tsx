@@ -13,7 +13,7 @@ const HamburgerMenu: React.FC = () => {
 
     const handleNavigation = (path: string) => {
         navigate(path);
-        setIsOpen(false); // Close the menu after navigation
+        setIsOpen(false); 
     };
 
     const handleSignOut = () => {
@@ -31,11 +31,11 @@ const HamburgerMenu: React.FC = () => {
     
     return (
         <div className="hamburger-menu-container">
-            <div className="hamburger-icon" onClick={toggleMenu}>
-            &#8801; {/* This is the hamburger icon */}
+            <div className={`hamburger-icon ${isOpen ? 'open' : ''}`} onClick={toggleMenu}>
+                &#8801; 
             </div>
-            {isOpen && (
-                <div className="menu">
+            <div className={`menu-overlay ${isOpen ? 'open' : ''}`} onClick={toggleMenu}>
+                <div className={`menu ${isOpen ? 'open' : ''}`}>
                     <Button variant="link" onClick={() => handleNavigation("/all-announcements")}>
                         Announcements
                     </Button>
@@ -55,7 +55,7 @@ const HamburgerMenu: React.FC = () => {
                         Sign Out
                     </Button>
                 </div>
-            )}
+            </div>
         </div>
     );
 };

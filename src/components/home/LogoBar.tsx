@@ -8,13 +8,14 @@ function LogoBar() {
     const navigate = useNavigate();
 
     return (
-        // Incorporates the logo and login components to create a logo bar
-        <div className="container-horizontal mb-4 mt-4" style={{ cursor: "pointer" }}>
-        <Logo /> 
-        {/* <div style={{ marginLeft: "auto" }}> */}
-        <HamburgerMenu /> 
-        {/* </div> */}
-        </div>
+        <header className="logo-bar">
+            <div className="logo-bar-left">
+                <Logo />
+            </div>
+            <div className="logo-bar-right">
+                <HamburgerMenu />
+            </div>
+        </header>
     );
 }
 

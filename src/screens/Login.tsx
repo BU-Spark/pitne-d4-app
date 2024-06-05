@@ -94,14 +94,12 @@ const Login: React.FunctionComponent<Login> = (props) => {
   };
 
   return (
-    // <div className="container">
-    //   </div
     <>
     <div className="container">
          <LogoBar />
     </div>
     <div className="container-padded">
-      <div className="heading mb-4 text-start">Log In</div>
+      <div className="top-heading text-start">Log In</div>
       <div className="text-start">Email</div>
 
       <TextInput

@@ -32,7 +32,7 @@ type calData = {
   };
 };
 
-type tweetData = {
+type announData = {
   id: number;
   attributes: {
     title: string;
@@ -103,8 +103,8 @@ function Home() {
     links: {title:string, url: string}[]}[]>([]); 
   //calendarData array of calData type
   const [calendarData, setCalendarData] = React.useState<calData[]>([]);
-  //tweetData array of tweetData type
-  const [tweetData, setTweetData] = React.useState<tweetData[]>([]);
+  //announData array of announData type
+  const [announData, setAnnounData] = React.useState<announData[]>([]);
 
   // This function fetch user interests from user-profile
   // The userEmail has default parameter to handle anonymous users that wants to use app without logging in
@@ -176,14 +176,34 @@ function Home() {
       }
     };
 
-    const fetchTweetData = async () => {
+    const fetchAnnounData = async () => {
+      // try {
+      //   const res = await fetch(APIUrl + "tweets");
+      //   const json = await res.json();
+      //   setannounData(json.data);
+      // } catch (error) {
+      //   console.error(error);
+      // }
+
       try {
-        const res = await fetch(APIUrl + "tweets");
-        const json = await res.json();
-        setTweetData(json.data);
+        // const res = await fetch(APIUrl + "calendars");
+        // const json = await res.json();
+        const announsCollection = collection(db, "announcements");
+        // Get all documents from the "events" collection
+        const announSnapshot = await getDocs(announsCollection);
+        // Map through each document and get its data
+        const announList = announSnapshot.docs.map(doc => ({
+          // id: doc.id,
+          ...doc.data()
+        })) as announData[];
+        //set the calendar data
+        console.log("announ list");
+        setAnnounData(announList);
       } catch (error) {
-        console.error(error);
+        console.log(error);
       }
+
+      
     };
 
     const fetchUpdateData = async () => {
@@ -243,7 +263,7 @@ function Home() {
     };
 
     fetchCalendarData();
-    fetchTweetData();
+    fetchAnnounData();
     fetchUpdateData();
     fetchGetInvolvedData();
     fetchGetSubmitRequestData();
@@ -253,8 +273,8 @@ function Home() {
   const passCalendarData = {
     data: calendarData,
   };
-  const passTweetData = {
-    tweets: tweetData,
+  const passAnnounData = {
+    announs: announData,
   };
   const passUpdateData = {
     updates: updateData,
@@ -270,16 +290,14 @@ function Home() {
   return (
     <body>
     <div className="container">
-      <LogoBar />
+      <div className = "mb-5">
+        <LogoBar />
+      </div>
       {/* <Search /> */}
-      {/*
-	  this announcments component here will
-	  probably be temporary while we figure out what to do with announcements
-    */}
 
-      <div className="mt-2 text-start heading">Announcements</div>
-      <Announcement {...passTweetData} vertical={false} />
-      <ViewAllAnnouncements {...passTweetData}/>
+      <div className="top-heading">Announcements</div>
+      <Announcement {...passAnnounData} vertical={false} />
+      <ViewAllAnnouncements {...passAnnounData}/>
 
       <div className="mt-4 text-start heading">Upcoming Events</div>
       <Calendar {...passCalendarData} />
@@ -308,7 +326,7 @@ function Home() {
 }
 
 export type { calData };
-export type { tweetData };
+export type { announData };
 export type { upData };
 export { APIUrl };
 
