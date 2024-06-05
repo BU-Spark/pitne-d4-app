@@ -29,7 +29,7 @@ function AddressErrorBox() {
           </div>
           <div className="row">
             <small className="text-start text-secondary">
-              You are not a part of Lucerne Gardens Resident Association
+              You must be a resident of District 4 in Massachusetts to use this feature
             </small>
           </div>
         </CardBody>

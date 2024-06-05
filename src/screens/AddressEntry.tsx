@@ -8,6 +8,10 @@ import StateSelection from "../components/address/StateSelection";
 import { TextInput, Button } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
 import ProgressBar from "../components/home/Progressbar";
+import { loadModules } from "esri-loader";
+import { Query } from "firebase/firestore";
+import { relate } from "esri/geometry/geometryEngine";
+import { tr } from "date-fns/locale";
 
 function AddressEntry() {
   const navigate = useNavigate();
@@ -24,7 +28,6 @@ function AddressEntry() {
   const [zip, setZip] = React.useState("")
 
   const navigateToNext = () => {
-    setShowLoading(true);
     setTimeout(() => {
       setShowLoading(false);
       setShowSuccess(true);
@@ -75,14 +78,53 @@ function AddressEntry() {
               return;
             }
             const coords = { lat: data[0].lat, lng: data[0].lon };
-            console.log(coords);
             if (!coords) {
-              console.log(coords);
               setShowLoading(false);
               setShowInvalid(true);
               return;
             }
-            navigateToNext()
+
+            loadModules([
+              "esri/Map",
+              "esri/layers/FeatureLayer",
+              "esri/tasks/support/Query",
+              "esri/geometry/Point"
+            ]).then(([Map, FeatureLayer, Query, Point]) => {
+              const map = new Map({
+                basemap: "streets-navigation-vector"
+              });
+
+              const districtFourLayer = new FeatureLayer({
+                url: "https://services.arcgis.com/sFnw0xNflSi8J0uh/arcgis/rest/services/CityCouncilDistricts_2023_5_25/FeatureServer/0"
+              })
+
+              const userLocation = new Point({
+                longitude: coords.lng,
+                latitude: coords.lat
+              })
+
+              const query = new Query();
+              query.geometry = userLocation;
+              query.spatialRelationship = "intersects";
+              query.returnGeometry = false;
+              query.outFields = ["*"];
+
+              districtFourLayer.queryFeatures(query).then((result: __esri.FeatureSet) => {
+                setShowLoading(false);
+                if (result.features.length > 0) {
+                  const district = result.features[0].attributes["DISTRICT"];
+                  if (district === 4) {
+                    setShowSuccess(true);
+                    sessionStorage.setItem("latitude", coords.lat);
+                    sessionStorage.setItem("longitude", coords.lng);
+                    navigateToNext()
+                  } else {
+                    setShowError(true)
+                    return;
+                  }
+                }
+              })
+            })
           }
         }).catch(() => {
           setShowLoading(false);
@@ -129,7 +171,7 @@ function AddressEntry() {
 
         <div className="text-start mt-3">Zipcode</div>
         <TextInput
-          className="mb-5 px-2"
+          className="mb-3 px-2"
           id="textInput-basic-1"
           type="text"
           placeholder="Zipcode"
@@ -149,7 +191,7 @@ function AddressEntry() {
         {/* Next Button */}
         <div className='p-2'>
           <Button
-            onClick={navigateToNext}
+            onClick={submit}
             className="px-5 py-1"
             variant="primary"
           >
