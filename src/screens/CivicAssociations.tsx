@@ -8,6 +8,7 @@ function CivicAssociations() {
     useEffect(() => {
         const latitude = sessionStorage.getItem('latitude');
         const longitude = sessionStorage.getItem('longitude');
+        console.log(latitude)
 
         if (!latitude || !longitude) {
             console.error("Latitude or longitude not found in sessionStorage.");

@@ -26,7 +26,7 @@ function AddressInfo() {
       </div>
 
       {/* Image */}
-      <div>
+      <div style={{ maxHeight: '400px', overflow: 'hidden' }}>
         <img src={associationsImage} alt='Associations' />
       </div>
 
