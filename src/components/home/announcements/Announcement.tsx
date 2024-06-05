@@ -1,15 +1,15 @@
 import * as React from "react";
 import AnnouncementCard from "./AnnouncementCard";
-import type { tweetData } from "../../../screens/Home";
+import type { announData } from "../../../screens/Home";
 
-function Announcement(props: { tweets: tweetData[]; vertical: boolean}) {
+function Announcement(props: { announs: announData[]; vertical: boolean}) {
   return (
     <div className={props.vertical ? "vertical-scroll" : "horizontal-scroll"}
     style={
       props.vertical ? {display: "flex", flexWrap: "wrap"} : {}
     } >
-      {props.tweets.length > 0 ? (
-        props.tweets.map((announcement) => {
+      {props.announs.length > 0 ? (
+        props.announs.map((announcement) => {
           return (
             <AnnouncementCard
               title={announcement.attributes.title}

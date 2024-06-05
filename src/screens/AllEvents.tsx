@@ -57,13 +57,16 @@ function AllEvents() {
 
   return (
     <div className="container">
+      <div className = "mb-5">
       <LogoBar />
+      </div>
+      {/* <LogoBar /> */}
       {/* <div className="mt-4 ms-4 portal-nav">
       <div className = "grab-cursor">
         <AngleLeftIcon size="md" onClick={() => navigate("/")} />
       </div>
       </div> */}
-      <div className="heading">District 4 Events Calendar</div>
+      <div className="top-heading">District 4 Events Calendar</div>
       <MonthCalendar onDateChange={handleDateChange} />
       <EventButton />
       <Events data={filteredEvents} />

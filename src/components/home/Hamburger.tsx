@@ -12,13 +12,13 @@ const HamburgerMenu: React.FC = () => {
 
     const handleNavigation = (path: string) => {
         navigate(path);
-        setIsOpen(false); // Close the menu after navigation
+        setIsOpen(false); 
     };
 
     return (
         <div className="hamburger-menu-container">
             <div className={`hamburger-icon ${isOpen ? 'open' : ''}`} onClick={toggleMenu}>
-                &#8801; {/* This is the hamburger icon */}
+                &#8801; 
             </div>
             <div className={`menu-overlay ${isOpen ? 'open' : ''}`} onClick={toggleMenu}>
                 <div className={`menu ${isOpen ? 'open' : ''}`}>

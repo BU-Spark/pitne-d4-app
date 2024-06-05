@@ -1,55 +1,52 @@
 import React, { useEffect } from "react";
 import { AngleLeftIcon } from "@patternfly/react-icons";
 import { useNavigate } from "react-router-dom";
-import type { tweetData } from "./Home";
+import type { announData } from "./Home";
 import { APIUrl } from "./Home";
 import LogoBar from "../components/home/LogoBar";
 import Announcements from "../components/home/announcements/Announcement";
+import { doc, getDoc, getFirestore, collection, getDocs} from "firebase/firestore";
 
 function AllAnnouncements() {
+  const db = getFirestore();
   const navigate = useNavigate();
 
-  const [announcements, setAnnouncements] = React.useState<tweetData[]>([]);
+  const [announcements, setAnnounData] = React.useState<announData[]>([]);
 
   useEffect(() => {
-    const fetchUpdates = async () => {
-      fetch(APIUrl + "tweets")
-        .then((res) => {
-          if (res.ok) {
-            res.json().then((json) => {
-              setAnnouncements(json.data);
-            });
-          } else {
-            console.log(`status code: ${res.status}`);
-            setAnnouncements([
-              {
-                id: -1,
-                attributes: {
-                  title: "Uh Oh!",
-                  description: "Looks like there was an issue!",
-                  date: "None"
-                },
-              },
-            ]);
-          }
-        })
-        .catch((e) => {
-          console.error(e);
-        });
+    const fetchAnnounData = async () => {
+      try {
+        const announsCollection = collection(db, "announcements");
+        // Get all documents from the "events" collection
+        const announSnapshot = await getDocs(announsCollection);
+        // Map through each document and get its data
+        const announList = announSnapshot.docs.map(doc => ({
+          // id: doc.id,
+          ...doc.data()
+        })) as announData[];
+        //set the calendar data
+        console.log("announ list");
+        setAnnounData(announList);
+      } catch (error) {
+        console.log(error);
+      }
+
     };
-    fetchUpdates();
+    fetchAnnounData();
   }, []);
 
   return (
     <div className="container">
+      <div className = "mb-5">
       <LogoBar />
+      </div>
       {/* <div className="mt-4 ms-4 portal-nav">
         <div className = "grab-cursor">
         <AngleLeftIcon size="md" onClick={() => navigate("/")} />
         </div>
       </div> */}
-      <div className="heading">All Announcements</div>
-      <Announcements tweets={announcements} vertical={true}/>
+      <div className="top-heading">All Announcements</div>
+      <Announcements announs={announcements} vertical={true}/>
     </div>
   );
 }

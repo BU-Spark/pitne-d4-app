@@ -38,13 +38,10 @@ function AllPosts() {
 
   return (
     <div className="container">
+      <div className = "mb-5">
       <LogoBar />
-      <div className="mt-4 ms-4 portal-nav">
-        <div className="grab-cursor">
-          <AngleLeftIcon size="md" onClick={() => navigate("/")} />
-        </div>
       </div>
-      <div className="heading">All Posts</div>
+      <div className="top-heading">All Posts</div>
       <Updates updates={updates} vertical={true} />
     </div>
   );
