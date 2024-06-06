@@ -3,6 +3,7 @@ import { Button } from '@patternfly/react-core';
 import ProgressBar from '../components/home/Progressbar'; // Adjust the import path as needed
 import { useNavigate } from "react-router-dom";
 import associationsImage from "../images/associations.png";
+import LogoBar from "../components/home/LogoBar";
 
 function AddressInfo() {
   const navigate = useNavigate();
@@ -20,6 +21,10 @@ function AddressInfo() {
     // TODO Navbar
 
     <div className='p-4 m-3' style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <div className="mb-5">
+        <LogoBar />
+      </div>
+
       {/* Heading */}
       <div>
         <h1>Address Entry</h1>

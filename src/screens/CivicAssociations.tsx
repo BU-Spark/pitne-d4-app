@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { loadModules } from 'esri-loader';
-// import Association from 'esri/rest/networks/support/Association';
+import LogoBar from "../components/home/LogoBar";
 
 function CivicAssociations() {
     const [association, setAssociation] = useState("");
@@ -66,28 +66,32 @@ function CivicAssociations() {
             query.spatialRelationship = "intersects";
             query.returnGeometry = false;
             query.outFields = ["*"];
-
-            // civicAssociationsLayer.queryFeatures(query).then((result: __esri.FeatureSet) => {
-            //     if (result.features.length > 0) {
-            //         const associationName = result.features[0].attributes["Name"];
-            //         setAssociation(associationName);
-            //     } else {
-            //     }
-            // }).catch((error: Error) => {
-            //     console.error("Error querying features:", error);
-            // });
+            civicAssociationsLayer.queryFeatures(query).then((result: __esri.FeatureSet) => {
+                if (result.features.length > 0) {
+                    const associationName = result.features[0].attributes["Name"];
+                    setAssociation(associationName);
+                } else {
+                }
+            }).catch((error: Error) => {
+                console.error("Error querying features:", error);
+            });
         }).catch(error => {
             console.error("Error loading modules:", error);
         });
     }, []); // Empty dependency array ensures useEffect runs only once on component mount
 
-    return (<div>
-        <div id="viewMap" style={{ height: 400, width: "100%" }}>
-        </div>
+    return (
         <div>
-            {association}
-        </div>
-    </div>);
+            <div className="mb-5">
+                <LogoBar />
+            </div>
+            <div id="viewMap" style={{ height: 400, width: "100%", marginTop: '80px' }}>
+            </div>
+            <div>
+                {association}
+            </div>
+        </div>);
 }
 
 export default CivicAssociations;
+

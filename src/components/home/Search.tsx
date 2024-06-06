@@ -4,7 +4,7 @@ import { SearchInput } from "@patternfly/react-core";
 function Search() {
     const [search, setSearch] = React.useState("");
 
-    const onChange = (event: React.FormEvent<HTMLInputElement>, value: string) => {
+    const onChange = (value: string) => {
         setSearch(value);
     };
 

@@ -11,6 +11,7 @@ import ProgressBar from "../components/home/Progressbar";
 import { loadModules } from "esri-loader";
 import { Query } from "firebase/firestore";
 import { tr } from "date-fns/locale";
+import LogoBar from "../components/home/LogoBar";
 
 function AddressEntry() {
   const navigate = useNavigate();
@@ -22,8 +23,8 @@ function AddressEntry() {
 
   // Store the address, city, state, and zip in state
   const [address, setAddress] = React.useState("");
-  const [city, setCity] = React.useState("");
-  const [state, setState] = React.useState("");
+  const city = "Boston";
+  const state = "Massachusetts";
   const [zip, setZip] = React.useState("")
 
   const navigateToNext = () => {
@@ -50,12 +51,9 @@ function AddressEntry() {
       zip
     };
 
-    if (a.address === "" || a.city === "" || a.state === "" || a.zip === "") {
+    if (a.address === "" || a.zip === "") {
       setShowLoading(false);
       setShowInvalid(true);
-    } else if (a.state === "Other") {
-      setShowLoading(false);
-      setShowError(true);
     }
     /***Can also implement some sort of address validity checking here before going into the main ArcGIS query check*/
     else {
@@ -134,9 +132,11 @@ function AddressEntry() {
   };
 
   return (
-    // TODO Navbar
 
     <div className='p-4 m-3' style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <div className="mb-5">
+        <LogoBar />
+      </div>
       <div>
         <h1>Address Entry</h1>
       </div>
@@ -157,15 +157,18 @@ function AddressEntry() {
           id="textInput-basic-1"
           type="text"
           placeholder="City"
-          onChange={(e) => {
-            setCity(e.split(" ").join("+"));
-          }}
+          value={city}
+          isReadOnly
         />
 
         <div className="text-start mt-3">State</div>
-        <StateSelection
-          state={state}
-          setState={setState}
+        <TextInput
+          className=""
+          id="textInput-basic-1"
+          type="text"
+          placeholder="State"
+          value={state}
+          isReadOnly
         />
 
         <div className="text-start mt-3">Zipcode</div>
