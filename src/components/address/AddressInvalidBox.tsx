@@ -13,9 +13,9 @@ import TimesCircleIcon from "@patternfly/react-icons/dist/esm/icons/times-circle
 function AddressErrorBox() {
   return (
     <div>
-      
+
       <Card >
-        <div style={{backgroundColor:"#c9190b",height:"3px"}}></div>
+        <div style={{ backgroundColor: "#c9190b", height: "3px" }}></div>
         <CardBody className="m-3">
           <div className="row">
             <div className="col-10">
@@ -29,7 +29,7 @@ function AddressErrorBox() {
           </div>
           <div className="row">
             <small className="text-start text-secondary">
-              Please enter a valid address
+              Please enter a valid address and fill in all the fields
             </small>
           </div>
         </CardBody>

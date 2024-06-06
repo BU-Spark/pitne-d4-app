@@ -10,6 +10,7 @@ import Events from "../components/home/calendar/Calendar";
 import LogoBar from "../components/home/LogoBar";
 import MonthCalendar from "../components/home/calendar/MonthCalendar";
 import EventButton from "../components/home/calendar/AddEvent";
+// import { useIsManager } from "./Home";
 
 function AllEvents() {
   const navigate = useNavigate();
@@ -30,6 +31,8 @@ function AllEvents() {
         })) as calData[];
         //set the calendar data
         console.log("events list");
+        if (auth.currentUser){console.log("User: " + auth.currentUser.email);}
+        else {console.log("User is null");}
         setCalendarData(eventsList);
       } catch (error) {
         console.log(error);
@@ -68,7 +71,8 @@ function AllEvents() {
       </div> */}
       <div className="top-heading">District 4 Events Calendar</div>
       <MonthCalendar onDateChange={handleDateChange} />
-      <EventButton />
+      {/* <EventButton /> */}
+      {localStorage.getItem('isManager') === 'true' && <EventButton />}  // Conditionally rendering EventButtons
       <Events data={filteredEvents} />
 
       <div>All Upcoming Events: </div>

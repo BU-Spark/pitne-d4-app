@@ -32,6 +32,7 @@ function AllAnnouncements() {
     fetchAnnounData();
   }, []);
 
+  
   return (
     <div className="container">
       <div className = "mb-5">

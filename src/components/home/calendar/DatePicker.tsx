@@ -60,7 +60,7 @@ const DatePicker: React.FC<DatePickerProps> = ({ data }) => {
 
   const renderDays = () => {
     const dateFormat = "EEE";
-    const days = [];
+    const days: JSX.Element[] = []; // Specify the type of 'days' as an array of JSX elements
     let startDate = startOfWeek(currentMonth, { weekStartsOn: 1 });
     for (let i = 0; i < 7; i++) {
       days.push(
@@ -82,34 +82,7 @@ const DatePicker: React.FC<DatePickerProps> = ({ data }) => {
     let formattedDate = "";
 
     while (day <= endDate) {
-      for (let i = 0; i < 7; i++) {
-        formattedDate = format(day, dateFormat);
-
-        const cloneDay = day;
-        days.push(
-          <div
-            className={`col ${isSameDay(day, new Date())
-              ? "today"
-              : isSameDay(day, selectedDate)
-                ? "selected"
-                : ""
-              }`}
-            onClick={() => {
-              const dayStr = format(cloneDay, "ccc dd MMM yy");
-              onDateClickHandle(cloneDay, dayStr);
-            }}
-          >
-            <span className="number">{formattedDate}</span>
-          </div>
-        );
-        day = addDays(day, 1);
-      }
-
-      rows.push(
-        <div className="row " key={formattedDate}>
-          {days}
-        </div>
-      );
+      const rows: JSX.Element[] = [];
       days = [];
     }
     return <div className="body">{rows}</div>;

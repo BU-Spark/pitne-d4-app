@@ -2,7 +2,6 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { Checkbox, TextInput, Button, Alert } from "@patternfly/react-core";
 import { doc, setDoc, getDoc, getFirestore } from "firebase/firestore";
-import { ProgressStepperCompact3 } from "../components/home/Progressbar";
 import RegisteredSelection from "../components/login/RegisteredSelection";
 import { getAuth } from "firebase/auth";
 
@@ -81,7 +80,6 @@ function Profile() {
 
   return (
     <div className="container-padded">
-      <ProgressStepperCompact3 />
       <div className="pf-c-title pf-m-lg text-start mb-3 mt-5">
         Build Your User Profile
       </div>

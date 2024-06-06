@@ -23,7 +23,6 @@
   border-radius: 50%;
   text-align: center;
   cursor: pointer;
-  color: black;
   transition: background-color 0.3s;
   font-size: 1.5vw;
 }
@@ -42,6 +41,14 @@
   justify-content: center;
 }
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+>>>>>>> origin/test
 @media (max-width: 700px) {
   .pf-c-calendar-month {
     padding: 4vw;

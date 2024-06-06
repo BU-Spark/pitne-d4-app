@@ -30,6 +30,7 @@ const Login: React.FunctionComponent<Login> = (props) => {
   }, [auth]);
 
   const Login = async () => {
+    localStorage.removeItem('isManager');
     const user = {
       email,
       password,
