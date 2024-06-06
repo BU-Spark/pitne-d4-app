@@ -1,16 +1,9 @@
 import React from 'react';
 import { Button } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
-import { APIUrl } from "../../screens/Home";
+import React from "react";
 
-type resourcesData = {
-    id: number;
-    attributes: {
-      title: string;
-      body: string;
-      date: string;
-    };
-  };
+
 
 function Resources(props: {resources: { title: string, "links": { title: string, url: string }[] }[]}) {
     const navigate = useNavigate();

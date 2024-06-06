@@ -29,6 +29,7 @@ function AddressCheckBox() {
           <div className="row">
             <small className="text-start text-secondary">
               Thank you
+              You are a part of Lucerne Gardens Resident Association
             </small>
           </div>
         </CardBody>
