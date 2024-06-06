@@ -12,9 +12,9 @@ import CheckCircleIcon from "@patternfly/react-icons/dist/esm/icons/check-circle
 function AddressCheckBox() {
   return (
     <div>
-      
+
       <Card >
-        <div style={{backgroundColor:"#3e8635",height:"3px"}}></div>
+        <div style={{ backgroundColor: "#3e8635", height: "3px" }}></div>
         <CardBody className="m-3">
           <div className="row">
             <div className="col-10">
@@ -28,7 +28,7 @@ function AddressCheckBox() {
           </div>
           <div className="row">
             <small className="text-start text-secondary">
-              You live in District 7
+              Thank you
             </small>
           </div>
         </CardBody>

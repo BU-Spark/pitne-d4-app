@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { Button, Alert, TextInput } from "@patternfly/react-core";
-import { ProgressStepperCompact2 } from "../components/home/Progressbar";
 
 export interface ILoginScreenProps {}
 
@@ -47,7 +46,6 @@ const Register: React.FunctionComponent<ILoginScreenProps> = (props) => {
 
   return (
     <div className="container-padded">
-      <ProgressStepperCompact2/>
       <div className="mb-3 pf-c-title h4 text-start mt-5" >Sign Up</div>
       <div className="text-start">Email</div>
 

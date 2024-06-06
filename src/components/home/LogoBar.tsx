@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import LogIn from './LoginButton';
 import Logo from './Logo';
 import HamburgerMenu from "./Hamburger";
+import LogOut from '../../screens/LogOut';
 
 function LogoBar() {
     const navigate = useNavigate();

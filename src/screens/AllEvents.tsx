@@ -74,6 +74,7 @@ function AllEvents() {
       {/* <EventButton /> */}
       {localStorage.getItem('isManager') === 'true' && <EventButton />}  // Conditionally rendering EventButtons
       <Events data={filteredEvents} />
+
     </div>
   );
 }
