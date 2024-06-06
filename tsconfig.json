@@ -13,7 +13,8 @@
       "resolveJsonModule": true,
       "isolatedModules": true,
       "noImplicitAny": false,
-      "moduleResolution": "node"  // Explicitly set moduleResolution to 'node'
+      "moduleResolution": "node",  // Explicitly set moduleResolution to 'node'
+      "types": ["arcgis-js-api"]
     },
     "include": ["src/**/*"]
   }
