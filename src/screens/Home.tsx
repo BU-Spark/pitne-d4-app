@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { doc, getDoc, getFirestore, collection, getDocs, query, where} from "firebase/firestore";
+import { doc, getDoc, getFirestore, collection, getDocs, query, where } from "firebase/firestore";
 import Search from "../components/home/Search";
 import { useEffect, useCallback } from "react";
 import Calendar from "../components/home/calendar/Calendar";
@@ -53,13 +53,13 @@ function checkIfManager() {
   return new Promise((resolve, reject) => {
     const auth = getAuth();
     const db = getFirestore();
-  
+
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         const userEmail = user.email;
         const adminCollection = collection(db, 'Admin-Accounts');
         const q = query(adminCollection, where('admin-email', '==', userEmail));
-  
+
         const querySnapshot = await getDocs(q);
         if (!querySnapshot.empty) {
           console.log("User is logged in and is an admin.");
@@ -96,11 +96,15 @@ function Home() {
   const [pinned, setPinned] = React.useState<
     { title: string; links: { title: string; url: string }[] }[]
   >([]);
-  const [InvolvedData, setInvolvedData] =  React.useState<{title: string; 
-    links: {title:string, url: string}[]}[]>([]); 
+  const [InvolvedData, setInvolvedData] = React.useState<{
+    title: string;
+    links: { title: string, url: string }[]
+  }[]>([]);
 
-  const [SubmitandRequestData, setSubmitandRequestData] =  React.useState<{title: string; 
-    links: {title:string, url: string}[]}[]>([]); 
+  const [SubmitandRequestData, setSubmitandRequestData] = React.useState<{
+    title: string;
+    links: { title: string, url: string }[]
+  }[]>([]);
   //calendarData array of calData type
   const [calendarData, setCalendarData] = React.useState<calData[]>([]);
   //announData array of announData type
@@ -139,7 +143,7 @@ function Home() {
         console.log("called function check Manager status");
       }
     };
-  
+
     fetchManagerStatus();
   }, []);
 
@@ -203,7 +207,7 @@ function Home() {
         console.log(error);
       }
 
-      
+
     };
 
     const fetchUpdateData = async () => {
@@ -230,34 +234,34 @@ function Home() {
           console.error(e);
         });
     };
-    const fetchGetInvolvedData = async() =>{
-      fetch(APIUrl + "get-involveds").then((res) =>{
-        if(res.ok){
-          res.json().then((json) =>{
-            const links = json.data.map((obj:any) => ({ title: obj.attributes.title, url: obj.attributes.url }));
+    const fetchGetInvolvedData = async () => {
+      fetch(APIUrl + "get-involveds").then((res) => {
+        if (res.ok) {
+          res.json().then((json) => {
+            const links = json.data.map((obj: any) => ({ title: obj.attributes.title, url: obj.attributes.url }));
             const result = [{ title: 'Get Involved', links }];
             setInvolvedData(result);
           });
-        }else{
+        } else {
           console.log(`status code: ${res.status}`);
         }
-      }).catch((e) =>{
+      }).catch((e) => {
         console.log(e);
       })
     };
     //Get Submit and Request Data
-    const fetchGetSubmitRequestData = async() =>{
-      fetch(APIUrl + "submit-requests-and-reports").then((res) =>{
-        if(res.ok){
-          res.json().then((json) =>{
-            const links = json.data.map((obj:any) => ({ title: obj.attributes.title, url: obj.attributes.url }));
+    const fetchGetSubmitRequestData = async () => {
+      fetch(APIUrl + "submit-requests-and-reports").then((res) => {
+        if (res.ok) {
+          res.json().then((json) => {
+            const links = json.data.map((obj: any) => ({ title: obj.attributes.title, url: obj.attributes.url }));
             const result = [{ title: 'Submit Request and Reports', links }];
             setSubmitandRequestData(result);
           });
-        }else{
+        } else {
           console.log(`status code: ${res.status}`);
         }
-      }).catch((e) =>{
+      }).catch((e) => {
         console.log(e);
       })
     };
@@ -289,38 +293,45 @@ function Home() {
 
   return (
     <body>
-    <div className="container">
-      <div className = "mb-5">
-        <LogoBar />
-      </div>
-      {/* <Search /> */}
-
-      <div className="top-heading">Announcements</div>
-      <Announcement {...passAnnounData} vertical={false} />
-      <ViewAllAnnouncements {...passAnnounData}/>
-
-      <div className="mt-4 text-start heading">Upcoming Events</div>
-      <Calendar {...passCalendarData} />
-      <ViewCalendar {...passCalendarData}/>
-
-      <div className="mt-4 my-3 pf-c-title heading text-start">Our Resources</div>
-
       <div className="container">
-      <Button
-        className="home-button px-3 py-2 mb-2"
-        variant="primary"
-        onClick= { () => navigate("/getresources")}
-        >
-        Get Resources
-      </Button>
+        <div className="mb-5">
+          <LogoBar />
+        </div>
+        {/* <Search /> */}
+
+        <div className="top-heading">Announcements</div>
+        <Announcement {...passAnnounData} vertical={false} />
+        <ViewAllAnnouncements {...passAnnounData} />
+
+        <div className="mt-4 text-start heading">Upcoming Events</div>
+        <Calendar {...passCalendarData} />
+        <ViewCalendar {...passCalendarData} />
+
+        <div className="mt-4 my-3 pf-c-title heading text-start">Our Resources</div>
+
+        <div className="container">
+          <Button
+            className="home-button px-3 py-2 mb-2"
+            variant="primary"
+            onClick={() => navigate("/getresources")}
+          >
+            Get Resources
+          </Button>
+          <Button
+            className="home-button px-3 py-2 mb-2"
+            variant="primary"
+            onClick={() => navigate("/address-info")}
+          >
+            Civic Associations
+          </Button>
+        </div>
+        <Resources resources={InvolvedData} />
+        <Resources resources={SubmitandRequestData} />
+
+        <div className="mt-4 pf-c-title heading text-start">News and Updates</div>
+        <Updates {...passUpdateData} vertical={false} />
+        <ViewAllPosts {...passUpdateData} />
       </div>
-      <Resources resources={InvolvedData}/>
-      <Resources resources={SubmitandRequestData}/>
-      
-      <div className="mt-4 pf-c-title heading text-start">News and Updates</div>
-      <Updates {...passUpdateData} vertical={false} />
-      <ViewAllPosts {...passUpdateData} />
-    </div>
     </body>
   );
 }

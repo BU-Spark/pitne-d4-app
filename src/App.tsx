@@ -29,23 +29,9 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={<Login/>} />
-          <Route path="/signup" element={<Register/>} />
-          <Route path="/" element={<Home/>} />
-          <Route path="/profile" element={<UserProfileScreen/>} />
-          <Route path="/interests" element={<Interests/>} />
-          <Route path="/portal" element={<Portal/>} /> 
-          <Route path="/getresources" element={<GetResources/>} />
-          <Route path="/all-posts" element={<AllPosts />} />
-          <Route path="/all-announcements" element={<AllAnnouncements/>} />
-          <Route path="/all-events" element={<AllEvents/>} />
-          <Route path="/address-info" element={<AddressInfo />} />
-          <Route path="/address-entry" element={<AddressEntry />} />
-          <Route path="/civic-associations" element={<CivicAssociations />} />
-          {/* <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Register />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/" element={<Welcome />} />
+          <Route path="/" element={<Home />} />
           <Route path="/profile" element={<UserProfileScreen />} />
           <Route path="/interests" element={<Interests />} />
           <Route path="/portal" element={<Portal />} />
@@ -53,10 +39,9 @@ function App() {
           <Route path="/all-posts" element={<AllPosts />} />
           <Route path="/all-announcements" element={<AllAnnouncements />} />
           <Route path="/all-events" element={<AllEvents />} />
-          <Route path="/all-events" element={<AllEvents />} />
           <Route path="/address-info" element={<AddressInfo />} />
           <Route path="/address-entry" element={<AddressEntry />} />
-          <Route path="/civic-associations" element={<CivicAssociations />} /> */}
+          <Route path="/civic-associations" element={<CivicAssociations />} />
         </Routes>
       </BrowserRouter>
     </div>
