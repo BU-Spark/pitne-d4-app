@@ -102,7 +102,6 @@ function Home() {
     return () => unsubscribe();
   }, [auth, fetchdata]);
 
-  //fetch calendar data from Strapi
   useEffect(() => {
     const fetchCalendarData = async () => {
       try {
@@ -265,9 +264,9 @@ function Home() {
       <Resources resources={InvolvedData}/>
       <Resources resources={SubmitandRequestData}/>
       
-      <div className="mt-4 pf-c-title heading text-start">News and Updates</div>
+      {/* <div className="mt-4 pf-c-title heading text-start">News and Updates</div>
       <Updates {...passUpdateData} vertical={false} />
-      <ViewAllPosts {...passUpdateData} />
+      <ViewAllPosts {...passUpdateData} /> */}
     </div>
     </body>
   );

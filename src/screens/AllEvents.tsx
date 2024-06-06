@@ -70,6 +70,9 @@ function AllEvents() {
       <MonthCalendar onDateChange={handleDateChange} />
       <EventButton />
       <Events data={filteredEvents} />
+
+      <div>All Upcoming Events: </div>
+        <Events data={calendarData} />
     </div>
   );
 }

@@ -42,15 +42,6 @@
   justify-content: center;
 }
 
-
-
-
-
-
-
-
-
-
 @media (max-width: 700px) {
   .pf-c-calendar-month {
     padding: 4vw;
@@ -75,4 +66,8 @@
   .pf-c-calendar-month__nav {
     font-size: 4vw;
   }
+}
+
+.calendar th {
+  color: black; /* Change to your desired color */
 }

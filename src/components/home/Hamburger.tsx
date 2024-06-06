@@ -22,6 +22,9 @@ const HamburgerMenu: React.FC = () => {
             </div>
             <div className={`menu-overlay ${isOpen ? 'open' : ''}`} onClick={toggleMenu}>
                 <div className={`menu ${isOpen ? 'open' : ''}`}>
+                <Button variant="link" onClick={() => handleNavigation("/")}>
+                        Home
+                    </Button>
                     <Button variant="link" onClick={() => handleNavigation("/all-announcements")}>
                         Announcements
                     </Button>
