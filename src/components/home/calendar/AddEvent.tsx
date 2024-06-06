@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Modal } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
-import EventForm from "./AddEventForm.tsx";
+import EventForm from "./AddEventForm";
 
 function ViewAllEvents() 
 {  

@@ -12,7 +12,7 @@ import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { Button, Alert, TextInput } from "@patternfly/react-core";
 import GoogleButton from "react-google-button";
-import LogoBar from "../components/home/LogoBar.tsx";
+import LogoBar from "../components/home/LogoBar";
 
 export interface Login {}
 

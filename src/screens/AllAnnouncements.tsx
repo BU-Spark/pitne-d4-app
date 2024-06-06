@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { AngleLeftIcon } from "@patternfly/react-icons";
 import { useNavigate } from "react-router-dom";
-import type { announData } from "./Home.tsx";
-import { APIUrl } from "./Home.tsx";
-import LogoBar from "../components/home/LogoBar.tsx";
-import Announcements from "../components/home/announcements/Announcement.tsx";
+import type { announData } from "./Home";
+import { APIUrl } from "./Home";
+import LogoBar from "../components/home/LogoBar";
+import Announcements from "../components/home/announcements/Announcement";
 import { doc, getDoc, getFirestore, collection, getDocs} from "firebase/firestore";
 
 function AllAnnouncements() {

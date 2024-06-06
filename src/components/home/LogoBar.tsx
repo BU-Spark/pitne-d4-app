@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import LogIn from './LoginButton.tsx';
-import Logo from './Logo.tsx';
-import HamburgerMenu from "./Hamburger.tsx";
+import LogIn from './LoginButton';
+import Logo from './Logo';
+import HamburgerMenu from "./Hamburger";
 
 function LogoBar() {
     const navigate = useNavigate();

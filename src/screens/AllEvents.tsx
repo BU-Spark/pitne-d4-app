@@ -4,13 +4,13 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc, getFirestore, collection, getDocs} from "firebase/firestore";
 import { AngleLeftIcon } from "@patternfly/react-icons";
 import { useNavigate } from "react-router-dom";
-import type { calData } from "./Home.tsx";
-import { APIUrl } from "./Home.tsx";
-import Events from "../components/home/calendar/Calendar.tsx";
-import LogoBar from "../components/home/LogoBar.tsx";
-import MonthCalendar from "../components/home/calendar/MonthCalendar.tsx";
-import EventButton from "../components/home/calendar/AddEvent.tsx";
-// import { useIsManager } from "./Home.tsx";
+import type { calData } from "./Home";
+import { APIUrl } from "./Home";
+import Events from "../components/home/calendar/Calendar";
+import LogoBar from "../components/home/LogoBar";
+import MonthCalendar from "../components/home/calendar/MonthCalendar";
+import EventButton from "../components/home/calendar/AddEvent";
+// import { useIsManager } from "./Home";
 
 function AllEvents() {
   const navigate = useNavigate();

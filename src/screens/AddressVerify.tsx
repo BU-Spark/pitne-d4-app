@@ -1,13 +1,13 @@
 import * as React from "react";
-import AddressCheckBox from "../components/address/AddressCheckBox.tsx";
-import AddressCheckBoxLoading from "../components/address/AddressCheckBoxLoading.tsx";
-import AddressErrorBox from "../components/address/AddressErrorBox.tsx";
-import AddressInvalidBox from "../components/address/AddressInvalidBox.tsx";
-import AddressAPIErrorBox from "../components/address/AddressAPIErrorBox.tsx";
-import StateSelection from "../components/address/StateSelection.tsx";
+import AddressCheckBox from "../components/address/AddressCheckBox";
+import AddressCheckBoxLoading from "../components/address/AddressCheckBoxLoading";
+import AddressErrorBox from "../components/address/AddressErrorBox";
+import AddressInvalidBox from "../components/address/AddressInvalidBox";
+import AddressAPIErrorBox from "../components/address/AddressAPIErrorBox";
+import StateSelection from "../components/address/StateSelection";
 import { TextInput, Button } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
-import { ProgressStepperCompact1 } from "../components/home/Progressbar.tsx";
+import { ProgressStepperCompact1 } from "../components/home/Progressbar";
 function AddressVerify() {
   const navigate = useNavigate();
   const [showLoading, setShowLoading] = React.useState(false);
