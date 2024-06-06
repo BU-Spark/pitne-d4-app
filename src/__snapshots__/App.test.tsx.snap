@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App renders all screens without compile warnings 1`] = `
+<div>
+  <div
+    class="App"
+  >
+    <div
+      class="container-padded"
+    >
+      <div
+        class="mb-5 pb-5 welcome-title"
+      >
+        Welcome to the District 4 Boston Citizen’s App
+      </div>
+      <div
+        class="mt-5 pt-5 h6 mb-2"
+      >
+         Please confirm you are a resident of District 4 
+      </div>
+      <button
+        aria-disabled="false"
+        class="pf-c-button pf-m-primary px-5 py-1 mb-2"
+        data-ouia-component-id="OUIA-Generated-Button-primary-1"
+        data-ouia-component-type="PF4/Button"
+        data-ouia-safe="true"
+        type="button"
+      >
+        I am a resident of D4
+      </button>
+      <button
+        aria-disabled="false"
+        class="pf-c-button pf-m-secondary px-5 py-1 mb-2"
+        data-ouia-component-id="OUIA-Generated-Button-secondary-1"
+        data-ouia-component-type="PF4/Button"
+        data-ouia-safe="true"
+        type="button"
+      >
+        Find out
+      </button>
+      <button
+        aria-disabled="false"
+        class="pf-c-button pf-m-tertiary px-5 py-1"
+        data-ouia-component-id="OUIA-Generated-Button-tertiary-1"
+        data-ouia-component-type="PF4/Button"
+        data-ouia-safe="true"
+        type="button"
+      >
+        Which civic association
+      </button>
+    </div>
+  </div>
+</div>
+`;
