@@ -11,6 +11,7 @@ import ProgressBar from "../components/home/Progressbar";
 import { loadModules } from "esri-loader";
 import { Query } from "firebase/firestore";
 import { tr } from "date-fns/locale";
+import LogoBar from "../components/home/LogoBar";
 
 function AddressEntry() {
   const navigate = useNavigate();
@@ -134,9 +135,11 @@ function AddressEntry() {
   };
 
   return (
-    // TODO Navbar
 
     <div className='p-4 m-3' style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <div className="mb-5">
+        <LogoBar />
+      </div>
       <div>
         <h1>Address Entry</h1>
       </div>
