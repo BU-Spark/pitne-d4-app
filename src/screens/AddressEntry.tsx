@@ -10,7 +10,8 @@ import { useNavigate } from "react-router-dom";
 import ProgressBar from "../components/home/Progressbar";
 import { loadModules } from "esri-loader";
 import { Query } from "firebase/firestore";
-import { relate } from "esri/geometry/geometryEngine";
+// import { relate } from "esri/geometry/geometryEngine";
+// import { __esri } from "esri";
 import { tr } from "date-fns/locale";
 
 function AddressEntry() {
@@ -109,21 +110,24 @@ function AddressEntry() {
               query.returnGeometry = false;
               query.outFields = ["*"];
 
-              districtFourLayer.queryFeatures(query).then((result: __esri.FeatureSet) => {
-                setShowLoading(false);
-                if (result.features.length > 0) {
-                  const district = result.features[0].attributes["DISTRICT"];
-                  if (district === 4) {
-                    setShowSuccess(true);
-                    sessionStorage.setItem("latitude", coords.lat);
-                    sessionStorage.setItem("longitude", coords.lng);
-                    navigateToNext()
-                  } else {
-                    setShowError(true)
-                    return;
-                  }
-                }
-              })
+              
+
+              // Rest of the code...
+              // districtFourLayer.queryFeatures(query).then((result: __esri.FeatureSet) => {
+              //   setShowLoading(false);
+              //   if (result.features.length > 0) {
+              //     const district = result.features[0].attributes["DISTRICT"];
+              //     if (district === 4) {
+              //       setShowSuccess(true);
+              //       sessionStorage.setItem("latitude", coords.lat);
+              //       sessionStorage.setItem("longitude", coords.lng);
+              //       navigateToNext()
+              //     } else {
+              //       setShowError(true)
+              //       return;
+              //     }
+              //   }
+              // })
             })
           }
         }).catch(() => {

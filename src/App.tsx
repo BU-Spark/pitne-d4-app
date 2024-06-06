@@ -32,8 +32,6 @@ function App() {
           <Route path="/login" element={<Login/>} />
           <Route path="/signup" element={<Register/>} />
           <Route path="/" element={<Home/>} />
-          <Route path="/address-info" element={<AddressInfo/>} />
-          <Route path="/address-entry" element={<AddressVerify/>} />
           <Route path="/profile" element={<UserProfileScreen/>} />
           <Route path="/interests" element={<Interests/>} />
           <Route path="/portal" element={<Portal/>} /> 

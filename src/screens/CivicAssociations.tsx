@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { loadModules } from 'esri-loader';
-import Association from 'esri/rest/networks/support/Association';
+// import Association from 'esri/rest/networks/support/Association';
 
 function CivicAssociations() {
     const [association, setAssociation] = useState("");
@@ -67,15 +67,15 @@ function CivicAssociations() {
             query.returnGeometry = false;
             query.outFields = ["*"];
 
-            civicAssociationsLayer.queryFeatures(query).then((result: __esri.FeatureSet) => {
-                if (result.features.length > 0) {
-                    const associationName = result.features[0].attributes["Name"];
-                    setAssociation(associationName);
-                } else {
-                }
-            }).catch((error: Error) => {
-                console.error("Error querying features:", error);
-            });
+            // civicAssociationsLayer.queryFeatures(query).then((result: __esri.FeatureSet) => {
+            //     if (result.features.length > 0) {
+            //         const associationName = result.features[0].attributes["Name"];
+            //         setAssociation(associationName);
+            //     } else {
+            //     }
+            // }).catch((error: Error) => {
+            //     console.error("Error querying features:", error);
+            // });
         }).catch(error => {
             console.error("Error loading modules:", error);
         });

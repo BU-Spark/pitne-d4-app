@@ -1,1 +1,0 @@
-manager@d4.com
