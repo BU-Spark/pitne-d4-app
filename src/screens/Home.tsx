@@ -16,6 +16,8 @@ import ViewAllAnnouncements from "../components/home/announcements/ViewAllAnnoun
 import ViewCalendar from "../components/home/calendar/ViewCalendar";
 import Resources from "../components/home/Resources";
 import { cursorTo } from "readline";
+import DevelopmentUpdates from "../components/home/Developments/Development";
+import ViewAllDevs from "../components/home/Developments/ViewAllDevs";
 
 //for dev,
 const APIUrl = "https://se-d7-dev.up.railway.app/api/";
@@ -46,6 +48,15 @@ type upData = {
   attributes: {
     title: string;
     content: string;
+  };
+};
+type DevelopmentData = {
+  id: string;
+  attributes: {
+    title: string;
+    body: string;
+    website?: string;
+    date?: string;
   };
 };
 
@@ -109,6 +120,8 @@ function Home() {
   const [calendarData, setCalendarData] = React.useState<calData[]>([]);
   //announData array of announData type
   const [announData, setAnnounData] = React.useState<announData[]>([]);
+  // const [tweetData, setTweetData] = React.useState<tweetData[]>([]);
+  const [developmentData, setDevelopmentData] = React.useState<DevelopmentData[]>([]);
 
   // This function fetch user interests from user-profile
   // The userEmail has default parameter to handle anonymous users that wants to use app without logging in
@@ -265,13 +278,23 @@ function Home() {
         console.log(e);
       })
     };
-
+    const fetchDevelopmentData = async () => {
+      const developmentCollection = collection(db, "Developments");
+      const snapshot = await getDocs(developmentCollection);
+      const loadedDevelopments = snapshot.docs.map(doc => ({
+        ...doc.data() 
+      })) as DevelopmentData[];
+      console.log(loadedDevelopments)
+      setDevelopmentData(loadedDevelopments);
+    }
+  
+    fetchDevelopmentData();
     fetchCalendarData();
     fetchAnnounData();
     fetchUpdateData();
     fetchGetInvolvedData();
     fetchGetSubmitRequestData();
-  }, []);
+  }, [db]);
 
   //create object to pass as props to Calendar component
   const passCalendarData = {
@@ -283,6 +306,9 @@ function Home() {
   const passUpdateData = {
     updates: updateData,
   };
+  const passDevData = {
+    developments: developmentData,
+  };
 
   useEffect(() => {
     // if no user is authenticated, fetch data for the default user 
@@ -290,6 +316,19 @@ function Home() {
       fetchdata();
     }
   }, [auth.currentUser, fetchdata]);
+
+  const handleCall = () => {
+    window.location.href = 'tel:311';
+  };
+
+  const handleTweet = () => {
+    window.open('https://twitter.com/BOS311', '_blank');
+  }
+
+  const reportOnline = () => {
+    window.open('https://www.boston.gov/departments/boston-311#online-services', '_blank')
+  }
+ 
 
   return (
     <body>
@@ -306,6 +345,10 @@ function Home() {
         <div className="mt-4 text-start heading">Upcoming Events</div>
         <Calendar {...passCalendarData} />
         <ViewCalendar {...passCalendarData} />
+
+        <div className="mt-3 pf-c-title heading text-start">Developments</div>
+        <DevelopmentUpdates {...passDevData} vertical={false} />
+        <ViewAllDevs />
 
         <div className="mt-4 my-3 pf-c-title heading text-start">Our Resources</div>
 
@@ -324,6 +367,28 @@ function Home() {
           >
             Civic Associations
           </Button>
+          {/* <div className=“my-3 pf-c-title heading text-start”>Report a Non-Emergency Issue</div>
+           */}
+          <Button
+            onClick= {handleCall}
+            >
+            Call 311
+          </Button>
+          <Button
+            onClick= { () => navigate('/DownloadApp')}
+            >
+            Download the App
+          </Button>
+          <Button
+            onClick= {handleTweet}
+            >
+            Tweet @BOS311
+          </Button>
+          <Button
+            onClick= {reportOnline}
+            >
+            FIle a Report Online
+          </Button> 
         </div>
         <Resources resources={InvolvedData} />
         <Resources resources={SubmitandRequestData} />
@@ -339,6 +404,7 @@ function Home() {
 export type { calData };
 export type { announData };
 export type { upData };
+export type {DevelopmentData}
 export { APIUrl };
 
 export default Home;

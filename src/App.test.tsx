@@ -56,18 +56,6 @@ describe('Address Info', () => {
   });
 });
 
-describe('Address Info', () => {
-  it('renders the address info screen', () => {
-    render(
-      <MemoryRouter initialEntries={['/address-info']}>
-        <Routes>
-          <Route path="/address-info" element={<AddressInfo />} />
-        </Routes>
-      </MemoryRouter>
-    );
-    expect(screen.getByText('Please enter your address to confirm your residency')).toBeInTheDocument();
-  });
-});
 
 describe('Address Entry', () => {
   it('renders the address entry screen', () => {
