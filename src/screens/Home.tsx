@@ -1,6 +1,6 @@
 import * as React from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { doc, getDoc, getFirestore } from "firebase/firestore";
+import { doc, getDoc, getFirestore, collection, getDocs } from "firebase/firestore";
 import Search from "../components/home/Search";
 import { useEffect, useCallback } from "react";
 import Calendar from "../components/home/calendar/Calendar";
@@ -14,7 +14,8 @@ import { Button } from "@patternfly/react-core";
 import ViewAllAnnouncements from "../components/home/announcements/ViewAllAnnouncements";
 import ViewCalendar from "../components/home/calendar/ViewCalendar";
 import Resources from "../components/home/Resources";
-
+import DevelopmentUpdates from "../components/home/Developments/Development";
+import ViewAllDevs from "../components/home/Developments/ViewAllDevs";
 
 
 //for dev,
@@ -47,6 +48,15 @@ type upData = {
     content: string;
   };
 };
+type DevelopmentData = {
+  id: string;
+  attributes: {
+    title: string;
+    body: string;
+    website?: string;
+    date?: string;
+  };
+};
 
 function Home() {
   const navigate = useNavigate();
@@ -67,6 +77,8 @@ function Home() {
   const [calendarData, setCalendarData] = React.useState<calData[]>([]);
   //tweetData array of tweetData type
   const [tweetData, setTweetData] = React.useState<tweetData[]>([]);
+  const [developmentData, setDevelopmentData] = React.useState<DevelopmentData[]>([]);
+
 
   // This function fetch user interests from user-profile
   // The userEmail has default parameter to handle anonymous users that wants to use app without logging in
@@ -182,13 +194,23 @@ function Home() {
         console.log(e);
       })
     };
-
+    const fetchDevelopmentData = async () => {
+      const developmentCollection = collection(db, "Developments");
+      const snapshot = await getDocs(developmentCollection);
+      const loadedDevelopments = snapshot.docs.map(doc => ({
+        ...doc.data() 
+      })) as DevelopmentData[];
+      console.log(loadedDevelopments)
+      setDevelopmentData(loadedDevelopments);
+    }
+  
+    fetchDevelopmentData();
     fetchCalendarData();
     fetchTweetData();
     fetchUpdateData();
     fetchGetInvolvedData();
     fetchGetSubmitRequestData();
-  }, []);
+  }, [db]);
 
   //create object to pass as props to Calendar component
   const passCalendarData = {
@@ -199,6 +221,9 @@ function Home() {
   };
   const passUpdateData = {
     updates: updateData,
+  };
+  const passDevData = {
+    developments: developmentData,
   };
 
   useEffect(() => {
@@ -219,6 +244,7 @@ function Home() {
   const reportOnline = () => {
     window.open('https://www.boston.gov/departments/boston-311#online-services', '_blank')
   }
+ 
 
   return (
     <div className="container">
@@ -288,6 +314,11 @@ function Home() {
       <div className="mt-3 pf-c-title heading text-start">News and Updates</div>
       <Updates {...passUpdateData} vertical={false} />
       <ViewAllPosts {...passUpdateData} />
+
+      <div className="mt-3 pf-c-title heading text-start">Developments</div>
+      <DevelopmentUpdates {...passDevData} vertical={false} />
+      <ViewAllDevs />
+
     </div>
   );
 }
@@ -295,6 +326,7 @@ function Home() {
 export type { calData };
 export type { tweetData };
 export type { upData };
+export type {DevelopmentData}
 export { APIUrl };
 
 export default Home;
