@@ -346,6 +346,10 @@ function Home() {
         <Calendar {...passCalendarData} />
         <ViewCalendar {...passCalendarData} />
 
+        <div className="mt-3 pf-c-title heading text-start">Developments</div>
+        <DevelopmentUpdates {...passDevData} vertical={false} />
+        <ViewAllDevs />
+
         <div className="mt-4 my-3 pf-c-title heading text-start">Our Resources</div>
 
         <div className="container">
@@ -363,6 +367,28 @@ function Home() {
           >
             Civic Associations
           </Button>
+          {/* <div className=“my-3 pf-c-title heading text-start”>Report a Non-Emergency Issue</div>
+           */}
+          <Button
+            onClick= {handleCall}
+            >
+            Call 311
+          </Button>
+          <Button
+            onClick= { () => navigate('/DownloadApp')}
+            >
+            Download the App
+          </Button>
+          <Button
+            onClick= {handleTweet}
+            >
+            Tweet @BOS311
+          </Button>
+          <Button
+            onClick= {reportOnline}
+            >
+            FIle a Report Online
+          </Button> 
         </div>
         <Resources resources={InvolvedData} />
         <Resources resources={SubmitandRequestData} />
