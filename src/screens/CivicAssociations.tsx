@@ -1,19 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { loadModules } from 'esri-loader';
 import LogoBar from "../components/home/LogoBar";
+import AssociationCard from '../components/civic_associations/associations_card';
+
 
 function CivicAssociations() {
     const [association, setAssociation] = useState("");
     const [associationPart, setAssociationPart] = useState(false);
     const [addressEntered, setAddressEntered] = useState(false);
-
-    const latitude = sessionStorage.getItem('latitude');
-    const longitude = sessionStorage.getItem('longitude');
+    const [latitude, setLatitude] = useState<string | null>(null);
+    const [longitude, setLongitude] = useState<string | null>(null);
+    const [zoom, setZoom] = useState(0);
 
     useEffect(() => {
-        if (latitude && longitude) {
+        if (sessionStorage.length > 0) {
+            setLatitude(sessionStorage.getItem('latitude'));
+            setLongitude(sessionStorage.getItem('longitude'));
+            setZoom(14);
             setAddressEntered(true);
+
         } else {
+            setLatitude("37.0902");
+            setLongitude("-95.7129");
+            setZoom(2);
             setAddressEntered(false);
         }
     }, []);
@@ -35,25 +44,25 @@ function CivicAssociations() {
             const civicAssociationsLayer = new FeatureLayer({
                 url: "https://services.arcgis.com/Vf3WolhywM9gLSJx/ArcGIS/rest/services/civic_associations_shp/FeatureServer/0",
                 renderer: {
-                    type: "simple", // Use a simple renderer
+                    type: "simple",
                     symbol: {
-                        type: "simple-fill", // Use a simple fill symbol for polygons
-                        color: [255, 190, 128, 0.5], // Red color with 50% transparency
+                        type: "simple-fill",
+                        color: [255, 190, 128, 0.5],
                         outline: {
-                            width: 0.5, // Outline width in points
-                            color: [0, 0, 0, 0.7] // Black color with 70% transparency for the outline
+                            width: 0.5,
+                            color: [0, 0, 0, 0.7]
                         }
                     }
                 },
-                labelingInfo: [{ // Add labeling information
-                    labelExpressionInfo: { expression: "$feature.name" }, // Replace "YourFieldNameHere" with the field name containing the names
+                labelingInfo: [{
+                    labelExpressionInfo: { expression: "$feature.name" },
                     symbol: {
-                        type: "text", // Use a text symbol for labels
-                        color: [0, 0, 0, 1], // Black color for the labels
+                        type: "text",
+                        color: [0, 0, 0, 1],
                         font: {
-                            size: 10, // Font size in points
-                            family: "Arial", // Font family
-                            weight: "bold" // Font weight
+                            size: 10,
+                            family: "Arial",
+                            weight: "bold"
                         }
                     },
                 }]
@@ -63,7 +72,7 @@ function CivicAssociations() {
                 container: "viewMap",
                 map: map,
                 center: [longitude, latitude],
-                zoom: 14
+                zoom: zoom
             });
 
             map.add(civicAssociationsLayer);
@@ -76,7 +85,7 @@ function CivicAssociations() {
 
                 const markerSymbol = {
                     type: "simple-marker",
-                    color: "blue", // You can customize the color and size of the marker
+                    color: "blue",
                     size: 7
                 };
 
@@ -110,7 +119,7 @@ function CivicAssociations() {
         }).catch(error => {
             console.error("Error loading modules:", error);
         });
-    }, [addressEntered]); // Empty dependency array ensures useEffect runs only once on component mount
+    }, [latitude, longitude, addressEntered]);
 
     return (
         <div>
@@ -119,9 +128,21 @@ function CivicAssociations() {
             </div>
             <div id="viewMap" style={{ height: 400, width: "100%", marginTop: '80px' }}>
             </div>
-            {addressEntered &&
+            {associationPart &&
                 <div>
-                    {association}
+                    <h1 className='mt-3'>
+                        Your Association
+                    </h1>
+                    <AssociationCard
+                        association={association}
+                    />
+                    <h1 className='mt-3'>
+                        All Associations
+                    </h1>
+                    <AssociationCard
+                        association={association}
+                    />
+
                 </div>
             }
         </div>);
