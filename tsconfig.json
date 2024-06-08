@@ -1,25 +1,27 @@
 {
-    "compilerOptions": {
-      "target": "es5",
-      "module": "esnext",
-      "lib": ["dom", "dom.iterable", "esnext"],
-      "allowJs": true,
-      "jsx": "react",
-      "strict": true,
-      "esModuleInterop": true,
-      "skipLibCheck": true,
-      "forceConsistentCasingInFileNames": true,
-      "noEmit": true,
-      "resolveJsonModule": true,
-      "isolatedModules": true,
-      "noImplicitAny": false,
-      "moduleResolution": "node",  // Explicitly set moduleResolution to 'node'
-      "types": ["arcgis-js-api"]
-    },
-    "include": [
-      "src/**/*", // Adjust this to include your source files
-      "strapi/**/*" // Include Strapi directory if it contains TypeScript files you want to compile
-    ],
-    "exclude": ["node_modules", "dist", "build"]
-  }
-  
+  "compilerOptions": {
+    "target": "es5",
+    "module": "esnext",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "jsx": "react",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noImplicitAny": false,
+    "moduleResolution": "node"
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    "strapi/**/*" // Explicitly exclude the Strapi directory
+  ]
+}
