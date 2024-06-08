@@ -1,0 +1,12 @@
+{
+    "extends": "../tsconfig.json", // Path to the root tsconfig
+    "compilerOptions": {
+      // Specific overrides for Strapi
+      "outDir": "./build"
+    },
+    "include": [
+      "**/*"
+    ],
+    "exclude": ["node_modules", "build"]
+  }
+  

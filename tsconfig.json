@@ -16,6 +16,10 @@
       "moduleResolution": "node",  // Explicitly set moduleResolution to 'node'
       "types": ["arcgis-js-api"]
     },
-    "include": ["src/**/*"]
+    "include": [
+      "src/**/*", // Adjust this to include your source files
+      "strapi/**/*" // Include Strapi directory if it contains TypeScript files you want to compile
+    ],
+    "exclude": ["node_modules", "dist", "build"]
   }
   
