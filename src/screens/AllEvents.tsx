@@ -10,6 +10,9 @@ import Events from "../components/home/calendar/Calendar";
 import LogoBar from "../components/home/LogoBar";
 import MonthCalendar from "../components/home/calendar/MonthCalendar";
 import EventButton from "../components/home/calendar/AddEvent";
+import Announcement from "../components/home/announcements/Announcement";
+import ViewAllAnnouncements from "../components/home/announcements/ViewAllAnnouncements";
+import type { announData } from "./Home";
 // import { useIsManager } from "./Home";
 
 function AllEvents() {
@@ -72,8 +75,11 @@ function AllEvents() {
       <div className="top-heading">District 4 Events Calendar</div>
       <MonthCalendar onDateChange={handleDateChange} />
       {/* <EventButton /> */}
-      {localStorage.getItem('isManager') === 'true' && <EventButton />}  // Conditionally rendering EventButtons
+      {localStorage.getItem('isManager') === 'true' && <EventButton />} 
       <Events data={filteredEvents} />
+      <div className="top-heading">Announcements</div>
+      <Announcement {...passAnnounData} vertical={false} />
+      <ViewAllAnnouncements {...passAnnounData} />
 
     </div>
   );

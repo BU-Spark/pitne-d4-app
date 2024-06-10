@@ -11,7 +11,7 @@
 }
 
 body {
-  background-color: #85C6F5 !important;
+  background-color: #f8fafb !important;
 }
 .container {
   overflow-x: hidden;
@@ -65,6 +65,7 @@ body {
 .vertical-scroll{
   display: flex;
   flex-wrap: wrap;
+  overflow-y: scroll;
 }
 
 @media (max-width:700px){
@@ -124,8 +125,8 @@ body {
   text-align: center;
   display: flex;
   justify-content: center;
-  margin-bottom: 3px;
-  margin-top: 70px;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .logo{
@@ -184,6 +185,7 @@ body {
   height: 60%;
   padding: 1rem;
   cursor: auto;
+  overflow-y: scroll;
 }
 
 @media (min-width:800px){
@@ -254,6 +256,14 @@ body {
   transition: transform 0.3s ease-out; 
   position: fixed;
   right: 20px; 
+  color: rgba(21, 13, 117, 0.75);
+  background-color: rgba(255, 255, 255, 0.622);
+  border-radius: 100%; /* Make it a circle */
+  width: 35px; /* Set the width of the circle */
+  height: 35px; /* Set the height of the circle */
+  display: flex; /* Center the icon inside the circle */
+  align-items: center; /* Center the icon inside the circle */
+  justify-content: center;
 }
 
 .hamburger-icon.open {
@@ -322,8 +332,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 20px 20px;
-  background-color: #0066cc54;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  background-color: #0066cc00;
   z-index: 1000; 
 }
 
@@ -335,4 +344,87 @@ body {
 .logo-bar-right {
   display: flex;
   align-items: center;
+}
+.logo-bar-button {
+  background: none;
+  border: none;
+  color: white; /* Adjust as needed */
+  font-size: 1rem;
+  margin: 0 10px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.logo-bar-button:hover {
+  text-decoration: underline;
+}
+
+
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Adjust the height as needed */
+  background-image: url('/Users/sowrathisomasundaram/pitne-d4-app/strapi/districtFourHome.jpeg'); /* Path to your background image */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.hero-section .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.hero-content h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'Red Hat Text', sans-serif;
+}
+
+.hero-content p {
+  font-size: 1rem;
+  font-style: italic;
+  font-family: 'Red Hat Text', sans-serif
+}
+
+.councilor-section {
+  text-align: center;
+  padding: 2rem;
+  background-color: #f8fafb;
+}
+
+.councilor-heading {
+  font-size: 2rem;
+  font-family: 'Red Hat Text', sans-serif; /* Red Hat Text font */
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.councilor-image img {
+  width: 300px; /* Adjust as needed */
+  height: auto;
+  border-radius: 10px;
+  margin: 1rem auto;
+}
+
+.councilor-description {
+  font-size: 1.2rem;
+  font-family: 'Red Hat Text', sans-serif; /* Red Hat Text font */
+  margin-top: 1rem;
+  font-style: italic;
 }

@@ -19,6 +19,7 @@ import { cursorTo } from "readline";
 import DevelopmentUpdates from "../components/home/Developments/Development";
 import ViewAllDevs from "../components/home/Developments/ViewAllDevs";
 
+
 //for dev,
 const APIUrl = "https://se-d7-dev.up.railway.app/api/";
 
@@ -332,26 +333,41 @@ function Home() {
 
   return (
     <body>
+      <div className="hero-section">
+        <div className="overlay"></div>
+        <div className="hero-content">
+          <h1> Welcome to the District 4 Website</h1>
+          <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+        </div>
+      </div>
+  
       <div className="container">
         <div className="mb-5">
           <LogoBar />
         </div>
-        {/* <Search /> */}
 
-        <div className="top-heading">Announcements</div>
-        <Announcement {...passAnnounData} vertical={false} />
-        <ViewAllAnnouncements {...passAnnounData} />
+          
 
+      <div className="councilor-section">
+        <h2 className="councilor-heading">About the Councilor</h2>
+          <div className="councilor-image">
+            <img src="/Users/sowrathisomasundaram/pitne-d4-app/strapi/BrianWorell.jpeg" alt="Councilor" />
+          </div>
+          <p className="councilor-description">
+            Councilor Brian Worrell has been dedicated to serving the community of District 4 for many years. His efforts focus on improving local infrastructure, increasing public safety, and ensuring that every voice in the district is heard and valued.
+          </p>
+      </div>
+  
         <div className="mt-4 text-start heading">Upcoming Events</div>
         <Calendar {...passCalendarData} />
         <ViewCalendar {...passCalendarData} />
-
+  
         <div className="mt-3 pf-c-title heading text-start">Developments</div>
         <DevelopmentUpdates {...passDevData} vertical={false} />
         <ViewAllDevs />
-
+  
         <div className="mt-4 my-3 pf-c-title heading text-start">Our Resources</div>
-
+  
         <div className="container">
           <Button
             className="home-button px-3 py-2 mb-2"
@@ -367,32 +383,38 @@ function Home() {
           >
             Civic Associations
           </Button>
-          {/* <div className=“my-3 pf-c-title heading text-start”>Report a Non-Emergency Issue</div>
-           */}
           <Button
-            onClick= {handleCall}
-            >
+            className="home-button px-3 py-2 mb-2"
+            variant="primary"
+            onClick={handleCall}
+          >
             Call 311
           </Button>
           <Button
-            onClick= { () => navigate('/DownloadApp')}
-            >
+            className="home-button px-3 py-2 mb-2"
+            variant="primary"
+            onClick={() => navigate('/DownloadApp')}
+          >
             Download the App
           </Button>
           <Button
-            onClick= {handleTweet}
-            >
+            className="home-button px-3 py-2 mb-2"
+            variant="primary"
+            onClick={handleTweet}
+          >
             Tweet @BOS311
           </Button>
           <Button
-            onClick= {reportOnline}
-            >
+            className="home-button px-3 py-2 mb-2"
+            variant="primary"
+            onClick={reportOnline}
+          >
             FIle a Report Online
-          </Button> 
+          </Button>
         </div>
         <Resources resources={InvolvedData} />
         <Resources resources={SubmitandRequestData} />
-
+  
         <div className="mt-4 pf-c-title heading text-start">News and Updates</div>
         <Updates {...passUpdateData} vertical={false} />
         <ViewAllPosts {...passUpdateData} />
