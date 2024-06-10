@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { loadModules } from 'esri-loader';
 import LogoBar from "../components/home/LogoBar";
 import AssociationCard from '../components/civic_associations/associations_card';
-
+import { Text, TextVariants } from '@patternfly/react-core';
 
 function CivicAssociations() {
     const [association, setAssociation] = useState("");
@@ -136,16 +136,27 @@ function CivicAssociations() {
                     <AssociationCard
                         association={association}
                     />
-                    <h1 className='mt-3'>
-                        All Associations
-                    </h1>
-                    <AssociationCard
-                        association={association}
-                    />
-
                 </div>
             }
-        </div>);
+
+            {!associationPart &&
+                <div className='mt-3'>
+                    <Text component={TextVariants.h1} style={{ fontWeight: 'bold' }}>
+                        You are not a part of any association
+                    </Text>
+                </div>
+            }
+            <hr />
+            <div>
+                <h1 className='mt-3'>
+                    All Associations
+                </h1>
+                <AssociationCard
+                    association="Association 1"
+                />
+            </div>
+        </div>
+    );
 }
 
 export default CivicAssociations;

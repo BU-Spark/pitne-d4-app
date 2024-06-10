@@ -27,7 +27,7 @@ const AssociationCard: React.FC<AssociationCardProps> = ({ association }) => {
                     <CardExpandableContent>
                         <CardFooter>
                             <div style={{ backgroundColor: "white" }}>
-                                <p>Brrrr</p>
+                                <p> Description </p>
                             </div>
                         </CardFooter>
                     </CardExpandableContent>
