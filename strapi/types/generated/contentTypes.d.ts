@@ -373,7 +373,10 @@ export interface ApiEventEvent extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    detail: Attribute.JSON;
+    EventName: Attribute.String;
+    EventDate: Attribute.Date;
+    EventFlyer: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    EventID: Attribute.UID;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

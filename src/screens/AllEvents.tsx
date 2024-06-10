@@ -10,6 +10,7 @@ import Events from "../components/home/calendar/Calendar";
 import LogoBar from "../components/home/LogoBar";
 import MonthCalendar from "../components/home/calendar/MonthCalendar";
 import EventButton from "../components/home/calendar/AddEvent";
+import axios from "axios";
 // import { useIsManager } from "./Home";
 
 function AllEvents() {
@@ -19,44 +20,79 @@ function AllEvents() {
   const [calendarData, setCalendarData] = useState<calData[]>([]);
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
-  useEffect(() => {
-    const fetchCalendarData = async () => {
-      try {
-        const eventsCollection = collection(db, "events");
-        // Get all documents from the "events" collection
-        const eventsSnapshot = await getDocs(eventsCollection);
-        // Map through each document and get its data
-        const eventsList = eventsSnapshot.docs.map(doc => ({
-          ...doc.data()
-        })) as calData[];
-        //set the calendar data
-        console.log("events list");
-        if (auth.currentUser){console.log("User: " + auth.currentUser.email);}
-        else {console.log("User is null");}
-        setCalendarData(eventsList);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchCalendarData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchCalendarData = async () => {
+  //     try {
+  //       const eventsCollection = collection(db, "events");
+  //       // Get all documents from the "events" collection
+  //       const eventsSnapshot = await getDocs(eventsCollection);
+  //       // Map through each document and get its data
+  //       const eventsList = eventsSnapshot.docs.map(doc => ({
+  //         ...doc.data()
+  //       })) as calData[];
+  //       //set the calendar data
+  //       console.log("events list");
+  //       if (auth.currentUser){console.log("User: " + auth.currentUser.email);}
+  //       else {console.log("User is null");}
+  //       setCalendarData(eventsList);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   fetchCalendarData();
+  // }, []);
 
+  function toEST(date: Date): Date {
+    const userTimezoneOffset = date.getTimezoneOffset() * 60000; // Offset in milliseconds
+    const estOffset = -300; // EST is UTC-5
+    return new Date(date.getTime() + userTimezoneOffset + (estOffset * 60 * 1000));
+  }
+  
   const handleDateChange = (date: Date) => {
-    setSelectedDate(date);
+    const dateInEST = toEST(date);
+    setSelectedDate(dateInEST);
+    console.log(`Selected Date in EST: ${dateInEST}`);
   };
 
   // Filters events to match the user's selected date
   const filteredEvents = calendarData.filter(event => {
-    const eventDate = new Date(event.attributes.date);
+    const eventDateInEST = toEST(new Date(event.attributes.date));
+    console.log(`Event Date in EST: ${eventDateInEST}, Selected Date in EST: ${selectedDate}`);
 
     return (
       // Returns an event if the date matches the selection
-      eventDate.getFullYear() === selectedDate.getFullYear() &&
-      eventDate.getMonth() === (selectedDate.getMonth()) &&
-      (eventDate.getDate()) === selectedDate.getDate()
+      eventDateInEST.getFullYear() === selectedDate.getFullYear() &&
+      eventDateInEST.getMonth() === (selectedDate.getMonth()) &&
+      (eventDateInEST.getDate()) === selectedDate.getDate()
     );
     
   });
+
+  const fetchEvents = async () => {
+    try {
+      const {
+        data: { data },
+      } = await axios.get("http://localhost:1337/api/events");
+      console.log("strapi data: ");
+      console.log(data);
+      const fetchedEvents = data.map((item: any) => ({
+        id: item.id,
+        attributes: {
+          title: item.attributes.EventName,
+          body: "this is description", // Corrected 'description' reference
+          date: item.attributes.EventDate,
+          location: "CDS Spark", // Corrected 'location' reference
+        },
+      }));
+      setCalendarData(fetchedEvents);
+    } catch (error) {
+      console.error('Fetching events failed:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
 
   return (
     <div className="container">
@@ -72,7 +108,7 @@ function AllEvents() {
       <div className="top-heading">District 4 Events Calendar</div>
       <MonthCalendar onDateChange={handleDateChange} />
       {/* <EventButton /> */}
-      {localStorage.getItem('isManager') === 'true' && <EventButton />}  // Conditionally rendering EventButtons
+      {localStorage.getItem('isManager') === 'true' && <EventButton />} EST time zone
       <Events data={filteredEvents} />
 
       <div>All Upcoming Events: </div>

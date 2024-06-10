@@ -11,8 +11,24 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "detail": {
-      "type": "json"
+    "EventName": {
+      "type": "string"
+    },
+    "EventDate": {
+      "type": "date"
+    },
+    "EventFlyer": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "EventID": {
+      "type": "uid"
     }
   }
 }
