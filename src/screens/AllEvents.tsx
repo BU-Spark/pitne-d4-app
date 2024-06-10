@@ -72,7 +72,7 @@ function AllEvents() {
     try {
       const {
         data: { data },
-      } = await axios.get("http://localhost:1337/api/events");
+      } = await axios.get("http://localhost:1334/api/events");
       console.log("strapi data: ");
       console.log(data);
       const fetchedEvents = data.map((item: any) => ({
