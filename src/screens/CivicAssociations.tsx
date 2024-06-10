@@ -3,14 +3,17 @@ import { loadModules } from 'esri-loader';
 import LogoBar from "../components/home/LogoBar";
 import AssociationCard from '../components/civic_associations/associations_card';
 import { Text, TextVariants } from '@patternfly/react-core';
+import axios from 'axios';
+import { Association } from './../interfaces';
 
 function CivicAssociations() {
-    const [association, setAssociation] = useState("");
     const [associationPart, setAssociationPart] = useState(false);
     const [addressEntered, setAddressEntered] = useState(false);
     const [latitude, setLatitude] = useState<string | null>(null);
     const [longitude, setLongitude] = useState<string | null>(null);
     const [zoom, setZoom] = useState(0);
+    const [matchedAssociation, setMatchedAssociation] = useState<Association | undefined>(undefined);
+    const [associations, setAssociations] = useState<Association[]>([]);
 
     useEffect(() => {
         if (sessionStorage.length > 0) {
@@ -28,6 +31,28 @@ function CivicAssociations() {
     }, []);
 
     useEffect(() => {
+
+        const fetchAssociations = async () => {
+            try {
+                const token = 'b6fecebf4096e294e8ddf5e9a6b9e7afc45e5f08836164d6f46c7d17baf1d85507c44c6af62503f1bddbf945d2b91d89aca2193bfdce2ada72aa1caa30b267333661e98f946a9d1c434d277a80fc022974d1644ff80c966f75a2b5e5b38c44605bc8111a176476ab5c40af79b7201b44a2751a2d49a5362b06283ce25fe42cd1'; // Replace 'YOUR_API_TOKEN' with your actual API token
+                const response = await axios.get('http://localhost:1337/api/civic-associations', {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                setAssociations(response.data.data);
+
+            } catch (error) {
+                console.error('Error fetching associations from Strapi:', error);
+            }
+        };
+
+        fetchAssociations();
+
+    }, []);
+
+    useEffect(() => {
+
         loadModules([
             "esri/Map",
             "esri/views/MapView",
@@ -106,10 +131,11 @@ function CivicAssociations() {
                 civicAssociationsLayer.queryFeatures(query).then((result: __esri.FeatureSet) => {
                     if (result.features.length > 0) {
                         const associationName = result.features[0].attributes["Name"];
-                        setAssociation(associationName);
+                        console.log(associationName);
+                        setMatchedAssociation(associations.find(assoc => assoc.attributes.Name === associationName))
+                        console.log(matchedAssociation);
                         setAssociationPart(true);
                     } else {
-                        setAssociation("You are not a part of any association")
                         setAssociationPart(false);
                     }
                 }).catch((error: Error) => {
@@ -119,7 +145,7 @@ function CivicAssociations() {
         }).catch(error => {
             console.error("Error loading modules:", error);
         });
-    }, [latitude, longitude, addressEntered]);
+    }, [latitude, longitude, addressEntered, associations]);
 
     return (
         <div>
@@ -134,7 +160,7 @@ function CivicAssociations() {
                         Your Association
                     </h1>
                     <AssociationCard
-                        association={association}
+                        association={matchedAssociation?.attributes.Name}
                     />
                 </div>
             }
@@ -151,9 +177,12 @@ function CivicAssociations() {
                 <h1 className='mt-3'>
                     All Associations
                 </h1>
-                <AssociationCard
-                    association="Association 1"
-                />
+                {associations.map(assoc => (
+                    <AssociationCard
+                        key={assoc.id}
+                        association={assoc.attributes.Name}
+                    />
+                ))}
             </div>
         </div>
     );

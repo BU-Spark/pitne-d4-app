@@ -3,7 +3,7 @@ import { Card, CardHeader, CardBody, CardFooter, CardTitle, Button, CardExpandab
 import './associations_card.css'
 
 interface AssociationCardProps {
-    association: string;
+    association: string | undefined;
 }
 
 const AssociationCard: React.FC<AssociationCardProps> = ({ association }) => {

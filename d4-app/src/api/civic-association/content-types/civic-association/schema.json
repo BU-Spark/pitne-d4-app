@@ -12,7 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "AssociationName": {
+    "Name": {
       "type": "string",
       "unique": true,
       "required": true
@@ -30,15 +30,17 @@
     "MeetingLocation": {
       "type": "string"
     },
-    "ContactInfo": {
-      "type": "email"
-    },
-    "AssociationImage": {
+    "Image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "ContactInfo": {
+      "type": "string",
+      "default": "No Info"
     }
   }
 }

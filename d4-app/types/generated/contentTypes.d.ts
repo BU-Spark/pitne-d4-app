@@ -375,13 +375,13 @@ export interface ApiCivicAssociationCivicAssociation
     draftAndPublish: true;
   };
   attributes: {
-    AssociationName: Attribute.String & Attribute.Required & Attribute.Unique;
+    Name: Attribute.String & Attribute.Required & Attribute.Unique;
     Description: Attribute.Text & Attribute.DefaultTo<"No Information">;
     Link: Attribute.String;
     MeetingTiming: Attribute.String;
     MeetingLocation: Attribute.String;
-    ContactInfo: Attribute.Email;
-    AssociationImage: Attribute.Media<"images">;
+    Image: Attribute.Media<"images">;
+    ContactInfo: Attribute.String & Attribute.DefaultTo<"No Info">;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
