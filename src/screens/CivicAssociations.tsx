@@ -5,6 +5,7 @@ import AssociationCard from '../components/civic_associations/associations_card'
 import { Text, TextVariants } from '@patternfly/react-core';
 import axios from 'axios';
 import { Association } from './../interfaces';
+import Loader from 'components/home/Loader';
 
 function CivicAssociations() {
     const [associationPart, setAssociationPart] = useState(false);
@@ -14,6 +15,7 @@ function CivicAssociations() {
     const [zoom, setZoom] = useState(0);
     const [matchedAssociation, setMatchedAssociation] = useState<Association | undefined>(undefined);
     const [associations, setAssociations] = useState<Association[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
         if (sessionStorage.length > 0) {
@@ -142,10 +144,20 @@ function CivicAssociations() {
                     console.error("Error querying features:", error);
                 });
             }
+
         }).catch(error => {
             console.error("Error loading modules:", error);
         });
+
+        setLoading(false);
+
     }, [latitude, longitude, addressEntered, associations]);
+
+    if (loading) {
+        return (
+            <Loader />
+        )
+    }
 
     return (
         <div>
