@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { loadModules } from 'esri-loader';
 import LogoBar from "../components/home/LogoBar";
 import AssociationCard from '../components/civic_associations/associations_card';
-import { Text, TextVariants } from '@patternfly/react-core';
+import { Text, TextVariants, TextInput } from '@patternfly/react-core';
 import axios from 'axios';
-import { Association } from './../interfaces';
+import { AssociationTable } from './../interfaces';
 import Loader from 'components/home/Loader';
+import { filter } from 'esri/core/promiseUtils';
 
 function CivicAssociations() {
     const [associationPart, setAssociationPart] = useState(false);
@@ -13,9 +14,10 @@ function CivicAssociations() {
     const [latitude, setLatitude] = useState<string | null>(null);
     const [longitude, setLongitude] = useState<string | null>(null);
     const [zoom, setZoom] = useState(0);
-    const [matchedAssociation, setMatchedAssociation] = useState<Association | undefined>(undefined);
-    const [associations, setAssociations] = useState<Association[]>([]);
+    const [matchedAssociation, setMatchedAssociation] = useState<AssociationTable | undefined>(undefined);
+    const [associations, setAssociations] = useState<AssociationTable[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
+    const [searchTerm, setSearchTerm] = useState<string>('');
 
     useEffect(() => {
         if (sessionStorage.length > 0) {
@@ -43,14 +45,12 @@ function CivicAssociations() {
                     }
                 });
                 setAssociations(response.data.data);
-
+                console.log(response.data.data);
             } catch (error) {
                 console.error('Error fetching associations from Strapi:', error);
             }
         };
-
         fetchAssociations();
-
     }, []);
 
     useEffect(() => {
@@ -133,9 +133,7 @@ function CivicAssociations() {
                 civicAssociationsLayer.queryFeatures(query).then((result: __esri.FeatureSet) => {
                     if (result.features.length > 0) {
                         const associationName = result.features[0].attributes["Name"];
-                        console.log(associationName);
                         setMatchedAssociation(associations.find(assoc => assoc.attributes.Name === associationName))
-                        console.log(matchedAssociation);
                         setAssociationPart(true);
                     } else {
                         setAssociationPart(false);
@@ -159,6 +157,10 @@ function CivicAssociations() {
         )
     }
 
+    const filteredAssociations = associations.filter(
+        assoc => assoc?.attributes.Name?.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     return (
         <div>
             <div className="mb-5">
@@ -172,7 +174,8 @@ function CivicAssociations() {
                         Your Association
                     </h1>
                     <AssociationCard
-                        association={matchedAssociation?.attributes.Name}
+                        key={matchedAssociation?.id}
+                        association={matchedAssociation}
                     />
                     <hr />
                 </div>
@@ -189,13 +192,35 @@ function CivicAssociations() {
             <div>
                 <h1 className='mt-3'>
                     All Associations
+
                 </h1>
-                {associations.map(assoc => (
-                    <AssociationCard
-                        key={assoc.id}
-                        association={assoc.attributes.Name}
+                <div className='m-4'>
+                    <TextInput
+                        type="text"
+                        value={searchTerm}
+                        onChange={(value) => setSearchTerm(value)}
+                        placeholder="Search associations..."
                     />
-                ))}
+                </div>
+                {searchTerm ? (
+                    filteredAssociations.length === 0 ? (
+                        <p>No associations found.</p>
+                    ) : (
+                        filteredAssociations.map(assoc => (
+                            <AssociationCard
+                                key={assoc.id}
+                                association={assoc}
+                            />
+                        ))
+                    )
+                ) : (
+                    associations.map(assoc => (
+                        <AssociationCard
+                            key={assoc.id}
+                            association={assoc}
+                        />
+                    ))
+                )}
             </div>
         </div>
     );
