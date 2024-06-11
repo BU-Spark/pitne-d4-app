@@ -23,6 +23,7 @@ import { initializeApp } from "firebase/app";
 import { config } from "./config/config";
 import DownloadApp from "./screens/downloadApp";
 import DevelopmentsPage from "./screens/AllDevelopment";
+import NonEmergencyForms from "./screens/311Forms";
 
 initializeApp(config.firebaseConfig);
 
@@ -46,6 +47,8 @@ function App() {
           <Route path="/civic-associations" element={<CivicAssociations />} />
           <Route path="/downloadApp" element={<DownloadApp/>} />
           <Route path="/all-developments" element={<DevelopmentsPage/>} />
+          <Route path="/311Forms" element={<NonEmergencyForms/>} />
+
         </Routes>
       </BrowserRouter>
     </div>

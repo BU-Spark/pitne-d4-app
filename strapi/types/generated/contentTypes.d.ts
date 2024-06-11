@@ -849,6 +849,41 @@ export interface ApiEventEvent extends Schema.CollectionType {
   };
 }
 
+export interface ApiHomePageHomePage extends Schema.CollectionType {
+  collectionName: 'home_pages';
+  info: {
+    singularName: 'home-page';
+    pluralName: 'home-pages';
+    displayName: 'HomePage';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    heroTitle: Attribute.String;
+    heroDescription: Attribute.String;
+    heroImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    councilorName: Attribute.String;
+    councilorDescription: Attribute.String;
+    councilorImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::home-page.home-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::home-page.home-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -869,6 +904,7 @@ declare module '@strapi/types' {
       'plugin::i18n.locale': PluginI18NLocale;
       'api::display-image.display-image': ApiDisplayImageDisplayImage;
       'api::event.event': ApiEventEvent;
+      'api::home-page.home-page': ApiHomePageHomePage;
     }
   }
 }

@@ -32,9 +32,6 @@ function AnnouncementCard(props: {
               <Text className="text-start">{title}</Text>
           </div>
           <div className="row">
-          {/* <small className="text-start text-secondary">{finalDate}</small> */}
-            {/* <small className="text-start text-secondary">{content}</small> */}
-            {/* if there's an image, display it */}
             {props.image ? (
               <img
                 src={props.image}

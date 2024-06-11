@@ -60,6 +60,7 @@ body {
 .horizontal-scroll{
   overflow-x: scroll;
   display: flex;
+  justify-content: center;
 }
 
 .vertical-scroll{
@@ -119,14 +120,25 @@ body {
   font-family: 'Red Hat Text';
   font-style: normal;
   font-weight: 700;
-  font-size: 25px;
+  font-size: 32px;
   line-height: 22px;
   color: black;
   text-align: center;
   display: flex;
-  justify-content: center;
+  flex-direction: column; /* Ensure vertical stacking */
+  align-items: center; /* Center the content */
   margin-bottom: 20px;
   margin-top: 20px;
+  position: relative;
+}
+
+.top-heading::after {
+  content: '';
+  display: block;
+  width: 96%; /* Adjust the width as needed */
+  height: 1px; /* Adjust the height as needed */
+  background-color: black; /* Color of the line */
+  margin-top: 20px; /* Space between text and line */
 }
 
 .logo{
@@ -428,3 +440,4 @@ body {
   margin-top: 1rem;
   font-style: italic;
 }
+

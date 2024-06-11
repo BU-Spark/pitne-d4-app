@@ -42,7 +42,10 @@ const HamburgerMenu: React.FC = () => {
                     <Button variant="link" onClick={() => handleNavigation("/all-events")}>
                         Calendar
                     </Button>
-                    <Button variant="link" onClick={() => handleNavigation("/resources")}>
+                    <Button variant="link" onClick={() => handleNavigation("/all-developments")}>
+                        Developments
+                    </Button>
+                    <Button variant="link" onClick={() => handleNavigation("/getresources")}>
                         Resources
                     </Button>
                     <Button variant="link" onClick={() => handleNavigation("/all-posts")}>

@@ -23,7 +23,7 @@ function NonEmergencyForms() {
     <div className="container">
       <LogoBar />
       <div className="mt-4 ms-4 portal-nav">
-        <AngleLeftIcon size="md" onClick={() => navigate("/home")} />
+        <AngleLeftIcon size="md" onClick={() => navigate("/")} />
         Report a Non-Emergency Issue
       </div>
       <div className="mt-4 my-3 pf-c-title heading text-start">Report a Non-Emergency Issue</div>

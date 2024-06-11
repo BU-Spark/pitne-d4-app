@@ -77,9 +77,6 @@ function AllEvents() {
       {/* <EventButton /> */}
       {localStorage.getItem('isManager') === 'true' && <EventButton />} 
       <Events data={filteredEvents} />
-      <div className="top-heading">Announcements</div>
-      <Announcement {...passAnnounData} vertical={false} />
-      <ViewAllAnnouncements {...passAnnounData} />
 
     </div>
   );
