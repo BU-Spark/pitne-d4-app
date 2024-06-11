@@ -154,7 +154,7 @@ function CivicAssociations() {
             </div>
             <div id="viewMap" style={{ height: 400, width: "100%", marginTop: '80px' }}>
             </div>
-            {associationPart &&
+            {addressEntered && associationPart &&
                 <div>
                     <h1 className='mt-3'>
                         Your Association
@@ -162,17 +162,18 @@ function CivicAssociations() {
                     <AssociationCard
                         association={matchedAssociation?.attributes.Name}
                     />
+                    <hr />
                 </div>
             }
 
-            {!associationPart &&
+            {addressEntered && !associationPart &&
                 <div className='mt-3'>
                     <Text component={TextVariants.h1} style={{ fontWeight: 'bold' }}>
                         You are not a part of any association
                     </Text>
+                    <hr />
                 </div>
             }
-            <hr />
             <div>
                 <h1 className='mt-3'>
                     All Associations
