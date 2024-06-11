@@ -7,14 +7,16 @@ interface ModalType {
   isOpen: boolean;
   toggle: () => void;
   title: string;
+  content: string;
+  image?: string;
   date: string;
   location?: string;
-  content: string;
 }
 
 export default function Modal(props: ModalType) {
-  console.log(props.content)
-  console.log(props.date)
+  // console.log(props.content)
+  // console.log(props.image)
+  console.log(props.image);
   return (
     <>
       {props.isOpen && (
@@ -32,6 +34,14 @@ export default function Modal(props: ModalType) {
                 <p className="modal-text">
                   {props.content}
                 </p>
+                <img src = {props.image}/>
+                {/* <img src={ http://localhost:1337/ } /> */}
+                {/* http://localhost:1337/api/events */}
+                {/* {props.image && (
+                <div className="modal-image">
+                  <img src={props.image} alt={props.title} />
+                </div>
+              )} */}
 
             </div>
           </div>

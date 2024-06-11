@@ -4,7 +4,8 @@
   "info": {
     "singularName": "event",
     "pluralName": "events",
-    "displayName": "Event"
+    "displayName": "event",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -18,17 +19,24 @@
       "type": "date"
     },
     "EventFlyer": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     },
     "EventID": {
       "type": "uid"
+    },
+    "Location": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "string"
     }
   }
 }

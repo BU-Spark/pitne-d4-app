@@ -7,12 +7,8 @@
   font-family: "Red Hat Text", sans-serif;
   color: #151515;
   overflow-x: hidden;
-  background-color: #85C6F5;
 }
 
-body {
-  background-color: #85C6F5 !important;
-}
 .container {
   overflow-x: hidden;
   display: flex;
@@ -335,4 +331,17 @@ body {
 .logo-bar-right {
   display: flex;
   align-items: center;
+}
+
+.calendar-text {
+  font-family: 'Red Hat Text';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 22px;
+  color: black;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3px;
 }

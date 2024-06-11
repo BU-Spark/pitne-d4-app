@@ -367,7 +367,8 @@ export interface ApiEventEvent extends Schema.CollectionType {
   info: {
     singularName: 'event';
     pluralName: 'events';
-    displayName: 'Event';
+    displayName: 'event';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -377,6 +378,8 @@ export interface ApiEventEvent extends Schema.CollectionType {
     EventDate: Attribute.Date;
     EventFlyer: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
     EventID: Attribute.UID;
+    Location: Attribute.String;
+    Description: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

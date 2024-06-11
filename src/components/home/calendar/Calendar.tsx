@@ -16,6 +16,7 @@ function Events(props: {data: calData[]}) {
                             <CalendarCard
                                 title={event.attributes.title}
                                 content={event.attributes.body}
+                                image={event.attributes.image}
                                 date={event.attributes.date}
                                 location={event.attributes.location}
                             ></CalendarCard>
@@ -25,6 +26,7 @@ function Events(props: {data: calData[]}) {
                     <CalendarCard
                         title="No Events"
                         content="Check back later!"
+                        location="N/A"
                     ></CalendarCard>
                 )}
             </div>

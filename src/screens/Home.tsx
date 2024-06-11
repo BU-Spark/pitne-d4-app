@@ -28,6 +28,7 @@ type calData = {
   id: number;
   attributes: {
     title: string;
+    image: string;
     body: string;
     date: string;
     location: string;
