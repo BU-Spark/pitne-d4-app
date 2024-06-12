@@ -109,7 +109,7 @@ body {
   font-weight: 700;
   font-size: 25px;
   line-height: 22px;
-  color: black;
+  color: #152d5c;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -122,7 +122,7 @@ body {
   font-weight: 700;
   font-size: 32px;
   line-height: 22px;
-  color: black;
+  color: #152d5c;
   text-align: center;
   display: flex;
   flex-direction: column; /* Ensure vertical stacking */
@@ -137,7 +137,7 @@ body {
   display: block;
   width: 96%; /* Adjust the width as needed */
   height: 1px; /* Adjust the height as needed */
-  background-color: black; /* Color of the line */
+  background-color: #152d5c; /* Color of the line */
   margin-top: 20px; /* Space between text and line */
 }
 
@@ -157,7 +157,7 @@ body {
 
 /* Patternfly Variables #205F00; #123400*/
 .pf-c-button{
-  --pf-global--primary-color--100: #172466;
+  --pf-global--primary-color--100: #152d5c;
   --pf-global--primary-color--200: #0358ae;
 }
 
@@ -176,6 +176,35 @@ body {
   --pf-global--BorderColor--300 : #0066CC;
   --pf-global--BorderColor-100: #0066CC;
   --pf-global--BorderColor--dark-100: #0066CC;
+}
+.view-all-announcements-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.view-all-background {
+  background-color: rgba(21, 45, 92, 0.2); /* transparent blue background */
+  padding: 5px 30px;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.view-all-link {
+  font-size: 1.25rem;
+  font-family: 'Red Hat Text', sans-serif;
+  color: #152d5c;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  z-index: 1;
+}
+
+.view-all-link:hover {
+  color: #152d5c;
+  text-decoration: underline;
 }
 
 .modal-overlay {
@@ -230,8 +259,8 @@ body {
 }
 
 .logout-button{
-  background-color: #172466;
-  border-color: #172466;
+  background-color: #152d5c;
+  border-color: #152d5c;
   color: #fff;
   border-radius: 10px;
   padding: 5px;
@@ -268,7 +297,7 @@ body {
   transition: transform 0.3s ease-out; 
   position: fixed;
   right: 20px; 
-  color: rgba(21, 13, 117, 0.75);
+  color: #152d5c;
   background-color: rgba(255, 255, 255, 0.622);
   border-radius: 100%; /* Make it a circle */
   width: 35px; /* Set the width of the circle */
@@ -422,9 +451,10 @@ body {
 
 .councilor-heading {
   font-size: 2rem;
-  font-family: 'Red Hat Text', sans-serif; /* Red Hat Text font */
+  font-family: 'Red Hat Text'; /* Red Hat Text font */
   margin-bottom: 1rem;
   font-weight: bold;
+  color: #152d5c;
 }
 
 .councilor-image img {
@@ -439,5 +469,5 @@ body {
   font-family: 'Red Hat Text', sans-serif; /* Red Hat Text font */
   margin-top: 1rem;
   font-style: italic;
+  color: #152d5c;
 }
-

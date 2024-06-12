@@ -36,6 +36,9 @@ const HamburgerMenu: React.FC = () => {
             </div>
             <div className={`menu-overlay ${isOpen ? 'open' : ''}`} onClick={toggleMenu}>
                 <div className={`menu ${isOpen ? 'open' : ''}`}>
+                    <Button variant="link" onClick={() => handleNavigation("/")}>
+                        Home
+                    </Button>
                     <Button variant="link" onClick={() => handleNavigation("/all-announcements")}>
                         Announcements
                     </Button>
@@ -48,17 +51,8 @@ const HamburgerMenu: React.FC = () => {
                     <Button variant="link" onClick={() => handleNavigation("/getresources")}>
                         Resources
                     </Button>
-                    <Button variant="link" onClick={() => handleNavigation("/all-posts")}>
-                        News
-                    </Button>
-                    <Button variant="link" onClick={() => handleNavigation("/login")}>
-                        Login
-                    </Button>
                     <Button variant="link" onClick={() => handleNavigation("/311Forms")}>
                         Report a Non-Emergency Issue
-                    </Button>
-                    <Button variant="link" onClick={handleSignOut}>
-                        Sign Out
                     </Button>
                 </div>
             </div>

@@ -358,7 +358,7 @@ function Home() {
         <div className="overlay"></div>
         <div className="hero-content">
           <h1> Welcome to the District 4 Website</h1>
-          <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+          <p>District 4 includes Mattapan, Dorchester, and parts of Jamaica Plain and Roslindale</p>
         </div>
       </div>
       {/* <div className="hero-section" style={{ backgroundImage: `url(${homePageData.heroImage.url})` }}>
@@ -373,20 +373,23 @@ function Home() {
         <div className="mb-5">
           <LogoBar />
         </div>
-        <div className="top-heading">Announcements</div>
-        <Announcement {...passAnnounData} vertical={false} />
-        <ViewAllAnnouncements {...passAnnounData} />
+        
           
 
-      <div className="councilor-section">
-        <h2 className="councilor-heading">About the Councilor</h2>
-          <div className="councilor-image">
-           
-          </div> <img src="/Users/sowrathisomasundaram/pitne-d4-app/strapi/BrianWorell.jpeg" alt="Councilor" />
-          <p className="councilor-description">
-            Councilor Brian Worrell has been dedicated to serving the community of District 4 for many years. His efforts focus on improving local infrastructure, increasing public safety, and ensuring that every voice in the district is heard and valued.
-          </p>
-      </div>
+        <div className="councilor-section">
+          <div className="councilor-background">
+            <div className="overlay"></div>
+              <div className="councilor-content">
+              <h2 className="councilor-heading">About the Councilor</h2>
+                <div className="councilor-image">
+                  <img src="/Users/sowrathisomasundaram/pitne-d4-app/strapi/BrianWorell.jpeg" alt="Councilor" />
+                </div>
+                <p className="councilor-description">
+                Councilor Brian Worrell has been dedicated to serving the community of District 4 for many years. His efforts focus on improving local infrastructure, increasing public safety, and ensuring that every voice in the district is heard and valued.
+                </p>
+            </div>
+         </div>
+        </div>
 
       {/* <div className="councilor-section">
         <h2 className="councilor-heading">About the Councilor</h2>
@@ -397,12 +400,12 @@ function Home() {
           {homePageData.councilorDescription}
         </p>
       </div> */}
+
+        <div className="top-heading">Announcements</div>
+        <Announcement {...passAnnounData} vertical={false} />
+        <ViewAllAnnouncements {...passAnnounData} />
   
-        <div className="mt-4 text-start heading">Upcoming Events</div>
-        <Calendar {...passCalendarData} />
-        <ViewCalendar {...passCalendarData} />
-  
-        <div className="mt-4 my-3 pf-c-title heading text-start">Our Resources</div>
+        <div className="mt-4 my-3 pf-c-title heading text-start">Civic Associations</div>
   
         <div className="container">
           <Button

@@ -10,14 +10,12 @@ function ViewAllAnnouncements(props: { announs: announData[] }) {
   };
 
   return (
-    <div className="container">
-      <Button
-        className="home-button px-3 py-2 mb-2"
-        variant="primary"
-        onClick={() => goToAnnouncements()}
-      >
-        View All Announcements
-      </Button>
+    <div className="view-all-announcements-container">
+      <div className="view-all-background">
+        <span className="view-all-link" onClick={goToAnnouncements}>
+          View All Announcements &gt;
+        </span>
+      </div>
     </div>
   );
 }
