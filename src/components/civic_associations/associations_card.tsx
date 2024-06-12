@@ -15,9 +15,9 @@ const AssociationCard: React.FC<AssociationCardProps> = ({ association }) => {
     };
 
     return (
-        <div className="association-card">
+        <div className="association-card" onClick={handleExpand} style={{ cursor: 'pointer', userSelect: 'none', WebkitTapHighlightColor: 'transparent' }}>
             <Card isHoverable isExpanded={isExpanded}>
-                <CardHeader onExpand={handleExpand}>
+                <CardHeader>
                     <CardTitle>
                         <div className='m-1' style={{ backgroundColor: "white" }}>
                             <p>{association?.attributes.Name}</p>
