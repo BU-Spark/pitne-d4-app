@@ -73,27 +73,17 @@ function AllEvents() {
       const {
         data: { data },
       } = await axios.get("http://localhost:1337/api/events?populate=*");
-      console.log("strapi data: ");
-      console.log(data);
-    
-      data.map((item: any)=>{
-        console.log("hi");
-        console.log("type " + typeof item.attributes.EventFlyer[0]);
-        console.log("print " + JSON.stringify(item.attributes.EventFlyer[0]));
-        const parsed = JSON.parse(JSON.stringify(item.attributes.EventFlyer.data));
-        console.log("parsed " + parsed);
-      
-      })
 
       const fetchedEvents = data.map((item: any) => ({
-        
         id: item.id,
         attributes: {
           title: item.attributes.EventName,
-          body: item.attributes.Description, // Corrected 'description' reference
-          image: "http://localhost:1337" + item.attributes.EventFlyer,
+          body: item.attributes.Description, 
+          image: item.attributes.EventFlyer?.data && item.attributes.EventFlyer.data.length > 0
+          ? "http://localhost:1337" + item.attributes.EventFlyer.data[0].attributes.url
+          : '',
           date: item.attributes.EventDate,
-          location: item.attributes.Location, // Corrected 'location' reference
+          location: item.attributes.Location, 
         }, 
       }));
       console.log(fetchedEvents);
