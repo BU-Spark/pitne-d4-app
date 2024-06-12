@@ -45,7 +45,6 @@ function CivicAssociations() {
                     }
                 });
                 setAssociations(response.data.data);
-                console.log(response.data.data);
             } catch (error) {
                 console.error('Error fetching associations from Strapi:', error);
             }
@@ -200,6 +199,7 @@ function CivicAssociations() {
                         value={searchTerm}
                         onChange={(value) => setSearchTerm(value)}
                         placeholder="Search associations..."
+                        aria-label='Search for associations here'
                     />
                 </div>
                 {searchTerm ? (
