@@ -9,6 +9,7 @@
 }
 
 .calendar .pf-c-calendar-month__header {
+  display: flex;
   background-color: transparent;
   color: #6b8227;
   padding: 1vw;
@@ -41,10 +42,24 @@
   justify-content: center;
 }
 
+.pf-c-input-group {
+  justify-content: center;
+}
 
+.pf-c-calendar-month__header-month {
+  flex-grow: 0;
+  padding-right: 2vw;
+}
 
+.pf-c-select__toggle::before {
+  width: fit-content;
+}
 
+.pf-c-calendar-month {
+  --pf-c-calendar-month__dates-cell--m-current__date--BackgroundColor: #c6efe7;
+}
 
+  
 
 @media (max-width: 700px) {
   .pf-c-calendar-month {
@@ -64,10 +79,19 @@
 
   .pf-c-calendar-month__date {
     padding: 2vw;
-    font-size: 3vw;
+    font-size: 4vw;
   }
 
   .pf-c-calendar-month__nav {
     font-size: 4vw;
+  }
+
+  .pf-c-calendar-month__header-month {
+    flex-grow: 0;
+    padding-right: 5vw;
+  }
+
+  .pf-c-form-control {
+    width: 13vw;
   }
 }
