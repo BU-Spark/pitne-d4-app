@@ -282,12 +282,12 @@ function Home() {
       const developmentCollection = collection(db, "Developments");
       const snapshot = await getDocs(developmentCollection);
       const loadedDevelopments = snapshot.docs.map(doc => ({
-        ...doc.data() 
+        ...doc.data()
       })) as DevelopmentData[];
       console.log(loadedDevelopments)
       setDevelopmentData(loadedDevelopments);
     }
-  
+
     fetchDevelopmentData();
     fetchCalendarData();
     fetchAnnounData();
@@ -328,7 +328,7 @@ function Home() {
   const reportOnline = () => {
     window.open('https://www.boston.gov/departments/boston-311#online-services', '_blank')
   }
- 
+
 
   return (
     <body>
@@ -363,32 +363,32 @@ function Home() {
           <Button
             className="home-button px-3 py-2 mb-2"
             variant="primary"
-            onClick={() => navigate("/address-info")}
+            onClick={() => navigate("/civic-associations-info")}
           >
             Civic Associations
           </Button>
           {/* <div className=“my-3 pf-c-title heading text-start”>Report a Non-Emergency Issue</div>
            */}
           <Button
-            onClick= {handleCall}
-            >
+            onClick={handleCall}
+          >
             Call 311
           </Button>
           <Button
-            onClick= { () => navigate('/DownloadApp')}
-            >
+            onClick={() => navigate('/DownloadApp')}
+          >
             Download the App
           </Button>
           <Button
-            onClick= {handleTweet}
-            >
+            onClick={handleTweet}
+          >
             Tweet @BOS311
           </Button>
           <Button
-            onClick= {reportOnline}
-            >
+            onClick={reportOnline}
+          >
             FIle a Report Online
-          </Button> 
+          </Button>
         </div>
         <Resources resources={InvolvedData} />
         <Resources resources={SubmitandRequestData} />
@@ -404,7 +404,7 @@ function Home() {
 export type { calData };
 export type { announData };
 export type { upData };
-export type {DevelopmentData}
+export type { DevelopmentData }
 export { APIUrl };
 
 export default Home;

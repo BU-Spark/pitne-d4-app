@@ -18,8 +18,6 @@ function AddressInfo() {
   };
 
   return (
-    // TODO Navbar
-
     <div className='p-4 m-3' style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
       <div className="mb-5">
         <LogoBar />
@@ -27,7 +25,7 @@ function AddressInfo() {
 
       {/* Heading */}
       <div>
-        <h1>Address Entry</h1>
+        <h1><b>Address Entry</b></h1>
       </div>
 
       {/* Image */}
@@ -66,7 +64,7 @@ function AddressInfo() {
 
         {/* Progress Bar */}
         <div className='bottom-0 start-0 p-5' style={{ width: '100%' }}>
-          <ProgressBar value={33} />
+          <ProgressBar value={50} />
         </div>
 
       </div>
