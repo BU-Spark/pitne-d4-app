@@ -27,34 +27,24 @@ function NonEmergencyForms() {
         Report a Non-Emergency Issue
       </div>
       <div className="mt-4 my-3 pf-c-title heading text-start">Report a Non-Emergency Issue</div>
-      <Button
-        className="home-button px-3 py-2 mb-2"
-        variant="primary"
-        onClick={handleCall}
-      >
-        Call 311
-      </Button>
-      <Button
-        className="home-button px-3 py-2 mb-2"
-        variant="primary"
-        onClick={() => navigate('/DownloadApp')}
-      >
-        Download the App
-      </Button>
-      <Button
-        className="home-button px-3 py-2 mb-2"
-        variant="primary"
-        onClick={handleTweet}
-      >
-        Tweet @BOS311
-      </Button>
-      <Button
-        className="home-button px-3 py-2 mb-2"
-        variant="primary"
-        onClick={reportOnline}
-      >
-        File a Report Online
-      </Button>
+      <div className="grid-container">
+        <div className="grid-item" onClick={handleCall}>
+          <img src="/path-to-phone-icon.png" alt="Call 311" />
+          <p>CALL 311</p>
+        </div>
+        <div className="grid-item" onClick={() => navigate('/DownloadApp')}>
+          <img src="/Users/sowrathisomasundaram/pitne-d4-app/src/screens/appPhoto.png" alt="Download the App" />
+          <p>Download the App</p>
+        </div>
+        <div className="grid-item" onClick={handleTweet}>
+          <img src="/path-to-twitter-icon.png" alt="Tweet @BOS311" />
+          <p>Tweet @BOS311</p>
+        </div>
+        <div className="grid-item" onClick={reportOnline}>
+          <img src="/path-to-report-icon.png" alt="File a Report Online" />
+          <p>File a Report Online</p>
+        </div>
+      </div>
     </div>
   );
 }

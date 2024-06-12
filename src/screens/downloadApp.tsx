@@ -11,7 +11,7 @@ function Header() {
       <div className="container">
           <LogoBar />
           <div className="mt-4 ms-4 portal-nav">
-              <AngleLeftIcon size="md" onClick={() => navigate("/home")}/>
+              <AngleLeftIcon size="md" onClick={() => navigate("/311Forms")}/>
               Download the App here
           </div>
       </div>
@@ -31,21 +31,19 @@ function DownloadApp() {
   return (
     <div className="container">
       <Header />
-      <div className="my-3 pf-c-title heading text-start">The Boston 311 app helps residents and visitors improve City neighborhoods. You can report non-emergency issues, like potholes and graffiti.</div>
-        <div className="download-links">
-
-        <Button className="px-3 py-2 mb-2 app-download-button" 
-            variant="primary" 
-            onClick={() => window.open(appStoreLink, "_blank")}>
-            Available on the App Store
-        </Button>
-
-        <Button className="px-3 py-2 mb-2 app-download-button" 
-            variant="primary" 
-            onClick={() => window.open(playStoreLink, "_blank")}>
-            Available on the Play Store
-        </Button>
+      <div className="my-3 pf-c-title heading text-start">
+        The Boston 311 app helps residents and visitors improve City neighborhoods. You can report non-emergency issues, like potholes and graffiti.
+      </div>
+      <div className="grid-container">
+        <div className="grid-item" onClick={() => window.open(appStoreLink, "_blank")}>
+          <img src="/path-to-app-store-icon.png" alt="Available on the App Store" />
+          <p>Available on the App Store</p>
         </div>
+        <div className="grid-item" onClick={() => window.open(playStoreLink, "_blank")}>
+          <img src="/path-to-play-store-icon.png" alt="Available on the Play Store" />
+          <p>Available on the Play Store</p>
+        </div>
+      </div>
     </div>
   );
 }
