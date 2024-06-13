@@ -16,6 +16,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import AllAnnouncements from "./screens/AllAnnouncements";
 import AllEvents from "./screens/AllEvents";
 import CivicAssociations from "./screens/CivicAssociations";
+import AboutCivicAssociations from "./screens/CivicAssociationsAbout";
 import AddressEntry from "./screens/AddressEntry";
 
 // init firebase app
@@ -44,6 +45,7 @@ function App() {
           <Route path="/address-info" element={<AddressInfo />} />
           <Route path="/address-entry" element={<AddressEntry />} />
           <Route path="/civic-associations" element={<CivicAssociations />} />
+          <Route path="/about-civic-associations" element={<AboutCivicAssociations />} />
           <Route path="/downloadApp" element={<DownloadApp/>} />
           <Route path="/all-developments" element={<DevelopmentsPage/>} />
         </Routes>

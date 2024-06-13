@@ -7,12 +7,8 @@
   font-family: "Red Hat Text", sans-serif;
   color: #151515;
   overflow-x: hidden;
-  background-color: #85C6F5;
 }
 
-body {
-  background-color: #85C6F5 !important;
-}
 .container {
   overflow-x: hidden;
   display: flex;
@@ -176,31 +172,34 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow-y: auto;
 }
+
 .modal-box {
   position: relative;
   background: white;
-  width: 80%;
-  height: 60%;
+  width: 70%;
+  height: 70%;
   padding: 1rem;
   cursor: auto;
+  overflow: hidden;
 }
 
-@media (min-width:800px){
-.modal-box {
-  position: relative;
-  background: white;
-  width: 50%;
-  height: 60%;
-  padding: 1rem;
-}
+@media (min-width: 800px) {
+  .modal-box {
+    width: 50%;
+    height: 70%;
+  }
 }
 
-.modal-wrapper{
-  align-items: baseline;
+.modal-wrapper {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  overflow-y: auto; /* Enable scrolling within modal content */
+  max-height: 70vh; /* Limit content height */
 }
+
 
 .closeModal {
   position: absolute;
@@ -335,4 +334,30 @@ body {
 .logo-bar-right {
   display: flex;
   align-items: center;
+}
+
+.calendar-text {
+  font-family: 'Red Hat Text';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 22px;
+  color: black;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3px;
+}
+
+.modal-image img {
+  max-width: 85%;
+  max-height: 100%;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  padding-bottom: 40px;
+}
+
+.modal-image img.full-size {
+  transform: scale(2);
+  cursor: zoom-out;
 }

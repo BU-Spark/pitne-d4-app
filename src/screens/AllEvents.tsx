@@ -72,18 +72,21 @@ function AllEvents() {
     try {
       const {
         data: { data },
-      } = await axios.get("http://localhost:1334/api/events");
-      console.log("strapi data: ");
-      console.log(data);
+      } = await axios.get("http://localhost:1334/api/events?populate=*");
       const fetchedEvents = data.map((item: any) => ({
         id: item.id,
         attributes: {
           title: item.attributes.EventName,
-          body: "this is description", // Corrected 'description' reference
+          body: item.attributes.Description, 
+          image: item.attributes.EventFlyer?.data && item.attributes.EventFlyer.data.length > 0
+          ? "http://localhost:1337" + item.attributes.EventFlyer.data[0].attributes.url
+          : '',
           date: item.attributes.EventDate,
-          location: "CDS Spark", // Corrected 'location' reference
-        },
+          location: item.attributes.Location, 
+        }, 
       }));
+      console.log(fetchedEvents);
+
       setCalendarData(fetchedEvents);
     } catch (error) {
       console.error('Fetching events failed:', error);
@@ -108,9 +111,11 @@ function AllEvents() {
       <div className="top-heading">District 4 Events Calendar</div>
       <MonthCalendar onDateChange={handleDateChange} />
       {/* <EventButton /> */}
-      {localStorage.getItem('isManager') === 'true' && <EventButton />} EST time zone
+      {/* {localStorage.getItem('isManager') === 'true' && <EventButton />} EST time zone */}
       <Events data={filteredEvents} />
 
+      <div className = "calendar-text">All Upcoming Events: </div>
+        <Events data={calendarData} />
     </div>
   );
 }

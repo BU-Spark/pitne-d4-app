@@ -21,8 +21,8 @@ function MonthCalendar({ onDateChange }: MonthCalendarProps) {
         date={selectedDate}
         onChange={handleDateChange}
       />
-      <div className="selected-date">
-        Showing events on {selectedDate.toDateString()}
+      <div className="calendar-text">
+        Events on {selectedDate.toDateString()}:
       </div>
     </div>
   );

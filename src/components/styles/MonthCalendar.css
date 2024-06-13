@@ -42,9 +42,9 @@
   justify-content: center;
 }
 
-.pf-c-input-group {
+/* .pf-c-input-group {
   justify-content: center;
-}
+} */
 
 .pf-c-calendar-month__header-month {
   flex-grow: 0;
@@ -94,4 +94,8 @@
   .pf-c-form-control {
     width: 13vw;
   }
+}
+
+.calendar th {
+  color: black; /* Change to your desired color */
 }

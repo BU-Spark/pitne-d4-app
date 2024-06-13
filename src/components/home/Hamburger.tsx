@@ -36,23 +36,20 @@ const HamburgerMenu: React.FC = () => {
             </div>
             <div className={`menu-overlay ${isOpen ? 'open' : ''}`} onClick={toggleMenu}>
                 <div className={`menu ${isOpen ? 'open' : ''}`}>
+                <Button variant="link" onClick={() => handleNavigation("/")}>
+                        Home
+                    </Button>
                     <Button variant="link" onClick={() => handleNavigation("/all-announcements")}>
                         Announcements
                     </Button>
                     <Button variant="link" onClick={() => handleNavigation("/all-events")}>
                         Calendar
                     </Button>
+                    <Button variant="link" onClick={() => handleNavigation("/about-civic-associations")}>
+                        Civic Associations
+                    </Button>
                     <Button variant="link" onClick={() => handleNavigation("/resources")}>
                         Resources
-                    </Button>
-                    <Button variant="link" onClick={() => handleNavigation("/all-posts")}>
-                        News
-                    </Button>
-                    <Button variant="link" onClick={() => handleNavigation("/login")}>
-                        Login
-                    </Button>
-                    <Button variant="link" onClick={handleSignOut}>
-                        Sign Out
                     </Button>
                 </div>
             </div>

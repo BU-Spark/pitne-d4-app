@@ -28,6 +28,7 @@ type calData = {
   id: number;
   attributes: {
     title: string;
+    image: string;
     body: string;
     date: string;
     location: string;
@@ -171,7 +172,6 @@ function Home() {
     return () => unsubscribe();
   }, [auth, fetchdata]);
 
-  //fetch calendar data from Strapi
   useEffect(() => {
     const fetchCalendarData = async () => {
       try {
@@ -390,8 +390,8 @@ function Home() {
             FIle a Report Online
           </Button> 
         </div>
-        <Resources resources={InvolvedData} />
-        <Resources resources={SubmitandRequestData} />
+        {/* <Resources resources={InvolvedData} />
+        <Resources resources={SubmitandRequestData} /> */}
 
         <div className="mt-4 pf-c-title heading text-start">News and Updates</div>
         <Updates {...passUpdateData} vertical={false} />
