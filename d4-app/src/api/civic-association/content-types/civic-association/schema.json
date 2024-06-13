@@ -24,7 +24,7 @@
     "Link": {
       "type": "string"
     },
-    "MeetingTiming": {
+    "MeetingTime": {
       "type": "string"
     },
     "MeetingLocation": {

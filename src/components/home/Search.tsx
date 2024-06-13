@@ -14,7 +14,7 @@ function Search() {
                 className="ps-1"
                 placeholder="Search D4 Resources"
                 value={search}
-                onChange={onChange}
+                // onChange={onChange}
                 onClear={() => setSearch("")}
             />
         </div>

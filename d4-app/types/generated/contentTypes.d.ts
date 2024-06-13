@@ -378,7 +378,7 @@ export interface ApiCivicAssociationCivicAssociation
     Name: Attribute.String & Attribute.Required & Attribute.Unique;
     Description: Attribute.Text & Attribute.DefaultTo<"No Information">;
     Link: Attribute.String;
-    MeetingTiming: Attribute.String;
+    MeetingTime: Attribute.String;
     MeetingLocation: Attribute.String;
     Image: Attribute.Media<"images">;
     ContactInfo: Attribute.String & Attribute.DefaultTo<"No Info">;
