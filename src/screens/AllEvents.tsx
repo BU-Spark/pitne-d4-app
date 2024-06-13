@@ -51,13 +51,13 @@ function AllEvents() {
   const handleDateChange = (date: Date) => {
     const dateInEST = toEST(date);
     setSelectedDate(dateInEST);
-    console.log(`Selected Date in EST: ${dateInEST}`);
+    // console.log(`Selected Date in EST: ${dateInEST}`);
   };
 
   // Filters events to match the user's selected date
   const filteredEvents = calendarData.filter(event => {
     const eventDateInEST = toEST(new Date(event.attributes.date));
-    console.log(`Event Date in EST: ${eventDateInEST}, Selected Date in EST: ${selectedDate}`);
+    // console.log(`Event Date in EST: ${eventDateInEST}, Selected Date in EST: ${selectedDate}`);
 
     return (
       // Returns an event if the date matches the selection
@@ -73,7 +73,6 @@ function AllEvents() {
       const {
         data: { data },
       } = await axios.get("http://localhost:1337/api/events?populate=*");
-
       const fetchedEvents = data.map((item: any) => ({
         id: item.id,
         attributes: {
@@ -109,8 +108,10 @@ function AllEvents() {
         <AngleLeftIcon size="md" onClick={() => navigate("/")} />
       </div>
       </div> */}
-      <div className="top-heading">Events Calendar</div>
-      <MonthCalendar onDateChange={handleDateChange} />
+
+      <div className="top-heading">District 4 Events Calendar</div>
+      <MonthCalendar onDateChange={handleDateChange} calendarData={calendarData}/>
+
       {/* <EventButton /> */}
       {/* {localStorage.getItem('isManager') === 'true' && <EventButton />} EST time zone */}
       <Events data={filteredEvents} />
