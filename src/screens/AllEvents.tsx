@@ -109,7 +109,7 @@ function AllEvents() {
         <AngleLeftIcon size="md" onClick={() => navigate("/")} />
       </div>
       </div> */}
-      <div className="top-heading">District 4 Events Calendar</div>
+      <div className="top-heading">Events Calendar</div>
       <MonthCalendar onDateChange={handleDateChange} />
       {/* <EventButton /> */}
       {/* {localStorage.getItem('isManager') === 'true' && <EventButton />} EST time zone */}
