@@ -18,6 +18,7 @@ import AllEvents from "./screens/AllEvents";
 import CivicAssociations from "./screens/CivicAssociations";
 import AddressEntry from "./screens/AddressEntry";
 import CivicAssociationsInfo from "screens/CivicAssociationsInfo";
+import ClientInfo from "screens/ClientInfo";
 
 // init firebase app
 import { initializeApp } from "firebase/app";
@@ -48,6 +49,7 @@ function App() {
           <Route path="/civic-associations" element={<CivicAssociations />} />
           <Route path="/downloadApp" element={<DownloadApp />} />
           <Route path="/all-developments" element={<DevelopmentsPage />} />
+          <Route path="/client-info" element={<ClientInfo />} />
         </Routes>
       </BrowserRouter>
     </div>
