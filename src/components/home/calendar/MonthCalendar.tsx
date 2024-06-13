@@ -72,30 +72,23 @@ interface MonthCalendarProps {
   calendarData: calData[];
 }
 
-function toEST(date: Date): Date {
-  const userTimezoneOffset = date.getTimezoneOffset() * 60000; // Offset in milliseconds
-  const estOffset = -300; // EST is UTC-5
-  return new Date(date.getTime() + userTimezoneOffset + (estOffset * 60 * 1000));
-}
-
 function MonthCalendar({ onDateChange, calendarData }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const handleDateChange = (date: Date) => {
-    const dateInEST = toEST(date);
-    setSelectedDate(dateInEST);
-    onDateChange(dateInEST);
+    setSelectedDate(date);
+    onDateChange(date);
   };
 
   const dateHasEvents = (date: Date): boolean => {
     return calendarData.some(event => {
-      const eventDate = toEST(new Date(event.attributes.date));
+      const eventDate = new Date(event.attributes.date);
       return eventDate.toDateString() === date.toDateString();
     });
   };
 
   const renderDayContents = (dayOfMonth: number, date?: Date) => {
-    const hasEvents = date ? dateHasEvents(toEST(date)) : false;
+    const hasEvents = date ? dateHasEvents(date) : false;
     return (
       <div className='datecell'>
         {dayOfMonth}
