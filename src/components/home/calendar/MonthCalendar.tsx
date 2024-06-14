@@ -116,6 +116,7 @@ function MonthCalendar({ onDateChange, calendarData }) {
         Events on {selectedDate.toDateString()}:
       </div>
     </div>
+
   );
 }
 

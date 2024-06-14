@@ -1,0 +1,76 @@
+/* AllEvents.css */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .logo-bar {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .top-heading {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .calendar-section, .all-events-section {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+  }
+  
+  .all-events-section {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+  }
+  
+  .all-events-section h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .events-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .event-card {
+    width: 30%;
+    margin: 10px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .event-card img {
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+  }
+  
+  .event-card h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+  .event-card p {
+    font-size: 1em;
+    margin-bottom: 5px;
+  }
+  
+  @media (max-width: 700px) {
+    .event-card {
+      width: 100%;
+    }
+  }
+  

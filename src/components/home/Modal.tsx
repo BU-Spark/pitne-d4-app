@@ -9,6 +9,7 @@ interface ModalType {
   content: string;
   image?: string;
   date: string;
+  time?: string;
   location?: string;
 }
 
@@ -35,6 +36,12 @@ export default function Modal(props: ModalType) {
                   <b>Where: </b>{props.location}
                 </Text>
               )}
+              {props.time && (
+                <Text>
+                  <b>When: </b>{props.time}
+                </Text>
+              )}
+              
               <p className="modal-text">
                 {props.content}
               </p>

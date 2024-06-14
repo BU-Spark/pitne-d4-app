@@ -173,6 +173,7 @@
   justify-content: center;
   align-items: center;
   overflow-y: auto;
+
 }
 
 .modal-box {
@@ -183,6 +184,7 @@
   padding: 1rem;
   cursor: auto;
   overflow: hidden;
+  border-radius: 2%
 }
 
 @media (min-width: 800px) {

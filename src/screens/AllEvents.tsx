@@ -82,6 +82,7 @@ function AllEvents() {
           ? "http://localhost:1337" + item.attributes.EventFlyer.data[0].attributes.url
           : '',
           date: item.attributes.EventDate,
+          time: item.attributes.Time,
           location: item.attributes.Location, 
         }, 
       }));
