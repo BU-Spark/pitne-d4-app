@@ -16,7 +16,7 @@
       "type": "string"
     },
     "EventDate": {
-      "type": "date"
+      "type": "datetime"
     },
     "EventFlyer": {
       "type": "media",

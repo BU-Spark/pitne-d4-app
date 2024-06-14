@@ -21,27 +21,20 @@ function AllEvents() {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
 
-  function toEST(date: Date): Date {
-    const userTimezoneOffset = date.getTimezoneOffset() * 60000; // Offset in milliseconds
-    const estOffset = -300; // EST is UTC-5
-    return new Date(date.getTime() + userTimezoneOffset + (estOffset * 60 * 1000));
-  }
-
   const handleDateChange = (date: Date) => {
     setSelectedDate(date);
-    console.log(`handleDateChange AllEvents: ${date}`);
   };
 
   // Filters events to match the user's selected date
   const filteredEvents = calendarData.filter(event => {
-    const eventDateInEST = toEST(new Date(event.attributes.date));
-    console.log(`AllEvents Event Date in EST: ${eventDateInEST}, Selected Date in EST: ${selectedDate}`);
+    const eventDate = new Date(event.attributes.date);
+    // console.log(` ${eventDate},  ${selectedDate},  ${event.attributes.date}`);
 
     return (
       // Returns an event if the date matches the selection
-      eventDateInEST.getFullYear() === selectedDate.getFullYear() &&
-      eventDateInEST.getMonth() === (selectedDate.getMonth()) &&
-      (eventDateInEST.getDate()) === selectedDate.getDate()
+      eventDate.getFullYear() === selectedDate.getFullYear() &&
+      eventDate.getMonth() === (selectedDate.getMonth()) &&
+      (eventDate.getDate()) === selectedDate.getDate()
     );
     
   });
@@ -50,14 +43,14 @@ function AllEvents() {
     try {
       const {
         data: { data },
-      } = await axios.get("http://localhost:1334/api/events?populate=*");
+      } = await axios.get("http://pitne-d4-app-strapi-production.up.railway.app/api/events?populate=*");
       const fetchedEvents = data.map((item: any) => ({
         id: item.id,
         attributes: {
           title: item.attributes.EventName,
           body: item.attributes.Description, 
           image: item.attributes.EventFlyer?.data && item.attributes.EventFlyer.data.length > 0
-          ? "http://localhost:1334" + item.attributes.EventFlyer.data[0].attributes.url
+          ? "http://pitne-d4-app-strapi-production.up.railway.app" + item.attributes.EventFlyer.data[0].attributes.url
           : '',
           date: item.attributes.EventDate,
           location: item.attributes.Location,
