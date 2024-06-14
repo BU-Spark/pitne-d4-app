@@ -408,7 +408,7 @@ export interface ApiEventEvent extends Schema.CollectionType {
   attributes: {
     EventName: Attribute.String;
     EventDate: Attribute.Date;
-    EventFlyer: Attribute.Media;
+    EventFlyer: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
     EventID: Attribute.UID;
     Location: Attribute.String;
     Description: Attribute.String;
