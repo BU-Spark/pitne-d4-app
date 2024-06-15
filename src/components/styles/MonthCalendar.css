@@ -69,7 +69,7 @@
   bottom: -2vw; 
   left: 50%; 
   transform: translateX(-50%); 
-  font-size: 4vw; 
+  font-size: 1.2vw; 
 }
 
 .react-datepicker__current-month {
@@ -78,15 +78,98 @@
   margin-bottom: 10px;
 }
 
+.react-datepicker__navigation {
+  display: flex;
+  width: 2vw;
+  height: auto;
+  top: 2.5vw;
+}
+
+.react-datepicker__day--today {
+  font-weight: bold; /* Example to make it bold */
+  background-color: #94f1ff; /* Light grey background */
+}
+
+
 @media (max-width: 700px) {
-  .calendar, .react-datepicker {
+  .calendar {
+    background-color: white; 
+    border: 0.1vw solid #1b263b;
+    border-radius: 0.5vw;
     padding: 2vw;
-    font-size: 3vw;
+    color: #5f7719; /* Adjusted the color for better visibility */
+    width: fit-content;
+    margin: 2vw auto;
+  }
+  
+  .react-datepicker {
+    font-family: 'Red Hat Text';
+    font-size: 4vw;
+  }
+  
+  /* days of the week */
+  .react-datepicker__header {
+    background-color: transparent;
+    color: #6b8227;
+    border-bottom: none;
+    margin-bottom: -8px !important;
+  }
+  
+  /* month dates */
+  .react-datepicker__month {
+    margin: 2vw;
+  }
+
+  .react-datepicker__month-container {
+    width: 85vw;
+  }
+  
+  .react-datepicker__current-month {
+    font-size: 8vw;
+    margin-top: 15px;
+    margin-bottom: 10px;
   }
 
   .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
-    width: 5vw;
-    line-height: 5vw;
-    /* font-size: 4vw; */
+    font-size: 5.5vw;
+    width: 10vw; 
+    height: 10vw; /* Adjusted height to be equal to width */
+    line-height: 10vw; /* Adjusted line-height to be equal to width and height */
+    margin: 0.5vw;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  .react-datepicker__navigation {
+    display: flex;
+    width: 6vw;
+    top: 6vw;
+  }
+
+  .react-datepicker__navigation-icon--next::before {
+    transform: rotate(45deg);
+    left: -5vw;
+    font-size: 16px;  
+    width: 20px; 
+    height: 20px; 
+    display: inline-block; /* Ensure width and height are respected */
+  }
+
+  .react-datepicker__navigation-icon--previous::before {
+    left: 0vw;
+    font-size: 16px;  
+    width: 20px; 
+    height: 20px; 
+    display: inline-block; /* Ensure width and height are respected */
+  }
+
+  .dot-indicator {
+    color: red;
+    position: absolute; 
+    bottom: -4vw; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    font-size: 5vw; 
   }
 }
