@@ -54,6 +54,7 @@ function AllEvents() {
           : '',
           date: item.attributes.EventDate,
           location: item.attributes.Location,
+          time: item.attributes.Time,
         }, 
       }));
       console.log(fetchedEvents);
@@ -79,8 +80,10 @@ function AllEvents() {
         <AngleLeftIcon size="md" onClick={() => navigate("/")} />
       </div>
       </div> */}
+
       <div className="top-heading">District 4 Events Calendar</div>
       <MonthCalendar onDateChange={handleDateChange} calendarData={calendarData}/>
+
       {/* <EventButton /> */}
       {/* {localStorage.getItem('isManager') === 'true' && <EventButton />} EST time zone */}
       <Events data={filteredEvents} />

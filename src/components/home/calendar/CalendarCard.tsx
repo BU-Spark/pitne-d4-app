@@ -11,11 +11,12 @@ interface CalendarCardProps {
   content: string;
   image?: string;
   date?: string;
+  time?: string;
   location?: string;
 }
 
 function CalendarCard(props: CalendarCardProps) {
-  const { title, content, image, date = "", location = "" } = props;
+  const { title, content, image, date = "", time, location = "" } = props;
   const { isOpen, toggle } = useModal();
 
   return (
@@ -23,9 +24,15 @@ function CalendarCard(props: CalendarCardProps) {
       <div className="mx-3 mt-3 mb-5">
         <Text className="text-start">{title}</Text>
         <div className="row mt-2">
-          <small className="text-start text-secondary">
+        {props.location && (
+                <small className="text-start text-secondary">
+                {"Location: " + location}
+              </small>
+              )}
+          {/* <small className="text-start text-secondary">
             {"Location: " + location}
-          </small>
+          </small> */}
+          
           {/* <small className="text-start text-secondary calendar-card-content">
             {content}
           </small> */}
@@ -43,6 +50,7 @@ function CalendarCard(props: CalendarCardProps) {
           title={title}
           date={date}
           content={content}
+          time={time}
           image={image}
           location={location}
         />

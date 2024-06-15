@@ -31,6 +31,7 @@ type calData = {
     image: string;
     body: string;
     date: string;
+    time: string;
     location: string;
   };
 };
