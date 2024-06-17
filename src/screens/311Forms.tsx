@@ -3,6 +3,7 @@ import { Button } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
 import LogoBar from "../components/home/LogoBar";
 import { AngleLeftIcon } from "@patternfly/react-icons";
+import Footer from "../components/home/footer";
 
 function NonEmergencyForms() {
   const navigate = useNavigate();
@@ -20,12 +21,10 @@ function NonEmergencyForms() {
   }
 
   return (
-    <div className="container">
+    <div className="page-container">
+    <div className="content-wrap">
+      <div className = "mb-5"></div>
       <LogoBar />
-      <div className="mt-4 ms-4 portal-nav">
-        <AngleLeftIcon size="md" onClick={() => navigate("/")} />
-        Report a Non-Emergency Issue
-      </div>
       <div className="mt-4 my-3 pf-c-title heading text-start">Report a Non-Emergency Issue</div>
       <div className="grid-container">
         <div className="grid-item" onClick={handleCall}>
@@ -45,6 +44,8 @@ function NonEmergencyForms() {
           <p>File a Report Online</p>
         </div>
       </div>
+      </div>
+      <Footer />
     </div>
   );
 }

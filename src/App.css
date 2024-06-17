@@ -12,6 +12,9 @@
 
 body {
   background-color: #f8fafb !important;
+  padding:0; 
+  margin:0; 
+  height:100%;
 }
 .container {
   overflow-x: hidden;
@@ -334,7 +337,7 @@ body {
 .menu {
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   height: 100%;
   width: 100%;
   background-color: white; /* Background color of the menu */
@@ -356,7 +359,7 @@ body {
   border: none;
   background: none;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .menu button:hover {
@@ -391,7 +394,7 @@ body {
   border: none;
   color: white; /* Adjust as needed */
   font-size: 1rem;
-  margin: 0 10px;
+
   cursor: pointer;
   text-decoration: none;
 }
@@ -405,7 +408,7 @@ body {
   position: relative;
   width: 100%;
   height: 100vh; /* Adjust the height as needed */
-  background-image: url('/Users/sowrathisomasundaram/pitne-d4-app/strapi/districtFourHome.jpeg'); /* Path to your background image */
+  background-image: url('/Users/sowrathisomasundaram/pitne-d4-app/strapi/HomePage1.jpeg'); /* Path to your background image */
   background-size: cover;
   background-position: center;
   display: flex;
@@ -566,3 +569,49 @@ body {
   cursor: pointer;
 }
 
+.footer {
+  background-color: #152d5c;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  position: relative; 
+  bottom: 0; 
+  left: 0; 
+  right: 0;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-section.about p {
+  display: flex;
+  gap: 20px; /* Adjust the space between links */
+}
+
+.footer-section p,
+.footer-section a {
+  color: white;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+.footer-section a:hover {
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  border-top: 1px solid white;
+  font-size: 0.9rem;
+}
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.content-wrap {
+  flex: 1;
+}

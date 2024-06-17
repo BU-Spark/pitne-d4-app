@@ -1,15 +1,12 @@
 import React, { useEffect } from "react";
-import { AngleLeftIcon } from "@patternfly/react-icons";
-import { useNavigate } from "react-router-dom";
 import type { announData } from "./Home";
-import { APIUrl } from "./Home";
 import LogoBar from "../components/home/LogoBar";
 import Announcements from "../components/home/announcements/Announcement";
-import { doc, getDoc, getFirestore, collection, getDocs} from "firebase/firestore";
+import {getFirestore, collection, getDocs} from "firebase/firestore";
+import Footer from "../components/home/footer";
 
 function AllAnnouncements() {
   const db = getFirestore();
-  const navigate = useNavigate();
 
   const [announcements, setAnnounData] = React.useState<announData[]>([]);
 
@@ -33,17 +30,15 @@ function AllAnnouncements() {
   }, []);
 
   return (
-    <div className="container">
-      <div className = "mb-5">
-      <LogoBar />
-      </div>
-      {/* <div className="mt-4 ms-4 portal-nav">
-        <div className = "grab-cursor">
-        <AngleLeftIcon size="md" onClick={() => navigate("/")} />
+    <div className="page-container">
+      <div className="content-wrap">
+        <div className="mb-5">
+          <LogoBar />
         </div>
-      </div> */}
-      <div className="top-heading">All Announcements</div>
-      <Announcements announs={announcements} vertical={true}/>
+        <div className="top-heading">All Announcements</div>
+        <Announcements announs={announcements} vertical={true} />
+      </div>
+      <Footer />
     </div>
   );
 }

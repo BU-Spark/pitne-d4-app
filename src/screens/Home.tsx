@@ -373,8 +373,7 @@ function Home() {
         <div className="mb-5">
           <LogoBar />
         </div>
-        
-          
+      </div>
 
         <div className="councilor-section">
           <div className="councilor-background">
@@ -404,32 +403,26 @@ function Home() {
         <div className="top-heading">Announcements</div>
         <Announcement {...passAnnounData} vertical={false} />
         <ViewAllAnnouncements {...passAnnounData} />
-  
-        <div className="civic-associations-section">
-          <div className="overlay"></div>
-            <div className="civic-associations-content">
-              <h2 className="heading">What are Civic Associations?</h2>
-              <p className="description">
-                Civic associations serve as vital hubs for local engagement and collective action. These grassroots organizations are driven by residents who come together to address shared concerns and improve the quality of life in their neighborhoods. By fostering collaboration on issues ranging from public safety to environmental sustainability, civic associations empower residents to take an active role in shaping the future of their communities.
-              </p>
-              <p className="description">
-                Through their advocacy efforts and community-building initiatives, civic associations play a crucial role in enhancing neighborhood cohesion and resilience. By organizing events, facilitating communication channels, and advocating for equitable policies, these organizations create spaces where residents can connect, collaborate, and collectively address challenges. In doing so, they cultivate a sense of belonging and civic pride, driving positive change and fostering a vibrant sense of community.
-              </p>
-              <Button
-                className="home-button custom-civic-button"
-                variant="primary"
-                onClick={() => navigate("/address-info")}
-              >
-                Learn More
-              </Button>
-            </div>
-        </div>
         
 
-        <Resources resources={InvolvedData} />
-        <Resources resources={SubmitandRequestData} />
+        {/* <Resources resources={InvolvedData} />
+        <Resources resources={SubmitandRequestData} /> */}
+
+
+    <footer className="footer">
+      <div className="footer-content">
+        <div className="footer-section about">
+         <p>
+            <a href="mailto:brian.worrell@boston.gov">Mail: brian.worrell@boston.gov</a>
+            <a href="tel:+16176353131">Call: +1 617-635-3131</a>
+          </p>
+        </div>
       </div>
-    </body>
+      <div className="footer-bottom">
+        &copy; 2024 District 4. All rights reserved.
+      </div>
+    </footer>
+        </body>
   );
 }
 
