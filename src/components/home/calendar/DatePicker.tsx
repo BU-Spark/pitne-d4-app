@@ -76,7 +76,7 @@ const DatePicker: React.FC<DatePickerProps> = ({ data }) => {
     const startDate = startOfWeek(currentMonth, { weekStartsOn: 1 });
     const endDate = lastDayOfWeek(currentMonth, { weekStartsOn: 1 });
     const dateFormat = "d";
-    const rows = [];
+    // const rows = [];
     let days = [];
     let day = startDate;
     let formattedDate = "";
@@ -85,7 +85,7 @@ const DatePicker: React.FC<DatePickerProps> = ({ data }) => {
       const rows: JSX.Element[] = [];
       days = [];
     }
-    return <div className="body">{rows}</div>;
+    // return <div className="body">{rows}</div>;
   };
 
   return (
@@ -98,7 +98,7 @@ const DatePicker: React.FC<DatePickerProps> = ({ data }) => {
 
         <div className="col">
           {renderDays()}
-          {renderCells()}
+          {/* {renderCells()} */}
         </div>
 
         <div className="ms-2 mt-2" onClick={() => changeWeekHandle("next")}>

@@ -18,6 +18,8 @@ import Resources from "../components/home/Resources";
 import { cursorTo } from "readline";
 import DevelopmentUpdates from "../components/home/Developments/Development";
 import ViewAllDevs from "../components/home/Developments/ViewAllDevs";
+import axios from "axios";
+
 
 //for dev,
 const APIUrl = "https://se-d7-dev.up.railway.app/api/";
@@ -28,10 +30,8 @@ type calData = {
   id: number;
   attributes: {
     title: string;
-    image: string;
     body: string;
     date: string;
-    time: string;
     location: string;
   };
 };
@@ -61,6 +61,17 @@ type DevelopmentData = {
     date?: string;
   };
 };
+// type HomePageData = {
+//   heroTitle: string;
+//   heroDescription: string;
+//   heroImage: { url: string };
+//   councilorName: string;
+//   councilorDescription: string;
+//   councilorImage: { url: string };
+// };
+
+
+
 
 function checkIfManager() {
   return new Promise((resolve, reject) => {
@@ -124,7 +135,25 @@ function Home() {
   const [announData, setAnnounData] = React.useState<announData[]>([]);
   // const [tweetData, setTweetData] = React.useState<tweetData[]>([]);
   const [developmentData, setDevelopmentData] = React.useState<DevelopmentData[]>([]);
+  //const [homePageData, setHomePageData] = useState<HomePageData | null>(null);
 
+
+  // useEffect(() => {
+  //   const fetchHomePageData = async () => {
+  //     try {
+  //       const response = await axios.get('http://localhost:1334/api/home-page?populate=*');
+  //       const homePageData = response.data.data.attributes;
+  //       setHomePageData(homePageData);
+  //     } catch (error) {
+  //       console.error('Fetching home page data failed:', error);
+  //     }
+  //   };
+  
+  //   fetchHomePageData();
+  // }, []);
+  
+
+  
   // This function fetch user interests from user-profile
   // The userEmail has default parameter to handle anonymous users that wants to use app without logging in
   const fetchdata = useCallback(async (userEmail = "defaultuser@email.com") => {
@@ -173,6 +202,8 @@ function Home() {
     return () => unsubscribe();
   }, [auth, fetchdata]);
 
+
+  //fetch calendar data from Strapi
   useEffect(() => {
     const fetchCalendarData = async () => {
       try {
@@ -193,6 +224,7 @@ function Home() {
         console.log(error);
       }
     };
+    
 
     const fetchAnnounData = async () => {
       // try {
@@ -304,9 +336,6 @@ function Home() {
   const passAnnounData = {
     announs: announData,
   };
-  const passUpdateData = {
-    updates: updateData,
-  };
   const passDevData = {
     developments: developmentData,
   };
@@ -318,87 +347,82 @@ function Home() {
     }
   }, [auth.currentUser, fetchdata]);
 
-  const handleCall = () => {
-    window.location.href = 'tel:311';
-  };
-
-  const handleTweet = () => {
-    window.open('https://twitter.com/BOS311', '_blank');
-  }
-
-  const reportOnline = () => {
-    window.open('https://www.boston.gov/departments/boston-311#online-services', '_blank')
-  }
- 
+  // if (!homePageData) {
+  //   return <div>Loading...</div>;
+  // }
+  
 
   return (
     <body>
+      <div className="hero-section">
+        <div className="overlay"></div>
+        <div className="hero-content">
+          <h1> Welcome to the District 4 Website</h1>
+          <p>District 4 includes Mattapan, Dorchester, and parts of Jamaica Plain and Roslindale</p>
+        </div>
+      </div>
+      {/* <div className="hero-section" style={{ backgroundImage: `url(${homePageData.heroImage.url})` }}>
+      <div className="overlay"></div>
+      <div className="hero-content">
+        <h1>{homePageData.heroTitle}</h1>
+        <p>{homePageData.heroDescription}</p>
+      </div>
+    </div> */}
+  
       <div className="container">
         <div className="mb-5">
           <LogoBar />
         </div>
-        {/* <Search /> */}
+      </div>
+
+        <div className="councilor-section">
+          <div className="councilor-background">
+            <div className="overlay"></div>
+              <div className="councilor-content">
+              <h2 className="councilor-heading">About the Councilor</h2>
+                <div className="councilor-image">
+                  <img src="/Users/sowrathisomasundaram/pitne-d4-app/src/screens/BrianWorell.jpeg" alt="Councilor" />
+                </div>
+                <p className="councilor-description">
+                Councilor Brian Worrell has been dedicated to serving the community of District 4 for many years. His efforts focus on improving local infrastructure, increasing public safety, and ensuring that every voice in the district is heard and valued.
+                </p>
+            </div>
+         </div>
+        </div>
+
+      {/* <div className="councilor-section">
+        <h2 className="councilor-heading">About the Councilor</h2>
+        <div className="councilor-image">
+          <img src={homePageData.councilorImage.url} alt="Councilor" />
+        </div>
+        <p className="councilor-description">
+          {homePageData.councilorDescription}
+        </p>
+      </div> */}
 
         <div className="top-heading">Announcements</div>
         <Announcement {...passAnnounData} vertical={false} />
         <ViewAllAnnouncements {...passAnnounData} />
+        
 
-        <div className="mt-4 text-start heading">Upcoming Events</div>
-        <Calendar {...passCalendarData} />
-        <ViewCalendar {...passCalendarData} />
-
-        <div className="mt-3 pf-c-title heading text-start">Developments</div>
-        <DevelopmentUpdates {...passDevData} vertical={false} />
-        <ViewAllDevs />
-
-        <div className="mt-4 my-3 pf-c-title heading text-start">Our Resources</div>
-
-        <div className="container">
-          <Button
-            className="home-button px-3 py-2 mb-2"
-            variant="primary"
-            onClick={() => navigate("/getresources")}
-          >
-            Get Resources
-          </Button>
-          <Button
-            className="home-button px-3 py-2 mb-2"
-            variant="primary"
-            onClick={() => navigate("/address-info")}
-          >
-            Civic Associations
-          </Button>
-          {/* <div className=“my-3 pf-c-title heading text-start”>Report a Non-Emergency Issue</div>
-           */}
-          <Button
-            onClick= {handleCall}
-            >
-            Call 311
-          </Button>
-          <Button
-            onClick= { () => navigate('/DownloadApp')}
-            >
-            Download the App
-          </Button>
-          <Button
-            onClick= {handleTweet}
-            >
-            Tweet @BOS311
-          </Button>
-          <Button
-            onClick= {reportOnline}
-            >
-            FIle a Report Online
-          </Button> 
-        </div>
         {/* <Resources resources={InvolvedData} />
         <Resources resources={SubmitandRequestData} /> */}
 
-        <div className="mt-4 pf-c-title heading text-start">News and Updates</div>
-        <Updates {...passUpdateData} vertical={false} />
-        <ViewAllPosts {...passUpdateData} />
+
+    <footer className="footer">
+      <div className="footer-content">
+        <div className="footer-section about">
+         <p>
+            <a href="mailto:brian.worrell@boston.gov">Mail: brian.worrell@boston.gov</a>
+            <a href="tel:+16176353131">Call: +1 617-635-3131</a>
+          </p>
+        </div>
       </div>
-    </body>
+      <div className="footer-bottom">
+        &copy; 2024 District 4. All rights reserved.
+      </div>
+    </footer>
+        </body>
   );
 }
 

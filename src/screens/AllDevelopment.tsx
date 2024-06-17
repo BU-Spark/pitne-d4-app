@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AngleLeftIcon } from "@patternfly/react-icons";
 import LogoBar from "../components/home/LogoBar";
 import DevelopmentUpdates from "../components/home/Developments/Development"; // Assuming you have this component
+import Footer from "../components/home/footer";
 
 // Define the data type for the development entries
 type DevelopmentData = {
@@ -54,14 +55,17 @@ function AllDevelopments() {
   }, [db]);
 
   return (
-    <div className="container">
-      <LogoBar />
-      <div className="mt-4 ms-4 portal-nav">
-        <AngleLeftIcon size="md" onClick={() => navigate("/home")} />
-        All Developments
+    <div className="page-container">
+      <div className="content-wrap">
+        <div className="mb-5">
+          <LogoBar />
+        </div>
+        <div className="top-heading">All Developments</div>
+        <DevelopmentUpdates developments={developments} vertical={true}/>
       </div>
-      <DevelopmentUpdates developments={developments} vertical={true} />
+      <Footer />
     </div>
+    
   );
 }
 

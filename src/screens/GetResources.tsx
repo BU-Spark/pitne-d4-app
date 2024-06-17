@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useEffect } from "react";
 import * as React from "react";
-
+import Footer from "../components/home/footer";
 import Resources from "../components/home/Resources";
 
 import { AngleLeftIcon } from "@patternfly/react-icons";
@@ -60,7 +60,8 @@ function GetResources(){
   
 
   return (
-    <div className="container">
+    <div className="page-container">
+    <div className="content-wrap">
         <LogoBar />
         <div className="mt-4 ms-4 portal-nav pf-u-text-center">
           <div className = "grab-cursor">
@@ -75,8 +76,8 @@ function GetResources(){
           <Resources resources={resources} />
         </div>
     </div>
-
-    
+    <Footer />
+    </div>
   )
 
 }

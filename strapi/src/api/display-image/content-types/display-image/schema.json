@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "display_images",
+  "info": {
+    "singularName": "display-image",
+    "pluralName": "display-images",
+    "displayName": "DisplayImages"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Photo": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "Name": {
+      "type": "string"
+    }
+  }
+}

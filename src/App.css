@@ -7,6 +7,14 @@
   font-family: "Red Hat Text", sans-serif;
   color: #151515;
   overflow-x: hidden;
+  background-color: #f8fafb;
+}
+
+body {
+  background-color: #f8fafb !important;
+  padding: 0;
+  margin: 0;
+  height: 100%;
 }
 
 .container {
@@ -42,7 +50,7 @@
   line-height: 40px;
   text-align: left;
   color: #151515;
-}  
+}
 
 /* Login Page Styles */
 .page-login-line {
@@ -53,25 +61,27 @@
 
 /* Calendar Styles */
 
-.horizontal-scroll{
+.horizontal-scroll {
   overflow-x: scroll;
   display: flex;
+  justify-content: center;
 }
 
-.vertical-scroll{
+.vertical-scroll {
   display: flex;
   flex-wrap: wrap;
+  overflow-y: scroll;
 }
 
-@media (max-width:700px){
-  .vertical-scroll{
+@media (max-width:700px) {
+  .vertical-scroll {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
   }
 }
 
-.calendar-card{
+.calendar-card {
   min-width: 220px;
   min-height: 150px;
   width: 15vw;
@@ -103,7 +113,7 @@
   font-weight: 700;
   font-size: 25px;
   line-height: 22px;
-  color: black;
+  color: #152d5c;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -114,17 +124,34 @@
   font-family: 'Red Hat Text';
   font-style: normal;
   font-weight: 700;
-  font-size: 25px;
+  font-size: 32px;
   line-height: 22px;
-  color: black;
+  color: #152d5c;
   text-align: center;
   display: flex;
-  justify-content: center;
-  margin-bottom: 3px;
-  margin-top: 70px;
+  flex-direction: column;
+  /* Ensure vertical stacking */
+  align-items: center;
+  /* Center the content */
+  margin-bottom: 20px;
+  margin-top: 20px;
+  position: relative;
 }
 
-.logo{
+.top-heading::after {
+  content: '';
+  display: block;
+  width: 96%;
+  /* Adjust the width as needed */
+  height: 1px;
+  /* Adjust the height as needed */
+  background-color: #152d5c;
+  /* Color of the line */
+  margin-top: 20px;
+  /* Space between text and line */
+}
+
+.logo {
   font-family: 'aller-display';
   font-style: normal;
   font-weight: 400;
@@ -139,8 +166,8 @@
 }
 
 /* Patternfly Variables #205F00; #123400*/
-.pf-c-button{
-  --pf-global--primary-color--100: #172466;
+.pf-c-button {
+  --pf-global--primary-color--100: #152d5c;
   --pf-global--primary-color--200: #0358ae;
 }
 
@@ -156,9 +183,40 @@
 .selected-chip-clicked {
   --pf-global--primary-color-100: #0066CC;
   --pf-global--primary-color--dark-100: #0066CC;
-  --pf-global--BorderColor--300 : #0066CC;
+  --pf-global--BorderColor--300: #0066CC;
   --pf-global--BorderColor-100: #0066CC;
   --pf-global--BorderColor--dark-100: #0066CC;
+}
+
+.view-all-announcements-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.view-all-background {
+  background-color: rgba(21, 45, 92, 0.2);
+  /* transparent blue background */
+  padding: 5px 30px;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.view-all-link {
+  font-size: 1.25rem;
+  font-family: 'Red Hat Text', sans-serif;
+  color: #152d5c;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  z-index: 1;
+}
+
+.view-all-link:hover {
+  color: #152d5c;
+  text-decoration: underline;
 }
 
 .modal-overlay {
@@ -172,36 +230,33 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow-y: auto;
-
 }
 
 .modal-box {
   position: relative;
   background: white;
-  width: 70%;
-  height: 70%;
+  width: 80%;
+  height: 60%;
   padding: 1rem;
   cursor: auto;
-  overflow: hidden;
-  border-radius: 2%
+  overflow-y: scroll;
 }
 
-@media (min-width: 800px) {
+@media (min-width:800px) {
   .modal-box {
+    position: relative;
+    background: white;
     width: 50%;
-    height: 70%;
+    height: 60%;
+    padding: 1rem;
   }
 }
 
 .modal-wrapper {
+  align-items: baseline;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  overflow-y: auto; /* Enable scrolling within modal content */
-  max-height: 70vh; /* Limit content height */
 }
-
 
 .closeModal {
   position: absolute;
@@ -212,13 +267,13 @@
   cursor: pointer;
 }
 
-.modal-text{
+.modal-text {
   margin-top: 20px;
 }
 
-.logout-button{
-  background-color: #172466;
-  border-color: #172466;
+.logout-button {
+  background-color: #152d5c;
+  border-color: #152d5c;
   color: #fff;
   border-radius: 10px;
   padding: 5px;
@@ -229,7 +284,7 @@
 }
 
 .container .home-button {
-  display: flex; 
+  display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -241,24 +296,38 @@
   border-radius: 20px;
 }
 
- .hamburger-menu-container {
-  position: relative; 
+.hamburger-menu-container {
+  position: relative;
   display: flex;
   align-items: center;
-  height: 100%; 
-} 
+  height: 100%;
+}
 
 .hamburger-icon {
   font-size: 40px;
   font-family: var(--bs-body-font-family);
   cursor: pointer;
-  transition: transform 0.3s ease-out; 
+  transition: transform 0.3s ease-out;
   position: fixed;
-  right: 20px; 
+  right: 20px;
+  color: #152d5c;
+  background-color: rgba(255, 255, 255, 0.622);
+  border-radius: 100%;
+  /* Make it a circle */
+  width: 35px;
+  /* Set the width of the circle */
+  height: 35px;
+  /* Set the height of the circle */
+  display: flex;
+  /* Center the icon inside the circle */
+  align-items: center;
+  /* Center the icon inside the circle */
+  justify-content: center;
 }
 
 .hamburger-icon.open {
-  transform: rotate(90deg); /* Rotate the icon when menu is open */
+  transform: rotate(90deg);
+  /* Rotate the icon when menu is open */
   z-index: 1100;
 }
 
@@ -270,32 +339,40 @@
   height: 100%;
   /* background-color: rgba(0, 0, 0, 0.5); Semi-transparent background */
   z-index: 1000;
-  transition: opacity 0.3s ease-out; 
+  transition: opacity 0.3s ease-out;
   /* Fade in/out transition for overlay */
-  opacity: 0; /* Start with no opacity */
-  pointer-events: none; /* Do not allow clicks on overlay until opened */
+  opacity: 0;
+  /* Start with no opacity */
+  pointer-events: none;
+  /* Do not allow clicks on overlay until opened */
 }
 
 .menu-overlay.open {
-  opacity: 1; /* Make overlay visible */
-  pointer-events: auto; /* Allow clicks on overlay when open */
+  opacity: 1;
+  /* Make overlay visible */
+  pointer-events: auto;
+  /* Allow clicks on overlay when open */
 }
 
 .menu {
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   height: 100%;
   width: 100%;
-  background-color: white; /* Background color of the menu */
+  background-color: white;
+  /* Background color of the menu */
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease-out; /* Slide in/out transition for menu */
-  transform: translateX(100%); /* Start off-screen to the left */
+  transition: transform 0.3s ease-out;
+  /* Slide in/out transition for menu */
+  transform: translateX(100%);
+  /* Start off-screen to the left */
 }
 
 .menu.open {
-  transform: translateX(0); /* Slide the menu into view from the left */
+  transform: translateX(0);
+  /* Slide the menu into view from the left */
 }
 
 .menu button {
@@ -306,12 +383,13 @@
   border: none;
   background: none;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .menu button:hover {
   background-color: #f1f1f1;
 }
+
 /* LogoBar.css */
 
 .logo-bar {
@@ -323,9 +401,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px 20px;
-  background-color: #0066cc54;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-  z-index: 1000; 
+  background-color: #0066cc00;
+  z-index: 1000;
 }
 
 .logo-bar-left {
@@ -338,28 +415,243 @@
   align-items: center;
 }
 
-.calendar-text {
-  font-family: 'Red Hat Text';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 22px;
-  color: black;
+.logo-bar-button {
+  background: none;
+  border: none;
+  color: white;
+  /* Adjust as needed */
+  font-size: 1rem;
+
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.logo-bar-button:hover {
+  text-decoration: underline;
+}
+
+
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  /* Adjust the height as needed */
+  background-image: url('../strapi/HomePage1.jpeg');
+  /* Path to your background image */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.hero-section .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  /* Black overlay with 50% opacity */
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
   text-align: center;
+}
+
+.hero-content h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'Red Hat Text', sans-serif;
+}
+
+.hero-content p {
+  font-size: 1rem;
+  font-style: italic;
+  font-family: 'Red Hat Text', sans-serif
+}
+
+.councilor-section {
+  text-align: center;
+  padding: 2rem;
+  background-color: #f8fafb;
+}
+
+.councilor-heading {
+  font-size: 2rem;
+  font-family: 'Red Hat Text';
+  /* Red Hat Text font */
+  margin-bottom: 1rem;
+  font-weight: bold;
+  color: #152d5c;
+}
+
+.councilor-image img {
+  width: 300px;
+  /* Adjust as needed */
+  height: auto;
+  border-radius: 10px;
+  margin: 1rem auto;
+}
+
+.councilor-description {
+  font-size: 1.2rem;
+  font-family: 'Red Hat Text', sans-serif;
+  /* Red Hat Text font */
+  margin-top: 1rem;
+  font-style: italic;
+  color: #152d5c;
+}
+
+.civic-associations-section {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-image: url('../src/152d5cBlue.png');
+  /* Path to your background image */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.civic-associations-section .overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(21, 45, 92, 0.85);
+  /* Transparent blue background */
+}
+
+.civic-associations-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  /* Add padding to ensure content doesn't touch the edges */
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+}
+
+.civic-associations-section .heading {
+  font-family: 'Red Hat Text';
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  color: white;
+}
+
+.civic-associations-section .description {
+  font-family: 'Red Hat Text';
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.civic-associations-section .home-button.custom-button {
+  background-color: white !important;
+  color: white;
+  font-family: 'Red Hat Text', sans-serif;
+  padding: 20px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.civic-associations-section .home-button.custom-button:hover {
+  background-color: #e0e0e0 !important;
+  /* Slightly darker background on hover */
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.grid-item {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.grid-item img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.grid-item p {
+  font-family: 'Red Hat Text', sans-serif;
+  font-size: 1rem;
+  color: #152d5c;
+}
+
+.grid-item:hover {
+  transform: translateY(-5px);
+  cursor: pointer;
+}
+
+.footer {
+  background-color: #152d5c;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.footer-content {
   display: flex;
   justify-content: center;
-  margin-bottom: 3px;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-.modal-image img {
-  max-width: 85%;
-  max-height: 100%;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  padding-bottom: 40px;
+.footer-section.about p {
+  display: flex;
+  gap: 20px;
+  /* Adjust the space between links */
 }
 
-.modal-image img.full-size {
-  transform: scale(2);
-  cursor: zoom-out;
+.footer-section p,
+.footer-section a {
+  color: white;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+.footer-section a:hover {
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  border-top: 1px solid white;
+  font-size: 0.9rem;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content-wrap {
+  flex: 1;
 }
