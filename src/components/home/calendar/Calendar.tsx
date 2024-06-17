@@ -16,7 +16,9 @@ function Events(props: {data: calData[]}) {
                             <CalendarCard
                                 title={event.attributes.title}
                                 content={event.attributes.body}
+                                image={event.attributes.image}
                                 date={event.attributes.date}
+                                time={event.attributes.time}
                                 location={event.attributes.location}
                             ></CalendarCard>
                         );
