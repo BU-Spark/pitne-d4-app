@@ -137,6 +137,9 @@ function AllDevelopments() {
         <div className="mb-5">
           <LogoBar />
         </div>
+        <div className = "grab-cursor">
+            <AngleLeftIcon size="md" onClick={() => navigate("/")}/>
+          </div>
         <div className="top-heading">All Developments</div>
         <DevelopmentUpdates developments={developments} vertical={true}/>
       </div>

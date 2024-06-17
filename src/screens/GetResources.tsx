@@ -69,7 +69,7 @@ function GetResources(){
           </div>
         
         </div>
-        <div className="heading">
+        <div className="top-heading">
           Get Resources
         </div>
         <div className = "mt-5">
