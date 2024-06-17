@@ -45,7 +45,7 @@ function App() {
           <Route path="/all-events" element={<AllEvents />} />
           <Route path="/address-info" element={<AddressInfo />} />
           <Route path="/address-entry" element={<AddressEntry />} />
-          <Route path="civic-associations-info" element={<CivicAssociationsInfo />} />
+          <Route path="/civic-associations-info" element={<CivicAssociationsInfo />} />
           <Route path="/civic-associations" element={<CivicAssociations />} />
           <Route path="/downloadApp" element={<DownloadApp />} />
           <Route path="/all-developments" element={<DevelopmentsPage />} />
