@@ -408,7 +408,7 @@ body {
   position: relative;
   width: 100%;
   height: 100vh; /* Adjust the height as needed */
-  background-image: url('/Users/sowrathisomasundaram/pitne-d4-app/strapi/HomePage1.jpeg'); /* Path to your background image */
+  background-image: url('./images/HomePage1.jpeg'); /* Path to your background image */
   background-size: cover;
   background-position: center;
   display: flex;
@@ -480,7 +480,7 @@ body {
   width: 100%;
   height: 100%;
   background-size: cover;
-  background-image: url('/Users/sowrathisomasundaram/pitne-d4-app/src/152d5cBlue.png'); /* Path to your background image */
+  background-image: url('./images/152d5cBlue.png'); /* Path to your background image */
   background-size: cover;
   background-position: center;
   display: flex;

@@ -30,8 +30,10 @@ type calData = {
   id: number;
   attributes: {
     title: string;
+    image: string;
     body: string;
     date: string;
+    time: string;
     location: string;
   };
 };
@@ -381,7 +383,7 @@ function Home() {
               <div className="councilor-content">
               <h2 className="councilor-heading">About the Councilor</h2>
                 <div className="councilor-image">
-                  <img src="/Users/sowrathisomasundaram/pitne-d4-app/src/screens/BrianWorell.jpeg" alt="Councilor" />
+                  <img src="./images/BrianWorell.jpeg" alt="Councilor" />
                 </div>
                 <p className="councilor-description">
                 Councilor Brian Worrell has been dedicated to serving the community of District 4 for many years. His efforts focus on improving local infrastructure, increasing public safety, and ensuring that every voice in the district is heard and valued.
