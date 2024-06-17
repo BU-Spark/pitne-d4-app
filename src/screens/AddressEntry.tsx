@@ -138,7 +138,7 @@ function AddressEntry() {
         <LogoBar />
       </div>
       <div>
-        <h1>Address Entry</h1>
+        <h1><b>Address Entry</b></h1>
       </div>
       <div>
         <div className="text-start mt-5">Address</div>
@@ -215,7 +215,7 @@ function AddressEntry() {
       </div>
       {/* Progress Bar */}
       <div className='bottom-0 start-0 p-5' style={{ width: '100%' }}>
-        <ProgressBar value={66} />
+        <ProgressBar value={75} />
       </div>
     </div>
   );

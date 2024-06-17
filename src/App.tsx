@@ -18,6 +18,8 @@ import AllEvents from "./screens/AllEvents";
 import CivicAssociations from "./screens/CivicAssociations";
 import AboutCivicAssociations from "./screens/CivicAssociationsAbout";
 import AddressEntry from "./screens/AddressEntry";
+import CivicAssociationsInfo from "screens/CivicAssociationsInfo";
+import ClientInfo from "screens/ClientInfo";
 
 // init firebase app
 import { initializeApp } from "firebase/app";
@@ -42,12 +44,13 @@ function App() {
           <Route path="/all-posts" element={<AllPosts />} />
           <Route path="/all-announcements" element={<AllAnnouncements />} />
           <Route path="/all-events" element={<AllEvents />} />
+          <Route path="/civic-associations-info" element={<CivicAssociationsInfo />} />
           <Route path="/address-info" element={<AddressInfo />} />
           <Route path="/address-entry" element={<AddressEntry />} />
           <Route path="/civic-associations" element={<CivicAssociations />} />
-          <Route path="/about-civic-associations" element={<AboutCivicAssociations />} />
-          <Route path="/downloadApp" element={<DownloadApp/>} />
-          <Route path="/all-developments" element={<DevelopmentsPage/>} />
+          <Route path="/all-developments" element={<DevelopmentsPage />} />
+          <Route path="/downloadApp" element={<DownloadApp />} />
+          <Route path="/client-info" element={<ClientInfo />} />
         </Routes>
       </BrowserRouter>
     </div>

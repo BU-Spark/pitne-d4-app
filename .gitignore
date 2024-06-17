@@ -27,6 +27,9 @@
 .idea/**/dictionaries
 .idea/**/shelf
 node_modules
+
+package-lock.json
+
 # AWS User-specific
 .idea/**/aws.xml
 
