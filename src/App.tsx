@@ -16,10 +16,9 @@ import "bootstrap/dist/css/bootstrap.css";
 import AllAnnouncements from "./screens/AllAnnouncements";
 import AllEvents from "./screens/AllEvents";
 import CivicAssociations from "./screens/CivicAssociations";
-import AboutCivicAssociations from "./screens/CivicAssociationsAbout";
 import AddressEntry from "./screens/AddressEntry";
-import CivicAssociationsInfo from "screens/CivicAssociationsInfo";
-import ClientInfo from "screens/ClientInfo";
+import CivicAssociationsInfo from "./screens/CivicAssociationsInfo";
+import ClientInfo from "./screens/ClientInfo";
 
 // init firebase app
 import { initializeApp } from "firebase/app";

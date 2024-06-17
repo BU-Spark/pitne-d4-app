@@ -1,5 +1,5 @@
 import React from 'react';
-import LogoBar from 'components/home/LogoBar';
+import LogoBar from '../components/home/LogoBar';
 import ClientImage from '../images/councilor_photo.png'; // Import the image
 
 const ClientInfo: React.FC = () => {

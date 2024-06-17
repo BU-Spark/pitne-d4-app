@@ -5,7 +5,7 @@ import AssociationCard from '../components/civic_associations/associations_card'
 import { Text, TextVariants, TextInput } from '@patternfly/react-core';
 import axios from 'axios';
 import { AssociationTable } from './../interfaces';
-import Loader from 'components/home/Loader';
+import Loader from '../components/home/Loader';
 import { filter } from 'esri/core/promiseUtils';
 
 function CivicAssociations() {
