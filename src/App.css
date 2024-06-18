@@ -286,7 +286,7 @@ body {
   border-radius: 20px;
 }
 
- .hamburger-menu-container {
+ /* .hamburger-menu-container {
   position: relative; 
   display: flex;
   align-items: center;
@@ -302,16 +302,16 @@ body {
   right: 20px; 
   color: #152d5c;
   background-color: rgba(255, 255, 255, 0.622);
-  border-radius: 100%; /* Make it a circle */
-  width: 35px; /* Set the width of the circle */
-  height: 35px; /* Set the height of the circle */
-  display: flex; /* Center the icon inside the circle */
-  align-items: center; /* Center the icon inside the circle */
+  border-radius: 100%; 
+  width: 35px; 
+  height: 35px;
+  display: flex;
+  align-items: center;
   justify-content: center;
 }
 
 .hamburger-icon.open {
-  transform: rotate(90deg); /* Rotate the icon when menu is open */
+  transform: rotate(90deg);
   z-index: 1100;
 }
 
@@ -321,17 +321,15 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  /* background-color: rgba(0, 0, 0, 0.5); Semi-transparent background */
   z-index: 1000;
   transition: opacity 0.3s ease-out; 
-  /* Fade in/out transition for overlay */
-  opacity: 0; /* Start with no opacity */
-  pointer-events: none; /* Do not allow clicks on overlay until opened */
+  opacity: 0;
+  pointer-events: none;
 }
 
 .menu-overlay.open {
-  opacity: 1; /* Make overlay visible */
-  pointer-events: auto; /* Allow clicks on overlay when open */
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .menu {
@@ -340,15 +338,15 @@ body {
   right: 0;
   height: 100%;
   width: 100%;
-  background-color: white; /* Background color of the menu */
+  background-color: white; 
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease-out; /* Slide in/out transition for menu */
-  transform: translateX(100%); /* Start off-screen to the left */
+  transition: transform 0.3s ease-out; 
+  transform: translateX(100%);
 }
 
 .menu.open {
-  transform: translateX(0); /* Slide the menu into view from the left */
+  transform: translateX(0);
 }
 
 .menu button {
@@ -364,8 +362,94 @@ body {
 
 .menu button:hover {
   background-color: #f1f1f1;
-}
+} */
 /* LogoBar.css */
+
+.hamburger-menu-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.hamburger-icon {
+  font-size: 40px;
+  font-family: var(--bs-body-font-family);
+  cursor: pointer;
+  transition: transform 0.3s ease-out;
+  position: fixed;
+  right: 20px;
+  color: #152d5c;
+  border-radius: 100%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hamburger-icon.open {
+  transform: rotate(-90deg);
+  z-index: 1100;
+}
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  transition: opacity 0.3s ease-out;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.menu-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-out;
+  transform: translateY(-100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu.open {
+  transform: translateY(0);
+}
+
+.menu button {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: #152d5c;
+  margin: 10px 0;
+}
+
+.menu button:hover {
+  background-color: #f1f1f1;
+  color: #152d5c;
+}
+
 
 .logo-bar {
   position: fixed;
@@ -611,7 +695,9 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  padding: 30px 30px;
 }
 .content-wrap {
   flex: 1;
+  padding-bottom: 50px;
 }

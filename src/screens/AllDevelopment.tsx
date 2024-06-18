@@ -132,6 +132,7 @@ function AllDevelopments() {
   }, []);
 
   return (
+    <div>
     <div className="page-container">
       <div className="content-wrap">
         <div className="mb-5">
@@ -139,6 +140,7 @@ function AllDevelopments() {
         </div>
         <div className="top-heading">All Developments</div>
         <DevelopmentUpdates developments={developments} vertical={true}/>
+      </div>
       </div>
       <Footer />
     </div>

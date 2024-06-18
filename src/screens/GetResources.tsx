@@ -60,6 +60,7 @@ function GetResources(){
   
 
   return (
+    <div>
     <div className="page-container">
     <div className="content-wrap">
         <LogoBar />
@@ -75,6 +76,7 @@ function GetResources(){
         <div className = "mt-5">
           <Resources resources={resources} />
         </div>
+    </div>
     </div>
     <Footer />
     </div>

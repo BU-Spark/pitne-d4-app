@@ -21,6 +21,7 @@ function NonEmergencyForms() {
   }
 
   return (
+    <div>
     <div className="page-container">
     <div className="content-wrap">
       <div className = "mb-5"></div>
@@ -43,6 +44,7 @@ function NonEmergencyForms() {
           <img src="./images/OnlinePhoto.png" alt="File a Report Online" />
           <p>File a Report Online</p>
         </div>
+      </div>
       </div>
       </div>
       <Footer />

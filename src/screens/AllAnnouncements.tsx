@@ -30,6 +30,7 @@ function AllAnnouncements() {
   }, []);
 
   return (
+    <div>
     <div className="page-container">
       <div className="content-wrap">
         <div className="mb-5">
@@ -38,8 +39,9 @@ function AllAnnouncements() {
         <div className="top-heading">All Announcements</div>
         <Announcements announs={announcements} vertical={true} />
       </div>
-      <Footer />
     </div>
+    <Footer />
+  </div>
   );
 }
 
