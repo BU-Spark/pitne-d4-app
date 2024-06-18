@@ -188,4 +188,4 @@ $RECYCLE.BIN/
 .nfs*
 src/config/config.ts
 
-package-locl.json
+package-lock.json
