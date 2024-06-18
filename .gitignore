@@ -27,6 +27,9 @@
 .idea/**/dictionaries
 .idea/**/shelf
 node_modules
+
+package-lock.json
+
 # AWS User-specific
 .idea/**/aws.xml
 
@@ -184,5 +187,3 @@ $RECYCLE.BIN/
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
 src/config/config.ts
-
-strapi/.env

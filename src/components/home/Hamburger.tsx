@@ -13,7 +13,7 @@ const HamburgerMenu: React.FC = () => {
 
     const handleNavigation = (path: string) => {
         navigate(path);
-        setIsOpen(false); 
+        setIsOpen(false);
     };
 
     const handleSignOut = () => {
@@ -28,15 +28,15 @@ const HamburgerMenu: React.FC = () => {
             console.error('Sign out error', error);
         });
     };
-    
+
     return (
         <div className="hamburger-menu-container">
             <div className={`hamburger-icon ${isOpen ? 'open' : ''}`} onClick={toggleMenu}>
-                &#8801; 
+                &#8801;
             </div>
             <div className={`menu-overlay ${isOpen ? 'open' : ''}`} onClick={toggleMenu}>
                 <div className={`menu ${isOpen ? 'open' : ''}`}>
-                <Button variant="link" onClick={() => handleNavigation("/")}>
+                    <Button variant="link" onClick={() => handleNavigation("/")}>
                         Home
                     </Button>
                     <Button variant="link" onClick={() => handleNavigation("/all-announcements")}>
@@ -45,23 +45,17 @@ const HamburgerMenu: React.FC = () => {
                     <Button variant="link" onClick={() => handleNavigation("/all-events")}>
                         Calendar
                     </Button>
-                    <Button variant="link" onClick={() => handleNavigation("/about-civic-associations")}>
+                    <Button variant="link" onClick={() => handleNavigation("/all-developments")}>
+                        Developments
+                    </Button>
+                    <Button variant="link" onClick={() => handleNavigation("/civic-associations-info")}>
                         Civic Associations
                     </Button>
-                    <Button variant="link" onClick={() => handleNavigation("/resources")}>
+                    <Button variant="link" onClick={() => handleNavigation("/getresources")}>
                         Resources
                     </Button>
-                    <Button variant="link" onClick={() => handleNavigation("/address-info")}>
-                        Civic Associations
-                    </Button>
-                    <Button variant="link" onClick={() => handleNavigation("/all-developments")}>
-                        Ongoing Developments
-                    </Button>
-                    <Button variant="link" onClick={() => handleNavigation("/login")}>
-                        Login
-                    </Button>
-                    <Button variant="link" onClick={handleSignOut}>
-                        Sign Out
+                    <Button variant="link" onClick={() => handleNavigation("/311Forms")}>
+                        Report a Non-Emergency Issue
                     </Button>
                 </div>
             </div>

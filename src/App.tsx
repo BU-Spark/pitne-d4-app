@@ -16,14 +16,15 @@ import "bootstrap/dist/css/bootstrap.css";
 import AllAnnouncements from "./screens/AllAnnouncements";
 import AllEvents from "./screens/AllEvents";
 import CivicAssociations from "./screens/CivicAssociations";
-import AboutCivicAssociations from "./screens/CivicAssociationsAbout";
 import AddressEntry from "./screens/AddressEntry";
+import CivicAssociationsInfo from "./screens/CivicAssociationsInfo";
 
 // init firebase app
 import { initializeApp } from "firebase/app";
 import { config } from "./config/config";
 import DownloadApp from "./screens/downloadApp";
 import DevelopmentsPage from "./screens/AllDevelopment";
+import NonEmergencyForms from "./screens/311Forms";
 
 initializeApp(config.firebaseConfig);
 
@@ -44,10 +45,11 @@ function App() {
           <Route path="/all-events" element={<AllEvents />} />
           <Route path="/address-info" element={<AddressInfo />} />
           <Route path="/address-entry" element={<AddressEntry />} />
+          <Route path="/civic-associations-info" element={<CivicAssociationsInfo />} />
           <Route path="/civic-associations" element={<CivicAssociations />} />
-          <Route path="/about-civic-associations" element={<AboutCivicAssociations />} />
-          <Route path="/downloadApp" element={<DownloadApp/>} />
-          <Route path="/all-developments" element={<DevelopmentsPage/>} />
+          <Route path="/downloadApp" element={<DownloadApp />} />
+          <Route path="/all-developments" element={<DevelopmentsPage />} />
+          <Route path="/311Forms" element={<NonEmergencyForms />} />
         </Routes>
       </BrowserRouter>
     </div>

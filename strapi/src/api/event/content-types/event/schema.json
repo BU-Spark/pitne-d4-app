@@ -4,42 +4,15 @@
   "info": {
     "singularName": "event",
     "pluralName": "events",
-    "displayName": "event",
-    "description": ""
+    "displayName": "Event"
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "EventName": {
-      "type": "string"
-    },
-    "EventDate": {
-      "type": "datetime"
-    },
-    "EventFlyer": {
-      "type": "media",
-      "multiple": true,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
-    "EventID": {
-      "type": "uid"
-    },
-    "Location": {
-      "type": "string"
-    },
-    "Description": {
-      "type": "string"
-    },
-    "Time": {
-      "type": "string"
+    "detail": {
+      "type": "json"
     }
   }
 }

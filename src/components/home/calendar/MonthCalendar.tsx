@@ -75,9 +75,11 @@ interface MonthCalendarProps {
 function MonthCalendar({ onDateChange, calendarData }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  const handleDateChange = (date: Date) => {
-    setSelectedDate(date);
-    onDateChange(date);
+  const handleDateChange = (date: Date | null) => {
+    if (date) {
+      setSelectedDate(date);
+      onDateChange(date);
+    }
   };
 
   const dateHasEvents = (date: Date): boolean => {

@@ -10,9 +10,6 @@ function LogoBar() {
 
     return (
         <header className="logo-bar">
-            <div className="logo-bar-left">
-                <Logo />
-            </div>
             <div className="logo-bar-right">
                 <HamburgerMenu />
             </div>
