@@ -48,7 +48,7 @@ function CivicAssociationsInfo() {
             <div>
                 {cards.map((card) => (
                     <div key={card.id} className='mt-3' onClick={() => handleExpand(card.id)}>
-                        <Card isHoverable isExpanded={expandedCardId === card.id}>
+                        <Card isHoverable isExpanded={expandedCardId === card.id} style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
                             <CardHeader>
                                 <CardTitle>
                                     <div style={{ backgroundColor: "white", display: 'flex', alignItems: 'center', textAlign: 'left' }}>
