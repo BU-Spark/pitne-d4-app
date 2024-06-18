@@ -58,6 +58,7 @@ function AllEvents() {
         }, 
       }));
       console.log(fetchedEvents);
+      // console.log(image);
 
       setCalendarData(fetchedEvents);
     } catch (error) {
@@ -85,7 +86,8 @@ function AllEvents() {
       <MonthCalendar onDateChange={handleDateChange} calendarData={calendarData}/>
 
       {/* <EventButton /> */}
-      {/* {localStorage.getItem('isManager') === 'true' && <EventButton />} EST time zone */}
+      {localStorage.getItem('isManager') === 'true' && <EventButton />}  
+      {/* // Conditionally rendering EventButtons */}
       <Events data={filteredEvents} />
 
       <div className = "calendar-text">All Upcoming Events: </div>

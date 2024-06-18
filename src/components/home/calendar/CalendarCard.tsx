@@ -28,11 +28,11 @@ function CalendarCard(props: CalendarCardProps) {
                 <small className="text-start text-secondary">
                 {"Location: " + location}
               </small>
-              )}
+            )}
           {/* <small className="text-start text-secondary">
             {"Location: " + location}
           </small> */}
-          
+
           {/* <small className="text-start text-secondary calendar-card-content">
             {content}
           </small> */}

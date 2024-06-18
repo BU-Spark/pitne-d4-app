@@ -18,6 +18,7 @@ import Resources from "../components/home/Resources";
 import { cursorTo } from "readline";
 import DevelopmentUpdates from "../components/home/Developments/Development";
 import ViewAllDevs from "../components/home/Developments/ViewAllDevs";
+import axios from "axios";
 
 //for dev,
 const APIUrl = "https://se-d7-dev.up.railway.app/api/";
@@ -173,26 +174,59 @@ function Home() {
     return () => unsubscribe();
   }, [auth, fetchdata]);
 
+  //fetch calendar data from Strapi
   useEffect(() => {
     const fetchCalendarData = async () => {
       try {
-        // const res = await fetch(APIUrl + "calendars");
-        // const json = await res.json();
-        const eventsCollection = collection(db, "events");
-        // Get all documents from the "events" collection
-        const eventsSnapshot = await getDocs(eventsCollection);
-        // Map through each document and get its data
-        const eventsList = eventsSnapshot.docs.map(doc => ({
-          // id: doc.id,
-          ...doc.data()
-        })) as calData[];
-        //set the calendar data
-        console.log("events list");
-        setCalendarData(eventsList);
+        const {
+          data: { data },
+        } = await axios.get("http://pitne-d4-app-strapi-production.up.railway.app/api/events?populate=*");
+        const fetchedEvents = data.map((item: any) => ({
+          id: item.id,
+          attributes: {
+            title: item.attributes.EventName,
+            body: item.attributes.Description, 
+            image: item.attributes.EventFlyer?.data && item.attributes.EventFlyer.data.length > 0
+            ? "http://pitne-d4-app-strapi-production.up.railway.app" + item.attributes.EventFlyer.data[0].attributes.url
+            : '',
+            date: item.attributes.EventDate,
+            location: item.attributes.Location,
+            time: item.attributes.Time,
+          }, 
+        }));
+        console.log(fetchedEvents);
+  
+        setCalendarData(fetchedEvents);
       } catch (error) {
-        console.log(error);
+        console.error('Fetching events failed:', error);
       }
     };
+
+    // const fetchEvents = async () => {
+    //   try {
+    //     const {
+    //       data: { data },
+    //     } = await axios.get("http://pitne-d4-app-strapi-production.up.railway.app/api/events?populate=*");
+    //     const fetchedEvents = data.map((item: any) => ({
+    //       id: item.id,
+    //       attributes: {
+    //         title: item.attributes.EventName,
+    //         body: item.attributes.Description, 
+    //         image: item.attributes.EventFlyer?.data && item.attributes.EventFlyer.data.length > 0
+    //         ? "http://pitne-d4-app-strapi-production.up.railway.app" + item.attributes.EventFlyer.data[0].attributes.url
+    //         : '',
+    //         date: item.attributes.EventDate,
+    //         location: item.attributes.Location,
+    //         time: item.attributes.Time,
+    //       }, 
+    //     }));
+    //     console.log(fetchedEvents);
+  
+    //     setCalendarData(fetchedEvents);
+    //   } catch (error) {
+    //     console.error('Fetching events failed:', error);
+    //   }
+    // };
 
     const fetchAnnounData = async () => {
       // try {
@@ -351,8 +385,8 @@ function Home() {
         <DevelopmentUpdates {...passDevData} vertical={false} />
         <ViewAllDevs />
 
-        <div className="mt-4 my-3 pf-c-title heading text-start">Our Resources</div>
-
+        {/* <div className="mt-4 my-3 pf-c-title heading text-start">Our Resources</div> */}
+{/* 
         <div className="container">
           <Button
             className="home-button px-3 py-2 mb-2"
@@ -368,8 +402,6 @@ function Home() {
           >
             Civic Associations
           </Button>
-          {/* <div className=“my-3 pf-c-title heading text-start”>Report a Non-Emergency Issue</div>
-           */}
           <Button
             onClick= {handleCall}
             >
@@ -390,13 +422,13 @@ function Home() {
             >
             FIle a Report Online
           </Button> 
-        </div>
+        </div> */}
         {/* <Resources resources={InvolvedData} />
-        <Resources resources={SubmitandRequestData} /> */}
+        <Resources resources={SubmitandRequestData} />
 
         <div className="mt-4 pf-c-title heading text-start">News and Updates</div>
         <Updates {...passUpdateData} vertical={false} />
-        <ViewAllPosts {...passUpdateData} />
+        <ViewAllPosts {...passUpdateData} /> */}
       </div>
     </body>
   );

@@ -10,13 +10,13 @@ function Search() {
 
     return (
         <div className="search">
-            <SearchInput
+            {/* <SearchInput
                 className="ps-1"
                 placeholder="Search D4 Resources"
                 value={search}
                 onChange={onChange}
                 onClear={() => setSearch("")}
-            />
+            /> */}
         </div>
     );
 }

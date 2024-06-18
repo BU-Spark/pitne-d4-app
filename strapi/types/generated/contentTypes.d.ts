@@ -838,6 +838,7 @@ export interface ApiEventEvent extends Schema.CollectionType {
     EventID: Attribute.UID;
     Location: Attribute.String;
     Description: Attribute.String;
+    Time: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

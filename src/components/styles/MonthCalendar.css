@@ -63,34 +63,6 @@
   position: relative; 
 }
 
-.dot-indicator {
-  color: red;
-  position: absolute; 
-  bottom: -2vw; 
-  left: 50%; 
-  transform: translateX(-50%); 
-  font-size: 1.2vw; 
-}
-
-.react-datepicker__current-month {
-  font-size: 25px;
-  margin-top: 15px;
-  margin-bottom: 10px;
-}
-
-.react-datepicker__navigation {
-  display: flex;
-  width: 2vw;
-  height: auto;
-  top: 2.5vw;
-}
-
-.react-datepicker__day--today {
-  font-weight: bold; /* Example to make it bold */
-  background-color: #94f1ff; /* Light grey background */
-}
-
-
 @media (max-width: 700px) {
   .calendar {
     background-color: white; 
