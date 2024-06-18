@@ -25,22 +25,22 @@ function NonEmergencyForms() {
     <div className="content-wrap">
       <div className = "mb-5"></div>
       <LogoBar />
-      <div className="mt-4 my-3 pf-c-title heading text-start">Report a Non-Emergency Issue</div>
+      <div className="top-heading">Report a Non-Emergency Issue</div>
       <div className="grid-container">
         <div className="grid-item" onClick={handleCall}>
-          <img src="/path-to-phone-icon.png" alt="Call 311" />
+          <img src="./images/callPhoto.png" alt="Call 311" />
           <p>CALL 311</p>
         </div>
         <div className="grid-item" onClick={() => navigate('/DownloadApp')}>
-          <img src="/Users/sowrathisomasundaram/pitne-d4-app/src/screens/appPhoto.png" alt="Download the App" />
+          <img src="./images/appPhoto.png" alt="Download the App" />
           <p>Download the App</p>
         </div>
         <div className="grid-item" onClick={handleTweet}>
-          <img src="/path-to-twitter-icon.png" alt="Tweet @BOS311" />
+          <img src="./images/tweetPhoto.png" alt="Tweet @BOS311" />
           <p>Tweet @BOS311</p>
         </div>
         <div className="grid-item" onClick={reportOnline}>
-          <img src="/path-to-report-icon.png" alt="File a Report Online" />
+          <img src="./images/OnlinePhoto.png" alt="File a Report Online" />
           <p>File a Report Online</p>
         </div>
       </div>

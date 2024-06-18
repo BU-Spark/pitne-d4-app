@@ -30,8 +30,10 @@ type calData = {
   id: number;
   attributes: {
     title: string;
+    image: string;
     body: string;
     date: string;
+    time: string;
     location: string;
   };
 };
@@ -381,7 +383,7 @@ function Home() {
               <div className="councilor-content">
               <h2 className="councilor-heading">About the Councilor</h2>
                 <div className="councilor-image">
-                  <img src="/Users/sowrathisomasundaram/pitne-d4-app/src/screens/BrianWorell.jpeg" alt="Councilor" />
+                  <img src="./images/BrianWorell.jpeg" alt="Councilor" />
                 </div>
                 <p className="councilor-description">
                 Councilor Brian Worrell has been dedicated to serving the community of District 4 for many years. His efforts focus on improving local infrastructure, increasing public safety, and ensuring that every voice in the district is heard and valued.
@@ -415,6 +417,7 @@ function Home() {
          <p>
             <a href="mailto:brian.worrell@boston.gov">Mail: brian.worrell@boston.gov</a>
             <a href="tel:+16176353131">Call: +1 617-635-3131</a>
+            <a href="https://www.google.com/maps/dir//5+Erie+St,+Dorchester,+MA+02121/@42.3266068,-71.1355474,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x89e37bc15204b3e5:0x4e18ab632ba37f9e!2m2!1d-71.0788007!2d42.303259?entry=ttu">District office: 5 Erie St, Dorchester, MA 02121</a>
           </p>
         </div>
       </div>

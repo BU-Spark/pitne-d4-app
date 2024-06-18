@@ -23,6 +23,7 @@
     "firestore": "^1.1.6",
     "patternfly": "^3.59.5",
     "react": "^18.2.0",
+    "react-datepicker": "^7.0.0",
     "react-dom": "^18.2.0",
     "react-google-button": "^0.7.2",
     "react-loader-spinner": "^6.1.6",
