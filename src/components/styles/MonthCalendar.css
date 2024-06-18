@@ -1,36 +1,32 @@
 .calendar {
-  background-color: white; 
-  border: 0.1vw solid #1b263b;
+  background-color: white;
+  border: 0.1vw solid #1B263B;
   border-radius: 0.5vw;
   padding: 2vw;
-  color: #5f7719; /* Adjusted the color for better visibility */
+  color: #5F7719; /* Adjusted the color for better visibility */
   width: fit-content;
   margin: 2vw auto;
 }
-
 .react-datepicker {
   font-family: 'Red Hat Text';
   font-size: 1.4vw;
   margin-top: 20px;
   margin-bottom: 20px;
 }
-
 /* days of the week */
 .react-datepicker__header {
   background-color: transparent;
-  color: #6b8227;
+  color: #6B8227;
   border-bottom: none;
   margin-bottom: -8px !important;
 }
-
 /* month dates */
 .react-datepicker__month {
   margin: 2vw;
 }
-
 /* calendar box */
 .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
-  width: 5vw; 
+  width: 5vw;
   height: 5vw; /* Adjusted height to be equal to width */
   line-height: 5vw; /* Adjusted line-height to be equal to width and height */
   margin: 0.5vw;
@@ -38,73 +34,85 @@
   text-align: center;
   vertical-align: middle;
 }
-
 .react-datepicker__day {
   border-radius: 50%;
   padding-bottom: 5px;
   transition: background-color 0.3s;
 }
-
 .react-datepicker__day:hover {
   background-color: #043268;
   border-radius: 50%; /* Ensuring the hover state is circular */
 }
-
 .react-datepicker__day--selected {
   background-color: #043268;
   color: white;
-  border-radius: 50%; 
+  border-radius: 50%;
 }
-
 .datecell {
   display: flex;
   flex-direction: column;
-  align-items: center; 
-  position: relative; 
+  align-items: center;
+  position: relative;
 }
-
+.dot-indicator {
+  color: red;
+  position: absolute;
+  bottom: -2vw;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.2vw;
+}
+.react-datepicker__current-month {
+  font-size: 25px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+.react-datepicker__navigation {
+  display: flex;
+  width: 2vw;
+  height: auto;
+  top: 2.5vw;
+}
+.react-datepicker__day--today {
+  font-weight: bold; /* Example to make it bold */
+  background-color: #94F1FF; /* Light grey background */
+}
 @media (max-width: 700px) {
   .calendar {
-    background-color: white; 
-    border: 0.1vw solid #1b263b;
+    background-color: white;
+    border: 0.1vw solid #1B263B;
     border-radius: 0.5vw;
     padding: 2vw;
-    color: #5f7719; /* Adjusted the color for better visibility */
+    color: #5F7719; /* Adjusted the color for better visibility */
     width: fit-content;
     margin: 2vw auto;
   }
-  
   .react-datepicker {
     font-family: 'Red Hat Text';
     font-size: 4vw;
   }
-  
   /* days of the week */
   .react-datepicker__header {
     background-color: transparent;
-    color: #6b8227;
+    color: #6B8227;
     border-bottom: none;
     margin-bottom: -8px !important;
   }
-  
   /* month dates */
   .react-datepicker__month {
     margin: 2vw;
   }
-
   .react-datepicker__month-container {
     width: 85vw;
   }
-  
   .react-datepicker__current-month {
     font-size: 8vw;
     margin-top: 15px;
     margin-bottom: 10px;
   }
-
   .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
     font-size: 5.5vw;
-    width: 10vw; 
+    width: 10vw;
     height: 10vw; /* Adjusted height to be equal to width */
     line-height: 10vw; /* Adjusted line-height to be equal to width and height */
     margin: 0.5vw;
@@ -112,36 +120,32 @@
     text-align: center;
     vertical-align: middle;
   }
-  
   .react-datepicker__navigation {
     display: flex;
     width: 6vw;
     top: 6vw;
   }
-
   .react-datepicker__navigation-icon--next::before {
     transform: rotate(45deg);
     left: -5vw;
-    font-size: 16px;  
-    width: 20px; 
-    height: 20px; 
+    font-size: 16px;
+    width: 20px;
+    height: 20px;
     display: inline-block; /* Ensure width and height are respected */
   }
-
   .react-datepicker__navigation-icon--previous::before {
     left: 0vw;
-    font-size: 16px;  
-    width: 20px; 
-    height: 20px; 
+    font-size: 16px;
+    width: 20px;
+    height: 20px;
     display: inline-block; /* Ensure width and height are respected */
   }
-
   .dot-indicator {
     color: red;
-    position: absolute; 
-    bottom: -4vw; 
-    left: 50%; 
-    transform: translateX(-50%); 
-    font-size: 5vw; 
+    position: absolute;
+    bottom: -4vw;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 5vw;
   }
 }
