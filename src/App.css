@@ -377,8 +377,8 @@ body {
   font-family: var(--bs-body-font-family);
   cursor: pointer;
   transition: transform 0.3s ease-out;
-  position: fixed;
-  right: 20px;
+  /*position: fixed;
+  right: 20px;*/
   color: #152d5c;
   border-radius: 100%;
   width: 35px;
@@ -417,7 +417,7 @@ body {
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: white;
+  background-color: #f8fafb;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease-out;
@@ -459,8 +459,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 20px;
-  background-color: #0066cc00;
+  padding: 10px 10px;
+  background-color: #f8fafb;/*rgba(248, 250, 251, 0.5);*/
   z-index: 1000; 
 }
 
@@ -476,9 +476,8 @@ body {
 .logo-bar-button {
   background: none;
   border: none;
-  color: white; /* Adjust as needed */
+  color: #152d5c; /* Adjust as needed */
   font-size: 1rem;
-
   cursor: pointer;
   text-decoration: none;
 }
@@ -486,7 +485,6 @@ body {
 .logo-bar-button:hover {
   text-decoration: underline;
 }
-
 
 .hero-section {
   position: relative;
@@ -499,6 +497,7 @@ body {
   align-items: center;
   justify-content: center;
   color: white;
+  overflow: hidden; /* Ensure the arrow doesn't get cut off */
 }
 
 .hero-section .overlay {
@@ -527,7 +526,47 @@ body {
 .hero-content p {
   font-size: 1rem;
   font-style: italic;
-  font-family: 'Red Hat Text', sans-serif
+  font-family: 'Red Hat Text', sans-serif;
+}
+
+.scroll-down-container {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.scroll-down {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-family: 'Red Hat Text', sans-serif;
+  animation: bounce 2s infinite;
+  font-style: italic;
+}
+
+.arrow {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+  margin: 0 10px;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
 }
 
 .councilor-section {
@@ -700,4 +739,36 @@ body {
 .content-wrap {
   flex: 1;
   padding-bottom: 50px;
+}
+
+.popup {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 80%;
+  height: 70%;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  z-index: 1000;
+  padding: 20px;
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.popup-close {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.popup-content {
+  max-height: 80%; /* Adjust based on your needs */
+  overflow-y: auto; /* Enable vertical scrolling */
 }

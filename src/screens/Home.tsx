@@ -352,15 +352,21 @@ function Home() {
   return (
     <body>
       <div className="hero-section">
-      <div className="mb-5">
-          <LogoBar />
-        </div>
-        <div className="overlay"></div>
-        <div className="hero-content">
-          <h1> Welcome to the District 4 Website</h1>
-          <p>District 4 includes Mattapan, Dorchester, and parts of Jamaica Plain and Roslindale</p>
-        </div>
-      </div>
+  <div className="mb-5">
+    <LogoBar />
+  </div>
+  <div className="overlay"></div>
+  <div className="hero-content">
+    <h1> Welcome to the District 4 Website</h1>
+    <p>District 4 includes Mattapan, Dorchester, and parts of Jamaica Plain and Roslindale</p>
+  </div>
+  <div className="scroll-down-container">
+    <div className="scroll-down">
+      <span>Scroll down to learn more</span>
+      <div className="arrow"></div>
+    </div>
+  </div>
+</div>
       <div className="container">
       </div>
 
