@@ -22,8 +22,8 @@ import axios from "axios";
 
 
 //for dev,
-const APIUrl = "https://se-d7-dev.up.railway.app/api/";
-
+// const APIUrl = "https://se-d7-dev.up.railway.app/api/";
+const APIUrl = "https://pitne-d4-app-strapi-production.up.railway.app/api/";
 
 //initialise the type of calendar and tweet data we are getting from strapi
 type calData = {

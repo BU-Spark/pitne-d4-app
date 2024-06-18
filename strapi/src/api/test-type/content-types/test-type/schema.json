@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "test_types",
+  "info": {
+    "singularName": "test-type",
+    "pluralName": "test-types",
+    "displayName": "TestType"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Content": {
+      "type": "string"
+    }
+  }
+}
