@@ -64,7 +64,7 @@ function AddressInfo() {
 
         {/* Progress Bar */}
         <div className='bottom-0 start-0 p-5' style={{ width: '100%' }}>
-          <ProgressBar value={50} />
+          <ProgressBar value={33} />
         </div>
 
       </div>
