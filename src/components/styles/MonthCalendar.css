@@ -4,12 +4,12 @@
   border-radius: 0.5vw;
   padding: 2vw;
   color: #5F7719; /* Adjusted the color for better visibility */
-  width: fit-content;
+  width: 100%;
   margin: 2vw auto;
 }
 .react-datepicker {
   font-family: 'Red Hat Text';
-  font-size: 1.4vw;
+  font-size: 2.5vw;
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -40,11 +40,10 @@
   transition: background-color 0.3s;
 }
 .react-datepicker__day:hover {
-  background-color: #043268;
+  /* background-color: #043268; */
   border-radius: 50%; /* Ensuring the hover state is circular */
 }
 .react-datepicker__day--selected {
-  background-color: #043268;
   color: white;
   border-radius: 50%;
 }
@@ -63,9 +62,10 @@
   font-size: 1.2vw;
 }
 .react-datepicker__current-month {
-  font-size: 25px;
+  font-size: 3vw;
   margin-top: 15px;
   margin-bottom: 10px;
+  color: #152d5c;
 }
 .react-datepicker__navigation {
   display: flex;
@@ -75,8 +75,14 @@
 }
 .react-datepicker__day--today {
   font-weight: bold; /* Example to make it bold */
-  background-color: #94F1FF; /* Light grey background */
+  /* Light grey background */
 }
+/* 
+.react-datepicker__month-container {
+  max-width: 500px;
+  max-height: 500px;
+} */
+
 @media (max-width: 700px) {
   .calendar {
     background-color: white;
@@ -103,27 +109,27 @@
     margin: 2vw;
   }
   .react-datepicker__month-container {
-    width: 85vw;
+    width: 70vw;
   }
   .react-datepicker__current-month {
-    font-size: 8vw;
+    font-size: 4.5vw;
     margin-top: 15px;
     margin-bottom: 10px;
   }
   .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
-    font-size: 5.5vw;
-    width: 10vw;
-    height: 10vw; /* Adjusted height to be equal to width */
-    line-height: 10vw; /* Adjusted line-height to be equal to width and height */
+    font-size: 4.5vw;
+    width: 8vw;
+    height: 8vw; /* Adjusted height to be equal to width */
+    line-height: 8vw; /* Adjusted line-height to be equal to width and height */
     margin: 0.5vw;
     display: inline-block;
     text-align: center;
     vertical-align: middle;
+    color: #152d5c;
   }
   .react-datepicker__navigation {
     display: flex;
     width: 6vw;
-    top: 6vw;
   }
   .react-datepicker__navigation-icon--next::before {
     transform: rotate(45deg);
@@ -147,5 +153,10 @@
     left: 50%;
     transform: translateX(-50%);
     font-size: 5vw;
+  }
+  .react-datepicker__day--selected {
+    /* background-color: #043268; */
+    color: white;
+    border-radius: 50%;
   }
 }
