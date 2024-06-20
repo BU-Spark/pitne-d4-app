@@ -11,7 +11,7 @@ import LogoBar from "../components/home/LogoBar";
 import ViewAllPosts from "../components/home/ViewAllPosts";
 import Announcement from "../components/home/announcements/Announcement";
 import { useNavigate } from "react-router-dom";
-import { Button, TextInput } from "@patternfly/react-core";
+import { Button, Flex, TextInput } from "@patternfly/react-core";
 import ViewAllAnnouncements from "../components/home/announcements/ViewAllAnnouncements";
 import ViewCalendar from "../components/home/calendar/ViewCalendar";
 import Resources from "../components/home/Resources";
@@ -415,20 +415,23 @@ function Home() {
       <Announcement {...passAnnounData} vertical={false} />
       <ViewAllAnnouncements {...passAnnounData} />
 
-      <div className="top-heading">Mailing List</div>
-      <div className="subscribe-form-container m-4">
-        <TextInput
-          value={email}
-          type="email"
-          onChange={handleEmailChange}
-          aria-label="email-input"
-          placeholder="Enter your email"
-        />
-        <Button onClick={handleSubscribe} className="m-3 p-1" variant="primary">
-          Subscribe
-        </Button>
-      </div>
 
+      <div className="heading mb-4">Subscribe to mailing list</div>
+      <div className="m-4">
+        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width: '100%' }}>
+          <TextInput
+            value={email}
+            type="email"
+            onChange={handleEmailChange}
+            aria-label="email-input"
+            placeholder="Enter your email"
+            style={{ border: '1px solid #ccc', borderRadius: '4px' }}
+          />
+          <Button onClick={handleSubscribe} variant="primary" style={{ padding: '5px' }}>
+            Subscribe
+          </Button>
+        </div>
+      </div>
       <footer className="footer">
         <div className="footer-content">
           <div className="footer-section about">
@@ -449,7 +452,7 @@ function Home() {
           &copy; 2024 District 4. All rights reserved.
         </div>
       </footer>
-    </body>
+    </body >
   );
 }
 
