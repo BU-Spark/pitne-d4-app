@@ -74,7 +74,7 @@ function CivicAssociations() {
                     type: "simple",
                     symbol: {
                         type: "simple-fill",
-                        color: [255, 190, 128, 0.5],
+                        color: [255, 190, 128, 0.3],
                         outline: {
                             width: 0.5,
                             color: [0, 0, 0, 0.7]
@@ -166,7 +166,7 @@ function CivicAssociations() {
             <div className="mb-5">
                 <LogoBar />
             </div>
-            <div id="viewMap" style={{ height: 400, width: "100%", marginTop: '80px' }}>
+            <div id="viewMap" style={{ height: 400, width: "100%"}}>
             </div>
             {addressEntered && associationPart &&
                 <div>

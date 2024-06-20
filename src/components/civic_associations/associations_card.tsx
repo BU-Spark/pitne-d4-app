@@ -27,7 +27,7 @@ const AssociationCard: React.FC<AssociationCardProps> = ({ association }) => {
                 {isExpanded && (
                     <CardExpandableContent>
                         <CardFooter>
-                            <div style={{ backgroundColor: "white" }}>
+                            <div style={{ backgroundColor: "white", textAlign: 'left' }}>
                                 <p>{association?.attributes.Description}</p>
                                 <p>
                                     <b>Meeting Time: </b>
@@ -38,7 +38,7 @@ const AssociationCard: React.FC<AssociationCardProps> = ({ association }) => {
                                     {association?.attributes.MeetingLocation}
                                 </p>
                                 <a href={association?.attributes.Link}>Website</a>
-                                <p>{association?.attributes.ContactInfo}</p>
+                                <p><b>Contact: </b>{association?.attributes.ContactInfo}</p>
                             </div>
                         </CardFooter>
                     </CardExpandableContent>
