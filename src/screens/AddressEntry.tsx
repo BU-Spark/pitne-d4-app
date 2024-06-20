@@ -194,7 +194,7 @@ function AddressEntry() {
         <div className='p-2'>
           <Button
             onClick={submit}
-            className="px-5 py-1"
+            className="px-5 py-1 brand-blue"
             variant="primary"
           >
             Next

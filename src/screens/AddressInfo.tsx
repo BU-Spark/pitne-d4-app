@@ -44,7 +44,7 @@ function AddressInfo() {
         <div className='p-2'>
           <Button
             onClick={navigateToNext}
-            className="px-5 py-1"
+            className="px-5 py-1 brand-blue"
             variant="primary"
           >
             Next

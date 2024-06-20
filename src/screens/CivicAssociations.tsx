@@ -74,7 +74,7 @@ function CivicAssociations() {
                     type: "simple",
                     symbol: {
                         type: "simple-fill",
-                        color: [255, 190, 128, 0.3],
+                        color: [133, 202, 227, 0.5],
                         outline: {
                             width: 0.5,
                             color: [0, 0, 0, 0.7]

@@ -5,6 +5,4 @@
     /* Rounds the corners */
     overflow: hidden;
     /* Ensures the rounded corners are visible */
-    box-shadow: 0 4px 8px rgba(243, 144, 13, 0.3);
-    /* Optional: Adds a subtle shadow */
 }

@@ -47,8 +47,8 @@ function CivicAssociationsInfo() {
             </div>
             <div>
                 {cards.map((card) => (
-                    <div key={card.id} className='mt-3' onClick={() => handleExpand(card.id)}>
-                        <Card isHoverable isExpanded={expandedCardId === card.id} style={{ boxShadow: '0 4px 8px rgba(243, 144, 13, 0.3)' }}>
+                    <div key={card.id} className='mt-3 box-shadow-brand' onClick={() => handleExpand(card.id)}>
+                        <Card isHoverable isExpanded={expandedCardId === card.id}>
                             <CardHeader>
                                 <CardTitle>
                                     <div style={{ backgroundColor: "white", display: 'flex', alignItems: 'center', textAlign: 'left' }}>
@@ -75,7 +75,7 @@ function CivicAssociationsInfo() {
             <div className='p-2 mb-5 bottom-0'>
                 <Button
                     onClick={navigateToNext}
-                    className="px-5 py-1"
+                    className="px-5 py-1 brand-blue"
                     variant="primary"
                 >
                     Find your Civic Association

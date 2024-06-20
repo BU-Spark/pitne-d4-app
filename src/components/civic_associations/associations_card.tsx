@@ -15,7 +15,7 @@ const AssociationCard: React.FC<AssociationCardProps> = ({ association }) => {
     };
 
     return (
-        <div className="association-card" onClick={handleExpand} style={{ cursor: 'pointer', userSelect: 'none', WebkitTapHighlightColor: 'transparent' }}>
+        <div className="association-card box-shadow-brand" onClick={handleExpand} style={{ cursor: 'pointer', userSelect: 'none', WebkitTapHighlightColor: 'transparent' }}>
             <Card isHoverable isExpanded={isExpanded}>
                 <CardHeader>
                     <CardTitle>
