@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@patternfly/react-core";
 import { getAuth, signOut } from 'firebase/auth';
+import logo from "../../images/d4_logo.png";
 
 const HamburgerMenu: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -36,25 +37,31 @@ const HamburgerMenu: React.FC = () => {
             </div>
             <div className={`menu-overlay ${isOpen ? 'open' : ''}`} onClick={toggleMenu}>
                 <div className={`menu ${isOpen ? 'open' : ''}`}>
-                    <Button variant="link" onClick={() => handleNavigation("/")}>
+                    <Button onClick={() => handleNavigation("/")}>
                         Home
                     </Button>
-                    <Button variant="link" onClick={() => handleNavigation("/all-announcements")}>
+                    <hr />
+                    <Button onClick={() => handleNavigation("/all-announcements")}>
                         Announcements
                     </Button>
-                    <Button variant="link" onClick={() => handleNavigation("/all-events")}>
+                    <hr />
+                    <Button onClick={() => handleNavigation("/all-events")}>
                         Calendar
                     </Button>
-                    <Button variant="link" onClick={() => handleNavigation("/all-developments")}>
+                    <hr />
+                    <Button onClick={() => handleNavigation("/all-developments")}>
                         Developments
                     </Button>
-                    <Button variant="link" onClick={() => handleNavigation("/civic-associations-info")}>
+                    <hr />
+                    <Button onClick={() => handleNavigation("/civic-associations-info")}>
                         Civic Associations
                     </Button>
-                    <Button variant="link" onClick={() => handleNavigation("/getresources")}>
+                    <hr />
+                    <Button onClick={() => handleNavigation("/getresources")}>
                         Resources
                     </Button>
-                    <Button variant="link" onClick={() => handleNavigation("/311Forms")}>
+                    <hr />
+                    <Button onClick={() => handleNavigation("/311Forms")}>
                         Report a Non-Emergency Issue
                     </Button>
                 </div>

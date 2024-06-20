@@ -426,6 +426,7 @@ body {
 .hamburger-icon.open {
   transform: rotate(-90deg);
   z-index: 1100;
+  color: white
 }
 
 .menu-overlay {
@@ -452,7 +453,7 @@ body {
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: #f8fafb;
+  background-color: #152D5C;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease-out;
@@ -472,11 +473,10 @@ body {
   width: 100%;
   text-align: center;
   padding: 10px;
-  border: none;
+  /* border: 1px solid #ccc; */
   background: none;
   cursor: pointer;
   font-size: 20px;
-  color: #152d5c;
   margin: 10px 0;
 }
 
@@ -485,6 +485,15 @@ body {
   color: #152d5c;
 }
 
+.menu hr {
+  width: 50%;
+  /* Half the width of the menu */
+  margin: 10px auto;
+  /* Center the line */
+  border: none;
+  border-top: 2px solid white;
+  /* Light gray color */
+}
 
 .logo-bar {
   position: fixed;
