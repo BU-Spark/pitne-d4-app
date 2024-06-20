@@ -96,6 +96,7 @@ import LogoBar from "../components/home/LogoBar";
 import MonthCalendar from "../components/home/calendar/MonthCalendar";
 import EventButton from "../components/home/calendar/AddEvent";
 import axios from "axios";
+import Footer from "../components/home/footer";
 // import { useIsManager } from "./Home";
 
 function AllEvents() {
@@ -155,6 +156,7 @@ function AllEvents() {
   }, []);
 
   return (
+    <div>
     <div className="container">
       <div className = "mb-5">
       <LogoBar />
@@ -170,6 +172,8 @@ function AllEvents() {
 
       <div className = "calendar-text">All Upcoming Events: </div>
         <Events data={calendarData} />
+    </div>
+    <Footer />
     </div>
   );
 }

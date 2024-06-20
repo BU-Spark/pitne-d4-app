@@ -524,7 +524,8 @@ body {
   color: #152d5c;
   cursor: pointer;
   padding: 10px;
-  display: inline;
+  text-decoration: underline;
+  display: inline; /* Keep the button inline */
   margin-top: 10px;
 }
 
