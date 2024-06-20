@@ -863,18 +863,19 @@ export interface ApiEventEvent extends Schema.CollectionType {
     singularName: 'event';
     pluralName: 'events';
     displayName: 'Event';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    Name: Attribute.String & Attribute.Required & Attribute.Unique;
+    EventName: Attribute.String & Attribute.Required & Attribute.Unique;
     Description: Attribute.Text & Attribute.DefaultTo<'No Information'>;
     Link: Attribute.String;
-    MeetingTime: Attribute.String;
-    MeetingLocation: Attribute.String;
-    Image: Attribute.Media<'images'>;
+    EventFlyer: Attribute.Media<'images'>;
     ContactInfo: Attribute.String & Attribute.DefaultTo<'No Info'>;
+    EventDate: Attribute.DateTime;
+    Location: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
