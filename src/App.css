@@ -1,10 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Text&display=swap");
 @import url("https://use.typekit.net/oes6dvw.css");
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Montserrat:wght@400;700&display=swap');
 
 /* Global Styles */
 .App {
   text-align: center;
-  font-family: "Red Hat Text", sans-serif;
+  font-family: "Lora", sans-serif;
   color: #151515;
   overflow-x: hidden;
   background-color: #f8fafb;
@@ -56,6 +56,15 @@ body {
 
 .box-shadow-brand {
   box-shadow: 0 4px 8px rgba(249, 136, 59, 0.3);
+}
+
+.brand-font-heading {
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+}
+
+.brand-font-body {
+  font-family: 'Lora', serif;
 }
 
 /* Welcome Page Styles */
@@ -124,7 +133,7 @@ body {
 
 /* Homepage Styles */
 .heading {
-  font-family: 'Red Hat Text';
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: 700;
   font-size: 25px;
@@ -137,7 +146,7 @@ body {
 }
 
 .top-heading {
-  font-family: 'Red Hat Text';
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: 700;
   font-size: 32px;
