@@ -4,13 +4,16 @@
   "info": {
     "singularName": "display-image",
     "pluralName": "display-images",
-    "displayName": "DisplayImages"
+    "displayName": "DisplayImage"
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
+    "Name": {
+      "type": "string"
+    },
     "Photo": {
       "allowedTypes": [
         "images",
@@ -19,10 +22,7 @@
         "audios"
       ],
       "type": "media",
-      "multiple": false
-    },
-    "Name": {
-      "type": "string"
+      "multiple": true
     }
   }
 }
