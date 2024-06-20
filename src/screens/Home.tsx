@@ -63,14 +63,14 @@ type DevelopmentData = {
     date?: string;
   };
 };
-// type HomePageData = {
-//   heroTitle: string;
-//   heroDescription: string;
-//   heroImage: { url: string };
-//   councilorName: string;
-//   councilorDescription: string;
-//   councilorImage: { url: string };
-// };
+type HomePageData = {
+  heroTitle: string;
+  heroDescription: string;
+  heroImage: { url: string };
+  councilorName: string;
+  councilorDescription: string;
+  councilorImage: { url: string };
+};
 
 
 
@@ -137,22 +137,30 @@ function Home() {
   const [announData, setAnnounData] = React.useState<announData[]>([]);
   // const [tweetData, setTweetData] = React.useState<tweetData[]>([]);
   const [developmentData, setDevelopmentData] = React.useState<DevelopmentData[]>([]);
-  //const [homePageData, setHomePageData] = useState<HomePageData | null>(null);
+  const [homePageData, setHomePageData] = useState<HomePageData | null>(null);
 
 
-  // useEffect(() => {
-  //   const fetchHomePageData = async () => {
-  //     try {
-  //       const response = await axios.get('http://localhost:1334/api/home-page?populate=*');
-  //       const homePageData = response.data.data.attributes;
-  //       setHomePageData(homePageData);
-  //     } catch (error) {
-  //       console.error('Fetching home page data failed:', error);
-  //     }
-  //   };
-  
-  //   fetchHomePageData();
-  // }, []);
+  useEffect(() => {
+    const fetchHomePageData = async () => {
+      try {
+        // Adjust the URL to match your Strapi API endpoint
+        const response = await axios.get('http://localhost:1337/api/home-page?populate=*');
+        const data = response.data.data.attributes;
+        setHomePageData({
+          heroTitle: data.heroTitle,
+          heroDescription: data.heroDescription,
+          heroImage: data.heroImage.data.attributes.url,
+          councilorName: data.councilorName,
+          councilorDescription: data.councilorDescription,
+          councilorImage: data.councilorImage.data.attributes.url
+        });
+      } catch (error) {
+        console.error('Fetching home page data failed:', error);
+      }
+    };
+
+    fetchHomePageData();
+  }, []);
   
 
   
@@ -209,8 +217,6 @@ function Home() {
   useEffect(() => {
     const fetchCalendarData = async () => {
       try {
-        // const res = await fetch(APIUrl + "calendars");
-        // const json = await res.json();
         const eventsCollection = collection(db, "events");
         // Get all documents from the "events" collection
         const eventsSnapshot = await getDocs(eventsCollection);
@@ -229,17 +235,7 @@ function Home() {
     
 
     const fetchAnnounData = async () => {
-      // try {
-      //   const res = await fetch(APIUrl + "tweets");
-      //   const json = await res.json();
-      //   setannounData(json.data);
-      // } catch (error) {
-      //   console.error(error);
-      // }
-
       try {
-        // const res = await fetch(APIUrl + "calendars");
-        // const json = await res.json();
         const announsCollection = collection(db, "announcements");
         // Get all documents from the "events" collection
         const announSnapshot = await getDocs(announsCollection);
@@ -298,21 +294,6 @@ function Home() {
       })
     };
     //Get Submit and Request Data
-    const fetchGetSubmitRequestData = async () => {
-      fetch(APIUrl + "submit-requests-and-reports").then((res) => {
-        if (res.ok) {
-          res.json().then((json) => {
-            const links = json.data.map((obj: any) => ({ title: obj.attributes.title, url: obj.attributes.url }));
-            const result = [{ title: 'Submit Request and Reports', links }];
-            setSubmitandRequestData(result);
-          });
-        } else {
-          console.log(`status code: ${res.status}`);
-        }
-      }).catch((e) => {
-        console.log(e);
-      })
-    };
     const fetchDevelopmentData = async () => {
       const developmentCollection = collection(db, "Developments");
       const snapshot = await getDocs(developmentCollection);
@@ -328,7 +309,6 @@ function Home() {
     fetchAnnounData();
     fetchUpdateData();
     fetchGetInvolvedData();
-    fetchGetSubmitRequestData();
   }, [db]);
 
   //create object to pass as props to Calendar component

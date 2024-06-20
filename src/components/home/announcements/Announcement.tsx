@@ -1,6 +1,7 @@
 import * as React from "react";
 import AnnouncementCard from "./AnnouncementCard";
 import type { announData } from "../../../screens/Home";
+import DetailedAnnouncementCard from "./detailedAnnouncements";
 
 function Announcement(props: { announs: announData[]; vertical: boolean }) {
   return (

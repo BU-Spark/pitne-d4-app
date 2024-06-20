@@ -78,7 +78,7 @@ import axios from "axios";
 import LogoBar from "../components/home/LogoBar";
 import DevelopmentUpdates from "../components/home/Developments/Development"; // Assuming you have this component
 import Footer from "../components/home/footer";
-
+import DetailedDevelopmentCard from "../components/home/Developments/detailedDevs";
 // Define the data type for the development entries
 type DevelopmentData = {
   id: string;
@@ -135,11 +135,21 @@ function AllDevelopments() {
     <div>
     <div className="page-container">
       <div className="content-wrap">
-        <div className="mb-5">
+      <div className="mb-5">
           <LogoBar />
         </div>
-        <div className="top-heading">All Developments</div>
-        <DevelopmentUpdates developments={developments} vertical={true}/>
+        <h2 className="top-heading">All Developments</h2>
+        <div className="detailed-developments-container">
+          {developments.map(development => (
+            <DetailedDevelopmentCard
+              key={development.id}
+              title={development.attributes.title}
+              body={development.attributes.body}
+              website={development.attributes.website}
+              date={development.attributes.date}
+            />
+          ))}
+        </div>
       </div>
       </div>
       <Footer />
