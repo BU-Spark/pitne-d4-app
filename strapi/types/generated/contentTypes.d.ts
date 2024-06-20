@@ -831,14 +831,14 @@ export interface ApiDisplayImageDisplayImage extends Schema.CollectionType {
   info: {
     singularName: 'display-image';
     pluralName: 'display-images';
-    displayName: 'DisplayImages';
+    displayName: 'DisplayImage';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    Photo: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     Name: Attribute.String;
+    Photo: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -868,7 +868,13 @@ export interface ApiEventEvent extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    detail: Attribute.JSON;
+    Name: Attribute.String & Attribute.Required & Attribute.Unique;
+    Description: Attribute.Text & Attribute.DefaultTo<'No Information'>;
+    Link: Attribute.String;
+    MeetingTime: Attribute.String;
+    MeetingLocation: Attribute.String;
+    Image: Attribute.Media<'images'>;
+    ContactInfo: Attribute.String & Attribute.DefaultTo<'No Info'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -900,10 +906,13 @@ export interface ApiHomePageHomePage extends Schema.CollectionType {
   attributes: {
     heroTitle: Attribute.String;
     heroDescription: Attribute.String;
-    heroImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    heroImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
     councilorName: Attribute.String;
     councilorDescription: Attribute.String;
-    councilorImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    councilorImage: Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -915,37 +924,6 @@ export interface ApiHomePageHomePage extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::home-page.home-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiTestTypeTestType extends Schema.CollectionType {
-  collectionName: 'test_types';
-  info: {
-    singularName: 'test-type';
-    pluralName: 'test-types';
-    displayName: 'TestType';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Name: Attribute.String;
-    Content: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::test-type.test-type',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::test-type.test-type',
       'oneToOne',
       'admin::user'
     > &
@@ -975,7 +953,6 @@ declare module '@strapi/types' {
       'api::display-image.display-image': ApiDisplayImageDisplayImage;
       'api::event.event': ApiEventEvent;
       'api::home-page.home-page': ApiHomePageHomePage;
-      'api::test-type.test-type': ApiTestTypeTestType;
     }
   }
 }
