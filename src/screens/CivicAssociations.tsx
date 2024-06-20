@@ -166,7 +166,7 @@ function CivicAssociations() {
             <div className="mb-5">
                 <LogoBar />
             </div>
-            <div id="viewMap" style={{ height: 400, width: "100%"}}>
+            <div id="viewMap" style={{ height: 400, width: "100%" }}>
             </div>
             {addressEntered && associationPart &&
                 <div>
