@@ -53,7 +53,7 @@ function AllEvents() {
           : '',
           date: item.attributes.EventDate,
           location: item.attributes.Location,
-          time: item.attributes.Time,
+          time: item.attributes.EventDate,
         }, 
       }));
       console.log(fetchedEvents);
