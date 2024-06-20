@@ -65,9 +65,6 @@ function GetResources(){
     <div className="content-wrap">
         <LogoBar />
         <div className="mt-4 ms-4 portal-nav pf-u-text-center">
-          <div className = "grab-cursor">
-            <AngleLeftIcon size="md" onClick={() => navigate("/")}/>
-          </div>
         
         </div>
         <div className="top-heading">
