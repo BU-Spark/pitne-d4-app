@@ -112,7 +112,7 @@ function CivicAssociations() {
 
                 const markerSymbol = {
                     type: "simple-marker",
-                    color: "blue",
+                    color: "orange",
                     size: 7
                 };
 
