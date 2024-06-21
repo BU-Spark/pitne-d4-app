@@ -1,10 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Text&display=swap");
 @import url("https://use.typekit.net/oes6dvw.css");
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Montserrat:wght@400;700&display=swap');
 
 /* Global Styles */
 .App {
   text-align: center;
-  font-family: "Red Hat Text", sans-serif;
+  font-family: "Lora", sans-serif;
   color: #151515;
   overflow-x: hidden;
   background-color: #f8fafb;
@@ -39,6 +39,31 @@ body {
 .center-wrapper {
   display: flex;
   justify-content: center;
+}
+
+.brand-blue {
+  background-color: #152D5C;
+}
+
+.brand-orange {
+  background-color: #F9883B;
+}
+
+.brand-light-blue {
+  background-color: #85CAE3;
+}
+
+.box-shadow-brand {
+  box-shadow: 0 4px 8px rgba(249, 136, 59, 0.3);
+}
+
+.brand-font-heading {
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+}
+
+.brand-font-body {
+  font-family: 'Lora', serif;
 }
 
 /* Welcome Page Styles */
@@ -107,7 +132,7 @@ body {
 
 /* Homepage Styles */
 .heading {
-  font-family: 'Red Hat Text';
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: 700;
   font-size: 25px;
@@ -120,7 +145,7 @@ body {
 }
 
 .top-heading {
-  font-family: 'Red Hat Text';
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: 700;
   font-size: 32px;
@@ -286,7 +311,7 @@ body {
   border-radius: 20px;
 }
 
- .hamburger-menu-container {
+/* .hamburger-menu-container {
   position: relative; 
   display: flex;
   align-items: center;
@@ -302,16 +327,18 @@ body {
   right: 20px; 
   color: #152d5c;
   background-color: rgba(255, 255, 255, 0.622);
-  border-radius: 100%; /* Make it a circle */
-  width: 35px; /* Set the width of the circle */
-  height: 35px; /* Set the height of the circle */
-  display: flex; /* Center the icon inside the circle */
-  align-items: center; /* Center the icon inside the circle */
+
+  border-radius: 100%; 
+  width: 35px; 
+  height: 35px;
+  display: flex;
+  align-items: center;
   justify-content: center;
 }
 
 .hamburger-icon.open {
-  transform: rotate(90deg); /* Rotate the icon when menu is open */
+
+  transform: rotate(90deg);
   z-index: 1100;
 }
 
@@ -321,17 +348,16 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  /* background-color: rgba(0, 0, 0, 0.5); Semi-transparent background */
   z-index: 1000;
   transition: opacity 0.3s ease-out; 
-  /* Fade in/out transition for overlay */
-  opacity: 0; /* Start with no opacity */
-  pointer-events: none; /* Do not allow clicks on overlay until opened */
+
+  opacity: 0;
+  pointer-events: none;
 }
 
 .menu-overlay.open {
-  opacity: 1; /* Make overlay visible */
-  pointer-events: auto; /* Allow clicks on overlay when open */
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .menu {
@@ -340,15 +366,16 @@ body {
   right: 0;
   height: 100%;
   width: 100%;
-  background-color: white; /* Background color of the menu */
+
+  background-color: white; 
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease-out; /* Slide in/out transition for menu */
-  transform: translateX(100%); /* Start off-screen to the left */
+  transition: transform 0.3s ease-out; 
+  transform: translateX(100%);
 }
 
 .menu.open {
-  transform: translateX(0); /* Slide the menu into view from the left */
+  transform: translateX(0);
 }
 
 .menu button {
@@ -364,8 +391,104 @@ body {
 
 .menu button:hover {
   background-color: #f1f1f1;
-}
+} */
 /* LogoBar.css */
+
+.hamburger-menu-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+
+.hamburger-icon {
+  font-size: 40px;
+  font-family: var(--bs-body-font-family);
+  cursor: pointer;
+  transition: transform 0.3s ease-out;
+  /*position: fixed;
+  right: 20px;*/
+  color: #152d5c;
+  border-radius: 100%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hamburger-icon.open {
+  transform: rotate(-90deg);
+  z-index: 1100;
+  color: white
+}
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  transition: opacity 0.3s ease-out;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.menu-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #152D5C;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-out;
+  transform: translateY(-100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu.open {
+  transform: translateY(0);
+}
+
+.menu button {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  /* border: 1px solid #ccc; */
+  background: none;
+  cursor: pointer;
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.menu button:hover {
+  background-color: #f1f1f1;
+  color: #152d5c;
+}
+
+.menu hr {
+  width: 50%;
+  /* Half the width of the menu */
+  margin: 10px auto;
+  /* Center the line */
+  border: none;
+  border-top: 2px solid white;
+  /* Light gray color */
+}
 
 .logo-bar {
   position: fixed;
@@ -375,9 +498,10 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 20px;
-  background-color: #0066cc00;
-  z-index: 1000; 
+  padding: 10px 10px;
+  background-color: #f8fafb;
+  /*rgba(248, 250, 251, 0.5);*/
+  z-index: 1000;
 }
 
 .logo-bar-left {
@@ -392,9 +516,8 @@ body {
 .logo-bar-button {
   background: none;
   border: none;
-  color: white; /* Adjust as needed */
+  color: #152d5c;
   font-size: 1rem;
-
   cursor: pointer;
   text-decoration: none;
 }
@@ -403,18 +526,21 @@ body {
   text-decoration: underline;
 }
 
-
 .hero-section {
   position: relative;
   width: 100%;
-  height: 100vh; /* Adjust the height as needed */
-  background-image: url('./images/HomePage1.jpeg'); /* Path to your background image */
+  height: 100vh;
+  /* Adjust the height as needed */
+  background-image: url('./images/HomePage1.jpeg');
+  /* Path to your background image */
   background-size: cover;
   background-position: center;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
+  overflow: hidden;
+  /* Ensure the arrow doesn't get cut off */
 }
 
 .hero-section .overlay {
@@ -443,7 +569,54 @@ body {
 .hero-content p {
   font-size: 1rem;
   font-style: italic;
-  font-family: 'Red Hat Text', sans-serif
+  font-family: 'Red Hat Text', sans-serif;
+}
+
+.scroll-down-container {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.scroll-down {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-family: 'Red Hat Text', sans-serif;
+  animation: bounce 2s infinite;
+  font-style: italic;
+}
+
+.arrow {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+  margin: 0 10px;
+}
+
+@keyframes bounce {
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40% {
+    transform: translateY(-10px);
+  }
+
+  60% {
+    transform: translateY(-5px);
+  }
 }
 
 .councilor-section {
@@ -473,6 +646,21 @@ body {
   margin-top: 1rem;
   font-style: italic;
   color: #152d5c;
+}
+.learn-more-button {
+  font-style: italic;
+  background: none;
+  border: none;
+  color: #152d5c;
+  cursor: pointer;
+  padding: 10px;
+  text-decoration: underline;
+  display: inline; /* Keep the button inline */
+  margin-top: 10px;
+}
+
+.learn-more-button:hover {
+  color: #0056b3;
 }
 
 .civic-associations-section {
@@ -611,7 +799,44 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  padding: 30px 30px;
 }
 .content-wrap {
   flex: 1;
+  padding-bottom: 50px;
+}
+
+.popup {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 80%;
+  height: 70%;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  z-index: 1000;
+  padding: 20px;
+  overflow-y: auto;
+  /* Enable vertical scrolling */
+}
+
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.popup-close {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.popup-content {
+  max-height: 80%;
+  /* Adjust based on your needs */
+  overflow-y: auto;
+  /* Enable vertical scrolling */
 }

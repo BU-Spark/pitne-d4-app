@@ -1,9 +1,12 @@
 .calendar {
-  background-color: white; 
+
+  background-color: white;
+  /* Dark blue background */
   border: 0.1vw solid #1b263b;
   border-radius: 0.5vw;
   padding: 2vw;
-  color: #5f7719; /* Adjusted the color for better visibility */
+  color: #5f7719;
+  /* Light grey text */
   width: fit-content;
   margin: 2vw auto;
 }
@@ -45,15 +48,13 @@
   transition: background-color 0.3s;
 }
 
-.react-datepicker__day:hover {
+.pf-c-calendar-month__date:hover {
   background-color: #043268;
-  border-radius: 50%; /* Ensuring the hover state is circular */
 }
 
-.react-datepicker__day--selected {
-  background-color: #043268;
-  color: white;
-  border-radius: 50%; 
+.pf-c-calendar-month__dates::before {
+  background-color: #f5a623;
+  color: #0d1b2a;
 }
 
 .datecell {
