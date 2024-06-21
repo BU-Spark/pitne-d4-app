@@ -148,15 +148,16 @@ function Home() {
   const handleSubscribe = async () => {
     if (email) {
       try {
-        const response = await fetch('http://localhost:1337/subscriptions', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email }),
-        });
-
-        if (response.ok) {
+        const response = await axios.post(
+          'http://pitne-d4-app-strapi-production.up.railway.app/api/mailing-lists',
+          { data: { email } },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        );
+        if (response.status === 200 || response.status === 201) {
           setEmail(''); // Clear the input after successful subscription
         } else {
           console.error('Failed to subscribe');
