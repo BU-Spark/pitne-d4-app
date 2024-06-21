@@ -11,7 +11,7 @@ import LogoBar from "../components/home/LogoBar";
 import ViewAllPosts from "../components/home/ViewAllPosts";
 import Announcement from "../components/home/announcements/Announcement";
 import { useNavigate } from "react-router-dom";
-import { Button, Flex, TextInput } from "@patternfly/react-core";
+import { Button } from "@patternfly/react-core";
 import ViewAllAnnouncements from "../components/home/announcements/ViewAllAnnouncements";
 import ViewCalendar from "../components/home/calendar/ViewCalendar";
 import Resources from "../components/home/Resources";
@@ -139,33 +139,7 @@ function Home() {
   const [developmentData, setDevelopmentData] = React.useState<DevelopmentData[]>([]);
   //const [homePageData, setHomePageData] = useState<HomePageData | null>(null);
 
-  const [email, setEmail] = useState('');
 
-  const handleEmailChange = (value: string) => {
-    setEmail(value);
-  };
-
-  const handleSubscribe = async () => {
-    if (email) {
-      try {
-        const response = await fetch('http://localhost:1337/subscriptions', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email }),
-        });
-
-        if (response.ok) {
-          setEmail(''); // Clear the input after successful subscription
-        } else {
-          console.error('Failed to subscribe');
-        }
-      } catch (error) {
-        console.error('An error occurred while subscribing:', error);
-      }
-    }
-  };
   // useEffect(() => {
   //   const fetchHomePageData = async () => {
   //     try {
@@ -176,12 +150,12 @@ function Home() {
   //       console.error('Fetching home page data failed:', error);
   //     }
   //   };
-
+  
   //   fetchHomePageData();
   // }, []);
+  
 
-
-
+  
   // This function fetch user interests from user-profile
   // The userEmail has default parameter to handle anonymous users that wants to use app without logging in
   const fetchdata = useCallback(async (userEmail = "defaultuser@email.com") => {
@@ -252,7 +226,7 @@ function Home() {
         console.log(error);
       }
     };
-
+    
 
     const fetchAnnounData = async () => {
       // try {
@@ -343,12 +317,12 @@ function Home() {
       const developmentCollection = collection(db, "Developments");
       const snapshot = await getDocs(developmentCollection);
       const loadedDevelopments = snapshot.docs.map(doc => ({
-        ...doc.data()
+        ...doc.data() 
       })) as DevelopmentData[];
       console.log(loadedDevelopments)
       setDevelopmentData(loadedDevelopments);
     }
-
+  
     fetchDevelopmentData();
     fetchCalendarData();
     fetchAnnounData();
@@ -378,88 +352,74 @@ function Home() {
   return (
     <body>
       <div className="hero-section">
-        <div className="mb-5">
-          <LogoBar />
-        </div>
-        <div className="overlay"></div>
-        <div className="hero-content">
-          <h1> Welcome to the District 4 Website</h1>
-          <p>District 4 includes Mattapan, Dorchester, and parts of Jamaica Plain and Roslindale</p>
-        </div>
-        <div className="scroll-down-container">
-          <div className="scroll-down">
-            <span>Scroll down to learn more</span>
-            <div className="arrow"></div>
-          </div>
-        </div>
-      </div>
+  <div className="mb-5">
+    <LogoBar />
+  </div>
+  <div className="overlay"></div>
+  <div className="hero-content">
+    <h1> Welcome to the District 4 Website</h1>
+    <p>District 4 includes Mattapan, Dorchester, and parts of Jamaica Plain and Roslindale</p>
+  </div>
+  <div className="scroll-down-container">
+    <div className="scroll-down">
+      <span>Scroll down to learn more</span>
+      <div className="arrow"></div>
+    </div>
+  </div>
+</div>
       <div className="container">
       </div>
 
-      <div className="councilor-section">
-        <div className="councilor-background">
-          <div className="overlay"></div>
-          <div className="councilor-content">
-            <h2 className="councilor-heading">About the Councilor</h2>
-            <div className="councilor-image">
-              <img src="./images/BrianWorell.jpeg" alt="Councilor" />
+        <div className="councilor-section">
+          <div className="councilor-background">
+            <div className="overlay"></div>
+              <div className="councilor-content">
+              <h2 className="councilor-heading">About the Councilor</h2>
+                <div className="councilor-image">
+                  <img src="./images/BrianWorell.jpeg" alt="Councilor" />
+                </div>
+                <p className="councilor-description">
+                Councilor Brian Worrell has been dedicated to serving the community of District 4 for many years. His efforts focus on improving local infrastructure, increasing public safety, and ensuring that every voice in the district is heard and valued.
+                </p>
+                <button className="learn-more-button" onClick={() => window.location.href = '/client-info'}>
+                  Learn more
+                </button>
             </div>
-            <p className="councilor-description">
-              Councilor Brian Worrell has been dedicated to serving the community of District 4 for many years. His efforts focus on improving local infrastructure, increasing public safety, and ensuring that every voice in the district is heard and valued.
-            </p>
-          </div>
+         </div>
         </div>
-      </div>
 
-      <div className="top-heading">Announcements</div>
-      <Announcement {...passAnnounData} vertical={false} />
-      <ViewAllAnnouncements {...passAnnounData} />
+        <div className="top-heading">Announcements</div>
+        <Announcement {...passAnnounData} vertical={false} />
+        <ViewAllAnnouncements {...passAnnounData} />
 
-
-      <div className="heading mb-4">Subscribe to mailing list</div>
-      <div className="m-4">
-        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width: '100%' }}>
-          <TextInput
-            value={email}
-            type="email"
-            onChange={handleEmailChange}
-            aria-label="email-input"
-            placeholder="Enter your email"
-            style={{ border: '1px solid #ccc', borderRadius: '4px' }}
-          />
-          <Button onClick={handleSubscribe} variant="primary" style={{ padding: '5px' }}>
-            Subscribe
-          </Button>
-        </div>
-      </div>
-      <footer className="footer">
-        <div className="footer-content">
-          <div className="footer-section about">
-            <p>
-              <a href="mailto:brian.worrell@boston.gov">Mail To: brian.worrell@boston.gov</a>
-            </p>
-            <p>
-              <a href="tel:+16176353131">Call: +1 617-635-3131</a>
-            </p>
-            <p>
-              <a href="https://www.google.com/maps/dir//5+Erie+St,+Dorchester,+MA+02121/@42.3266068,-71.1355474,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x89e37bc15204b3e5:0x4e18ab632ba37f9e!2m2!1d-71.0788007!2d42.303259?entry=ttu">
-                District office: 5 Erie St, Dorchester, MA 02121
-              </a>
-            </p>
-          </div>
-        </div>
-        <div className="footer-bottom">
-          &copy; 2024 District 4. All rights reserved.
-        </div>
-      </footer>
-    </body >
+        <footer className="footer">
+  <div className="footer-content">
+    <div className="footer-section about">
+      <p>
+        <a href="mailto:brian.worrell@boston.gov">Mail To: brian.worrell@boston.gov</a>
+      </p>
+      <p>
+        <a href="tel:+16176353131">Call: +1 617-635-3131</a>
+      </p>
+      <p>
+        <a href="https://www.google.com/maps/dir//5+Erie+St,+Dorchester,+MA+02121/@42.3266068,-71.1355474,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x89e37bc15204b3e5:0x4e18ab632ba37f9e!2m2!1d-71.0788007!2d42.303259?entry=ttu">
+          District office: 5 Erie St, Dorchester, MA 02121
+        </a>
+      </p>
+    </div>
+  </div>
+  <div className="footer-bottom">
+    &copy; 2024 District 4. All rights reserved.
+  </div>
+</footer>
+        </body>
   );
 }
 
 export type { calData };
 export type { announData };
 export type { upData };
-export type { DevelopmentData }
+export type {DevelopmentData}
 export { APIUrl };
 
 export default Home;
