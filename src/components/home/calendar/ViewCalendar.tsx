@@ -10,19 +10,12 @@ function ViewAllCalData(props: { data: calData[] }) {
   };
 
   return (
-    <div className="container">
-      {/* Button that takes you to calendar page */}
-      <Button
-        className="home-button px-3 py-2 mb-2"
-        variant="primary"
-        onClick={() => goToPosts()}
-        style={{
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        View Calendar
-      </Button>
+    <div className="view-all-announcements-container">
+      <div className="view-all-background">
+        <span className="view-all-link" onClick={goToPosts}>
+          View All Events &gt;
+        </span>
+      </div>
     </div>
   );
 }

@@ -68,6 +68,7 @@
   color: #152d5c;
 }
 .react-datepicker__navigation {
+  margin: 20px;
   display: flex;
   width: 2vw;
   height: auto;
@@ -127,25 +128,25 @@
     vertical-align: middle;
     color: #152d5c;
   }
-  .react-datepicker__navigation {
+  /* .react-datepicker__navigation {
     display: flex;
     width: 6vw;
-  }
-  .react-datepicker__navigation-icon--next::before {
+  } */
+  /* .react-datepicker__navigation-icon--next::before {
     transform: rotate(45deg);
     left: -5vw;
     font-size: 16px;
     width: 20px;
     height: 20px;
-    display: inline-block; /* Ensure width and height are respected */
+    display: inline-block; 
   }
   .react-datepicker__navigation-icon--previous::before {
     left: 0vw;
     font-size: 16px;
     width: 20px;
     height: 20px;
-    display: inline-block; /* Ensure width and height are respected */
-  }
+    display: inline-block; 
+  } */
   .dot-indicator {
     color: red;
     position: absolute;

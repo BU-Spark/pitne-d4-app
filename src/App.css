@@ -72,14 +72,6 @@ body {
   overflow-y: scroll;
 }
 
-@media (max-width:700px){
-  .vertical-scroll{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-}
-
 .calendar-card{
   min-width: 220px;
   min-height: 150px;
@@ -221,6 +213,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   z-index: 1000;
 }
 
@@ -234,6 +227,7 @@ body {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   position: relative;
   z-index: 1001;
+  text-align: center;
 }
 
 /* Close button */
@@ -266,8 +260,7 @@ body {
   text-align: center;
 }
 
-
-@media (min-width:800px){
+@media (min-width:768px){
 .modal-box {
   position: relative;
   background: white;
@@ -321,13 +314,10 @@ body {
   border-radius: 20px;
 }
 
- .hamburger-menu-container {
-  position: relative; 
-  display: flex;
-  align-items: center;
-  height: 100%; 
-} 
-
+.hamburger-icon.open {
+  transform: rotate(90deg); /* Rotate the icon when menu is open */
+  z-index: 1100;
+}
 .hamburger-icon {
   font-size: 40px;
   font-family: var(--bs-body-font-family);
@@ -343,11 +333,6 @@ body {
   display: flex; 
   align-items: center; 
   justify-content: center;
-}
-
-.hamburger-icon.open {
-  transform: rotate(90deg); /* Rotate the icon when menu is open */
-  z-index: 1100;
 }
 
 .menu-overlay {
@@ -649,4 +634,52 @@ body {
 }
 .content-wrap {
   flex: 1;
+}
+
+.calendar-page {
+  display: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.calendar-container, .events-container {
+  margin: 0;
+  padding: 0;
+}
+
+.calendar-text {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.events-container {
+  display: flex;
+  flex-direction: column;
+}
+
+
+@media (min-width: 768px) {
+  .calendar-page {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 20px;
+    margin-right: 50px;
+  }
+
+
+  .events-container {
+    margin-right: 0; 
+  }
+
+  .view-calendar-button-container {
+    margin-top: 20px; 
+  }
+
+}
+
+.announcements {
+  margin-left: 30px;
 }

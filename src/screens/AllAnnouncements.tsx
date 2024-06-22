@@ -36,7 +36,9 @@ function AllAnnouncements() {
           <LogoBar />
         </div>
         <div className="top-heading">All Announcements</div>
-        <Announcements announs={announcements} vertical={true} />
+        <div className = "announcements">
+          <Announcements announs={announcements} vertical={true} />
+        </div>
       </div>
       <Footer />
     </div>
