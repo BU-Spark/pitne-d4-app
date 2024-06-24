@@ -151,15 +151,21 @@ function Home() {
   const handleSubscribe = async () => {
     if (email) {
       try {
-        const response = await axios.post(
-          'http://pitne-d4-app-strapi-production.up.railway.app/api/mailing-lists',
-          { data: { email } },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }
-        );
+        const response = await fetch('https://pitne-d4-app-strapi-production.up.railway.app/api/mailing-lists', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            data: {
+              Email: email
+            }
+          })
+        });
+
+        const data = await response.json();
+        console.log('Success:', data);
+
         if (response.status === 200 || response.status === 201) {
           setEmail(''); // Clear the input after successful subscription
         } else {
@@ -170,6 +176,7 @@ function Home() {
       }
     }
   };
+
 
   useEffect(() => {
     const fetchHomePageData = async () => {
@@ -192,7 +199,7 @@ function Home() {
 
     fetchHomePageData();
   }, []);
-  
+
   // useEffect(() => {
   //   const fetchHomePageData = async () => {
   //     try {
@@ -374,7 +381,7 @@ function Home() {
     }
   }, [auth.currentUser, fetchdata]);
 
-  
+
   // const [calendarData, setCalendarData] = useState<calData[]>([]);
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
@@ -394,7 +401,7 @@ function Home() {
       eventDate.getMonth() === (selectedDate.getMonth()) &&
       (eventDate.getDate()) === selectedDate.getDate()
     );
-    
+
   });
 
   const fetchEvents = async () => {
@@ -406,14 +413,14 @@ function Home() {
         id: item.id,
         attributes: {
           title: item.attributes.EventName,
-          body: item.attributes.Description, 
+          body: item.attributes.Description,
           image: item.attributes.EventFlyer?.data && item.attributes.EventFlyer.data.length > 0
-          ? "http://pitne-d4-app-strapi-production.up.railway.app" + item.attributes.EventFlyer.data[0].attributes.url
-          : '',
+            ? "http://pitne-d4-app-strapi-production.up.railway.app" + item.attributes.EventFlyer.data[0].attributes.url
+            : '',
           date: item.attributes.EventDate,
           location: item.attributes.Location,
           time: item.attributes.Time,
-        }, 
+        },
       }));
       console.log(fetchedEvents);
       // console.log(image);
@@ -431,7 +438,7 @@ function Home() {
   // if (!homePageData) {
   //   return <div>Loading...</div>;
   // }
-  
+
   return (
     <body>
       <div className="hero-section">
@@ -480,7 +487,7 @@ function Home() {
 
         {/* <Resources resources={InvolvedData} />
         <Resources resources={SubmitandRequestData} /> */}
-      <div>
+
       <div className="top-heading">EVENTS CALENDAR</div>
       <div className="calendar-page">
         <div className="calendar-container">
@@ -498,7 +505,6 @@ function Home() {
           </div>
         </div>
       </div>
-    </div>
 
       <div className="heading mb-4">Subscribe to mailing list</div>
       <div className="m-4">
@@ -511,7 +517,7 @@ function Home() {
             placeholder="Enter your email"
             style={{ border: '1px solid #ccc', borderRadius: '4px' }}
           />
-          <Button onClick={handleSubscribe} variant="primary" style={{ padding: '5px'}}>
+          <Button onClick={handleSubscribe} variant="primary" style={{ padding: '5px' }}>
             Subscribe
           </Button>
         </div>
@@ -537,7 +543,7 @@ function Home() {
           &copy; 2024 District 4. All rights reserved.
         </div>
       </footer>
-    </body>
+    </body >
   );
 }
 
