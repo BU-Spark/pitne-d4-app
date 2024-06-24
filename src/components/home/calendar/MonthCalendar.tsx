@@ -43,10 +43,8 @@ function MonthCalendar({ onDateChange, calendarData }) {
         onChange={handleDateChange}
         inline
         renderDayContents={renderDayContents}
-      />
-      
+      />   
     </div>
-
   );
 }
 

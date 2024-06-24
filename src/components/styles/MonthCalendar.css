@@ -1,3 +1,9 @@
+.react-datepicker__day--today {
+  font-weight: bold; 
+  background-color: #152d5c31;
+  color: black;
+}
+
 .calendar {
   background-color: white;
   border: 0.1vw solid #1B263B;
@@ -14,6 +20,7 @@
   margin-bottom: 20px;
   border-radius: 15px;
 }
+
 /* days of the week */
 .react-datepicker__header {
   background-color: transparent;
@@ -51,10 +58,10 @@
 }
 
 .react-datepicker__day:hover {
-  /* background-color: #043268; */
-  border-radius: 50%; /* Ensuring the hover state is circular */
+  border-radius: 50%; 
 }
 .react-datepicker__day--selected {
+  background-color: #152d5c;
   color: white;
   border-radius: 50%;
 }
@@ -95,10 +102,6 @@
   margin-right: 20px;
 }
 
-.react-datepicker__day--today {
-  font-weight: bold; /* Example to make it bold */
-}
-
 @media (max-width: 700px) {
   .calendar {
     background-color: white;
@@ -109,6 +112,7 @@
     width: fit-content;
     margin: 2vw auto;
   }
+  
   .react-datepicker {
     font-family: 'Red Hat Text';
     font-size: 4vw;
