@@ -7,9 +7,10 @@ interface ModalType {
   isOpen: boolean;
   toggle: () => void;
   title: string;
-  date: string;
-  location?: string;
   content: string;
+  date: string;
+  time?: string;
+  location?: string;
 }
 
 export default function Modal(props: ModalType) {
@@ -17,8 +18,8 @@ export default function Modal(props: ModalType) {
   // console.log(props.date)
   let realDate = props.date;
   let day = realDate.substring(0, 10);
-  let time = realDate.substring(11, 16);
-  console.log("time " + time);
+  // let time = realDate.substring(11, 16);
+  // console.log("time " + time);
   return (
     <>
       {props.isOpen && (
@@ -36,7 +37,7 @@ export default function Modal(props: ModalType) {
               </Text>)}
 
               {props.date && (<Text>
-                <b>When: </b>{time}
+                <b>When: </b>{props.time}
               </Text>)}
 
                 <p className="modal-text">

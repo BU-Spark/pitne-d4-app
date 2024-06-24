@@ -15,8 +15,6 @@ import Footer from "../components/home/footer";
 
 function AllEvents() {
   const navigate = useNavigate();
-  const auth = getAuth();
-  const db = getFirestore();
   const [calendarData, setCalendarData] = useState<calData[]>([]);
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
@@ -61,7 +59,7 @@ function AllEvents() {
           : '',
           date: item.attributes.EventDate,
           location: item.attributes.Location,
-          time: item.attributes.EventDate,
+          time: item.attributes.Time,
         }, 
       }));
       console.log(fetchedEvents);
@@ -92,7 +90,6 @@ function AllEvents() {
       </div>
 
       <Events data={filteredEvents} />
-
       <div className = "calendar-text">All Upcoming Events: </div>
         <Events data={upcomingEvents} />
     </div>

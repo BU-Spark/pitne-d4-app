@@ -13,13 +13,17 @@ function CalendarCard(props: {
   content: string;
   image?: string;
   date?: string;
+  time?: string;
   location?: string;
 }) {
   const title = props.title;
   const content = props.content;
   const date = props.date ? props.date : "";
+  const time = props.time ? props.time : "";
   const location = props.location ? props.location : "";
   const { isOpen, toggle } = useModal();
+
+  // console.log("Event Time:", time);
 
   return (
     <Card onClick={toggle} className="ms-1 me-3 my-3 calendar-card">
@@ -47,6 +51,7 @@ function CalendarCard(props: {
           title={title}
           date={date}
           content={content}
+          time={time}
           location={location}
         ></Modal>
       </div>

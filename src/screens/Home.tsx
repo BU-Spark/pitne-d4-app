@@ -107,12 +107,6 @@ function checkIfManager() {
   });
 }
 
-// const isManager = localStorage.getItem('isManager') === 'true';
-
-
-// const [isManager, setIsManager] = useState(false);
-
-
 
 function Home() {
   const navigate = useNavigate();
@@ -259,44 +253,44 @@ function Home() {
 
   //fetch calendar data from Strapi
   useEffect(() => {
-    const fetchCalendarData = async () => {
-      try {
-        const eventsCollection = collection(db, "events");
-        // Get all documents from the "events" collection
-        const eventsSnapshot = await getDocs(eventsCollection);
-        // Map through each document and get its data
-        const eventsList = eventsSnapshot.docs.map(doc => ({
-          // id: doc.id,
-          ...doc.data()
-        })) as calData[];
-        //set the calendar data
-        console.log("events list");
-        setCalendarData(eventsList);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+    // const fetchCalendarData = async () => {
+    //   try {
+    //     // const eventsCollection = collection(db, "events");
+    //     // // Get all documents from the "events" collection
+    //     // const eventsSnapshot = await getDocs(eventsCollection);
+    //     // // Map through each document and get its data
+    //     // const eventsList = eventsSnapshot.docs.map(doc => ({
+    //     //   // id: doc.id,
+    //     //   ...doc.data()
+    //     // })) as calData[];
+    //     // //set the calendar data
+    //     // console.log("events list");
+    //     // setCalendarData(eventsList);
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // };
 
 
-    const fetchAnnounData = async () => {
-      try {
-        const announsCollection = collection(db, "announcements");
-        // Get all documents from the "events" collection
-        const announSnapshot = await getDocs(announsCollection);
-        // Map through each document and get its data
-        const announList = announSnapshot.docs.map(doc => ({
-          // id: doc.id,
-          ...doc.data()
-        })) as announData[];
-        //set the calendar data
-        console.log("announ list");
-        setAnnounData(announList);
-      } catch (error) {
-        console.log(error);
-      }
+    // const fetchAnnounData = async () => {
+    //   try {
+    //     // const announsCollection = collection(db, "announcements");
+    //     // // Get all documents from the "events" collection
+    //     // const announSnapshot = await getDocs(announsCollection);
+    //     // // Map through each document and get its data
+    //     // const announList = announSnapshot.docs.map(doc => ({
+    //     //   // id: doc.id,
+    //     //   ...doc.data()
+    //     // })) as announData[];
+    //     // //set the calendar data
+    //     // console.log("announ list");
+    //     // setAnnounData(announList);
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
 
 
-    };
+    // };
 
     const fetchUpdateData = async () => {
       fetch(APIUrl + "updates")
@@ -349,8 +343,8 @@ function Home() {
     }
 
     fetchDevelopmentData();
-    fetchCalendarData();
-    fetchAnnounData();
+    // fetchCalendarData();
+    // fetchAnnounData();
     fetchUpdateData();
     fetchGetInvolvedData();
   }, [db]);
@@ -397,31 +391,43 @@ function Home() {
   });
 
   const fetchEvents = async () => {
-    try {
-      const {
-        data: { data },
-      } = await axios.get("http://pitne-d4-app-strapi-production.up.railway.app/api/events?populate=*");
-      const fetchedEvents = data.map((item: any) => ({
+  try {
+    const {
+      data: { data },
+    } = await axios.get("http://pitne-d4-app-strapi-production.up.railway.app/api/events?populate=*");
+
+    const fetchedEvents = data.map((item: any) => {
+      // Print the entire attributes object
+      // console.log("Event Attributes:", item.Time);
+
+      const event = {
         id: item.id,
         attributes: {
           title: item.attributes.EventName,
-          body: item.attributes.Description, 
+          body: item.attributes.Description,
           image: item.attributes.EventFlyer?.data && item.attributes.EventFlyer.data.length > 0
-          ? "http://pitne-d4-app-strapi-production.up.railway.app" + item.attributes.EventFlyer.data[0].attributes.url
-          : '',
+            ? "http://pitne-d4-app-strapi-production.up.railway.app" + item.attributes.EventFlyer.data[0].attributes.url
+            : '',
           date: item.attributes.EventDate,
-          location: item.attributes.Location,
           time: item.attributes.Time,
-        }, 
-      }));
-      console.log(fetchedEvents);
-      // console.log(image);
+          location: item.attributes.Location,
+        },
+      };
 
-      setCalendarData(fetchedEvents);
-    } catch (error) {
-      console.error('Fetching events failed:', error);
-    }
-  };
+      // Print the time value to the console
+      console.log("Event Timeee:", event.attributes.time);
+
+      return event;
+    });
+
+    setCalendarData(fetchedEvents);
+  } catch (error) {
+    console.error('Fetching events failed:', error);
+  }
+};
+
+  
+  
 
   useEffect(() => {
     fetchEvents();
