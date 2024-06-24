@@ -11,7 +11,7 @@ function Events(props: {data: calData[]}) {
     const data = props.data;
     return (
         <div>
-            <div className="horizontal-scroll">
+            <div className="horizontal-scroll" style={{marginLeft: 15}}>
                 {data.length > 0 ? (
                     data.map((event) => {
                         return (
@@ -25,7 +25,7 @@ function Events(props: {data: calData[]}) {
                     })
                 ) : (
                     <CalendarCard
-                        title="No Events"
+                        title="No Scheduled Events"
                         content="Check back later!"
                     ></CalendarCard>
                 )}

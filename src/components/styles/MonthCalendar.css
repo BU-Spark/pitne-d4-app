@@ -1,3 +1,9 @@
+.react-datepicker__day--today {
+  font-weight: bold; 
+  background-color: #152d5c31;
+  color: black;
+}
+
 .calendar {
   background-color: white;
   border: 0.1vw solid #1B263B;
@@ -12,7 +18,9 @@
   font-size: 2.5vw;
   margin-top: 20px;
   margin-bottom: 20px;
+  border-radius: 15px;
 }
+
 /* days of the week */
 .react-datepicker__header {
   background-color: transparent;
@@ -50,10 +58,10 @@
 }
 
 .react-datepicker__day:hover {
-  /* background-color: #043268; */
-  border-radius: 50%; /* Ensuring the hover state is circular */
+  border-radius: 50%; 
 }
 .react-datepicker__day--selected {
+  background-color: #152d5c;
   color: white;
   border-radius: 50%;
 }
@@ -79,21 +87,20 @@
   color: #152d5c;
 }
 .react-datepicker__navigation {
-  margin: 20px;
+  /* margin: 20px; */
   display: flex;
   width: 2vw;
   height: auto;
   top: 2.5vw;
 }
-.react-datepicker__day--today {
-  font-weight: bold; /* Example to make it bold */
-  /* Light grey background */
+
+.react-datepicker__navigation--previous {
+  margin-left: 20px;
 }
-/* 
-.react-datepicker__month-container {
-  max-width: 500px;
-  max-height: 500px;
-} */
+
+.react-datepicker__navigation--next {
+  margin-right: 20px;
+}
 
 @media (max-width: 700px) {
   .calendar {
@@ -105,9 +112,11 @@
     width: fit-content;
     margin: 2vw auto;
   }
+  
   .react-datepicker {
     font-family: 'Red Hat Text';
     font-size: 4vw;
+    /* border-radius: 15px; */
   }
   /* days of the week */
   .react-datepicker__header {
@@ -139,25 +148,7 @@
     vertical-align: middle;
     color: #152d5c;
   }
-  /* .react-datepicker__navigation {
-    display: flex;
-    width: 6vw;
-  } */
-  /* .react-datepicker__navigation-icon--next::before {
-    transform: rotate(45deg);
-    left: -5vw;
-    font-size: 16px;
-    width: 20px;
-    height: 20px;
-    display: inline-block; 
-  }
-  .react-datepicker__navigation-icon--previous::before {
-    left: 0vw;
-    font-size: 16px;
-    width: 20px;
-    height: 20px;
-    display: inline-block; 
-  } */
+
   .dot-indicator {
     color: red;
     position: absolute;
