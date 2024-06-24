@@ -40,13 +40,11 @@ function MonthCalendar({ onDateChange, calendarData }) {
     <div>
       <DatePicker
         selected={selectedDate}
-        //onChange={handleDateChange}
+        onChange={handleDateChange}
         inline
         renderDayContents={renderDayContents}
-      />
-      
+      />   
     </div>
-
   );
 }
 

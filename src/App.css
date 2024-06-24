@@ -75,7 +75,7 @@ body {
 }
 
 .brand-font-body {
-  font-family: 'Lora', serif;
+  font-family: 'Lora', serif !important;
 }
 
 /* Welcome Page Styles */
@@ -100,7 +100,7 @@ body {
 .horizontal-scroll{
   overflow-x: scroll;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
 }
 
 .vertical-scroll{
@@ -147,6 +147,7 @@ body {
   justify-content: center;
 }
 .top-heading {
+  font-family: 'Montserrat', sans-serif;
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 700;
@@ -919,7 +920,6 @@ body {
   .view-calendar-button-container {
     margin-top: 20px; 
   }
-
 }
 
 .announcements {

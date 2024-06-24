@@ -7,7 +7,7 @@ function Announcement(props: { announs: announData[]; vertical: boolean }) {
   return (
     <div className={props.vertical ? "vertical-scroll" : "horizontal-scroll"}
       style={
-        props.vertical ? { display: "flex", flexWrap: "wrap" } : {}
+        props.vertical ? { display: "flex", flexWrap: "wrap" } : {marginLeft: 15}
       }>
       {props.announs.length > 0 ? (
         props.announs.slice().reverse().map((announcement) => {

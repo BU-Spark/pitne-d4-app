@@ -492,7 +492,9 @@ function Home() {
           </div>
           <Events data={filteredEvents} />
           <div className="view-calendar-button-container">
+          <div style={{ borderRadius: '50%', overflow: 'hidden' }}>
             <ViewCalendar {...passCalendarData} />
+          </div>
           </div>
         </div>
       </div>
@@ -509,7 +511,7 @@ function Home() {
             placeholder="Enter your email"
             style={{ border: '1px solid #ccc', borderRadius: '4px' }}
           />
-          <Button onClick={handleSubscribe} variant="primary" style={{ padding: '5px' }}>
+          <Button onClick={handleSubscribe} variant="primary" style={{ padding: '5px'}}>
             Subscribe
           </Button>
         </div>
