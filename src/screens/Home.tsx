@@ -21,6 +21,7 @@ import ViewAllDevs from "../components/home/Developments/ViewAllDevs";
 import axios from "axios";
 import MonthCalendar from "../components/home/calendar/MonthCalendar";
 import Events from "../components/home/calendar/Calendar";
+import ClientImage from '../images/BrianW.png'
 
 
 //for dev,
@@ -150,15 +151,21 @@ function Home() {
   const handleSubscribe = async () => {
     if (email) {
       try {
-        const response = await axios.post(
-          'http://pitne-d4-app-strapi-production.up.railway.app/api/mailing-lists',
-          { data: { email } },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }
-        );
+        const response = await fetch('https://pitne-d4-app-strapi-production.up.railway.app/api/mailing-lists', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            data: {
+              Email: email
+            }
+          })
+        });
+
+        const data = await response.json();
+        console.log('Success:', data);
+
         if (response.status === 200 || response.status === 201) {
           setEmail(''); // Clear the input after successful subscription
         } else {
@@ -169,6 +176,7 @@ function Home() {
       }
     }
   };
+
 
   useEffect(() => {
     const fetchHomePageData = async () => {
@@ -191,7 +199,7 @@ function Home() {
 
     fetchHomePageData();
   }, []);
-  
+
   // useEffect(() => {
   //   const fetchHomePageData = async () => {
   //     try {
@@ -373,7 +381,7 @@ function Home() {
     }
   }, [auth.currentUser, fetchdata]);
 
-  
+
   // const [calendarData, setCalendarData] = useState<calData[]>([]);
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
@@ -393,7 +401,7 @@ function Home() {
       eventDate.getMonth() === (selectedDate.getMonth()) &&
       (eventDate.getDate()) === selectedDate.getDate()
     );
-    
+
   });
 
   const fetchEvents = async () => {
@@ -405,14 +413,14 @@ function Home() {
         id: item.id,
         attributes: {
           title: item.attributes.EventName,
-          body: item.attributes.Description, 
+          body: item.attributes.Description,
           image: item.attributes.EventFlyer?.data && item.attributes.EventFlyer.data.length > 0
-          ? "http://pitne-d4-app-strapi-production.up.railway.app" + item.attributes.EventFlyer.data[0].attributes.url
-          : '',
+            ? "http://pitne-d4-app-strapi-production.up.railway.app" + item.attributes.EventFlyer.data[0].attributes.url
+            : '',
           date: item.attributes.EventDate,
           location: item.attributes.Location,
           time: item.attributes.Time,
-        }, 
+        },
       }));
       console.log(fetchedEvents);
       // console.log(image);
@@ -430,25 +438,25 @@ function Home() {
   // if (!homePageData) {
   //   return <div>Loading...</div>;
   // }
-  
+
   return (
     <body>
       <div className="hero-section">
-        <div className="mb-5">
-          <LogoBar />
-        </div>
-        <div className="overlay"></div>
-        <div className="hero-content">
-          <h1> Welcome to the District 4 Website</h1>
-          <p>District 4 includes Mattapan, Dorchester, and parts of Jamaica Plain and Roslindale</p>
-        </div>
-        <div className="scroll-down-container">
-          <div className="scroll-down">
-            <span>Swipe up to learn more</span>
-            <div className="arrow"></div>
-          </div>
-        </div>
+    <div className="mb-5">
+      <LogoBar />
+    </div>
+    <div className="overlay"></div>
+    <div className="hero-content">
+      <div className="top-heading-white">WELCOME TO THE DISTRICT 4 WEBSITE</div>
+      <p>District 4 includes Mattapan, Dorchester, and parts of Jamaica Plain and Roslindale</p>
+    </div>
+    <div className="scroll-down-container">
+      <div className="scroll-down">
+        <span>Swipe up to learn more</span>
+        <div className="arrow"></div>
       </div>
+    </div>
+  </div>
       <div className="container">
       </div>
 
@@ -456,10 +464,10 @@ function Home() {
           <div className="councilor-background">
             <div className="overlay"></div>
               <div className="councilor-content">
-              <h2 className="councilor-heading">About the Councilor</h2>
-                <div className="councilor-image">
-                  <img src="./images/BrianWorell.jpeg" alt="Councilor" />
-                </div>
+              <h2 className="councilor-heading">ABOUT THE COUNCILOR</h2>
+              <div className='p-4'>
+                <img src={ClientImage} alt="Client image" />
+              </div>
                 <p className="councilor-description">
                 Councilor Brian Worrell has been dedicated to serving the community of District 4 for many years. His efforts focus on improving local infrastructure, increasing public safety, and ensuring that every voice in the district is heard and valued.
                 </p>
@@ -471,14 +479,16 @@ function Home() {
          </div>
 
 
-        <div className="top-heading">Announcements</div>
-        <Announcement {...passAnnounData} vertical={false} />
-        <ViewAllAnnouncements {...passAnnounData} />
+         <div className="blue-background-container"> 
+            <div className="top-heading-white">ANNOUNCEMENTS</div>
+            <Announcement {...passAnnounData} vertical={false} />
+            <ViewAllAnnouncements {...passAnnounData} />
+          </div>
 
         {/* <Resources resources={InvolvedData} />
         <Resources resources={SubmitandRequestData} /> */}
-      <div>
-      <div className="top-heading">Events Calendar</div>
+
+      <div className="top-heading">EVENTS CALENDAR</div>
       <div className="calendar-page">
         <div className="calendar-container">
           <MonthCalendar onDateChange={handleDateChange} calendarData={calendarData} />
@@ -489,20 +499,10 @@ function Home() {
           </div>
           <Events data={filteredEvents} />
           <div className="view-calendar-button-container">
+          <div style={{ borderRadius: '50%', overflow: 'hidden' }}>
             <ViewCalendar {...passCalendarData} />
           </div>
-        </div>
-      </div>
-    </div>
-
-    {/* <footer className="footer"> */}
-      <div className="footer-content">
-        <div className="footer-section about">
-         <p>
-            <a href="mailto:brian.worrell@boston.gov">Mail: brian.worrell@boston.gov</a>
-            <a href="tel:+16176353131">Call: +1 617-635-3131</a>
-            <a href="https://www.google.com/maps/dir//5+Erie+St,+Dorchester,+MA+02121/@42.3266068,-71.1355474,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x89e37bc15204b3e5:0x4e18ab632ba37f9e!2m2!1d-71.0788007!2d42.303259?entry=ttu">District office: 5 Erie St, Dorchester, MA 02121</a>
-          </p>
+          </div>
         </div>
       </div>
 
@@ -543,7 +543,7 @@ function Home() {
           &copy; 2024 District 4. All rights reserved.
         </div>
       </footer>
-    </body>
+    </body >
   );
 }
 

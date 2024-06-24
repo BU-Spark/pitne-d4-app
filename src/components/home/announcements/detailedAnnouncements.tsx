@@ -4,7 +4,7 @@ function DetailedAnnouncementCard({ title, body, date }) {
   return (
     <div className="detailed-announcement-card">
       <h3>{title}</h3>
-      <p>{date}</p>
+      <p>Date: {date}</p>
       <p>{body}</p>
     </div>
   );

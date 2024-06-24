@@ -15,7 +15,7 @@ function LogoBar() {
     return (
         <header className="logo-bar">
             <div className="logo-bar-left" onClick={handleLogoClick}>
-                <img src={logo} alt="Home" style={{ width: '40px', height: '40px' }} />
+                <img src={logo} alt="Home" style={{ width: '40px', height: '40px', cursor: "pointer" }} />
             </div>
             <div className="logo-bar-right">
                 <HamburgerMenu />

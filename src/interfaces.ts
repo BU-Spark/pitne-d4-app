@@ -10,3 +10,12 @@ export interface AssociationTable {
         ContactInfo: string | undefined;
     }
 }
+
+export interface ResourceTable {
+    id: string,
+    attributes: {
+        title: string;
+        resourceID: string;
+        link: string;
+    }
+}

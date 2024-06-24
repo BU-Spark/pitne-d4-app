@@ -24,21 +24,13 @@ function CalendarCard(props: {
   return (
     <Card onClick={toggle} className="ms-1 me-3 my-3 calendar-card">
       <div className=" mx-3 mt-3 mb-5">
-        {/* <div className="row"> */}
-          {/* <div className="col-9"> */}
-            <Text className="text-start">{title}</Text>
-          {/* </div> */}
+          <Text className="text-start">{title}</Text>
           
           <div className="col-1">
-            {/* <Icon isInline className="text-end">
-              <EllipsisVIcon style={{ width: "15px", height: "11px" }} />
-            </Icon> */}
           </div>
-        {/* </div> */}
         <div className="row mt-2 ">
-          <small className="text-start text-secondary">{"Location: " + location}</small>
-          {/* <small className="text-start text-secondary calendar-card-content">{content}</small> */}
-          {/* if there's an image, display it */}
+          {location && <small className="text-start text-secondary">{"Location: " + location}</small>}
+
           {props.image ? (
             <img
               src={props.image}

@@ -4,6 +4,7 @@ import ProgressBar from '../components/home/Progressbar'; // Adjust the import p
 import { useNavigate } from "react-router-dom";
 import associationsImage from "../images/associations.png";
 import LogoBar from "../components/home/LogoBar";
+import Footer from '../components/home/footer';
 
 function CivicAssociationsInfo() {
     const navigate = useNavigate();
@@ -38,6 +39,7 @@ function CivicAssociationsInfo() {
     ];
 
     return (
+        <div>
         <div className='m-4' style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
             <div>
                 <LogoBar />
@@ -81,6 +83,8 @@ function CivicAssociationsInfo() {
                     Find your Civic Association
                 </Button>
             </div>
+        </div>
+        <Footer/>
         </div>
     );
 }
