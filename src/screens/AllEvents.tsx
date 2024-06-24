@@ -42,6 +42,11 @@ function AllEvents() {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     return eventDate >= today;
+  })
+  .sort((a, b) => {
+    const dateA = new Date(a.attributes.date).getTime();
+    const dateB = new Date(b.attributes.date).getTime();
+    return dateA - dateB;
   });
 
   const fetchEvents = async () => {

@@ -17,7 +17,9 @@ export default function Modal(props: ModalType) {
   // console.log(props.content)
   // console.log(props.date)
   let realDate = props.date;
-  let day = realDate.substring(0, 10);
+  let day = realDate.substring(5, 7) + "/" + realDate.substring(8, 10) + "/" + realDate.substring(2, 4);
+  // realDate.substring(4, 6) + "/";
+  // realDate.substring(0, 10);
   // let time = realDate.substring(11, 16);
   // console.log("time " + time);
   return (
