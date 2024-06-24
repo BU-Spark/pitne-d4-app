@@ -16,10 +16,21 @@ body {
   margin:0; 
   height:100%;
 }
+
+.left-align {
+  text-align: left;
+}
+
 .container {
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
+}
+
+.blue-background-container {
+  background-color: #152d5c; /* Blue background color */
+  padding: 20px;
+  color: white; /* Text color to ensure readability */
 }
 
 .container-horizontal {
@@ -105,11 +116,12 @@ body {
   border-radius: 20px;
   cursor: pointer;
   background-color: white !important;
+  color: #152d5c;
 }
 
 /* Portal Styles */
 .portal-nav {
-  font-family: 'Red Hat Text';
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: 600;
   font-size: 25px;
@@ -118,7 +130,6 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: center;
 }
 
 /* Homepage Styles */
@@ -137,7 +148,7 @@ body {
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 700;
-  font-size: 32px;
+  font-size: 1.6rem;
   line-height: 32px;
   color: #152d5c;
   text-align: center;
@@ -147,6 +158,29 @@ body {
   margin-bottom: 20px;
   margin-top: 20px;
   position: relative;
+}
+.top-heading-white {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 32px;
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column; /* Ensure vertical stacking */
+  align-items: center; /* Center the content */
+  margin-bottom: 20px;
+  margin-top: 20px;
+  position: relative;
+}
+.top-heading-white::after {
+  content: '';
+  display: block;
+  width: 96%; /* Adjust the width as needed */
+  height: 1px; /* Adjust the height as needed */
+  background-color: white; /* Color of the line */
+  margin-top: 20px; /* Space between text and line */
 }
 
 .top-heading::after {
@@ -198,7 +232,14 @@ body {
   display: flex;
   justify-content: center;
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
+  position: relative;
+}
+.view-all-announcements-container-white {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
   position: relative;
 }
 
@@ -208,10 +249,16 @@ body {
   border-radius: 20px;
   display: inline-block;
 }
+.view-all-background-white {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 5px 30px;
+  border-radius: 20px;
+  display: inline-block;
+}
 
 .view-all-link {
   font-size: 1.25rem;
-  font-family: 'Red Hat Text', sans-serif;
+  font-family: 'Lora', sans-serif;
   color: #152d5c;
   cursor: pointer;
   text-decoration: none;
@@ -235,7 +282,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
+  text-align: left;
   z-index: 1000;
 }
 
@@ -272,6 +319,7 @@ body {
 .modal-wrapper {
   margin: 20px 0;
   margin-left: 10px;
+  color:#152d5c
 }
 
 /* Modal text */
@@ -280,6 +328,8 @@ body {
   font-size: 16px;
   line-height: 1.5;
   text-align: left;
+  font-family: 'Lora';
+  color: #152d5c;
 }
 
 @media (min-width:768px){
@@ -307,9 +357,6 @@ body {
   cursor: pointer;
 }
 
-.modal-text{
-  margin-top: 20px;
-}
 .detailed-announcements-container {
   display: flex;
   flex-wrap: wrap; /* Allow the items to wrap to the next line */
@@ -553,13 +600,13 @@ body {
   margin-bottom: 1rem;
   font-weight: bold;
   text-align: center;
-  font-family: 'Red Hat Text', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .hero-content p {
   font-size: 1rem;
   font-style: italic;
-  font-family: 'Red Hat Text', sans-serif;
+  font-family: 'Lora', sans-serif;
 }
 
 .scroll-down-container {
@@ -575,7 +622,7 @@ body {
   align-items: center;
   justify-content: center;
   color: white;
-  font-family: 'Red Hat Text', sans-serif;
+  font-family: 'Lora', sans-serif;
   animation: bounce 2s infinite;
   font-style: italic;
 }
@@ -586,41 +633,44 @@ body {
   height: 10px;
   border: solid white;
   border-width: 0 3px 3px 0;
-  transform: rotate(45deg);
+  transform: rotate(-135deg); /* Rotate the arrow upwards */
   margin: 0 10px;
 }
 
 @keyframes bounce {
-
-  0%,
-  20%,
-  50%,
-  80%,
-  100% {
+  0%, 20%, 50%, 80%, 100% {
     transform: translateY(0);
   }
-
-  40% {
-    transform: translateY(-10px);
-  }
-
   60% {
-    transform: translateY(-5px);
+    transform: translateY(-10px); /* Adjust the bounce height */
+  }
+  40% {
+    transform: translateY(-5px); /* Adjust the bounce height */
   }
 }
 
+
 .councilor-section {
-  text-align: center;
+  text-align:center;
   padding: 2rem;
   background-color: #f8fafb;
 }
 
 .councilor-heading {
-  font-size: 2rem;
-  font-family: 'Red Hat Text'; /* Red Hat Text font */
+  font-size: 1.5rem;
+  font-family: 'Montserrat'; /* Red Hat Text font */
   margin-bottom: 1rem;
   font-weight: bold;
   color: #152d5c;
+}
+
+.councilor-heading::after {
+  content: '';
+  display: block;
+  width: 96%; /* Adjust the width as needed */
+  height: 1px; /* Adjust the height as needed */
+  background-color: #152d5c; /* Color of the line */
+  margin-top: 20px; /* Space between text and line */
 }
 
 .councilor-image img {
@@ -632,7 +682,7 @@ body {
 
 .councilor-description {
   font-size: 1.2rem;
-  font-family: 'Red Hat Text', sans-serif; /* Red Hat Text font */
+  font-family: 'Lora', sans-serif; /* Red Hat Text font */
   margin-top: 1rem;
   font-style: italic;
   color: #152d5c;
@@ -685,8 +735,8 @@ body {
 }
 
 .civic-associations-section .heading {
-  font-family: 'Red Hat Text';
-  font-size: 30px;
+  font-family: 'Montserrat';
+  font-size: 1.6rem;
   font-weight: bold;
   margin-top: 20px;
   margin-bottom: 40px;
@@ -694,7 +744,7 @@ body {
 }
 
 .civic-associations-section .description {
-  font-family: 'Red Hat Text';
+  font-family: 'Lora';
   font-size: 1.1rem;
   margin-bottom: 20px;
 }
@@ -702,7 +752,7 @@ body {
 .civic-associations-section .home-button.custom-button {
   background-color: white !important;
   color: white;
-  font-family: 'Red Hat Text', sans-serif;
+  font-family: 'Lora', sans-serif;
   padding: 20px 20px;
   border: none;
   border-radius: 5px;
@@ -737,7 +787,7 @@ body {
 }
 
 .grid-item p {
-  font-family: 'Red Hat Text', sans-serif;
+  font-family: 'Lora', sans-serif;
   font-size: 1rem;
   color: #152d5c;
 }
