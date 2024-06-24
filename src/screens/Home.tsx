@@ -444,7 +444,7 @@ function Home() {
         </div>
         <div className="scroll-down-container">
           <div className="scroll-down">
-            <span>Scroll down to learn more</span>
+            <span>Swipe up to learn more</span>
             <div className="arrow"></div>
           </div>
         </div>
@@ -497,7 +497,8 @@ function Home() {
       </div>
     </div>
 
-      <div className="heading mb-4" style={{ marginTop: '25px'}}>Subscribe to Mailing List</div>
+
+      <div className="heading mb-4">Subscribe to mailing list</div>
       <div className="m-4">
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width: '100%' }}>
           <TextInput
