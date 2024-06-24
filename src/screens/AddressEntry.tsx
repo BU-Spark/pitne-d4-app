@@ -194,7 +194,7 @@ function AddressEntry() {
         <div className='p-2'>
           <Button
             onClick={submit}
-            className="px-5 py-1"
+            className="px-5 py-1 brand-blue"
             variant="primary"
           >
             Next
@@ -215,7 +215,7 @@ function AddressEntry() {
       </div>
       {/* Progress Bar */}
       <div className='bottom-0 start-0 p-5' style={{ width: '100%' }}>
-        <ProgressBar value={75} />
+        <ProgressBar value={66} />
       </div>
     </div>
   );
