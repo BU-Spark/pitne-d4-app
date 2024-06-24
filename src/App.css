@@ -23,8 +23,7 @@ body {
 }
 
 .container-horizontal {
-  align-items: center;
-  display: flex;
+  display:flex;
   flex-direction: row;
   justify-content: space-between;
 }
@@ -250,7 +249,7 @@ body {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   position: relative;
   z-index: 1001;
-  text-align: center;
+  text-align: left;
 }
 
 /* Close button */
@@ -280,7 +279,7 @@ body {
   margin-top: 20px;
   font-size: 16px;
   line-height: 1.5;
-  text-align: center;
+  text-align: left;
 }
 
 @media (min-width:768px){
@@ -326,6 +325,7 @@ body {
   border-radius: 4px;
   max-width: 400px; /* Optimal reading width */
   color: #152d5c;
+  text-align: left;
 }
 .detailed-announcement-card h3 {
   font-weight: bold; /* Makes the title bold */
@@ -338,6 +338,7 @@ body {
   background-color: white;
   max-width: 400px;
   color: #152d5c;
+  text-align: left;
 }
 .detailed-development-card h3 {
   font-weight: bold; /* Makes the title bold */

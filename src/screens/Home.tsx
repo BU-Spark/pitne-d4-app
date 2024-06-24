@@ -444,7 +444,7 @@ function Home() {
         </div>
         <div className="scroll-down-container">
           <div className="scroll-down">
-            <span>Scroll down to learn more</span>
+            <span>Swipe up to learn more</span>
             <div className="arrow"></div>
           </div>
         </div>
@@ -505,10 +505,6 @@ function Home() {
           </p>
         </div>
       </div>
-
-      <div className="top-heading">Announcements</div>
-      <Announcement {...passAnnounData} vertical={false} />
-      <ViewAllAnnouncements {...passAnnounData} />
 
       <div className="heading mb-4">Subscribe to mailing list</div>
       <div className="m-4">
