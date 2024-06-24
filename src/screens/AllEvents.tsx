@@ -38,6 +38,13 @@ function AllEvents() {
     
   });
 
+  const upcomingEvents = calendarData.filter(event => {
+    const eventDate = new Date(event.attributes.date);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return eventDate >= today;
+  });
+
   const fetchEvents = async () => {
     try {
       const {
@@ -90,7 +97,7 @@ function AllEvents() {
       <Events data={filteredEvents} />
 
       <div className = "calendar-text">All Upcoming Events: </div>
-        <Events data={calendarData} />
+        <Events data={upcomingEvents} />
     </div>
   );
 }
