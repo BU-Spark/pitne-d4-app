@@ -150,15 +150,21 @@ function Home() {
   const handleSubscribe = async () => {
     if (email) {
       try {
-        const response = await axios.post(
-          'http://pitne-d4-app-strapi-production.up.railway.app/api/mailing-lists',
-          { data: { email } },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }
-        );
+        const response = await fetch('https://pitne-d4-app-strapi-production.up.railway.app/api/mailing-lists', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            data: {
+              Email: email
+            }
+          })
+        });
+
+        const data = await response.json();
+        console.log('Success:', data);
+
         if (response.status === 200 || response.status === 201) {
           setEmail(''); // Clear the input after successful subscription
         } else {
@@ -169,6 +175,7 @@ function Home() {
       }
     }
   };
+
 
   useEffect(() => {
     const fetchHomePageData = async () => {
