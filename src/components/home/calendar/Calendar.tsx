@@ -3,6 +3,8 @@ import CalendarCard from "./CalendarCard";
 import DatePicker from "./DatePicker";
 //import calData type
 import type {calData} from '../../../screens/Home';
+import '../../styles/CalendarEvents.css';
+
 
 // Shows event data/all calendar cards
 function Events(props: {data: calData[]}) {

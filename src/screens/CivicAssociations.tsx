@@ -38,11 +38,12 @@ function CivicAssociations() {
 
         const fetchAssociations = async () => {
             try {
-                const token = 'b6fecebf4096e294e8ddf5e9a6b9e7afc45e5f08836164d6f46c7d17baf1d85507c44c6af62503f1bddbf945d2b91d89aca2193bfdce2ada72aa1caa30b267333661e98f946a9d1c434d277a80fc022974d1644ff80c966f75a2b5e5b38c44605bc8111a176476ab5c40af79b7201b44a2751a2d49a5362b06283ce25fe42cd1'; // Replace 'YOUR_API_TOKEN' with your actual API token
-                const response = await axios.get('http://localhost:1337/api/civic-associations', {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
+                // const token = '2f28130dd3c99e82d1b7db445c23010b0609ad7a2cc231396904349b10c6ad4bb852fe69ceec7ce0eb86d2907176064f6dd3edd225648b52db70ef5ea7e6e9a40f03e17e28c6ec7b60fff40993e330bf331dea836a9f9e64144327f3be7fc6ffe26ca749d025f5f248a3a537c26874b34ab184889d4aadfa02efadcc5d4a149b'; // Replace 'YOUR_API_TOKEN' with your actual API token
+                const response = await axios.get('http://pitne-d4-app-strapi-production.up.railway.app/api/civic-associations', {
+
+                    // headers: {
+                    //     Authorization: `Bearer ${token}`
+                    // }
                 });
                 setAssociations(response.data.data);
             } catch (error) {
@@ -73,7 +74,7 @@ function CivicAssociations() {
                     type: "simple",
                     symbol: {
                         type: "simple-fill",
-                        color: [255, 190, 128, 0.5],
+                        color: [133, 202, 227, 0.5],
                         outline: {
                             width: 0.5,
                             color: [0, 0, 0, 0.7]
@@ -111,7 +112,7 @@ function CivicAssociations() {
 
                 const markerSymbol = {
                     type: "simple-marker",
-                    color: "blue",
+                    color: "orange",
                     size: 7
                 };
 
@@ -165,12 +166,12 @@ function CivicAssociations() {
             <div className="mb-5">
                 <LogoBar />
             </div>
-            <div id="viewMap" style={{ height: 400, width: "100%", marginTop: '80px' }}>
+            <div id="viewMap" style={{ height: 400, width: "100%" }}>
             </div>
             {addressEntered && associationPart &&
                 <div>
                     <h1 className='mt-3'>
-                        Your Association
+                        <b>Your Association</b>
                     </h1>
                     <AssociationCard
                         key={matchedAssociation?.id}
@@ -190,7 +191,7 @@ function CivicAssociations() {
             }
             <div>
                 <h1 className='mt-3'>
-                    All Associations
+                    <b>All Associations</b>
 
                 </h1>
                 <div className='m-4'>

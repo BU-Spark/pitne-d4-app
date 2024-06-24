@@ -4,10 +4,12 @@ import ClientImage from '../images/councilor_photo.png'; // Import the image
 
 const ClientInfo: React.FC = () => {
   return (
-    <div>
-      <LogoBar />
+    <div className='m-4'>
       <div className='m-5'>
-        <div className='p-5'>
+        <LogoBar />
+      </div>
+      <div>
+        <div className='p-4'>
           <img src={ClientImage} alt="Client image" />
         </div>
         <div>

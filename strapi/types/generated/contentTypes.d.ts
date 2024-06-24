@@ -831,14 +831,14 @@ export interface ApiDisplayImageDisplayImage extends Schema.CollectionType {
   info: {
     singularName: 'display-image';
     pluralName: 'display-images';
-    displayName: 'DisplayImages';
+    displayName: 'DisplayImage';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    Photo: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     Name: Attribute.String;
+    Photo: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -863,12 +863,19 @@ export interface ApiEventEvent extends Schema.CollectionType {
     singularName: 'event';
     pluralName: 'events';
     displayName: 'Event';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    detail: Attribute.JSON;
+    EventName: Attribute.String & Attribute.Required & Attribute.Unique;
+    Description: Attribute.Text & Attribute.DefaultTo<'No Information'>;
+    Link: Attribute.String;
+    EventFlyer: Attribute.Media<'images'>;
+    ContactInfo: Attribute.String & Attribute.DefaultTo<'No Info'>;
+    EventDate: Attribute.DateTime;
+    Location: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -900,10 +907,13 @@ export interface ApiHomePageHomePage extends Schema.CollectionType {
   attributes: {
     heroTitle: Attribute.String;
     heroDescription: Attribute.String;
-    heroImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    heroImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
     councilorName: Attribute.String;
     councilorDescription: Attribute.String;
-    councilorImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    councilorImage: Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

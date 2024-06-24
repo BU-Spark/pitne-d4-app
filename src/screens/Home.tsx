@@ -11,7 +11,7 @@ import LogoBar from "../components/home/LogoBar";
 import ViewAllPosts from "../components/home/ViewAllPosts";
 import Announcement from "../components/home/announcements/Announcement";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@patternfly/react-core";
+import { Button, TextInput } from "@patternfly/react-core";
 import ViewAllAnnouncements from "../components/home/announcements/ViewAllAnnouncements";
 import ViewCalendar from "../components/home/calendar/ViewCalendar";
 import Resources from "../components/home/Resources";
@@ -19,11 +19,13 @@ import { cursorTo } from "readline";
 import DevelopmentUpdates from "../components/home/Developments/Development";
 import ViewAllDevs from "../components/home/Developments/ViewAllDevs";
 import axios from "axios";
+import MonthCalendar from "../components/home/calendar/MonthCalendar";
+import Events from "../components/home/calendar/Calendar";
 
 
 //for dev,
-const APIUrl = "https://se-d7-dev.up.railway.app/api/";
-
+// const APIUrl = "https://se-d7-dev.up.railway.app/api/";
+const APIUrl = "https://pitne-d4-app-strapi-production.up.railway.app/api/";
 
 //initialise the type of calendar and tweet data we are getting from strapi
 type calData = {
@@ -139,6 +141,34 @@ function Home() {
   const [developmentData, setDevelopmentData] = React.useState<DevelopmentData[]>([]);
   const [homePageData, setHomePageData] = useState<HomePageData | null>(null);
 
+  const [email, setEmail] = useState('');
+
+  const handleEmailChange = (value: string) => {
+    setEmail(value);
+  };
+
+  const handleSubscribe = async () => {
+    if (email) {
+      try {
+        const response = await axios.post(
+          'http://pitne-d4-app-strapi-production.up.railway.app/api/mailing-lists',
+          { data: { email } },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        );
+        if (response.status === 200 || response.status === 201) {
+          setEmail(''); // Clear the input after successful subscription
+        } else {
+          console.error('Failed to subscribe');
+        }
+      } catch (error) {
+        console.error('An error occurred while subscribing:', error);
+      }
+    }
+  };
 
   useEffect(() => {
     const fetchHomePageData = async () => {
@@ -162,8 +192,22 @@ function Home() {
     fetchHomePageData();
   }, []);
   
+  // useEffect(() => {
+  //   const fetchHomePageData = async () => {
+  //     try {
+  //       const response = await axios.get('http://localhost:1334/api/home-page?populate=*');
+  //       const homePageData = response.data.data.attributes;
+  //       setHomePageData(homePageData);
+  //     } catch (error) {
+  //       console.error('Fetching home page data failed:', error);
+  //     }
+  //   };
 
-  
+  //   fetchHomePageData();
+  // }, []);
+
+
+
   // This function fetch user interests from user-profile
   // The userEmail has default parameter to handle anonymous users that wants to use app without logging in
   const fetchdata = useCallback(async (userEmail = "defaultuser@email.com") => {
@@ -232,7 +276,7 @@ function Home() {
         console.log(error);
       }
     };
-    
+
 
     const fetchAnnounData = async () => {
       try {
@@ -298,12 +342,12 @@ function Home() {
       const developmentCollection = collection(db, "Developments");
       const snapshot = await getDocs(developmentCollection);
       const loadedDevelopments = snapshot.docs.map(doc => ({
-        ...doc.data() 
+        ...doc.data()
       })) as DevelopmentData[];
       console.log(loadedDevelopments)
       setDevelopmentData(loadedDevelopments);
     }
-  
+
     fetchDevelopmentData();
     fetchCalendarData();
     fetchAnnounData();
@@ -329,24 +373,82 @@ function Home() {
     }
   }, [auth.currentUser, fetchdata]);
 
+  
+  // const [calendarData, setCalendarData] = useState<calData[]>([]);
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+
+
+  const handleDateChange = (date: Date) => {
+    setSelectedDate(date);
+  };
+
+  // Filters events to match the user's selected date
+  const filteredEvents = calendarData.filter(event => {
+    const eventDate = new Date(event.attributes.date);
+    // console.log(` ${eventDate},  ${selectedDate},  ${event.attributes.date}`);
+
+    return (
+      // Returns an event if the date matches the selection
+      eventDate.getFullYear() === selectedDate.getFullYear() &&
+      eventDate.getMonth() === (selectedDate.getMonth()) &&
+      (eventDate.getDate()) === selectedDate.getDate()
+    );
+    
+  });
+
+  const fetchEvents = async () => {
+    try {
+      const {
+        data: { data },
+      } = await axios.get("http://pitne-d4-app-strapi-production.up.railway.app/api/events?populate=*");
+      const fetchedEvents = data.map((item: any) => ({
+        id: item.id,
+        attributes: {
+          title: item.attributes.EventName,
+          body: item.attributes.Description, 
+          image: item.attributes.EventFlyer?.data && item.attributes.EventFlyer.data.length > 0
+          ? "http://pitne-d4-app-strapi-production.up.railway.app" + item.attributes.EventFlyer.data[0].attributes.url
+          : '',
+          date: item.attributes.EventDate,
+          location: item.attributes.Location,
+          time: item.attributes.Time,
+        }, 
+      }));
+      console.log(fetchedEvents);
+      // console.log(image);
+
+      setCalendarData(fetchedEvents);
+    } catch (error) {
+      console.error('Fetching events failed:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
+
+  // if (!homePageData) {
+  //   return <div>Loading...</div>;
+  // }
+  
   return (
     <body>
       <div className="hero-section">
-  <div className="mb-5">
-    <LogoBar />
-  </div>
-  <div className="overlay"></div>
-  <div className="hero-content">
-    <h1> Welcome to the District 4 Website</h1>
-    <p>District 4 includes Mattapan, Dorchester, and parts of Jamaica Plain and Roslindale</p>
-  </div>
-  <div className="scroll-down-container">
-    <div className="scroll-down">
-      <span>Scroll down to learn more</span>
-      <div className="arrow"></div>
-    </div>
-  </div>
-</div>
+        <div className="mb-5">
+          <LogoBar />
+        </div>
+        <div className="overlay"></div>
+        <div className="hero-content">
+          <h1> Welcome to the District 4 Website</h1>
+          <p>District 4 includes Mattapan, Dorchester, and parts of Jamaica Plain and Roslindale</p>
+        </div>
+        <div className="scroll-down-container">
+          <div className="scroll-down">
+            <span>Scroll down to learn more</span>
+            <div className="arrow"></div>
+          </div>
+        </div>
+      </div>
       <div className="container">
       </div>
 
@@ -365,41 +467,100 @@ function Home() {
                   Learn more
                 </button>
             </div>
+            <p className="councilor-description">
+              Councilor Brian Worrell has been dedicated to serving the community of District 4 for many years. His efforts focus on improving local infrastructure, increasing public safety, and ensuring that every voice in the district is heard and valued.
+            </p>
+            <button className="learn-more-button" onClick={() => window.location.href = '/client-info'}>
+              Learn more
+            </button>
+          </div>
          </div>
-        </div>
+
 
         <div className="top-heading">Announcements</div>
         <Announcement {...passAnnounData} vertical={false} />
         <ViewAllAnnouncements {...passAnnounData} />
 
-        <footer className="footer">
-  <div className="footer-content">
-    <div className="footer-section about">
-      <p>
-        <a href="mailto:brian.worrell@boston.gov">Mail To: brian.worrell@boston.gov</a>
-      </p>
-      <p>
-        <a href="tel:+16176353131">Call: +1 617-635-3131</a>
-      </p>
-      <p>
-        <a href="https://www.google.com/maps/dir//5+Erie+St,+Dorchester,+MA+02121/@42.3266068,-71.1355474,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x89e37bc15204b3e5:0x4e18ab632ba37f9e!2m2!1d-71.0788007!2d42.303259?entry=ttu">
-          District office: 5 Erie St, Dorchester, MA 02121
-        </a>
-      </p>
+        {/* <Resources resources={InvolvedData} />
+        <Resources resources={SubmitandRequestData} /> */}
+      <div>
+      <div className="top-heading">Events Calendar</div>
+      <div className="calendar-page">
+        <div className="calendar-container">
+          <MonthCalendar onDateChange={handleDateChange} calendarData={calendarData} />
+        </div>
+        <div className="events-container">
+          <div className="calendar-text">
+            Events on {selectedDate.toDateString()}:
+          </div>
+          <Events data={filteredEvents} />
+          <div className="view-calendar-button-container">
+            <ViewCalendar {...passCalendarData} />
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div className="footer-bottom">
-    &copy; 2024 District 4. All rights reserved.
-  </div>
-</footer>
-        </body>
+
+    {/* <footer className="footer"> */}
+      <div className="footer-content">
+        <div className="footer-section about">
+         <p>
+            <a href="mailto:brian.worrell@boston.gov">Mail: brian.worrell@boston.gov</a>
+            <a href="tel:+16176353131">Call: +1 617-635-3131</a>
+            <a href="https://www.google.com/maps/dir//5+Erie+St,+Dorchester,+MA+02121/@42.3266068,-71.1355474,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x89e37bc15204b3e5:0x4e18ab632ba37f9e!2m2!1d-71.0788007!2d42.303259?entry=ttu">District office: 5 Erie St, Dorchester, MA 02121</a>
+          </p>
+        </div>
+      </div>
+
+      <div className="top-heading">Announcements</div>
+      <Announcement {...passAnnounData} vertical={false} />
+      <ViewAllAnnouncements {...passAnnounData} />
+
+      <div className="heading mb-4">Subscribe to mailing list</div>
+      <div className="m-4">
+        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width: '100%' }}>
+          <TextInput
+            value={email}
+            type="email"
+            onChange={handleEmailChange}
+            aria-label="email-input"
+            placeholder="Enter your email"
+            style={{ border: '1px solid #ccc', borderRadius: '4px' }}
+          />
+          <Button onClick={handleSubscribe} variant="primary" style={{ padding: '5px' }}>
+            Subscribe
+          </Button>
+        </div>
+      </div>
+
+      <footer className="footer">
+        <div className="footer-content">
+          <div className="footer-section about">
+            <p>
+              <a href="mailto:brian.worrell@boston.gov">Mail To: brian.worrell@boston.gov</a>
+            </p>
+            <p>
+              <a href="tel:+16176353131">Call: +1 617-635-3131</a>
+            </p>
+            <p>
+              <a href="https://www.google.com/maps/dir//5+Erie+St,+Dorchester,+MA+02121/@42.3266068,-71.1355474,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x89e37bc15204b3e5:0x4e18ab632ba37f9e!2m2!1d-71.0788007!2d42.303259?entry=ttu">
+                District office: 5 Erie St, Dorchester, MA 02121
+              </a>
+            </p>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          &copy; 2024 District 4. All rights reserved.
+        </div>
+      </footer>
+    </body>
   );
 }
 
 export type { calData };
 export type { announData };
 export type { upData };
-export type {DevelopmentData}
+export type { DevelopmentData }
 export { APIUrl };
 
 export default Home;

@@ -25,7 +25,7 @@
         "audios"
       ],
       "type": "media",
-      "multiple": false
+      "multiple": true
     },
     "councilorName": {
       "type": "string"
@@ -41,7 +41,7 @@
         "audios"
       ],
       "type": "media",
-      "multiple": false
+      "multiple": true
     }
   }
 }
