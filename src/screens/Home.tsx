@@ -150,14 +150,13 @@ function Home() {
   const handleSubscribe = async () => {
     if (email) {
       try {
-        const response = await fetch(
+        const response = await axios.post(
           'http://pitne-d4-app-strapi-production.up.railway.app/api/mailing-lists',
+          { data: { email } },
           {
-            method: "POST",
             headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            }
+              'Content-Type': 'application/json',
+            },
           }
         );
         if (response.status === 200 || response.status === 201) {
