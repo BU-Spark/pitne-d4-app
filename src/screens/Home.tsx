@@ -149,24 +149,6 @@ function Home() {
 
   const handleSubscribe = async () => {
     if (email) {
-      // try {
-      //   const response = await axios.post(
-      //     'http://pitne-d4-app-strapi-production.up.railway.app/api/mailing-lists',
-      //     { data: { email } },
-      //     {
-      //       headers: {
-      //         'Content-Type': 'application/json',
-      //       },
-      //     }
-      //   );
-      //   if (response.status === 200 || response.status === 201) {
-      //     setEmail(''); // Clear the input after successful subscription
-      //   } else {
-      //     console.error('Failed to subscribe');
-      //   }
-      // } catch (error) {
-      //   console.error('An error occurred while subscribing:', error);
-      // }
       fetch('https://pitne-d4-app-strapi-production.up.railway.app/api/mailing-lists', {
         method: 'POST',
         headers: {
@@ -174,7 +156,7 @@ function Home() {
         },
         body: JSON.stringify({
           data: {
-            Email: 'testEmail@gmail.com'
+            Email: email,
           }
         })
       })
