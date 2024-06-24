@@ -456,7 +456,7 @@ function Home() {
           <div className="councilor-background">
             <div className="overlay"></div>
               <div className="councilor-content">
-              <h2 className="councilor-heading">About the Councilor</h2>
+              <h2 className="top-heading">About the Councilor</h2>
                 <div className="councilor-image">
                   <img src="./images/BrianWorell.jpeg" alt="Councilor" />
                 </div>
@@ -478,7 +478,7 @@ function Home() {
         {/* <Resources resources={InvolvedData} />
         <Resources resources={SubmitandRequestData} /> */}
       <div>
-      <div className="top-heading">Events Calendar</div>
+      <div className="top-heading" style={{marginTop: '40px'}}>Events Calendar</div>
       <div className="calendar-page">
         <div className="calendar-container">
           <MonthCalendar onDateChange={handleDateChange} calendarData={calendarData} />
@@ -489,28 +489,15 @@ function Home() {
           </div>
           <Events data={filteredEvents} />
           <div className="view-calendar-button-container">
+          <div style={{ borderRadius: '50%', overflow: 'hidden' }}>
             <ViewCalendar {...passCalendarData} />
+          </div>
           </div>
         </div>
       </div>
     </div>
 
-    {/* <footer className="footer"> */}
-      <div className="footer-content">
-        <div className="footer-section about">
-         <p>
-            <a href="mailto:brian.worrell@boston.gov">Mail: brian.worrell@boston.gov</a>
-            <a href="tel:+16176353131">Call: +1 617-635-3131</a>
-            <a href="https://www.google.com/maps/dir//5+Erie+St,+Dorchester,+MA+02121/@42.3266068,-71.1355474,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x89e37bc15204b3e5:0x4e18ab632ba37f9e!2m2!1d-71.0788007!2d42.303259?entry=ttu">District office: 5 Erie St, Dorchester, MA 02121</a>
-          </p>
-        </div>
-      </div>
-
-      <div className="top-heading">Announcements</div>
-      <Announcement {...passAnnounData} vertical={false} />
-      <ViewAllAnnouncements {...passAnnounData} />
-
-      <div className="heading mb-4">Subscribe to mailing list</div>
+      <div className="heading mb-4" style={{ marginTop: '25px'}}>Subscribe to Mailing List</div>
       <div className="m-4">
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width: '100%' }}>
           <TextInput
@@ -521,7 +508,7 @@ function Home() {
             placeholder="Enter your email"
             style={{ border: '1px solid #ccc', borderRadius: '4px' }}
           />
-          <Button onClick={handleSubscribe} variant="primary" style={{ padding: '5px' }}>
+          <Button onClick={handleSubscribe} variant="primary" style={{ padding: '5px'}}>
             Subscribe
           </Button>
         </div>

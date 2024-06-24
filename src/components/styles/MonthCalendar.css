@@ -12,6 +12,7 @@
   font-size: 2.5vw;
   margin-top: 20px;
   margin-bottom: 20px;
+  border-radius: 15px;
 }
 /* days of the week */
 .react-datepicker__header {
@@ -89,11 +90,6 @@
   font-weight: bold; /* Example to make it bold */
   /* Light grey background */
 }
-/* 
-.react-datepicker__month-container {
-  max-width: 500px;
-  max-height: 500px;
-} */
 
 @media (max-width: 700px) {
   .calendar {
@@ -108,6 +104,7 @@
   .react-datepicker {
     font-family: 'Red Hat Text';
     font-size: 4vw;
+    /* border-radius: 15px; */
   }
   /* days of the week */
   .react-datepicker__header {
@@ -139,25 +136,7 @@
     vertical-align: middle;
     color: #152d5c;
   }
-  /* .react-datepicker__navigation {
-    display: flex;
-    width: 6vw;
-  } */
-  /* .react-datepicker__navigation-icon--next::before {
-    transform: rotate(45deg);
-    left: -5vw;
-    font-size: 16px;
-    width: 20px;
-    height: 20px;
-    display: inline-block; 
-  }
-  .react-datepicker__navigation-icon--previous::before {
-    left: 0vw;
-    font-size: 16px;
-    width: 20px;
-    height: 20px;
-    display: inline-block; 
-  } */
+
   .dot-indicator {
     color: red;
     position: absolute;
