@@ -57,6 +57,7 @@ function AllEvents() {
         }, 
       }));
       console.log(fetchedEvents);
+      // console.log(image);
 
       setCalendarData(fetchedEvents);
     } catch (error) {
@@ -82,9 +83,10 @@ function AllEvents() {
 
       <div className="top-heading">District 4 Events Calendar</div>
       <MonthCalendar onDateChange={handleDateChange} calendarData={calendarData}/>
+      <div className="calendar-text">
+        Events on {selectedDate.toDateString()}:
+      </div>
 
-      {/* <EventButton /> */}
-      {/* {localStorage.getItem('isManager') === 'true' && <EventButton />} EST time zone */}
       <Events data={filteredEvents} />
 
       <div className = "calendar-text">All Upcoming Events: </div>
