@@ -21,6 +21,7 @@ import ViewAllDevs from "../components/home/Developments/ViewAllDevs";
 import axios from "axios";
 import MonthCalendar from "../components/home/calendar/MonthCalendar";
 import Events from "../components/home/calendar/Calendar";
+import ClientImage from '../images/BrianW.png'
 
 
 //for dev,
@@ -434,21 +435,21 @@ function Home() {
   return (
     <body>
       <div className="hero-section">
-        <div className="mb-5">
-          <LogoBar />
-        </div>
-        <div className="overlay"></div>
-        <div className="hero-content">
-          <div className = "top-heading-white"> WELCOME TO THE DISTRICT 4 WEBSITE</div>
-          <p>District 4 includes Mattapan, Dorchester, and parts of Jamaica Plain and Roslindale</p>
-        </div>
-        <div className="scroll-down-container">
-          <div className="scroll-down">
-            <span>Swipe up to learn more</span>
-            <div className="arrow"></div>
-          </div>
-        </div>
+    <div className="mb-5">
+      <LogoBar />
+    </div>
+    <div className="overlay"></div>
+    <div className="hero-content">
+      <div className="top-heading-white">WELCOME TO THE DISTRICT 4 WEBSITE</div>
+      <p>District 4 includes Mattapan, Dorchester, and parts of Jamaica Plain and Roslindale</p>
+    </div>
+    <div className="scroll-down-container">
+      <div className="scroll-down">
+        <span>Swipe up to learn more</span>
+        <div className="arrow"></div>
       </div>
+    </div>
+  </div>
       <div className="container">
       </div>
 
@@ -457,9 +458,9 @@ function Home() {
             <div className="overlay"></div>
               <div className="councilor-content">
               <h2 className="councilor-heading">ABOUT THE COUNCILOR</h2>
-                <div className="councilor-image">
-                  <img src="./images/BrianWorell.jpeg" alt="Councilor" />
-                </div>
+              <div className='p-4'>
+                <img src={ClientImage} alt="Client image" />
+              </div>
                 <p className="councilor-description">
                 Councilor Brian Worrell has been dedicated to serving the community of District 4 for many years. His efforts focus on improving local infrastructure, increasing public safety, and ensuring that every voice in the district is heard and valued.
                 </p>
