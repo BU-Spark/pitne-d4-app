@@ -174,7 +174,7 @@ function Home() {
     const fetchHomePageData = async () => {
       try {
         // Adjust the URL to match your Strapi API endpoint
-        const response = await axios.get('http://localhost:1337/api/home-page?populate=*');
+        const response = await axios.get('https://pitne-d4-app-strapi-production.up.railway.app/api/home-page?populate=*');
         const data = response.data.data.attributes;
         setHomePageData({
           heroTitle: data.heroTitle,
