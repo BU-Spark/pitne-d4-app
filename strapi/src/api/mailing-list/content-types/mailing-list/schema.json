@@ -13,7 +13,7 @@
   "pluginOptions": {},
   "attributes": {
     "Email": {
-      "type": "string"
+      "type": "email"
     }
   }
 }

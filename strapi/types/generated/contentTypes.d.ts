@@ -942,6 +942,7 @@ export interface ApiEventEvent extends Schema.CollectionType {
     ContactInfo: Attribute.String & Attribute.DefaultTo<'No Info'>;
     EventDate: Attribute.DateTime;
     Location: Attribute.String;
+    Time: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1043,7 +1044,7 @@ export interface ApiMailingListMailingList extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    Email: Attribute.String;
+    Email: Attribute.Email;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
