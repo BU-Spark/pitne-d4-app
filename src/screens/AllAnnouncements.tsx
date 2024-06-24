@@ -37,7 +37,7 @@ function AllAnnouncements() {
         <div className="mb-5">
           <LogoBar />
         </div>
-        <div className="top-heading">All Announcements</div>
+        <div className="top-heading">ALL ANNOUNCEMENTS</div>
         <div className="detailed-announcements-container">
           {announcements.map(announcement => (
             <DetailedAnnouncementCard

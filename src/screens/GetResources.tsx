@@ -42,7 +42,7 @@ function GetResources() {
       </div>
       <div className='mt-5 p-4'>
         <h1 >
-          <b>All Resources</b>
+          <b>ALL RESOURCES</b>
         </h1>
         <div className='m-4'>
           <TextInput

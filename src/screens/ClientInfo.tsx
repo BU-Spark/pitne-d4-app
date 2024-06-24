@@ -11,7 +11,7 @@ const ClientInfo: React.FC = () => {
           <div className="mb-5">
             <LogoBar />
           </div>
-          <div className="top-heading" style={{ fontSize: '28px' }}>About the Councilor</div>
+          <div className="top-heading" style={{ fontSize: '28px' }}>ABOUT THE COUNCILOR</div>
           <div className='p-4'>
             <img src={ClientImage} alt="Client image" />
           </div>

@@ -12,7 +12,7 @@ function Header() {
           <LogoBar />
           <div className="mt-4 ms-4 portal-nav">
               <AngleLeftIcon size="md" onClick={() => navigate("/311Forms")}/>
-              Download the App here
+              DOWNLOAD THE APP HERE
           </div>
       </div>
     );

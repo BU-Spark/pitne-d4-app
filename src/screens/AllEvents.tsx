@@ -78,7 +78,7 @@ function AllEvents() {
       </div>
       <LogoBar />
 
-      <div className="top-heading">District 4 Events Calendar</div>
+      <div className="top-heading">DISTRICT 4 EVENTS CALENDAR</div>
       <MonthCalendar onDateChange={handleDateChange} calendarData={calendarData}/>
       <div className="calendar-text">
         Events on {selectedDate.toDateString()}:
@@ -86,7 +86,7 @@ function AllEvents() {
 
       <Events data={filteredEvents} />
 
-      <div className = "calendar-text">All Upcoming Events: </div>
+      <div className = "calendar-text">ALL UPCOMING EVENTS: </div>
         <Events data={calendarData} />
     </div>
     <Footer />

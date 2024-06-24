@@ -30,7 +30,7 @@ function NonEmergencyForms() {
     <div className="content-wrap">
       <div className = "mb-5"></div>
       <LogoBar />
-      <div className="top-heading">Report a Non-Emergency Issue</div>
+      <div className="top-heading">REPORT A NON-EMERGENCY ISSUE</div>
       <div className="grid-container">
         <div className="grid-item" onClick={handleCall}>
         <div className='p-4'>

@@ -173,7 +173,7 @@ function CivicAssociations() {
             {addressEntered && associationPart &&
                 <div>
                     <h1 className='mt-3'>
-                        <b>Your Association</b>
+                        <b>YOUR ASSOCIATION</b>
                     </h1>
                     <AssociationCard
                         key={matchedAssociation?.id}
@@ -193,7 +193,7 @@ function CivicAssociations() {
             }
             <div>
                 <h1 className='mt-3'>
-                    <b>All Associations</b>
+                    <b>ALL ASSOCIATIONS</b>
 
                 </h1>
                 <div className='m-4'>
