@@ -80,15 +80,23 @@
   color: #152d5c;
 }
 .react-datepicker__navigation {
-  margin: 20px;
+  /* margin: 20px; */
   display: flex;
   width: 2vw;
   height: auto;
   top: 2.5vw;
 }
+
+.react-datepicker__navigation--previous {
+  margin-left: 20px;
+}
+
+.react-datepicker__navigation--next {
+  margin-right: 20px;
+}
+
 .react-datepicker__day--today {
   font-weight: bold; /* Example to make it bold */
-  /* Light grey background */
 }
 
 @media (max-width: 700px) {
