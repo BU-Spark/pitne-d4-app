@@ -4,6 +4,7 @@ import LogoBar from "../components/home/LogoBar";
 import Announcements from "../components/home/announcements/Announcement";
 import {getFirestore, collection, getDocs} from "firebase/firestore";
 import Footer from "../components/home/footer";
+import DetailedAnnouncementCard from "../components/home/announcements/detailedAnnouncements";
 
 function AllAnnouncements() {
   const db = getFirestore();
@@ -30,15 +31,24 @@ function AllAnnouncements() {
   }, []);
 
   return (
-    <div className="page-container">
+    <div>
+      <div className="page-container">
       <div className="content-wrap">
         <div className="mb-5">
           <LogoBar />
         </div>
         <div className="top-heading">All Announcements</div>
-        <div className = "announcements">
-          <Announcements announs={announcements} vertical={true} />
+        <div className="detailed-announcements-container">
+          {announcements.map(announcement => (
+            <DetailedAnnouncementCard
+              key={announcement.id} // Ensures each card is uniquely identified
+              title={announcement.attributes.title}
+              body={announcement.attributes.description}
+              date={announcement.attributes.date}
+            />
+          ))}
         </div>
+      </div>
       </div>
       <Footer />
     </div>

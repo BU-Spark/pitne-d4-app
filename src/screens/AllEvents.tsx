@@ -10,6 +10,7 @@ import LogoBar from "../components/home/LogoBar";
 import MonthCalendar from "../components/home/calendar/MonthCalendar";
 import EventButton from "../components/home/calendar/AddEvent";
 import axios from "axios";
+import Footer from "../components/home/footer";
 // import { useIsManager } from "./Home";
 
 function AllEvents() {
@@ -60,7 +61,7 @@ function AllEvents() {
           : '',
           date: item.attributes.EventDate,
           location: item.attributes.Location,
-          time: item.attributes.Time,
+          time: item.attributes.EventDate,
         }, 
       }));
       console.log(fetchedEvents);
@@ -77,16 +78,12 @@ function AllEvents() {
   }, []);
 
   return (
+    <div>
     <div className="container">
       <div className = "mb-5">
       <LogoBar />
       </div>
-      {/* <LogoBar /> */}
-      {/* <div className="mt-4 ms-4 portal-nav">
-      <div className = "grab-cursor">
-        <AngleLeftIcon size="md" onClick={() => navigate("/")} />
-      </div>
-      </div> */}
+      <LogoBar />
 
       <div className="top-heading">District 4 Events Calendar</div>
       <MonthCalendar onDateChange={handleDateChange} calendarData={calendarData}/>
@@ -98,6 +95,8 @@ function AllEvents() {
 
       <div className = "calendar-text">All Upcoming Events: </div>
         <Events data={upcomingEvents} />
+    </div>
+    <Footer />
     </div>
   );
 }

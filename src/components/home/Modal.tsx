@@ -27,15 +27,18 @@ export default function Modal(props: ModalType) {
           <button onClick={props.toggle} className="closeModal">X</button>
             <div className="modal-wrapper">
               <p><b>{props.title}</b></p>
-              <Text>
+              {props.date && (<Text>
                 <b>Date: </b>{day}
-              </Text>
-              {props.location && (<Text>
-                <b>Where: </b>{props.location}
               </Text>)}
-              <Text>
+              
+              {props.location && (<Text>
+                <b>Location: </b>{props.location}
+              </Text>)}
+
+              {props.date && (<Text>
                 <b>When: </b>{time}
-              </Text>
+              </Text>)}
+
                 <p className="modal-text">
                   {props.content}
                 </p>

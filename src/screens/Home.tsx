@@ -11,7 +11,7 @@ import LogoBar from "../components/home/LogoBar";
 import ViewAllPosts from "../components/home/ViewAllPosts";
 import Announcement from "../components/home/announcements/Announcement";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@patternfly/react-core";
+import { Button, TextInput } from "@patternfly/react-core";
 import ViewAllAnnouncements from "../components/home/announcements/ViewAllAnnouncements";
 import ViewCalendar from "../components/home/calendar/ViewCalendar";
 import Resources from "../components/home/Resources";
@@ -24,8 +24,8 @@ import Events from "../components/home/calendar/Calendar";
 
 
 //for dev,
-const APIUrl = "https://se-d7-dev.up.railway.app/api/";
-
+// const APIUrl = "https://se-d7-dev.up.railway.app/api/";
+const APIUrl = "https://pitne-d4-app-strapi-production.up.railway.app/api/";
 
 //initialise the type of calendar and tweet data we are getting from strapi
 type calData = {
@@ -65,14 +65,14 @@ type DevelopmentData = {
     date?: string;
   };
 };
-// type HomePageData = {
-//   heroTitle: string;
-//   heroDescription: string;
-//   heroImage: { url: string };
-//   councilorName: string;
-//   councilorDescription: string;
-//   councilorImage: { url: string };
-// };
+type HomePageData = {
+  heroTitle: string;
+  heroDescription: string;
+  heroImage: { url: string };
+  councilorName: string;
+  councilorDescription: string;
+  councilorImage: { url: string };
+};
 
 
 
@@ -139,9 +139,59 @@ function Home() {
   const [announData, setAnnounData] = React.useState<announData[]>([]);
   // const [tweetData, setTweetData] = React.useState<tweetData[]>([]);
   const [developmentData, setDevelopmentData] = React.useState<DevelopmentData[]>([]);
-  //const [homePageData, setHomePageData] = useState<HomePageData | null>(null);
+  const [homePageData, setHomePageData] = useState<HomePageData | null>(null);
 
+  const [email, setEmail] = useState('');
 
+  const handleEmailChange = (value: string) => {
+    setEmail(value);
+  };
+
+  const handleSubscribe = async () => {
+    if (email) {
+      try {
+        const response = await axios.post(
+          'http://pitne-d4-app-strapi-production.up.railway.app/api/mailing-lists',
+          { data: { email } },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        );
+        if (response.status === 200 || response.status === 201) {
+          setEmail(''); // Clear the input after successful subscription
+        } else {
+          console.error('Failed to subscribe');
+        }
+      } catch (error) {
+        console.error('An error occurred while subscribing:', error);
+      }
+    }
+  };
+
+  useEffect(() => {
+    const fetchHomePageData = async () => {
+      try {
+        // Adjust the URL to match your Strapi API endpoint
+        const response = await axios.get('http://localhost:1337/api/home-page?populate=*');
+        const data = response.data.data.attributes;
+        setHomePageData({
+          heroTitle: data.heroTitle,
+          heroDescription: data.heroDescription,
+          heroImage: data.heroImage.data.attributes.url,
+          councilorName: data.councilorName,
+          councilorDescription: data.councilorDescription,
+          councilorImage: data.councilorImage.data.attributes.url
+        });
+      } catch (error) {
+        console.error('Fetching home page data failed:', error);
+      }
+    };
+
+    fetchHomePageData();
+  }, []);
+  
   // useEffect(() => {
   //   const fetchHomePageData = async () => {
   //     try {
@@ -152,12 +202,12 @@ function Home() {
   //       console.error('Fetching home page data failed:', error);
   //     }
   //   };
-  
+
   //   fetchHomePageData();
   // }, []);
-  
 
-  
+
+
   // This function fetch user interests from user-profile
   // The userEmail has default parameter to handle anonymous users that wants to use app without logging in
   const fetchdata = useCallback(async (userEmail = "defaultuser@email.com") => {
@@ -211,8 +261,6 @@ function Home() {
   useEffect(() => {
     const fetchCalendarData = async () => {
       try {
-        // const res = await fetch(APIUrl + "calendars");
-        // const json = await res.json();
         const eventsCollection = collection(db, "events");
         // Get all documents from the "events" collection
         const eventsSnapshot = await getDocs(eventsCollection);
@@ -228,20 +276,10 @@ function Home() {
         console.log(error);
       }
     };
-    
+
 
     const fetchAnnounData = async () => {
-      // try {
-      //   const res = await fetch(APIUrl + "tweets");
-      //   const json = await res.json();
-      //   setannounData(json.data);
-      // } catch (error) {
-      //   console.error(error);
-      // }
-
       try {
-        // const res = await fetch(APIUrl + "calendars");
-        // const json = await res.json();
         const announsCollection = collection(db, "announcements");
         // Get all documents from the "events" collection
         const announSnapshot = await getDocs(announsCollection);
@@ -300,37 +338,21 @@ function Home() {
       })
     };
     //Get Submit and Request Data
-    const fetchGetSubmitRequestData = async () => {
-      fetch(APIUrl + "submit-requests-and-reports").then((res) => {
-        if (res.ok) {
-          res.json().then((json) => {
-            const links = json.data.map((obj: any) => ({ title: obj.attributes.title, url: obj.attributes.url }));
-            const result = [{ title: 'Submit Request and Reports', links }];
-            setSubmitandRequestData(result);
-          });
-        } else {
-          console.log(`status code: ${res.status}`);
-        }
-      }).catch((e) => {
-        console.log(e);
-      })
-    };
     const fetchDevelopmentData = async () => {
       const developmentCollection = collection(db, "Developments");
       const snapshot = await getDocs(developmentCollection);
       const loadedDevelopments = snapshot.docs.map(doc => ({
-        ...doc.data() 
+        ...doc.data()
       })) as DevelopmentData[];
       console.log(loadedDevelopments)
       setDevelopmentData(loadedDevelopments);
     }
-  
+
     fetchDevelopmentData();
     fetchCalendarData();
     fetchAnnounData();
     fetchUpdateData();
     fetchGetInvolvedData();
-    fetchGetSubmitRequestData();
   }, [db]);
 
   //create object to pass as props to Calendar component
@@ -351,6 +373,7 @@ function Home() {
     }
   }, [auth.currentUser, fetchdata]);
 
+  
   // const [calendarData, setCalendarData] = useState<calData[]>([]);
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
@@ -408,64 +431,54 @@ function Home() {
   //   return <div>Loading...</div>;
   // }
   
-
   return (
     <body>
       <div className="hero-section">
+        <div className="mb-5">
+          <LogoBar />
+        </div>
         <div className="overlay"></div>
         <div className="hero-content">
           <h1> Welcome to the District 4 Website</h1>
           <p>District 4 includes Mattapan, Dorchester, and parts of Jamaica Plain and Roslindale</p>
         </div>
-      </div>
-      {/* <div className="hero-section" style={{ backgroundImage: `url(${homePageData.heroImage.url})` }}>
-      <div className="overlay"></div>
-      <div className="hero-content">
-        <h1>{homePageData.heroTitle}</h1>
-        <p>{homePageData.heroDescription}</p>
-      </div>
-    </div> */}
-  
-      <div className="container">
-        <div className="mb-5">
-          <LogoBar />
+        <div className="scroll-down-container">
+          <div className="scroll-down">
+            <span>Swipe up to learn more</span>
+            <div className="arrow"></div>
+          </div>
         </div>
+      </div>
+      <div className="container">
       </div>
 
         <div className="councilor-section">
           <div className="councilor-background">
             <div className="overlay"></div>
               <div className="councilor-content">
-              <h2 className="councilor-heading">About the Councilor</h2>
+              <h2 className="top-heading">About the Councilor</h2>
                 <div className="councilor-image">
                   <img src="./images/BrianWorell.jpeg" alt="Councilor" />
                 </div>
                 <p className="councilor-description">
                 Councilor Brian Worrell has been dedicated to serving the community of District 4 for many years. His efforts focus on improving local infrastructure, increasing public safety, and ensuring that every voice in the district is heard and valued.
                 </p>
+                <button className="learn-more-button" onClick={() => window.location.href = '/client-info'}>
+                  Learn more
+                </button>
             </div>
+          </div>
          </div>
-        </div>
 
-      {/* <div className="councilor-section">
-        <h2 className="councilor-heading">About the Councilor</h2>
-        <div className="councilor-image">
-          <img src={homePageData.councilorImage.url} alt="Councilor" />
-        </div>
-        <p className="councilor-description">
-          {homePageData.councilorDescription}
-        </p>
-      </div> */}
 
         <div className="top-heading">Announcements</div>
         <Announcement {...passAnnounData} vertical={false} />
         <ViewAllAnnouncements {...passAnnounData} />
-        
 
         {/* <Resources resources={InvolvedData} />
         <Resources resources={SubmitandRequestData} /> */}
       <div>
-      <div className="top-heading">Events Calendar</div>
+      <div className="top-heading" style={{marginTop: '40px'}}>Events Calendar</div>
       <div className="calendar-page">
         <div className="calendar-container">
           <MonthCalendar onDateChange={handleDateChange} calendarData={calendarData} />
@@ -476,34 +489,60 @@ function Home() {
           </div>
           <Events data={filteredEvents} />
           <div className="view-calendar-button-container">
+          <div style={{ borderRadius: '50%', overflow: 'hidden' }}>
             <ViewCalendar {...passCalendarData} />
+          </div>
           </div>
         </div>
       </div>
     </div>
 
-    <footer className="footer">
-      <div className="footer-content">
-        <div className="footer-section about">
-         <p>
-            <a href="mailto:brian.worrell@boston.gov">Mail: brian.worrell@boston.gov</a>
-            <a href="tel:+16176353131">Call: +1 617-635-3131</a>
-            <a href="https://www.google.com/maps/dir//5+Erie+St,+Dorchester,+MA+02121/@42.3266068,-71.1355474,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x89e37bc15204b3e5:0x4e18ab632ba37f9e!2m2!1d-71.0788007!2d42.303259?entry=ttu">District office: 5 Erie St, Dorchester, MA 02121</a>
-          </p>
+
+      <div className="heading mb-4">Subscribe to mailing list</div>
+      <div className="m-4">
+        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width: '100%' }}>
+          <TextInput
+            value={email}
+            type="email"
+            onChange={handleEmailChange}
+            aria-label="email-input"
+            placeholder="Enter your email"
+            style={{ border: '1px solid #ccc', borderRadius: '4px' }}
+          />
+          <Button onClick={handleSubscribe} variant="primary" style={{ padding: '5px'}}>
+            Subscribe
+          </Button>
         </div>
       </div>
-      <div className="footer-bottom">
-        &copy; 2024 District 4. All rights reserved.
-      </div>
-    </footer>
-        </body>
+
+      <footer className="footer">
+        <div className="footer-content">
+          <div className="footer-section about">
+            <p>
+              <a href="mailto:brian.worrell@boston.gov">Mail To: brian.worrell@boston.gov</a>
+            </p>
+            <p>
+              <a href="tel:+16176353131">Call: +1 617-635-3131</a>
+            </p>
+            <p>
+              <a href="https://www.google.com/maps/dir//5+Erie+St,+Dorchester,+MA+02121/@42.3266068,-71.1355474,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x89e37bc15204b3e5:0x4e18ab632ba37f9e!2m2!1d-71.0788007!2d42.303259?entry=ttu">
+                District office: 5 Erie St, Dorchester, MA 02121
+              </a>
+            </p>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          &copy; 2024 District 4. All rights reserved.
+        </div>
+      </footer>
+    </body>
   );
 }
 
 export type { calData };
 export type { announData };
 export type { upData };
-export type {DevelopmentData}
+export type { DevelopmentData }
 export { APIUrl };
 
 export default Home;

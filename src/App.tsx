@@ -18,6 +18,7 @@ import AllEvents from "./screens/AllEvents";
 import CivicAssociations from "./screens/CivicAssociations";
 import AddressEntry from "./screens/AddressEntry";
 import CivicAssociationsInfo from "./screens/CivicAssociationsInfo";
+import ClientInfo from "./screens/ClientInfo";
 
 // init firebase app
 import { initializeApp } from "firebase/app";
@@ -26,12 +27,15 @@ import DownloadApp from "./screens/downloadApp";
 import DevelopmentsPage from "./screens/AllDevelopment";
 import NonEmergencyForms from "./screens/311Forms";
 
+import ScrollToTop from './components/home/ScrollToTop';
+
 initializeApp(config.firebaseConfig);
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+      <ScrollToTop />
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Register />} />
@@ -50,6 +54,7 @@ function App() {
           <Route path="/downloadApp" element={<DownloadApp />} />
           <Route path="/all-developments" element={<DevelopmentsPage />} />
           <Route path="/311Forms" element={<NonEmergencyForms />} />
+          <Route path="/client-info" element={<ClientInfo />} />
         </Routes>
       </BrowserRouter>
     </div>

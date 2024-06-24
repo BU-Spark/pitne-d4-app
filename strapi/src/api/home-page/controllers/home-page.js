@@ -1,7 +1,9 @@
-"use strict";
+'use strict';
+
 /**
  * home-page controller
  */
-Object.defineProperty(exports, "__esModule", { value: true });
-var strapi_1 = require("@strapi/strapi");
-exports.default = strapi_1.factories.createCoreController('api::home-page.home-page');
+
+const { createCoreController } = require('@strapi/strapi').factories;
+
+module.exports = createCoreController('api::home-page.home-page');
