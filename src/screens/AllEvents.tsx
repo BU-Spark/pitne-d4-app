@@ -6,7 +6,7 @@ import Events from "../components/calendar/Calendar";
 import NavBar from "../components/navbar/NavBar";
 import MonthCalendar from "../components/calendar/MonthCalendar";
 import Footer from "../components/Footer";
-// import { useIsManager } from "./Home";
+import ScrollDirection from "../components/calendar/ScrollDirection";
 
 function AllEvents() {
   const [calendarData, setCalendarData] = useState<calData[]>([]);
@@ -90,6 +90,8 @@ function AllEvents() {
     fetchEvents();
   }, []);
 
+  const usescrollDirection = ScrollDirection();
+
   return (
     <div>
       <div className="container">
@@ -104,9 +106,9 @@ function AllEvents() {
           Events on {selectedDate.toDateString()}:
         </div>
 
-        <Events data={filteredEvents} />
+        <Events data={filteredEvents} scrollDirection='horizontal' />
         <div className="calendar-text">All Upcoming Events: </div>
-        <Events data={upcomingEvents} />
+        <Events data={upcomingEvents} scrollDirection='horizontal' />
       </div>
       <Footer />
     </div>
