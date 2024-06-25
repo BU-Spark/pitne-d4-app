@@ -32,10 +32,6 @@ export default function Modal(props: ModalType) {
                 <b>Location: </b>{props.location}
               </Text>)}
 
-              {props.date && (<Text>
-                <b>When: </b>{props.time}
-              </Text>)}
-
               <p className="modal-text">
                 {props.content}
               </p>
