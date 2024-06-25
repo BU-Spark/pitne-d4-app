@@ -2,26 +2,17 @@ import * as React from "react";
 import { useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc, getFirestore, collection, getDocs, query, where } from "firebase/firestore";
-import Search from "../components/home/Search";
 import { useEffect, useCallback } from "react";
-import Calendar from "../components/home/calendar/Calendar";
-import Pinned from "../components/home/Pinned";
-import Updates from "../components/home/Updates";
 import LogoBar from "../components/home/LogoBar";
-import ViewAllPosts from "../components/home/ViewAllPosts";
 import Announcement from "../components/home/announcements/Announcement";
 import { useNavigate } from "react-router-dom";
 import { Button, TextInput } from "@patternfly/react-core";
 import ViewAllAnnouncements from "../components/home/announcements/ViewAllAnnouncements";
 import ViewCalendar from "../components/home/calendar/ViewCalendar";
-import Resources from "../components/home/Resources";
-import { cursorTo } from "readline";
-import DevelopmentUpdates from "../components/home/Developments/Development";
-import ViewAllDevs from "../components/home/Developments/ViewAllDevs";
 import axios from "axios";
 import MonthCalendar from "../components/home/calendar/MonthCalendar";
 import Events from "../components/home/calendar/Calendar";
-import ClientImage from '../images/BrianW.png'
+import ClientImage from '../images/BrianW.png';
 
 
 //for dev,
