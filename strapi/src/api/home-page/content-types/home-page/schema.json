@@ -12,13 +12,13 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "heroTitle": {
+    "welcomeTitle": {
       "type": "string"
     },
-    "heroDescription": {
+    "welcomeDescription": {
       "type": "string"
     },
-    "heroImage": {
+    "welcomeImage": {
       "type": "media",
       "multiple": true,
       "required": false,
@@ -28,6 +28,19 @@
         "videos",
         "audios"
       ]
+    },
+    "CouncilorDesc": {
+      "type": "text"
+    },
+    "CouncilorImage": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }
