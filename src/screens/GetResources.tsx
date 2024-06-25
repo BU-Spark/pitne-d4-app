@@ -35,15 +35,23 @@ function GetResources() {
 
   return (
     <div>
+      <div className="container">
+        <div className="mb-5">
+          <NavBar />
+        </div>
+        <NavBar />
+
+        <div className="top-heading">ALL RESOURCES</div>
+
       <div className="page-container">
         <div className="content-wrap">
-          <div className="mb-5">
+          {/* <div className="mb-5">
             <NavBar />
-          </div>
-          <div className="mt-5 p-4">
-            <h1>
+          </div> */}
+          <div>
+            {/* <h1>
               <b>ALL RESOURCES</b>
-            </h1>
+            </h1> */}
             <div className="m-4">
               <TextInput
                 type="text"
@@ -75,8 +83,10 @@ function GetResources() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
+    <Footer />
+    </div>
+
   );
 };
 

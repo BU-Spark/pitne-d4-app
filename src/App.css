@@ -159,7 +159,7 @@ body {
   flex-direction: column; /* Ensure vertical stacking */
   align-items: center; /* Center the content */
   margin-bottom: 20px;
-  margin-top: 20px;
+  margin-top: 30px;
   position: relative;
 }
 .top-heading-white {
