@@ -292,45 +292,45 @@ function Home() {
 
     // };
 
-    const fetchUpdateData = async () => {
-      fetch(APIUrl + "updates")
-        .then((res) => {
-          if (res.ok) {
-            res.json().then((json) => {
-              setUpdateData(json.data);
-            });
-          } else {
-            console.log(`status code: ${res.status}`);
-            setUpdateData([
-              {
-                id: -1,
-                attributes: {
-                  title: "Uh Oh!",
-                  content: "Looks like there was an issue!",
-                },
-              },
-            ]);
-          }
-        })
-        .catch((e) => {
-          console.error(e);
-        });
-    };
-    const fetchGetInvolvedData = async () => {
-      fetch(APIUrl + "get-involveds").then((res) => {
-        if (res.ok) {
-          res.json().then((json) => {
-            const links = json.data.map((obj: any) => ({ title: obj.attributes.title, url: obj.attributes.url }));
-            const result = [{ title: 'Get Involved', links }];
-            setInvolvedData(result);
-          });
-        } else {
-          console.log(`status code: ${res.status}`);
-        }
-      }).catch((e) => {
-        console.log(e);
-      })
-    };
+    // const fetchUpdateData = async () => {
+    //   fetch(APIUrl + "updates")
+    //     .then((res) => {
+    //       if (res.ok) {
+    //         res.json().then((json) => {
+    //           setUpdateData(json.data);
+    //         });
+    //       } else {
+    //         console.log(`status code: ${res.status}`);
+    //         setUpdateData([
+    //           {
+    //             id: -1,
+    //             attributes: {
+    //               title: "Uh Oh!",
+    //               content: "Looks like there was an issue!",
+    //             },
+    //           },
+    //         ]);
+    //       }
+    //     })
+    //     .catch((e) => {
+    //       console.error(e);
+    //     });
+    // };
+    // const fetchGetInvolvedData = async () => {
+    //   fetch(APIUrl + "get-involveds").then((res) => {
+    //     if (res.ok) {
+    //       res.json().then((json) => {
+    //         const links = json.data.map((obj: any) => ({ title: obj.attributes.title, url: obj.attributes.url }));
+    //         const result = [{ title: 'Get Involved', links }];
+    //         setInvolvedData(result);
+    //       });
+    //     } else {
+    //       console.log(`status code: ${res.status}`);
+    //     }
+    //   }).catch((e) => {
+    //     console.log(e);
+    //   })
+    // };
     //Get Submit and Request Data
     const fetchDevelopmentData = async () => {
       const developmentCollection = collection(db, "Developments");
@@ -345,8 +345,8 @@ function Home() {
     fetchDevelopmentData();
     // fetchCalendarData();
     // fetchAnnounData();
-    fetchUpdateData();
-    fetchGetInvolvedData();
+    // fetchUpdateData();
+    // fetchGetInvolvedData();
   }, [db]);
 
   //create object to pass as props to Calendar component
