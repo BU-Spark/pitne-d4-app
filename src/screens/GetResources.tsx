@@ -59,6 +59,7 @@ function GetResources() {
           ) : (
             filteredResources.map(resource => (
               <Resources
+                key={resource.id}
                 resource={resource}
               />
             ))
@@ -66,6 +67,7 @@ function GetResources() {
         ) : (
           resources.map(resource => (
             <Resources
+              key={resource.id}
               resource={resource}
             />
           ))
