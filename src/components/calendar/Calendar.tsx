@@ -1,7 +1,7 @@
 import * as React from "react";
 import CalendarCard from "./CalendarCard";
 import type { calData } from '../../screens/Home';
-import '../../styles/CalendarEvents.css';
+import './CalendarEvents.css';
 
 interface EventsProps {
     data: calData[];
