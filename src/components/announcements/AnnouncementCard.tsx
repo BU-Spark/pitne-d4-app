@@ -3,7 +3,7 @@ import { Card, Text, Icon } from "@patternfly/react-core";
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
 import Modal from '../Modal';
-import useModal from '../useModal';
+import UseModal from "../UseModal";
 
 function AnnouncementCard(props: {
   title: string;
@@ -14,7 +14,7 @@ function AnnouncementCard(props: {
   const title = props.title;
   const content = props.description;
   const date = props.date ? props.date : "";
-  const { isOpen, toggle } = useModal();
+  const { isOpen, toggle } = UseModal();
 
   const dateTimeString = date;
   const [dateTime, timeWithZ] = dateTimeString.split("T");

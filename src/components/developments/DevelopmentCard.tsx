@@ -4,7 +4,7 @@ import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { EllipsisVIcon } from "@patternfly/react-icons";
 import Modal from '../Modal';
-import UseModal from '../useModal';
+import UseModal from '../UseModal';
 
 function DevelopmentCard(props: {
   title: string;

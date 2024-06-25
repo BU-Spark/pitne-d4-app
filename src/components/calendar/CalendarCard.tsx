@@ -3,8 +3,8 @@ import { Card, Text, Icon } from "@patternfly/react-core";
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
 import Modal from "../Modal";
-import useModal from "../useModal";
 import './CalendarCard.css';
+import UseModal from "../UseModal";
 
 //date and image is optional for now
 function CalendarCard(props: {
@@ -20,7 +20,7 @@ function CalendarCard(props: {
   const date = props.date ? props.date : "";
   const time = props.time ? props.time : "";
   const location = props.location ? props.location : "";
-  const { isOpen, toggle } = useModal();
+  const { isOpen, toggle } = UseModal();
 
   return (
     <Card onClick={toggle} className="ms-1 me-3 my-3 calendar-card">
