@@ -4,7 +4,7 @@ import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { EllipsisVIcon } from "@patternfly/react-icons";
 import Modal from '../Modal';
-import useModal from '../useModal';
+import useModal from '../UseModal';
 
 function AnnouncementCard(props: {
   title: string;
@@ -41,7 +41,7 @@ function AnnouncementCard(props: {
             )}
           </div>
           <div className="row">
-            <small className="text-muted" style={{ marginTop: "10px", color: "#152d5c", fontStyle: "italic", textAlign:"left" }}>
+            <small className="text-muted" style={{ marginTop: "10px", color: "#152d5c", fontStyle: "italic", textAlign: "left" }}>
               Click to see details
             </small>
           </div>

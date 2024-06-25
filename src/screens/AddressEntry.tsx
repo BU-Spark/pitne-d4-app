@@ -4,14 +4,13 @@ import AddressCheckBoxLoading from "../components/address/AddressCheckBoxLoading
 import AddressErrorBox from "../components/address/AddressErrorBox";
 import AddressInvalidBox from "../components/address/AddressInvalidBox";
 import AddressAPIErrorBox from "../components/address/AddressAPIErrorBox";
-import StateSelection from "../components/address/StateSelection";
 import { TextInput, Button } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
-import ProgressBar from "../components/home/Progressbar";
+import ProgressBar from "../components/Progressbar";
 import { loadModules } from "esri-loader";
 import { Query } from "firebase/firestore";
 import { tr } from "date-fns/locale";
-import LogoBar from "../components/home/LogoBar";
+import NavBar from "../components/navbar/NavBar";
 
 function AddressEntry() {
   const navigate = useNavigate();
@@ -135,7 +134,7 @@ function AddressEntry() {
 
     <div className='p-4 m-3' style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
       <div className="mb-5">
-        <LogoBar />
+        <NavBar />
       </div>
       <div>
         <h1><b>Address Entry</b></h1>

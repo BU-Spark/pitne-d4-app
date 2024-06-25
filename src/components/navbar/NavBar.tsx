@@ -1,11 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import LogIn from './LoginButton';
 import HamburgerMenu from "./Hamburger";
-import LogOut from '../../screens/LogOut';
 import logo from './../../images/d4_logo.png'
 
-function LogoBar() {
+function NavBar() {
     const navigate = useNavigate();
 
     const handleLogoClick = () => {
@@ -24,4 +22,4 @@ function LogoBar() {
     );
 }
 
-export default LogoBar;
+export default NavBar;

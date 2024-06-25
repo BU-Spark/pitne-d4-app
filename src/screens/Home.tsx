@@ -2,25 +2,21 @@ import * as React from "react";
 import { useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc, getFirestore, collection, getDocs, query, where } from "firebase/firestore";
-import Search from "../components/home/Search";
 import { useEffect, useCallback } from "react";
-import Calendar from "../components/home/calendar/Calendar";
-import Pinned from "../components/home/Pinned";
-import Updates from "../components/home/Updates";
-import LogoBar from "../components/home/LogoBar";
-import ViewAllPosts from "../components/home/ViewAllPosts";
-import Announcement from "../components/home/announcements/Announcement";
+import Calendar from "../components/calendar/Calendar";
+import NavBar from "../components/navbar/NavBar";
+import Announcement from "../components/announcements/Announcement";
 import { useNavigate } from "react-router-dom";
 import { Button, TextInput } from "@patternfly/react-core";
-import ViewAllAnnouncements from "../components/home/announcements/ViewAllAnnouncements";
-import ViewCalendar from "../components/home/calendar/ViewCalendar";
-import Resources from "../components/home/Resources";
+import ViewAllAnnouncements from "../components/announcements/ViewAllAnnouncements";
+import ViewCalendar from "../components/calendar/ViewCalendar";
+import Resources from "../components/resources/Resources";
 import { cursorTo } from "readline";
-import DevelopmentUpdates from "../components/home/Developments/Development";
-import ViewAllDevs from "../components/home/Developments/ViewAllDevs";
+import DevelopmentUpdates from "../components/developments/Development";
+import ViewAllDevs from "../components/developments/ViewAllDevs";
 import axios from "axios";
-import MonthCalendar from "../components/home/calendar/MonthCalendar";
-import Events from "../components/home/calendar/Calendar";
+import MonthCalendar from "../components/calendar/MonthCalendar";
+import Events from "../components/calendar/Calendar";
 import ClientImage from '../images/BrianW.png'
 
 
@@ -402,16 +398,16 @@ function Home() {
   const fetchEvents = async () => {
     try {
       const response = await fetch(APIUrl + "events?populate=*");
-      
+
       // Log the response object to inspect it
       console.log("Response:", response);
-      
+
       if (response.ok) {
         const json = await response.json();
-        
+
         // Log the parsed JSON data
         console.log("JSON Data:", json);
-        
+
         const fetchedEvents = json.data.map((item: any) => ({
           id: item.id,
           attributes: {
@@ -425,7 +421,7 @@ function Home() {
             time: item.attributes.Time,
           },
         }));
-        
+
         // Log the transformed events data
         console.log("Fetched Events:", fetchedEvents);
 
@@ -452,7 +448,7 @@ function Home() {
       console.error("Fetch Error:", error);
     }
   };
-  
+
   useEffect(() => {
     fetchEvents();
   }, []);
@@ -461,47 +457,47 @@ function Home() {
     // Log calendar data every time it changes
     console.log("Updated Calendar Data:", calendarData);
   }, [calendarData]);
-  
 
-    // useEffect(() => {
-    //   fetchEvents();
-    // }, []);
 
-//   const fetchEvents = async () => {
-//   try {
-//     const {
-//       data: { data },
-//     } = await axios.get("http://pitne-d4-app-strapi-production.up.railway.app/api/events?populate=*");
+  // useEffect(() => {
+  //   fetchEvents();
+  // }, []);
 
-//     const fetchedEvents = data.map((item: any) => {
-//       // Print the entire attributes object
-//       // console.log("Event Attributes:", item.Time);
+  //   const fetchEvents = async () => {
+  //   try {
+  //     const {
+  //       data: { data },
+  //     } = await axios.get("http://pitne-d4-app-strapi-production.up.railway.app/api/events?populate=*");
 
-//       const event = {
-//         id: item.id,
-//         attributes: {
-//           title: item.attributes.EventName,
-//           body: item.attributes.Description,
-//           image: item.attributes.EventFlyer?.data && item.attributes.EventFlyer.data.length > 0
-//             ? "http://pitne-d4-app-strapi-production.up.railway.app" + item.attributes.EventFlyer.data[0].attributes.url
-//             : '',
-//           date: item.attributes.EventDate,
-//           time: item.attributes.Time,
-//           location: item.attributes.Location,
-//         },
-//       };
+  //     const fetchedEvents = data.map((item: any) => {
+  //       // Print the entire attributes object
+  //       // console.log("Event Attributes:", item.Time);
 
-//       // Print the time value to the console
-//       console.log("Event Timeee:", event.attributes.time);
+  //       const event = {
+  //         id: item.id,
+  //         attributes: {
+  //           title: item.attributes.EventName,
+  //           body: item.attributes.Description,
+  //           image: item.attributes.EventFlyer?.data && item.attributes.EventFlyer.data.length > 0
+  //             ? "http://pitne-d4-app-strapi-production.up.railway.app" + item.attributes.EventFlyer.data[0].attributes.url
+  //             : '',
+  //           date: item.attributes.EventDate,
+  //           time: item.attributes.Time,
+  //           location: item.attributes.Location,
+  //         },
+  //       };
 
-//       return event;
-//     });
+  //       // Print the time value to the console
+  //       console.log("Event Timeee:", event.attributes.time);
 
-//     setCalendarData(fetchedEvents);
-//   } catch (error) {
-//     console.error('Fetching events failed:', error);
-//   }
-// };
+  //       return event;
+  //     });
+
+  //     setCalendarData(fetchedEvents);
+  //   } catch (error) {
+  //     console.error('Fetching events failed:', error);
+  //   }
+  // };
 
 
   // if (!homePageData) {
@@ -512,7 +508,7 @@ function Home() {
     <body>
       <div className="hero-section">
         <div className="mb-5">
-          <LogoBar />
+          <NavBar />
         </div>
         <div className="overlay"></div>
         <div className="hero-content">

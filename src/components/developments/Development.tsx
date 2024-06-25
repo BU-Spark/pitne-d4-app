@@ -1,6 +1,6 @@
 import * as React from "react";
 import DevelopmentCard from "./DevelopmentCard";
-import type { DevelopmentData } from "../../../screens/Home";
+import type { DevelopmentData } from "../../screens/Home";
 
 function DevelopmentUpdates(props: { developments: DevelopmentData[]; vertical: boolean }) {
   return (

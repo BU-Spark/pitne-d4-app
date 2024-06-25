@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { doc, getDoc, getFirestore, collection, getDocs} from "firebase/firestore";
+import { doc, getDoc, getFirestore, collection, getDocs } from "firebase/firestore";
 import { AngleLeftIcon } from "@patternfly/react-icons";
 import { useNavigate } from "react-router-dom";
 import type { calData } from "./Home";
 import { APIUrl } from "./Home";
-import Events from "../components/home/calendar/Calendar";
-import LogoBar from "../components/home/LogoBar";
-import MonthCalendar from "../components/home/calendar/MonthCalendar";
-import EventButton from "../components/home/calendar/AddEvent";
+import Events from "../components/calendar/Calendar";
+import NavBar from "../components/navbar/NavBar";
+import MonthCalendar from "../components/calendar/MonthCalendar";
+import EventButton from "../components/calendar/AddEvent";
 import axios from "axios";
-import Footer from "../components/home/footer";
+import Footer from "../components/Footer";
 // import { useIsManager } from "./Home";
 
 function AllEvents() {
@@ -34,7 +34,7 @@ function AllEvents() {
       eventDate.getMonth() === (selectedDate.getMonth()) &&
       (eventDate.getDate()) === selectedDate.getDate()
     );
-    
+
   });
 
   const upcomingEvents = calendarData.filter(event => {
@@ -43,11 +43,11 @@ function AllEvents() {
     today.setHours(0, 0, 0, 0);
     return eventDate >= today;
   })
-  .sort((a, b) => {
-    const dateA = new Date(a.attributes.date).getTime();
-    const dateB = new Date(b.attributes.date).getTime();
-    return dateA - dateB;
-  });
+    .sort((a, b) => {
+      const dateA = new Date(a.attributes.date).getTime();
+      const dateB = new Date(b.attributes.date).getTime();
+      return dateA - dateB;
+    });
 
   // const fetchEvents = async () => {
   //   try {
@@ -79,16 +79,16 @@ function AllEvents() {
   const fetchEvents = async () => {
     try {
       const response = await fetch(APIUrl + "events?populate=*");
-      
+
       // Log the response object to inspect it
       console.log("Response:", response);
-      
+
       if (response.ok) {
         const json = await response.json();
-        
+
         // Log the parsed JSON data
         console.log("JSON Data:", json);
-        
+
         const fetchedEvents = json.data.map((item: any) => ({
           id: item.id,
           attributes: {
@@ -102,7 +102,7 @@ function AllEvents() {
             time: item.attributes.Time,
           },
         }));
-        
+
         // Log the transformed events data
         console.log("Fetched Events:", fetchedEvents);
 
@@ -135,23 +135,23 @@ function AllEvents() {
 
   return (
     <div>
-    <div className="container">
-      <div className = "mb-5">
-      <LogoBar />
-      </div>
-      <LogoBar />
+      <div className="container">
+        <div className="mb-5">
+          <NavBar />
+        </div>
+        <NavBar />
 
-      <div className="top-heading">District 4 Events Calendar</div>
-      <MonthCalendar onDateChange={handleDateChange} calendarData={calendarData}/>
-      <div className="calendar-text">
-        Events on {selectedDate.toDateString()}:
-      </div>
+        <div className="top-heading">District 4 Events Calendar</div>
+        <MonthCalendar onDateChange={handleDateChange} calendarData={calendarData} />
+        <div className="calendar-text">
+          Events on {selectedDate.toDateString()}:
+        </div>
 
-      <Events data={filteredEvents} />
-      <div className = "calendar-text">All Upcoming Events: </div>
+        <Events data={filteredEvents} />
+        <div className="calendar-text">All Upcoming Events: </div>
         <Events data={upcomingEvents} />
-    </div>
-    <Footer />
+      </div>
+      <Footer />
     </div>
   );
 }

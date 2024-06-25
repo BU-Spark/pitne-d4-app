@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import type { calData } from "../../../screens/Home";
+import type { calData } from "../../screens/Home";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';  // Default CSS
-import '../../styles/MonthCalendar.css';  // Your custom CSS
+import './MonthCalendar.css';  // Your custom CSS
 
 interface MonthCalendarProps {
   onDateChange: (date: Date) => void;
@@ -43,7 +43,7 @@ function MonthCalendar({ onDateChange, calendarData }) {
         onChange={handleDateChange}
         inline
         renderDayContents={renderDayContents}
-      />   
+      />
     </div>
   );
 }

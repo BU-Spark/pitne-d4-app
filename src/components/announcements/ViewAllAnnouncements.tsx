@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
-import { announData } from "../../../screens/Home";
+import { announData } from "../../screens/Home";
 function ViewAllAnnouncements(props: { announs: announData[] }) {
   const navigate = useNavigate();
   //navigate to allPosts

@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
-import { calData } from "../../../screens/Home";
+import { calData } from "../../screens/Home";
 function ViewAllCalData(props: { data: calData[] }) {
   const navigate = useNavigate();
   //navigate to allPosts

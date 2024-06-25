@@ -1,10 +1,10 @@
 import * as React from "react";
-import { Card, Text, Icon} from "@patternfly/react-core";
+import { Card, Text, Icon } from "@patternfly/react-core";
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { EllipsisVIcon } from "@patternfly/react-icons";
 import Modal from "../Modal";
-import useModal from "../useModal";
+import useModal from "../UseModal";
 import './CalendarCard.css';
 
 //date and image is optional for now
@@ -28,10 +28,10 @@ function CalendarCard(props: {
   return (
     <Card onClick={toggle} className="ms-1 me-3 my-3 calendar-card">
       <div className=" mx-3 mt-3 mb-5">
-          <Text className="text-start">{title}</Text>
-          
-          <div className="col-1">
-          </div>
+        <Text className="text-start">{title}</Text>
+
+        <div className="col-1">
+        </div>
         <div className="row mt-2 ">
           {location && <small className="text-start text-secondary">{"Location: " + location}</small>}
 

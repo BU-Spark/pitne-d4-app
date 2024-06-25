@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Card, CardHeader, CardFooter, CardTitle, CardExpandableContent } from '@patternfly/react-core';
-import './associations_card.css'
+import './AssociationCard.css'
 import { AssociationTable } from "./../../interfaces";
 
 interface AssociationCardProps {

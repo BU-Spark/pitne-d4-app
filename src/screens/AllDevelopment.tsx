@@ -65,7 +65,7 @@
 //       </div>
 //       <Footer />
 //     </div>
-    
+
 //   );
 // }
 
@@ -75,10 +75,10 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AngleLeftIcon } from "@patternfly/react-icons";
 import axios from "axios";
-import LogoBar from "../components/home/LogoBar";
-import DevelopmentUpdates from "../components/home/Developments/Development"; // Assuming you have this component
-import Footer from "../components/home/footer";
-import DetailedDevelopmentCard from "../components/home/Developments/detailedDevs";
+import LogoBar from "../components/navbar/NavBar";
+import DevelopmentUpdates from "../components/developments/Development"; // Assuming you have this component
+import Footer from "../components/Footer";
+import DetailedDevelopmentCard from "../components/developments/DetailedDevs";
 // Define the data type for the development entries
 type DevelopmentData = {
   id: string;
@@ -133,24 +133,24 @@ function AllDevelopments() {
 
   return (
     <div>
-    <div className="page-container">
-      <div className="content-wrap">
-      <div className="mb-5">
-          <LogoBar />
+      <div className="page-container">
+        <div className="content-wrap">
+          <div className="mb-5">
+            <LogoBar />
+          </div>
+          <h2 className="top-heading">All Developments</h2>
+          <div className="detailed-developments-container">
+            {developments.map(development => (
+              <DetailedDevelopmentCard
+                key={development.id}
+                title={development.attributes.title}
+                body={development.attributes.body}
+                website={development.attributes.website}
+                date={development.attributes.date}
+              />
+            ))}
+          </div>
         </div>
-        <h2 className="top-heading">All Developments</h2>
-        <div className="detailed-developments-container">
-          {developments.map(development => (
-            <DetailedDevelopmentCard
-              key={development.id}
-              title={development.attributes.title}
-              body={development.attributes.body}
-              website={development.attributes.website}
-              date={development.attributes.date}
-            />
-          ))}
-        </div>
-      </div>
       </div>
       <Footer />
     </div>

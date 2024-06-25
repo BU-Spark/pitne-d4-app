@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AngleLeftIcon } from '@patternfly/react-icons';
-import LogoBar from "../components/home/LogoBar";
+import NavBar from "../components/navbar/NavBar";
 import { Button } from "@patternfly/react-core";
 
 // This component represents the header with the back navigation
 function Header() {
-    const navigate = useNavigate();
-    return (
-      <div className="container">
-          <LogoBar />
-          <div className="mt-4 ms-4 portal-nav">
-              <AngleLeftIcon size="md" onClick={() => navigate("/311Forms")}/>
-              Download the App here
-          </div>
+  const navigate = useNavigate();
+  return (
+    <div className="container">
+      <NavBar />
+      <div className="mt-4 ms-4 portal-nav">
+        <AngleLeftIcon size="md" onClick={() => navigate("/311Forms")} />
+        Download the App here
       </div>
-    );
-  }
+    </div>
+  );
+}
 
 function DownloadApp() {
   const [appStoreLink, setAppStoreLink] = useState('');

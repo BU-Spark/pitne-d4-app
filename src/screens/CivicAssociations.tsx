@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { loadModules } from 'esri-loader';
-import LogoBar from "../components/home/LogoBar";
-import AssociationCard from '../components/civic_associations/associations_card';
+import NavBar from "../components/navbar/NavBar";
+import AssociationCard from '../components/civic_associations/AssociationCard';
 import { Text, TextVariants, TextInput } from '@patternfly/react-core';
 import axios from 'axios';
 import { AssociationTable } from './../interfaces';
-import Loader from '../components/home/Loader';
+import Loader from '../components/Loader';
 import { filter } from 'esri/core/promiseUtils';
-import Footer from '../components/home/footer';
+import Footer from '../components/Footer';
 
 function CivicAssociations() {
     const [associationPart, setAssociationPart] = useState(false);
@@ -169,7 +169,7 @@ function CivicAssociations() {
         <div>
             <div>
                 <div className="mb-5">
-                    <LogoBar />
+                    <NavBar />
                 </div>
                 <div id="viewMap" style={{ height: 400, width: "100%" }}>
                 </div>

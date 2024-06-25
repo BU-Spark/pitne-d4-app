@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import * as React from "react";
-import Footer from "../components/home/footer";
-import Resources from "../components/home/Resources";
+import Footer from "../components/Footer";
+import Resources from "../components/resources/Resources";
 import { APIUrl } from "./Home";
-import LogoBar from "../components/home/LogoBar";
+import NavBar from "../components/navbar/NavBar";
 import { ResourceTable } from "../interfaces";
 import axios from "axios";
 import { TextInput } from "@patternfly/react-core";
@@ -38,7 +38,7 @@ function GetResources() {
   return (
     <div>
       <div className="mb-5">
-        <LogoBar />
+        <NavBar />
       </div>
       <div className='mt-5 p-4'>
         <h1 >

@@ -2,17 +2,17 @@ import * as React from "react";
 import CalendarCard from "./CalendarCard";
 import DatePicker from "./DatePicker";
 //import calData type
-import type {calData} from '../../../screens/Home';
-import '../../styles/CalendarEvents.css';
+import type { calData } from '../../screens/Home';
+import './CalendarEvents.css';
 
 
 // Shows event data/all calendar cards
-function Events(props: {data: calData[]}) {
+function Events(props: { data: calData[] }) {
     const data = props.data;
-    
+
     return (
         <div>
-            <div className="horizontal-scroll" style={{marginLeft: 15}}>
+            <div className="horizontal-scroll" style={{ marginLeft: 15 }}>
                 {data.length > 0 ? (
                     data.map((event) => {
                         return (

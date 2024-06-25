@@ -1,13 +1,12 @@
 import * as React from "react";
 import AnnouncementCard from "./AnnouncementCard";
-import type { announData } from "../../../screens/Home";
-import DetailedAnnouncementCard from "./detailedAnnouncements";
+import type { announData } from "../../screens/Home";
 
 function Announcement(props: { announs: announData[]; vertical: boolean }) {
   return (
     <div className={props.vertical ? "vertical-scroll" : "horizontal-scroll"}
       style={
-        props.vertical ? { display: "flex", flexWrap: "wrap" } : {marginLeft: 15}
+        props.vertical ? { display: "flex", flexWrap: "wrap" } : { marginLeft: 15 }
       }>
       {props.announs.length > 0 ? (
         props.announs.slice().reverse().map((announcement) => {

@@ -4,7 +4,7 @@ import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { EllipsisVIcon } from "@patternfly/react-icons";
 import Modal from '../Modal';
-import useModal from '../useModal';
+import UseModal from '../UseModal';
 
 function DevelopmentCard(props: {
   title: string;
@@ -15,7 +15,7 @@ function DevelopmentCard(props: {
   const { title, body } = props;
   const website = props.website ? props.website : "";
   const date = props.date ? props.date : "";
-  const { isOpen, toggle } = useModal();
+  const { isOpen, toggle } = UseModal();
 
   return (
     <div onClick={toggle}>
