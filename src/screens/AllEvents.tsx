@@ -54,18 +54,15 @@ function AllEvents() {
           attributes: {
             title: item.attributes.EventName,
             body: item.attributes.Description,
-            image: item.attributes.EventFlyer?.data && item.attributes.EventFlyer.data.length > 0
-              ? "http://pitne-d4-app-strapi-production.up.railway.app" + item.attributes.EventFlyer.data[0].attributes.url
-              : '',
+            image: item.attributes.EventFlyer.data ? `https://pitne-d4-app-strapi-production.up.railway.app${item.attributes.EventFlyer.data.attributes.url}` : null,
             date: item.attributes.EventDate,
             location: item.attributes.Location,
             time: item.attributes.Time,
           },
         }));
-
         setCalendarData(fetchedEvents);
       } else {
-        console.log(`Status code: ${response.status}`);
+        // console.log(`Status code: ${response.status}`);
 
         setCalendarData([
           {
@@ -91,7 +88,7 @@ function AllEvents() {
   }, []);
 
   const usescrollDirection = ScrollDirection();
-
+  
   return (
     <div>
       <div className="container">

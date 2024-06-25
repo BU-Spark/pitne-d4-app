@@ -248,7 +248,7 @@ function Home() {
             <p className="councilor-description">
               Councilor Brian Worrell has been dedicated to serving the community of District 4 for many years. His efforts focus on improving local infrastructure, increasing public safety, and ensuring that every voice in the district is heard and valued.
             </p>
-            <button className="learn-more-button" onClick={() => window.location.href = '/client-info'}>
+            <button className="learn-more-button" onClick={() => window.location.href = '/councilor-info'}>
               Learn more
             </button>
           </div>

@@ -18,6 +18,7 @@ function Events({ data, scrollDirection }: EventsProps) {
                         <CalendarCard
                             key={event.id}
                             title={event.attributes.title}
+                            image={event.attributes.image}
                             content={event.attributes.body}
                             date={event.attributes.date}
                             time={event.attributes.time}

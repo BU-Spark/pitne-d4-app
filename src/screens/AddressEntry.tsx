@@ -32,7 +32,6 @@ function AddressEntry() {
         });
         if (response.ok) {
           const data = await response.json();
-          console.log(data.data[0].attributes);
           setCity(data.data[0].attributes.City);
           setState(data.data[0].attributes.State);
         }

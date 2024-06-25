@@ -11,6 +11,7 @@ interface ModalType {
   date: string;
   time?: string;
   location?: string;
+  image?: string;
 }
 
 export default function Modal(props: ModalType) {
@@ -35,7 +36,10 @@ export default function Modal(props: ModalType) {
               <p className="modal-text">
                 {props.content}
               </p>
-
+              
+              {props.image && (
+                <img src={props.image} alt="Event Image" className="modal-image" />
+              )}
 
             </div>
           </div>
