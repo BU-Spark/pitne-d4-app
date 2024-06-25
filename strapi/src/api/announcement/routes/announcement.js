@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * announcement service
+ * announcement router
  */
 
-const { createCoreService } = require('@strapi/strapi').factories;
+const { createCoreRouter } = require('@strapi/strapi').factories;
 
-module.exports = createCoreService('api::announcement.announcement');
+module.exports = createCoreRouter('api::announcement.announcement');

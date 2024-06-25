@@ -794,15 +794,14 @@ export interface ApiAnnouncementAnnouncement extends Schema.CollectionType {
     singularName: 'announcement';
     pluralName: 'announcements';
     displayName: 'Announcement';
-    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String;
-    date: Attribute.String;
-    body: Attribute.Text;
+    Title: Attribute.String;
+    Date: Attribute.DateTime;
+    Description: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -852,39 +851,6 @@ export interface ApiCivicAssociationCivicAssociation
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::civic-association.civic-association',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiDevelopmentDevelopment extends Schema.CollectionType {
-  collectionName: 'developments';
-  info: {
-    singularName: 'development';
-    pluralName: 'developments';
-    displayName: 'Development';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String;
-    date: Attribute.String;
-    body: Attribute.Text;
-    website: Attribute.Text;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::development.development',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::development.development',
       'oneToOne',
       'admin::user'
     > &
@@ -942,6 +908,7 @@ export interface ApiEventEvent extends Schema.CollectionType {
     ContactInfo: Attribute.String & Attribute.DefaultTo<'No Info'>;
     EventDate: Attribute.DateTime;
     Location: Attribute.String;
+    Time: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -953,39 +920,6 @@ export interface ApiEventEvent extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::event.event',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiFooterFooter extends Schema.CollectionType {
-  collectionName: 'footers';
-  info: {
-    singularName: 'footer';
-    pluralName: 'footers';
-    displayName: 'footer';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    email: Attribute.String;
-    call: Attribute.String;
-    address: Attribute.String;
-    bottomRights: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::footer.footer',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::footer.footer',
       'oneToOne',
       'admin::user'
     > &
@@ -1037,12 +971,13 @@ export interface ApiMailingListMailingList extends Schema.CollectionType {
     singularName: 'mailing-list';
     pluralName: 'mailing-lists';
     displayName: 'MailingList';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    Email: Attribute.Email & Attribute.Required & Attribute.Unique;
+    Email: Attribute.Email;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1061,35 +996,31 @@ export interface ApiMailingListMailingList extends Schema.CollectionType {
   };
 }
 
-export interface ApiNeIssueNeIssue extends Schema.CollectionType {
-  collectionName: 'ne_issues';
+export interface ApiResourceResource extends Schema.CollectionType {
+  collectionName: 'resources';
   info: {
-    singularName: 'ne-issue';
-    pluralName: 'ne-issues';
-    displayName: 'NEIssue';
-    description: '';
+    singularName: 'resource';
+    pluralName: 'resources';
+    displayName: 'Resource';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    call: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    download: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    tweet: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    online: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    appStore: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    playStore: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    title: Attribute.String;
+    resourceID: Attribute.UID;
+    link: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::ne-issue.ne-issue',
+      'api::resource.resource',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::ne-issue.ne-issue',
+      'api::resource.resource',
       'oneToOne',
       'admin::user'
     > &
@@ -1117,13 +1048,11 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::announcement.announcement': ApiAnnouncementAnnouncement;
       'api::civic-association.civic-association': ApiCivicAssociationCivicAssociation;
-      'api::development.development': ApiDevelopmentDevelopment;
       'api::display-image.display-image': ApiDisplayImageDisplayImage;
       'api::event.event': ApiEventEvent;
-      'api::footer.footer': ApiFooterFooter;
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::mailing-list.mailing-list': ApiMailingListMailingList;
-      'api::ne-issue.ne-issue': ApiNeIssueNeIssue;
+      'api::resource.resource': ApiResourceResource;
     }
   }
 }

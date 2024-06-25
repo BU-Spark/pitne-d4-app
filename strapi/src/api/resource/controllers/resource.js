@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * ne-issue controller
+ * resource controller
  */
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
-module.exports = createCoreController('api::ne-issue.ne-issue');
+module.exports = createCoreController('api::resource.resource');

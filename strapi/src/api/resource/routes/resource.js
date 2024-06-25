@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * ne-issue router
+ * resource router
  */
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-module.exports = createCoreRouter('api::ne-issue.ne-issue');
+module.exports = createCoreRouter('api::resource.resource');

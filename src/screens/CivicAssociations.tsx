@@ -7,6 +7,7 @@ import axios from 'axios';
 import { AssociationTable } from './../interfaces';
 import Loader from '../components/home/Loader';
 import { filter } from 'esri/core/promiseUtils';
+import Footer from '../components/home/footer';
 
 function CivicAssociations() {
     const [associationPart, setAssociationPart] = useState(false);
@@ -163,6 +164,7 @@ function CivicAssociations() {
 
     return (
         <div>
+        <div>
             <div className="mb-5">
                 <LogoBar />
             </div>
@@ -223,6 +225,8 @@ function CivicAssociations() {
                     ))
                 )}
             </div>
+        </div>
+        <Footer/>
         </div>
     );
 }

@@ -21,6 +21,7 @@ import ViewAllDevs from "../components/home/Developments/ViewAllDevs";
 import axios from "axios";
 import MonthCalendar from "../components/home/calendar/MonthCalendar";
 import Events from "../components/home/calendar/Calendar";
+import ClientImage from '../images/BrianW.png'
 
 
 //for dev,
@@ -90,16 +91,16 @@ function checkIfManager() {
 
         const querySnapshot = await getDocs(q);
         if (!querySnapshot.empty) {
-          console.log("User is logged in and is an admin.");
+          // console.log("User is logged in and is an admin.");
           localStorage.setItem('isManager', 'true');
           resolve(true);  // Resolve the promise with true
         } else {
-          console.log("User is logged in but is not an admin.");
+          // console.log("User is logged in but is not an admin.");
           localStorage.setItem('isManager', 'false');
           resolve(false); // Resolve the promise with false
         }
       } else {
-        console.log("No user is currently logged in.");
+        // console.log("No user is currently logged in.");
         localStorage.setItem('isManager', 'false');
         resolve(false); // Resolve the promise with false
       }
@@ -144,15 +145,21 @@ function Home() {
   const handleSubscribe = async () => {
     if (email) {
       try {
-        const response = await axios.post(
-          'http://pitne-d4-app-strapi-production.up.railway.app/api/mailing-lists',
-          { data: { email } },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }
-        );
+        const response = await fetch('https://pitne-d4-app-strapi-production.up.railway.app/api/mailing-lists', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            data: {
+              Email: email
+            }
+          })
+        });
+
+        const data = await response.json();
+        // console.log('Success:', data);
+
         if (response.status === 200 || response.status === 201) {
           setEmail(''); // Clear the input after successful subscription
         } else {
@@ -164,11 +171,12 @@ function Home() {
     }
   };
 
+
   useEffect(() => {
     const fetchHomePageData = async () => {
       try {
         // Adjust the URL to match your Strapi API endpoint
-        const response = await axios.get('http://localhost:1337/api/home-page?populate=*');
+        const response = await axios.get('https://pitne-d4-app-strapi-production.up.railway.app/api/home-page?populate=*');
         const data = response.data.data.attributes;
         setHomePageData({
           heroTitle: data.heroTitle,
@@ -185,7 +193,7 @@ function Home() {
 
     fetchHomePageData();
   }, []);
-  
+
   // useEffect(() => {
   //   const fetchHomePageData = async () => {
   //     try {
@@ -219,11 +227,11 @@ function Home() {
           }));
           setPinned(transformedInterests);
         } else {
-          console.log("No such document!");
+          // console.log("No such document!");
         }
       })
       .catch((error) => {
-        console.log("Error getting document:", error);
+        // console.log("Error getting document:", error);
       });
   }, [db]);
 
@@ -232,7 +240,7 @@ function Home() {
       // Only fetch from Firestore if the local storage does not have the manager status
       if (localStorage.getItem('isManager') === null) {
         await checkIfManager();
-        console.log("called function check Manager status");
+        // console.log("called function check Manager status");
       }
     };
 
@@ -338,7 +346,7 @@ function Home() {
       const loadedDevelopments = snapshot.docs.map(doc => ({
         ...doc.data()
       })) as DevelopmentData[];
-      console.log(loadedDevelopments)
+      // console.log(loadedDevelopments);
       setDevelopmentData(loadedDevelopments);
     }
 
@@ -367,7 +375,7 @@ function Home() {
     }
   }, [auth.currentUser, fetchdata]);
 
-  
+
   // const [calendarData, setCalendarData] = useState<calData[]>([]);
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
@@ -387,7 +395,7 @@ function Home() {
       eventDate.getMonth() === (selectedDate.getMonth()) &&
       (eventDate.getDate()) === selectedDate.getDate()
     );
-    
+
   });
 
   const fetchEvents = async () => {
@@ -436,25 +444,25 @@ function Home() {
   // if (!homePageData) {
   //   return <div>Loading...</div>;
   // }
-  
+
   return (
     <body>
       <div className="hero-section">
-        <div className="mb-5">
-          <LogoBar />
-        </div>
-        <div className="overlay"></div>
-        <div className="hero-content">
-          <h1> Welcome to the District 4 Website</h1>
-          <p>District 4 includes Mattapan, Dorchester, and parts of Jamaica Plain and Roslindale</p>
-        </div>
-        <div className="scroll-down-container">
-          <div className="scroll-down">
-            <span>Swipe up to learn more</span>
-            <div className="arrow"></div>
-          </div>
-        </div>
+    <div className="mb-5">
+      <LogoBar />
+    </div>
+    <div className="overlay"></div>
+    <div className="hero-content">
+      <div className="top-heading-white">WELCOME TO THE DISTRICT 4 WEBSITE</div>
+      <p>District 4 includes Mattapan, Dorchester, and parts of Jamaica Plain and Roslindale</p>
+    </div>
+    <div className="scroll-down-container">
+      <div className="scroll-down">
+        <span>Swipe up to learn more</span>
+        <div className="arrow"></div>
       </div>
+    </div>
+  </div>
       <div className="container">
       </div>
 
@@ -462,10 +470,10 @@ function Home() {
           <div className="councilor-background">
             <div className="overlay"></div>
               <div className="councilor-content">
-              <h2 className="top-heading">About the Councilor</h2>
-                <div className="councilor-image">
-                  <img src="./images/BrianWorell.jpeg" alt="Councilor" />
-                </div>
+              <h2 className="councilor-heading">ABOUT THE COUNCILOR</h2>
+              <div className='p-4'>
+                <img src={ClientImage} alt="Client image" />
+              </div>
                 <p className="councilor-description">
                 Councilor Brian Worrell has been dedicated to serving the community of District 4 for many years. His efforts focus on improving local infrastructure, increasing public safety, and ensuring that every voice in the district is heard and valued.
                 </p>
@@ -477,14 +485,16 @@ function Home() {
          </div>
 
 
-        <div className="top-heading">Announcements</div>
-        <Announcement {...passAnnounData} vertical={false} />
-        <ViewAllAnnouncements {...passAnnounData} />
+         <div className="blue-background-container"> 
+            <div className="top-heading-white">ANNOUNCEMENTS</div>
+            <Announcement {...passAnnounData} vertical={false} />
+            <ViewAllAnnouncements {...passAnnounData} />
+          </div>
 
         {/* <Resources resources={InvolvedData} />
         <Resources resources={SubmitandRequestData} /> */}
-      <div>
-      <div className="top-heading" style={{marginTop: '40px'}}>Events Calendar</div>
+
+      <div className="top-heading">EVENTS CALENDAR</div>
       <div className="calendar-page">
         <div className="calendar-container">
           <MonthCalendar onDateChange={handleDateChange} calendarData={calendarData} />
@@ -501,8 +511,6 @@ function Home() {
           </div>
         </div>
       </div>
-    </div>
-
 
       <div className="heading mb-4">Subscribe to mailing list</div>
       <div className="m-4">
@@ -515,7 +523,7 @@ function Home() {
             placeholder="Enter your email"
             style={{ border: '1px solid #ccc', borderRadius: '4px' }}
           />
-          <Button onClick={handleSubscribe} variant="primary" style={{ padding: '5px'}}>
+          <Button onClick={handleSubscribe} variant="primary" style={{ padding: '5px' }}>
             Subscribe
           </Button>
         </div>
@@ -541,7 +549,7 @@ function Home() {
           &copy; 2024 District 4. All rights reserved.
         </div>
       </footer>
-    </body>
+    </body >
   );
 }
 

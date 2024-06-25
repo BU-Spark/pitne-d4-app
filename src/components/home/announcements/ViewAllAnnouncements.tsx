@@ -10,8 +10,8 @@ function ViewAllAnnouncements(props: { announs: announData[] }) {
   };
 
   return (
-    <div className="view-all-announcements-container">
-      <div className="view-all-background">
+    <div className="view-all-announcements-container-white">
+      <div className="view-all-background-white">
         <span className="view-all-link" onClick={goToAnnouncements}>
           View All Announcements &gt;
         </span>

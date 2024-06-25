@@ -58,16 +58,20 @@ function AllEvents() {
         id: item.id,
         attributes: {
           title: item.attributes.EventName,
-          body: item.attributes.Description, 
+          body: item.attributes.Description,
           image: item.attributes.EventFlyer?.data && item.attributes.EventFlyer.data.length > 0
-          ? "http://pitne-d4-app-strapi-production.up.railway.app" + item.attributes.EventFlyer.data[0].attributes.url
-          : '',
+            ? "http://pitne-d4-app-strapi-production.up.railway.app" + item.attributes.EventFlyer.data[0].attributes.url
+            : '',
           date: item.attributes.EventDate,
           location: item.attributes.Location,
           time: item.attributes.Time,
+<<<<<<< HEAD
         }, 
+=======
+        },
+>>>>>>> origin/deploy
       }));
-      console.log(fetchedEvents);
+      // console.log(fetchedEvents);
       // console.log(image);
 
       setCalendarData(fetchedEvents);

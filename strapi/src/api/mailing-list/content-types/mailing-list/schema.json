@@ -4,7 +4,8 @@
   "info": {
     "singularName": "mailing-list",
     "pluralName": "mailing-lists",
-    "displayName": "MailingList"
+    "displayName": "MailingList",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,9 +13,7 @@
   "pluginOptions": {},
   "attributes": {
     "Email": {
-      "type": "email",
-      "required": true,
-      "unique": true
+      "type": "email"
     }
   }
 }
