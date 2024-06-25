@@ -1,7 +1,5 @@
 import * as React from "react";
 import { useState } from "react";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { doc, getDoc, getFirestore, collection, getDocs, query, where } from "firebase/firestore";
 import { useEffect, useCallback } from "react";
 import NavBar from "../components/navbar/NavBar";
 import Announcement from "../components/announcements/Announcement";
@@ -17,7 +15,7 @@ import ClientImage from '../images/BrianW.png'
 
 const APIUrl = "https://pitne-d4-app-strapi-production.up.railway.app/api/";
 
-//initialise the type of calendar and tweet data we are getting from strapi
+// Initialise the type of calendar and tweet data we are getting from strapi
 type calData = {
   id: number;
   attributes: {
@@ -46,6 +44,7 @@ type upData = {
     content: string;
   };
 };
+
 type DevelopmentData = {
   id: string;
   attributes: {
@@ -55,6 +54,7 @@ type DevelopmentData = {
     date?: string;
   };
 };
+
 type HomePageData = {
   heroTitle: string;
   heroDescription: string;
@@ -64,60 +64,14 @@ type HomePageData = {
   councilorImage: { url: string };
 };
 
-
-
-
-function checkIfManager() {
-  return new Promise((resolve, reject) => {
-    const auth = getAuth();
-    const db = getFirestore();
-
-    onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        const userEmail = user.email;
-        const adminCollection = collection(db, 'Admin-Accounts');
-        const q = query(adminCollection, where('admin-email', '==', userEmail));
-
-        const querySnapshot = await getDocs(q);
-        if (!querySnapshot.empty) {
-          localStorage.setItem('isManager', 'true');
-          resolve(true);  // Resolve the promise with true
-        } else {
-          localStorage.setItem('isManager', 'false');
-          resolve(false); // Resolve the promise with false
-        }
-      } else {
-        localStorage.setItem('isManager', 'false');
-        resolve(false); // Resolve the promise with false
-      }
-    });
-  });
-}
-
-
 function Home() {
-  const auth = getAuth();
-  const db = getFirestore();
 
-  //updateData array of upData type
-  const [updateData, setUpdateData] = React.useState<upData[]>([]);
-  const [pinned, setPinned] = React.useState<
-    { title: string; links: { title: string; url: string }[] }[]
-  >([]);
-  const [InvolvedData, setInvolvedData] = React.useState<{
-    title: string;
-    links: { title: string, url: string }[]
-  }[]>([]);
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
-  const [SubmitandRequestData, setSubmitandRequestData] = React.useState<{
-    title: string;
-    links: { title: string, url: string }[]
-  }[]>([]);
-  //calendarData array of calData type
   const [calendarData, setCalendarData] = React.useState<calData[]>([]);
-  //announData array of announData type
+
   const [announData, setAnnounData] = React.useState<announData[]>([]);
-  // const [tweetData, setTweetData] = React.useState<tweetData[]>([]);
+
   const [developmentData, setDevelopmentData] = React.useState<DevelopmentData[]>([]);
   const [homePageData, setHomePageData] = useState<HomePageData | null>(null);
 
@@ -128,6 +82,7 @@ function Home() {
     setEmail(value);
   };
 
+  // Mailing List
   const handleSubscribe = async () => {
     if (email) {
       try {
@@ -157,6 +112,7 @@ function Home() {
   };
 
 
+  // Reading in home page data from Strapi
   useEffect(() => {
     const fetchHomePageData = async () => {
       try {
@@ -179,46 +135,7 @@ function Home() {
     fetchHomePageData();
   }, []);
 
-  // useEffect(() => {
-  //   const fetchHomePageData = async () => {
-  //     try {
-  //       const response = await axios.get('http://localhost:1334/api/home-page?populate=*');
-  //       const homePageData = response.data.data.attributes;
-  //       setHomePageData(homePageData);
-  //     } catch (error) {
-  //       console.error('Fetching home page data failed:', error);
-  //     }
-  //   };
-
-  //   fetchHomePageData();
-  // }, []);
-
-
-
-  // This function fetch user interests from user-profile
-  // The userEmail has default parameter to handle anonymous users that wants to use app without logging in
-  const fetchdata = useCallback(async (userEmail = "defaultuser@email.com") => {
-    const userProfileRef = doc(db, "user-profile", userEmail);
-    await getDoc(userProfileRef)
-      .then((doc) => {
-        if (doc.exists()) {
-          // Gets user interest from firebase
-          const userInterests: string[] = doc.data()["interests"];
-          // then transfers the data so that can be passed to pinned
-          // pinned.tsx will do the searching for the sub categories in the database resource-lists
-          const transformedInterests = userInterests.map((userInterest: string) => ({
-            title: userInterest,
-            links: [],
-          }));
-          setPinned(transformedInterests);
-        } else {
-        }
-      })
-      .catch((error) => {
-      });
-  }, [db]);
-
-  //create object to pass as props to Calendar component
+  // create object to pass as props to Calendar component
   const passCalendarData = {
     data: calendarData,
   };
@@ -228,17 +145,6 @@ function Home() {
   const passDevData = {
     developments: developmentData,
   };
-
-  useEffect(() => {
-    // if no user is authenticated, fetch data for the default user 
-    if (!auth.currentUser) {
-      fetchdata();
-    }
-  }, [auth.currentUser, fetchdata]);
-
-
-  // const [calendarData, setCalendarData] = useState<calData[]>([]);
-  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
 
   const handleDateChange = (date: Date) => {
@@ -259,6 +165,7 @@ function Home() {
 
   });
 
+  // Fetches event data from Strapi
   const fetchEvents = async () => {
     try {
       const response = await fetch(APIUrl + "events?populate=*");
@@ -352,9 +259,6 @@ function Home() {
         <Announcement {...passAnnounData} vertical={false} />
         <ViewAllAnnouncements {...passAnnounData} />
       </div>
-
-      {/* <Resources resources={InvolvedData} />
-        <Resources resources={SubmitandRequestData} /> */}
 
       <div className="top-heading">EVENTS CALENDAR</div>
       <div className="calendar-page">
