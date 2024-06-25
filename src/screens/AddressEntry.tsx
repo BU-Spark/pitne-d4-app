@@ -20,9 +20,28 @@ function AddressEntry() {
 
   // Store the address, city, state, and zip in state
   const [address, setAddress] = React.useState("");
-  const city = "Boston";
-  const state = "Massachusetts";
+  const [city, setCity] = React.useState("");
+  const [state, setState] = React.useState("");
   const [zip, setZip] = React.useState("")
+
+  React.useEffect(() => {
+    const fetchAddress = async () => {
+      try {
+        const response = await fetch('https://pitne-d4-app-strapi-production.up.railway.app/api/user-addresses', {
+          method: 'GET',
+        });
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data.data[0].attributes);
+          setCity(data.data[0].attributes.City);
+          setState(data.data[0].attributes.State);
+        }
+      } catch (error) {
+        console.error('Error fetching associations from Strapi:', error);
+      }
+    };
+    fetchAddress();
+  }, []);
 
   const navigateToNext = () => {
     setTimeout(() => {
