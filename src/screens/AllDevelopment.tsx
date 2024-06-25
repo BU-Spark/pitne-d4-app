@@ -104,8 +104,8 @@ const AllDevelopments: React.FC = () => {
         
         const fetchedDevelopments = json.data.map((item: any) => {
           let formattedDate = "";
-          if (item.attributes.date) {
-            const dateObj = new Date(item.attributes.date);
+          if (item.attributes.Date) {
+            const dateObj = new Date(item.attributes.Date);
             formattedDate = dateObj.toLocaleDateString('en-US', {
               year: 'numeric',
               month: 'long',
@@ -116,9 +116,9 @@ const AllDevelopments: React.FC = () => {
           return {
             id: item.id,
             attributes: {
-              title: item.attributes.title,
-              body: item.attributes.description,
-              website: item.attributes.link,
+              title: item.attributes.Title,
+              body: item.attributes.Description,
+              website: item.attributes.Link,
               date: formattedDate,
             },
           };
