@@ -49,37 +49,86 @@ function AllEvents() {
     return dateA - dateB;
   });
 
+  // const fetchEvents = async () => {
+  //   try {
+  //     const {
+  //       data: { data },
+  //     } = await axios.get("https://pitne-d4-app-strapi-production.up.railway.app/api/events?populate=*");
+  //     const fetchedEvents = data.map((item: any) => ({
+  //       id: item.id,
+  //       attributes: {
+  //         title: item.attributes.EventName,
+  //         body: item.attributes.Description,
+  //         image: item.attributes.EventFlyer?.data && item.attributes.EventFlyer.data.length > 0
+  //           ? "http://pitne-d4-app-strapi-production.up.railway.app" + item.attributes.EventFlyer.data[0].attributes.url
+  //           : '',
+  //         date: item.attributes.EventDate,
+  //         location: item.attributes.Location,
+  //         time: item.attributes.Time,
+  //       },
+  //     }));
+  //     // console.log(fetchedEvents);
+  //     // console.log(image);
+
+  //     setCalendarData(fetchedEvents);
+  //   } catch (error) {
+  //     console.error('Fetching events failed:', error);
+  //   }
+  // };
+
   const fetchEvents = async () => {
     try {
-      const {
-        data: { data },
-      } = await axios.get("http://pitne-d4-app-strapi-production.up.railway.app/api/events?populate=*");
-      const fetchedEvents = data.map((item: any) => ({
-        id: item.id,
-        attributes: {
-          title: item.attributes.EventName,
-          body: item.attributes.Description,
-          image: item.attributes.EventFlyer?.data && item.attributes.EventFlyer.data.length > 0
-            ? "http://pitne-d4-app-strapi-production.up.railway.app" + item.attributes.EventFlyer.data[0].attributes.url
-            : '',
-          date: item.attributes.EventDate,
-          location: item.attributes.Location,
-          time: item.attributes.Time,
-<<<<<<< HEAD
-        }, 
-=======
-        },
->>>>>>> origin/deploy
-      }));
-      // console.log(fetchedEvents);
-      // console.log(image);
+      const response = await fetch(APIUrl + "events?populate=*");
+      
+      // Log the response object to inspect it
+      console.log("Response:", response);
+      
+      if (response.ok) {
+        const json = await response.json();
+        
+        // Log the parsed JSON data
+        console.log("JSON Data:", json);
+        
+        const fetchedEvents = json.data.map((item: any) => ({
+          id: item.id,
+          attributes: {
+            title: item.attributes.EventName,
+            body: item.attributes.Description,
+            image: item.attributes.EventFlyer?.data && item.attributes.EventFlyer.data.length > 0
+              ? "http://pitne-d4-app-strapi-production.up.railway.app" + item.attributes.EventFlyer.data[0].attributes.url
+              : '',
+            date: item.attributes.EventDate,
+            location: item.attributes.Location,
+            time: item.attributes.Time,
+          },
+        }));
+        
+        // Log the transformed events data
+        console.log("Fetched Events:", fetchedEvents);
 
-      setCalendarData(fetchedEvents);
+        setCalendarData(fetchedEvents);
+      } else {
+        console.log(`Status code: ${response.status}`);
+
+        setCalendarData([
+          {
+            id: -1,
+            attributes: {
+              title: "Uh Oh!",
+              body: "Looks like there was an issue!",
+              image: '',
+              date: '',
+              location: '',
+              time: '',
+            },
+          },
+        ]);
+      }
     } catch (error) {
-      console.error('Fetching events failed:', error);
+      // Log any error that occurred during the fetch
+      console.error("Fetch Error:", error);
     }
   };
-
   useEffect(() => {
     fetchEvents();
   }, []);
