@@ -143,6 +143,7 @@ function Home() {
   const [homePageData, setHomePageData] = useState<HomePageData | null>(null);
 
   const [email, setEmail] = useState('');
+  const [mailingListError, setMailingListError] = useState('');
 
   const handleEmailChange = (value: string) => {
     setEmail(value);
@@ -162,17 +163,17 @@ function Home() {
             }
           })
         });
-
-        const data = await response.json();
-        console.log('Success:', data);
-
         if (response.status === 200 || response.status === 201) {
           setEmail(''); // Clear the input after successful subscription
+          setMailingListError("You will be successfully subscribed in some time!");
+        } else if (response.status == 400) {
+          setMailingListError("Please enter a valid email");
         } else {
-          console.error('Failed to subscribe');
+          setMailingListError('An error occurred while subscribing, please try again later');
         }
       } catch (error) {
-        console.error('An error occurred while subscribing:', error);
+        console.log(error);
+        setMailingListError('An error occurred while subscribing, please try again later');
       }
     }
   };
@@ -522,6 +523,13 @@ function Home() {
               Subscribe
             </Button>
           </div>
+          {
+            mailingListError && (
+              <div style={{ fontStyle: "italic" }}>
+                <p>{mailingListError}</p>
+              </div>
+            )
+          }
         </div>
         <hr style={{ width: '100%', height: '1px', borderColor: 'white' }} />
         <div className="heading mb-4" style={{ color: "white", textAlign: 'center' }}>CONTACT</div>
