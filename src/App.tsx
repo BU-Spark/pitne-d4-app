@@ -9,7 +9,6 @@ import UserProfileScreen from "./screens/Profile";
 import Interests from "./screens/Interests";
 import Home from "./screens/Home";
 import Portal from "./screens/Portal";
-import AllPosts from "./screens/AllPosts";
 import GetResources from './screens/GetResources';
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
@@ -44,7 +43,7 @@ function App() {
           <Route path="/interests" element={<Interests />} />
           <Route path="/portal" element={<Portal />} />
           <Route path="/getresources" element={<GetResources />} />
-          <Route path="/all-posts" element={<AllPosts />} />
+
           <Route path="/all-announcements" element={<AllAnnouncements />} />
           <Route path="/all-events" element={<AllEvents />} />
           <Route path="/address-info" element={<AddressInfo />} />

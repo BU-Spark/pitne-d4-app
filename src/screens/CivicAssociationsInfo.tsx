@@ -45,7 +45,7 @@ function CivicAssociationsInfo() {
                 <LogoBar />
             </div>
             <div className='mb-5'>
-                <h1><b>Civic Associations</b></h1>
+                <h1><b>CIVIC ASSOCIATIONS</b></h1>
             </div>
             <div>
                 {cards.map((card) => (

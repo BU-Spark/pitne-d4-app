@@ -72,10 +72,12 @@ body {
 .brand-font-heading {
   font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
+  color: #152d5c;
 }
 
 .brand-font-body {
   font-family: 'Lora', serif !important;
+  color: #152d5c;
 }
 
 /* Welcome Page Styles */
@@ -894,6 +896,7 @@ body {
 .calendar-text {
   font-size: 1.2em;
   margin-bottom: 10px;
+  font-weight: bold;
 }
 
 .events-container {

@@ -25,7 +25,7 @@ function AddressInfo() {
 
       {/* Heading */}
       <div>
-        <h1><b>Address Entry</b></h1>
+        <h1><b>ADDRESS ENTRY</b></h1>
       </div>
 
       {/* Image */}

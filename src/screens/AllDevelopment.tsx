@@ -138,7 +138,7 @@ function AllDevelopments() {
       <div className="mb-5">
           <LogoBar />
         </div>
-        <h2 className="top-heading">All Developments</h2>
+        <h2 className="top-heading">ALL DEVELOPMENTS</h2>
         <div className="detailed-developments-container">
           {developments.map(development => (
             <DetailedDevelopmentCard

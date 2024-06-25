@@ -180,44 +180,24 @@ function Home() {
 
 
   useEffect(() => {
+
     const fetchHomePageData = async () => {
-      try {
-        // Adjust the URL to match your Strapi API endpoint
-        const response = await axios.get('https://pitne-d4-app-strapi-production.up.railway.app/api/home-page?populate=*');
-        const data = response.data.data.attributes;
-        setHomePageData({
-          heroTitle: data.heroTitle,
-          heroDescription: data.heroDescription,
-          heroImage: data.heroImage.data.attributes.url,
-          councilorName: data.councilorName,
-          councilorDescription: data.councilorDescription,
-          councilorImage: data.councilorImage.data.attributes.url
-        });
-      } catch (error) {
-        console.error('Fetching home page data failed:', error);
-      }
+        try {
+            // const token = '2f28130dd3c99e82d1b7db445c23010b0609ad7a2cc231396904349b10c6ad4bb852fe69ceec7ce0eb86d2907176064f6dd3edd225648b52db70ef5ea7e6e9a40f03e17e28c6ec7b60fff40993e330bf331dea836a9f9e64144327f3be7fc6ffe26ca749d025f5f248a3a537c26874b34ab184889d4aadfa02efadcc5d4a149b'; // Replace 'YOUR_API_TOKEN' with your actual API token
+            const response = await axios.get('http://pitne-d4-app-strapi-production.up.railway.app/api/home-page', {
+
+                // headers: {
+                //     Authorization: `Bearer ${token}`
+                // }
+            });
+            setHomePageData(response.data.data);
+        } catch (error) {
+            console.error('Error fetching Home Page Data from Strapi:', error);
+        }
     };
-
     fetchHomePageData();
-  }, []);
+}, []);
 
-  // useEffect(() => {
-  //   const fetchHomePageData = async () => {
-  //     try {
-  //       const response = await axios.get('http://localhost:1334/api/home-page?populate=*');
-  //       const homePageData = response.data.data.attributes;
-  //       setHomePageData(homePageData);
-  //     } catch (error) {
-  //       console.error('Fetching home page data failed:', error);
-  //     }
-  //   };
-
-  //   fetchHomePageData();
-  // }, []);
-
-
-
-  // This function fetch user interests from user-profile
   // The userEmail has default parameter to handle anonymous users that wants to use app without logging in
   const fetchdata = useCallback(async (userEmail = "defaultuser@email.com") => {
     const userProfileRef = doc(db, "user-profile", userEmail);
