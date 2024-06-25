@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { Button, Card, CardHeader, CardFooter, CardTitle, CardExpandableContent } from '@patternfly/react-core';
-import ProgressBar from '../components/Progressbar'; // Adjust the import path as needed
 import { useNavigate } from "react-router-dom";
-import associationsImage from "../images/associations.png";
 import NavBar from "../components/navbar/NavBar";
 import Footer from '../components/Footer';
 

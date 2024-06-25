@@ -3,10 +3,8 @@ import { loadModules } from 'esri-loader';
 import NavBar from "../components/navbar/NavBar";
 import AssociationCard from '../components/civic_associations/AssociationCard';
 import { Text, TextVariants, TextInput } from '@patternfly/react-core';
-import axios from 'axios';
 import { AssociationTable } from './../interfaces';
 import Loader from '../components/Loader';
-import { filter } from 'esri/core/promiseUtils';
 import Footer from '../components/Footer';
 
 function CivicAssociations() {
@@ -41,10 +39,6 @@ function CivicAssociations() {
             try {
                 const response = await fetch('https://pitne-d4-app-strapi-production.up.railway.app/api/civic-associations', {
                     method: 'GET',
-                    // Uncomment and modify the headers section if you need to include headers
-                    // headers: {
-                    //     Authorization: `Bearer ${token}`
-                    // }
                 });
                 if (response.ok) {
                     const data = await response.json();

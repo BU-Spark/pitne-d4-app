@@ -1,20 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { doc, getDoc, getFirestore, collection, getDocs } from "firebase/firestore";
-import { AngleLeftIcon } from "@patternfly/react-icons";
 import { useNavigate } from "react-router-dom";
 import type { calData } from "./Home";
 import { APIUrl } from "./Home";
 import Events from "../components/calendar/Calendar";
 import NavBar from "../components/navbar/NavBar";
 import MonthCalendar from "../components/calendar/MonthCalendar";
-import EventButton from "../components/calendar/AddEvent";
-import axios from "axios";
 import Footer from "../components/Footer";
 // import { useIsManager } from "./Home";
 
 function AllEvents() {
-  const navigate = useNavigate();
   const [calendarData, setCalendarData] = useState<calData[]>([]);
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
@@ -26,7 +20,6 @@ function AllEvents() {
   // Filters events to match the user's selected date
   const filteredEvents = calendarData.filter(event => {
     const eventDate = new Date(event.attributes.date);
-    // console.log(` ${eventDate},  ${selectedDate},  ${event.attributes.date}`);
 
     return (
       // Returns an event if the date matches the selection
@@ -49,45 +42,12 @@ function AllEvents() {
       return dateA - dateB;
     });
 
-  // const fetchEvents = async () => {
-  //   try {
-  //     const {
-  //       data: { data },
-  //     } = await axios.get("https://pitne-d4-app-strapi-production.up.railway.app/api/events?populate=*");
-  //     const fetchedEvents = data.map((item: any) => ({
-  //       id: item.id,
-  //       attributes: {
-  //         title: item.attributes.EventName,
-  //         body: item.attributes.Description,
-  //         image: item.attributes.EventFlyer?.data && item.attributes.EventFlyer.data.length > 0
-  //           ? "http://pitne-d4-app-strapi-production.up.railway.app" + item.attributes.EventFlyer.data[0].attributes.url
-  //           : '',
-  //         date: item.attributes.EventDate,
-  //         location: item.attributes.Location,
-  //         time: item.attributes.Time,
-  //       },
-  //     }));
-  //     // console.log(fetchedEvents);
-  //     // console.log(image);
-
-  //     setCalendarData(fetchedEvents);
-  //   } catch (error) {
-  //     console.error('Fetching events failed:', error);
-  //   }
-  // };
-
   const fetchEvents = async () => {
     try {
       const response = await fetch(APIUrl + "events?populate=*");
 
-      // Log the response object to inspect it
-      console.log("Response:", response);
-
       if (response.ok) {
         const json = await response.json();
-
-        // Log the parsed JSON data
-        console.log("JSON Data:", json);
 
         const fetchedEvents = json.data.map((item: any) => ({
           id: item.id,
@@ -102,9 +62,6 @@ function AllEvents() {
             time: item.attributes.Time,
           },
         }));
-
-        // Log the transformed events data
-        console.log("Fetched Events:", fetchedEvents);
 
         setCalendarData(fetchedEvents);
       } else {

@@ -3,25 +3,18 @@ import { useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc, getFirestore, collection, getDocs, query, where } from "firebase/firestore";
 import { useEffect, useCallback } from "react";
-import Calendar from "../components/calendar/Calendar";
 import NavBar from "../components/navbar/NavBar";
 import Announcement from "../components/announcements/Announcement";
 import { useNavigate } from "react-router-dom";
 import { Button, TextInput } from "@patternfly/react-core";
 import ViewAllAnnouncements from "../components/announcements/ViewAllAnnouncements";
 import ViewCalendar from "../components/calendar/ViewCalendar";
-import Resources from "../components/resources/Resources";
-import { cursorTo } from "readline";
-import DevelopmentUpdates from "../components/developments/Development";
-import ViewAllDevs from "../components/developments/ViewAllDevs";
 import axios from "axios";
 import MonthCalendar from "../components/calendar/MonthCalendar";
 import Events from "../components/calendar/Calendar";
 import ClientImage from '../images/BrianW.png'
 
 
-//for dev,
-// const APIUrl = "https://se-d7-dev.up.railway.app/api/";
 const APIUrl = "https://pitne-d4-app-strapi-production.up.railway.app/api/";
 
 //initialise the type of calendar and tweet data we are getting from strapi
@@ -87,16 +80,13 @@ function checkIfManager() {
 
         const querySnapshot = await getDocs(q);
         if (!querySnapshot.empty) {
-          // console.log("User is logged in and is an admin.");
           localStorage.setItem('isManager', 'true');
           resolve(true);  // Resolve the promise with true
         } else {
-          // console.log("User is logged in but is not an admin.");
           localStorage.setItem('isManager', 'false');
           resolve(false); // Resolve the promise with false
         }
       } else {
-        // console.log("No user is currently logged in.");
         localStorage.setItem('isManager', 'false');
         resolve(false); // Resolve the promise with false
       }
@@ -106,7 +96,6 @@ function checkIfManager() {
 
 
 function Home() {
-  const navigate = useNavigate();
   const auth = getAuth();
   const db = getFirestore();
 
@@ -162,7 +151,6 @@ function Home() {
           setMailingListError('An error occurred while subscribing, please try again later');
         }
       } catch (error) {
-        console.log(error);
         setMailingListError('An error occurred while subscribing, please try again later');
       }
     }
@@ -224,135 +212,11 @@ function Home() {
           }));
           setPinned(transformedInterests);
         } else {
-          // console.log("No such document!");
         }
       })
       .catch((error) => {
-        // console.log("Error getting document:", error);
       });
   }, [db]);
-
-  useEffect(() => {
-    const fetchManagerStatus = async () => {
-      // Only fetch from Firestore if the local storage does not have the manager status
-      if (localStorage.getItem('isManager') === null) {
-        await checkIfManager();
-        // console.log("called function check Manager status");
-      }
-    };
-
-    fetchManagerStatus();
-  }, []);
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user && user.email) {
-        fetchdata(user.email);
-      }
-    });
-
-    // Cleanup subscription on unmount
-    return () => unsubscribe();
-  }, [auth, fetchdata]);
-
-
-  //fetch calendar data from Strapi
-  // useEffect(() => {
-  //   // const fetchCalendarData = async () => {
-  //   //   try {
-  //   //     // const eventsCollection = collection(db, "events");
-  //   //     // // Get all documents from the "events" collection
-  //   //     // const eventsSnapshot = await getDocs(eventsCollection);
-  //   //     // // Map through each document and get its data
-  //   //     // const eventsList = eventsSnapshot.docs.map(doc => ({
-  //   //     //   // id: doc.id,
-  //   //     //   ...doc.data()
-  //   //     // })) as calData[];
-  //   //     // //set the calendar data
-  //   //     // console.log("events list");
-  //   //     // setCalendarData(eventsList);
-  //   //   } catch (error) {
-  //   //     console.log(error);
-  //   //   }
-  //   // };
-
-
-  //   // const fetchAnnounData = async () => {
-  //   //   try {
-  //   //     // const announsCollection = collection(db, "announcements");
-  //   //     // // Get all documents from the "events" collection
-  //   //     // const announSnapshot = await getDocs(announsCollection);
-  //   //     // // Map through each document and get its data
-  //   //     // const announList = announSnapshot.docs.map(doc => ({
-  //   //     //   // id: doc.id,
-  //   //     //   ...doc.data()
-  //   //     // })) as announData[];
-  //   //     // //set the calendar data
-  //   //     // console.log("announ list");
-  //   //     // setAnnounData(announList);
-  //   //   } catch (error) {
-  //   //     console.log(error);
-  //   //   }
-
-
-  //   // };
-
-  //   // const fetchUpdateData = async () => {
-  //   //   fetch(APIUrl + "updates")
-  //   //     .then((res) => {
-  //   //       if (res.ok) {
-  //   //         res.json().then((json) => {
-  //   //           setUpdateData(json.data);
-  //   //         });
-  //   //       } else {
-  //   //         console.log(`status code: ${res.status}`);
-  //   //         setUpdateData([
-  //   //           {
-  //   //             id: -1,
-  //   //             attributes: {
-  //   //               title: "Uh Oh!",
-  //   //               content: "Looks like there was an issue!",
-  //   //             },
-  //   //           },
-  //   //         ]);
-  //   //       }
-  //   //     })
-  //   //     .catch((e) => {
-  //   //       console.error(e);
-  //   //     });
-  //   // };
-  //   // const fetchGetInvolvedData = async () => {
-  //   //   fetch(APIUrl + "get-involveds").then((res) => {
-  //   //     if (res.ok) {
-  //   //       res.json().then((json) => {
-  //   //         const links = json.data.map((obj: any) => ({ title: obj.attributes.title, url: obj.attributes.url }));
-  //   //         const result = [{ title: 'Get Involved', links }];
-  //   //         setInvolvedData(result);
-  //   //       });
-  //   //     } else {
-  //   //       console.log(`status code: ${res.status}`);
-  //   //     }
-  //   //   }).catch((e) => {
-  //   //     console.log(e);
-  //   //   })
-  //   // };
-  //   //Get Submit and Request Data
-  //   const fetchDevelopmentData = async () => {
-  //     const developmentCollection = collection(db, "Developments");
-  //     const snapshot = await getDocs(developmentCollection);
-  //     const loadedDevelopments = snapshot.docs.map(doc => ({
-  //       ...doc.data()
-  //     })) as DevelopmentData[];
-  //     // console.log(loadedDevelopments);
-  //     setDevelopmentData(loadedDevelopments);
-  //   }
-
-  //   fetchDevelopmentData();
-  //   // fetchCalendarData();
-  //   // fetchAnnounData();
-  //   // fetchUpdateData();
-  //   // fetchGetInvolvedData();
-  // }, [db]);
 
   //create object to pass as props to Calendar component
   const passCalendarData = {
@@ -398,15 +262,8 @@ function Home() {
   const fetchEvents = async () => {
     try {
       const response = await fetch(APIUrl + "events?populate=*");
-
-      // Log the response object to inspect it
-      console.log("Response:", response);
-
       if (response.ok) {
         const json = await response.json();
-
-        // Log the parsed JSON data
-        console.log("JSON Data:", json);
 
         const fetchedEvents = json.data.map((item: any) => ({
           id: item.id,
@@ -421,9 +278,6 @@ function Home() {
             time: item.attributes.Time,
           },
         }));
-
-        // Log the transformed events data
-        console.log("Fetched Events:", fetchedEvents);
 
         setCalendarData(fetchedEvents);
       } else {
@@ -452,57 +306,6 @@ function Home() {
   useEffect(() => {
     fetchEvents();
   }, []);
-
-  useEffect(() => {
-    // Log calendar data every time it changes
-    console.log("Updated Calendar Data:", calendarData);
-  }, [calendarData]);
-
-
-  // useEffect(() => {
-  //   fetchEvents();
-  // }, []);
-
-  //   const fetchEvents = async () => {
-  //   try {
-  //     const {
-  //       data: { data },
-  //     } = await axios.get("http://pitne-d4-app-strapi-production.up.railway.app/api/events?populate=*");
-
-  //     const fetchedEvents = data.map((item: any) => {
-  //       // Print the entire attributes object
-  //       // console.log("Event Attributes:", item.Time);
-
-  //       const event = {
-  //         id: item.id,
-  //         attributes: {
-  //           title: item.attributes.EventName,
-  //           body: item.attributes.Description,
-  //           image: item.attributes.EventFlyer?.data && item.attributes.EventFlyer.data.length > 0
-  //             ? "http://pitne-d4-app-strapi-production.up.railway.app" + item.attributes.EventFlyer.data[0].attributes.url
-  //             : '',
-  //           date: item.attributes.EventDate,
-  //           time: item.attributes.Time,
-  //           location: item.attributes.Location,
-  //         },
-  //       };
-
-  //       // Print the time value to the console
-  //       console.log("Event Timeee:", event.attributes.time);
-
-  //       return event;
-  //     });
-
-  //     setCalendarData(fetchedEvents);
-  //   } catch (error) {
-  //     console.error('Fetching events failed:', error);
-  //   }
-  // };
-
-
-  // if (!homePageData) {
-  //   return <div>Loading...</div>;
-  // }
 
   return (
     <body>

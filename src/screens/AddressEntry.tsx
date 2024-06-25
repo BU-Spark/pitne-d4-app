@@ -8,8 +8,6 @@ import { TextInput, Button } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
 import ProgressBar from "../components/Progressbar";
 import { loadModules } from "esri-loader";
-import { Query } from "firebase/firestore";
-import { tr } from "date-fns/locale";
 import NavBar from "../components/navbar/NavBar";
 
 function AddressEntry() {
@@ -54,7 +52,6 @@ function AddressEntry() {
       setShowLoading(false);
       setShowInvalid(true);
     }
-    /***Can also implement some sort of address validity checking here before going into the main ArcGIS query check*/
     else {
       // Get coordinates from address using openstreetmap API
       const url = "https://nominatim.openstreetmap.org/search?"

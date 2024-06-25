@@ -1,8 +1,6 @@
 import React from "react";
-import { Button } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../components/navbar/NavBar";
-import { AngleLeftIcon } from "@patternfly/react-icons";
 import Footer from "../components/Footer";
 import Call from "../images/callIcon.png"
 import Online from "../images/onlineIcon.png"

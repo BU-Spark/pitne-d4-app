@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 import type { announData } from "./Home";
-import Navbar from "../components/navbar/NavBar";
-import Announcements from "../components/announcements/Announcement";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
 import Footer from "../components/Footer";
 import DetailedAnnouncementCard from "../components/announcements/DetailedAnnouncements";
