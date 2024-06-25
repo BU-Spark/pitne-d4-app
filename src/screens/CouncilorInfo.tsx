@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NavBar from '../components/navbar/NavBar';
 import ClientImage from '../images/councilor_photo.png'; // Import the image
 import Footer from '../components/Footer'; // Import the Footer component
@@ -8,8 +8,8 @@ const CouncilorInfo: React.FC = () => {
   const [councilorName, setCouncilorName] = useState('');
   const [councilorDescription, setCouncilorDescription] = useState('');
 
-  React.useEffect(() => {
-    const fetchAddress = async () => {
+  useEffect(() => {
+    const fetchCouncilorInfo = async () => {
       try {
         const response = await fetch('https://pitne-d4-app-strapi-production.up.railway.app/api/councilor-infos', {
           method: 'GET',
@@ -20,12 +20,16 @@ const CouncilorInfo: React.FC = () => {
           setCouncilorDescription(data.data[0].attributes.Info);
         }
       } catch (error) {
-        console.error('Error fetching associations from Strapi:', error);
+        console.error('Error fetching councilor info from Strapi:', error);
       }
     };
-    fetchAddress();
+    fetchCouncilorInfo();
   }, []);
 
+  // Function to handle new lines in the description
+  const formatDescription = (description: string) => {
+    return description.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>');
+  };
 
   return (
     <div>
@@ -36,11 +40,11 @@ const CouncilorInfo: React.FC = () => {
           </div>
           <div className="top-heading" style={{ fontSize: '28px' }}>About the Councilor</div>
           <div className='p-4'>
-            <img src={ClientImage} alt="Client image" />
+            <img src={ClientImage} alt="Councilor" style={{ maxWidth: '100%', height: 'auto' }} />
           </div>
           <div className='left-align'> {/* Apply the left-align class here */}
-            <p> {councilorDescription}
-            </p>
+            <h2><b>{councilorName}</b></h2> {/* Display the councilor's name */}
+            <p dangerouslySetInnerHTML={{ __html: formatDescription(councilorDescription) }} />
           </div>
         </div>
       </div>
