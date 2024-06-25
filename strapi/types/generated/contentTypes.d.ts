@@ -890,6 +890,42 @@ export interface ApiContactInfoContactInfo extends Schema.CollectionType {
   };
 }
 
+export interface ApiCouncilorInfoCouncilorInfo extends Schema.CollectionType {
+  collectionName: 'councilor_infos';
+  info: {
+    singularName: 'councilor-info';
+    pluralName: 'councilor-infos';
+    displayName: 'CouncilorInfo';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Name: Attribute.String;
+    Info: Attribute.Text;
+    CouncilorImage: Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::councilor-info.councilor-info',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::councilor-info.councilor-info',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiDevelopmentDevelopment extends Schema.CollectionType {
   collectionName: 'developments';
   info: {
@@ -998,6 +1034,7 @@ export interface ApiHomePageHomePage extends Schema.CollectionType {
     singularName: 'home-page';
     pluralName: 'home-pages';
     displayName: 'HomePage';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1006,12 +1043,6 @@ export interface ApiHomePageHomePage extends Schema.CollectionType {
     heroTitle: Attribute.String;
     heroDescription: Attribute.String;
     heroImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
-    councilorName: Attribute.String;
-    councilorDescription: Attribute.String;
-    councilorImage: Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1093,6 +1124,37 @@ export interface ApiResourceResource extends Schema.CollectionType {
   };
 }
 
+export interface ApiUserAddressUserAddress extends Schema.CollectionType {
+  collectionName: 'user_addresses';
+  info: {
+    singularName: 'user-address';
+    pluralName: 'user-addresses';
+    displayName: 'UserAddress';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    City: Attribute.String;
+    State: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::user-address.user-address',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::user-address.user-address',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1114,12 +1176,14 @@ declare module '@strapi/types' {
       'api::announcement.announcement': ApiAnnouncementAnnouncement;
       'api::civic-association.civic-association': ApiCivicAssociationCivicAssociation;
       'api::contact-info.contact-info': ApiContactInfoContactInfo;
+      'api::councilor-info.councilor-info': ApiCouncilorInfoCouncilorInfo;
       'api::development.development': ApiDevelopmentDevelopment;
       'api::display-image.display-image': ApiDisplayImageDisplayImage;
       'api::event.event': ApiEventEvent;
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::mailing-list.mailing-list': ApiMailingListMailingList;
       'api::resource.resource': ApiResourceResource;
+      'api::user-address.user-address': ApiUserAddressUserAddress;
     }
   }
 }
