@@ -12,6 +12,7 @@ import MonthCalendar from "../components/calendar/MonthCalendar";
 import Events from "../components/calendar/Calendar";
 import ClientImage from '../images/BrianW.png'
 import ScrollDirection from "../components/calendar/ScrollDirection";
+import { ContactInfoTable } from "../interfaces";
 
 const APIUrl = "https://pitne-d4-app-strapi-production.up.railway.app/api/";
 
@@ -80,9 +81,31 @@ function Home() {
 
   const usescrollDirection = ScrollDirection();
 
+  const [contactInfo, setContactInfo] = React.useState<ContactInfoTable>();
+
   const handleEmailChange = (value: string) => {
     setEmail(value);
-  };
+  }
+
+  // Fetch contact info from Strapi
+  React.useEffect(() => {
+    const fetchContactInfo = async () => {
+      try {
+        const response = await fetch('https://pitne-d4-app-strapi-production.up.railway.app/api/contact-infos', {
+          method: 'GET',
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setContactInfo(data.data[0]);
+          console.log(data.data[0]);
+        }
+      } catch (error) {
+        console.error('Error fetching associations from Strapi:', error);
+      }
+    };
+    fetchContactInfo();
+  }, []);
+
 
   // Mailing List
   const handleSubscribe = async () => {
@@ -281,28 +304,28 @@ function Home() {
       </div>
 
       <footer className="footer">
-      <div className="heading mb-2" style={{ fontFamily: 'montserrat', color: "white", fontWeight: "bold", fontSize: "16px" }}>
-        SUBSCRIBE TO MAILING LIST
-      </div>
-      <div className="m-4">
-        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width: '100%' }}>
-        <TextInput
-        value={email}
-        type="email"
-        onChange={handleEmailChange}
-        aria-label="email-input"
-        placeholder="Enter your email"
-        style={{ fontFamily: 'montserrat', border: '1px solid #ccc', borderRadius: '0', marginRight: '10px', fontSize: '14px', fontStyle:'italic' }}
-      />
-      <Button onClick={handleSubscribe} variant="primary" style={{ padding: '5px', borderRadius: '0', border: '1px solid white', fontSize: '15px', fontFamily: 'montserrat' }}>
-        Subscribe
-      </Button>
-      </div>
-      {
-      mailingListError && (
-        <div style={{ fontStyle: "italic", color: 'white' }}>
-          <p>{mailingListError}</p>
+        <div className="heading mb-2" style={{ fontFamily: 'montserrat', color: "white", fontWeight: "bold", fontSize: "16px" }}>
+          SUBSCRIBE TO MAILING LIST
         </div>
+        <div className="m-4">
+          <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width: '100%' }}>
+            <TextInput
+              value={email}
+              type="email"
+              onChange={handleEmailChange}
+              aria-label="email-input"
+              placeholder="Enter your email"
+              style={{ fontFamily: 'montserrat', border: '1px solid #ccc', borderRadius: '0', marginRight: '10px', fontSize: '14px', fontStyle: 'italic' }}
+            />
+            <Button onClick={handleSubscribe} variant="primary" style={{ padding: '5px', borderRadius: '0', border: '1px solid white', fontSize: '15px', fontFamily: 'montserrat' }}>
+              Subscribe
+            </Button>
+          </div>
+          {
+            mailingListError && (
+              <div style={{ fontStyle: "italic", color: 'white' }}>
+                <p>{mailingListError}</p>
+              </div>
             )
           }
         </div>
@@ -313,22 +336,24 @@ function Home() {
         <div className="footer-content" style={{ padding: '0 15px' }}>
           <div className="footer-section about">
             <p style={{ fontFamily: 'lora', fontWeight: "light", fontSize: "14px", color: 'white', margin: '5px 0' }}>
-              <a href="mailto:brian.worrell@boston.gov" style={{ color: 'white', fontWeight: "450", fontSize: '14px' }}>Mail To: brian.worrell@boston.gov</a>
+              <a href={`mailto:${contactInfo?.attributes.Email}`} style={{ color: 'white', fontWeight: "450", fontSize: '14px' }}>Mail To: {contactInfo?.attributes.Email}</a>
             </p>
             <p style={{ fontFamily: 'lora', fontWeight: "light", fontSize: "14px", color: 'white', margin: '5px 0' }}>
-              <a href="tel:+16176353131" style={{ color: 'white', fontWeight: "450", fontSize: '14px' }}>Call: +1 617-635-3131</a>
+              <a href={`tel:+1${contactInfo?.attributes.Email}`} style={{ color: 'white', fontWeight: "450", fontSize: '14px' }}>Call: +1 {contactInfo?.attributes.PhoneNumber}</a>
             </p>
             <p style={{ fontFamily: 'lora', fontWeight: "light", fontSize: "14px", color: 'white', margin: '5px 0', marginBottom: '10px' }}>
-              <a href="https://www.google.com/maps/dir//5+Erie+St,+Dorchester,+MA+02121/@42.3266068,-71.1355474,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x89e37bc15204b3e5:0x4e18ab632ba37f9e!2m2!1d-71.0788007!2d42.303259?entry=ttu" style={{ color: 'white', fontWeight: "450", fontSize: '14px' }}>
-                District office: 5 Erie St, Dorchester, MA 02121
-              </a>
+              {contactInfo?.attributes.Address && (
+                <a href={`https://www.google.com/maps/dir//${encodeURIComponent(contactInfo.attributes.Address)} ?entry=ttu`} style={{ color: 'white', fontWeight: "450", fontSize: '14px' }}>
+                  District office: {contactInfo?.attributes.Address}
+                </a>
+              )}
             </p>
           </div>
-        </div>
+        </div >
         <div className="footer-bottom" style={{ fontFamily: 'lora', fontWeight: "light", fontSize: "14px", color: 'white' }}>
           &copy; 2024 District 4. All rights reserved.
         </div>
-      </footer>
+      </footer >
     </body >
   );
 }
