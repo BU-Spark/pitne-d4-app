@@ -858,6 +858,71 @@ export interface ApiCivicAssociationCivicAssociation
   };
 }
 
+export interface ApiContactInfoContactInfo extends Schema.CollectionType {
+  collectionName: 'contact_infos';
+  info: {
+    singularName: 'contact-info';
+    pluralName: 'contact-infos';
+    displayName: 'ContactInfo';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Email: Attribute.Email;
+    PhoneNumber: Attribute.Integer;
+    Address: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::contact-info.contact-info',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::contact-info.contact-info',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDevelopmentDevelopment extends Schema.CollectionType {
+  collectionName: 'developments';
+  info: {
+    singularName: 'development';
+    pluralName: 'developments';
+    displayName: 'Development';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String;
+    Date: Attribute.DateTime;
+    Description: Attribute.Text;
+    Link: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::development.development',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::development.development',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiDisplayImageDisplayImage extends Schema.CollectionType {
   collectionName: 'display_images';
   info: {
@@ -1048,6 +1113,8 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::announcement.announcement': ApiAnnouncementAnnouncement;
       'api::civic-association.civic-association': ApiCivicAssociationCivicAssociation;
+      'api::contact-info.contact-info': ApiContactInfoContactInfo;
+      'api::development.development': ApiDevelopmentDevelopment;
       'api::display-image.display-image': ApiDisplayImageDisplayImage;
       'api::event.event': ApiEventEvent;
       'api::home-page.home-page': ApiHomePageHomePage;
