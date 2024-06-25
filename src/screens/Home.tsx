@@ -11,7 +11,7 @@ import axios from "axios";
 import MonthCalendar from "../components/calendar/MonthCalendar";
 import Events from "../components/calendar/Calendar";
 import ClientImage from '../images/BrianW.png'
-
+import ScrollDirection from "../components/calendar/ScrollDirection";
 
 const APIUrl = "https://pitne-d4-app-strapi-production.up.railway.app/api/";
 
@@ -77,6 +77,8 @@ function Home() {
 
   const [email, setEmail] = useState('');
   const [mailingListError, setMailingListError] = useState('');
+
+  const usescrollDirection = ScrollDirection();
 
   const handleEmailChange = (value: string) => {
     setEmail(value);
@@ -269,7 +271,7 @@ function Home() {
           <div className="calendar-text">
             Events on {selectedDate.toDateString()}:
           </div>
-          <Events data={filteredEvents} />
+          <Events data={filteredEvents} scrollDirection={usescrollDirection} />
           <div className="view-calendar-button-container">
             <div style={{ borderRadius: '50%', overflow: 'hidden' }}>
               <ViewCalendar {...passCalendarData} />
