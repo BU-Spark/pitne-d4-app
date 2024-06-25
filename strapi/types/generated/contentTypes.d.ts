@@ -1040,9 +1040,17 @@ export interface ApiHomePageHomePage extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    heroTitle: Attribute.String;
-    heroDescription: Attribute.String;
-    heroImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    welcomeTitle: Attribute.String;
+    welcomeDescription: Attribute.String;
+    welcomeImage: Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    CouncilorDesc: Attribute.String;
+    CouncilorImage: Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
