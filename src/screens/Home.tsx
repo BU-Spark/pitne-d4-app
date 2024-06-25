@@ -143,6 +143,7 @@ function Home() {
   const [homePageData, setHomePageData] = useState<HomePageData | null>(null);
 
   const [email, setEmail] = useState('');
+  const [mailingListError, setMailingListError] = useState('');
 
   const handleEmailChange = (value: string) => {
     setEmail(value);
@@ -162,17 +163,17 @@ function Home() {
             }
           })
         });
-
-        const data = await response.json();
-        console.log('Success:', data);
-
         if (response.status === 200 || response.status === 201) {
           setEmail(''); // Clear the input after successful subscription
+          setMailingListError("You will be successfully subscribed in some time!");
+        } else if (response.status == 400) {
+          setMailingListError("Please enter a valid email");
         } else {
-          console.error('Failed to subscribe');
+          setMailingListError('An error occurred while subscribing, please try again later');
         }
       } catch (error) {
-        console.error('An error occurred while subscribing:', error);
+        console.log(error);
+        setMailingListError('An error occurred while subscribing, please try again later');
       }
     }
   };
@@ -442,50 +443,50 @@ function Home() {
   return (
     <body>
       <div className="hero-section">
-    <div className="mb-5">
-      <LogoBar />
-    </div>
-    <div className="overlay"></div>
-    <div className="hero-content">
-      <div className="top-heading-white">WELCOME TO THE DISTRICT 4 WEBSITE</div>
-      <p>District 4 includes Mattapan, Dorchester, and parts of Jamaica Plain and Roslindale</p>
-    </div>
-    <div className="scroll-down-container">
-      <div className="scroll-down">
-        <span>Swipe up to learn more</span>
-        <div className="arrow"></div>
+        <div className="mb-5">
+          <LogoBar />
+        </div>
+        <div className="overlay"></div>
+        <div className="hero-content">
+          <div className="top-heading-white">WELCOME TO THE DISTRICT 4 WEBSITE</div>
+          <p>District 4 includes Mattapan, Dorchester, and parts of Jamaica Plain and Roslindale</p>
+        </div>
+        <div className="scroll-down-container">
+          <div className="scroll-down">
+            <span>Swipe up to learn more</span>
+            <div className="arrow"></div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
       <div className="container">
       </div>
 
-        <div className="councilor-section">
-          <div className="councilor-background">
-            <div className="overlay"></div>
-              <div className="councilor-content">
-              <h2 className="councilor-heading">ABOUT THE COUNCILOR</h2>
-              <div className='p-4'>
-                <img src={ClientImage} alt="Client image" />
-              </div>
-                <p className="councilor-description">
-                Councilor Brian Worrell has been dedicated to serving the community of District 4 for many years. His efforts focus on improving local infrastructure, increasing public safety, and ensuring that every voice in the district is heard and valued.
-                </p>
-                <button className="learn-more-button" onClick={() => window.location.href = '/client-info'}>
-                  Learn more
-                </button>
+      <div className="councilor-section">
+        <div className="councilor-background">
+          <div className="overlay"></div>
+          <div className="councilor-content">
+            <h2 className="councilor-heading">ABOUT THE COUNCILOR</h2>
+            <div className='p-4'>
+              <img src={ClientImage} alt="Client image" />
             </div>
+            <p className="councilor-description">
+              Councilor Brian Worrell has been dedicated to serving the community of District 4 for many years. His efforts focus on improving local infrastructure, increasing public safety, and ensuring that every voice in the district is heard and valued.
+            </p>
+            <button className="learn-more-button" onClick={() => window.location.href = '/client-info'}>
+              Learn more
+            </button>
           </div>
-         </div>
+        </div>
+      </div>
 
 
-         <div className="blue-background-container"> 
-            <div className="top-heading-white">ANNOUNCEMENTS</div>
-            <Announcement {...passAnnounData} vertical={false} />
-            <ViewAllAnnouncements {...passAnnounData} />
-          </div>
+      <div className="blue-background-container">
+        <div className="top-heading-white">ANNOUNCEMENTS</div>
+        <Announcement {...passAnnounData} vertical={false} />
+        <ViewAllAnnouncements {...passAnnounData} />
+      </div>
 
-        {/* <Resources resources={InvolvedData} />
+      {/* <Resources resources={InvolvedData} />
         <Resources resources={SubmitandRequestData} /> */}
 
       <div className="top-heading">EVENTS CALENDAR</div>
@@ -499,31 +500,39 @@ function Home() {
           </div>
           <Events data={filteredEvents} />
           <div className="view-calendar-button-container">
-          <div style={{ borderRadius: '50%', overflow: 'hidden' }}>
-            <ViewCalendar {...passCalendarData} />
+            <div style={{ borderRadius: '50%', overflow: 'hidden' }}>
+              <ViewCalendar {...passCalendarData} />
+            </div>
           </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="heading mb-4">Subscribe to mailing list</div>
-      <div className="m-4">
-        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width: '100%' }}>
-          <TextInput
-            value={email}
-            type="email"
-            onChange={handleEmailChange}
-            aria-label="email-input"
-            placeholder="Enter your email"
-            style={{ border: '1px solid #ccc', borderRadius: '4px' }}
-          />
-          <Button onClick={handleSubscribe} variant="primary" style={{ padding: '5px' }}>
-            Subscribe
-          </Button>
         </div>
       </div>
 
       <footer className="footer">
+        <div className="heading mb-4" style={{ color: "white" }}>SUBSCRIBE TO MAILING LIST</div>
+        <div className="m-4">
+          <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width: '100%' }}>
+            <TextInput
+              value={email}
+              type="email"
+              onChange={handleEmailChange}
+              aria-label="email-input"
+              placeholder="Enter your email"
+              style={{ border: '1px solid #ccc', borderRadius: '4px' }}
+            />
+            <Button onClick={handleSubscribe} variant="primary" style={{ padding: '5px', border: '1px solid white' }}>
+              Subscribe
+            </Button>
+          </div>
+          {
+            mailingListError && (
+              <div style={{ fontStyle: "italic" }}>
+                <p>{mailingListError}</p>
+              </div>
+            )
+          }
+        </div>
+        <hr style={{ width: '100%', height: '1px', borderColor: 'white' }} />
+        <div className="heading mb-4" style={{ color: "white", textAlign: 'center' }}>CONTACT</div>
         <div className="footer-content">
           <div className="footer-section about">
             <p>
