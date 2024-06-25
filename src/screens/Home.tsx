@@ -22,6 +22,7 @@ import axios from "axios";
 import MonthCalendar from "../components/home/calendar/MonthCalendar";
 import Events from "../components/home/calendar/Calendar";
 import ClientImage from '../images/BrianW.png'
+import ScrollDirection from "../components/home/calendar/ScrollDirection";
 
 
 //for dev,
@@ -78,35 +79,35 @@ type HomePageData = {
 
 
 
-function checkIfManager() {
-  return new Promise((resolve, reject) => {
-    const auth = getAuth();
-    const db = getFirestore();
+// function checkIfManager() {
+//   return new Promise((resolve, reject) => {
+//     const auth = getAuth();
+//     const db = getFirestore();
 
-    onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        const userEmail = user.email;
-        const adminCollection = collection(db, 'Admin-Accounts');
-        const q = query(adminCollection, where('admin-email', '==', userEmail));
+//     onAuthStateChanged(auth, async (user) => {
+//       if (user) {
+//         const userEmail = user.email;
+//         const adminCollection = collection(db, 'Admin-Accounts');
+//         const q = query(adminCollection, where('admin-email', '==', userEmail));
 
-        const querySnapshot = await getDocs(q);
-        if (!querySnapshot.empty) {
-          // console.log("User is logged in and is an admin.");
-          localStorage.setItem('isManager', 'true');
-          resolve(true);  // Resolve the promise with true
-        } else {
-          // console.log("User is logged in but is not an admin.");
-          localStorage.setItem('isManager', 'false');
-          resolve(false); // Resolve the promise with false
-        }
-      } else {
-        // console.log("No user is currently logged in.");
-        localStorage.setItem('isManager', 'false');
-        resolve(false); // Resolve the promise with false
-      }
-    });
-  });
-}
+//         const querySnapshot = await getDocs(q);
+//         if (!querySnapshot.empty) {
+//           // console.log("User is logged in and is an admin.");
+//           localStorage.setItem('isManager', 'true');
+//           resolve(true);  // Resolve the promise with true
+//         } else {
+//           // console.log("User is logged in but is not an admin.");
+//           localStorage.setItem('isManager', 'false');
+//           resolve(false); // Resolve the promise with false
+//         }
+//       } else {
+//         // console.log("No user is currently logged in.");
+//         localStorage.setItem('isManager', 'false');
+//         resolve(false); // Resolve the promise with false
+//       }
+//     });
+//   });
+// }
 
 
 function Home() {
@@ -137,6 +138,8 @@ function Home() {
   const [homePageData, setHomePageData] = useState<HomePageData | null>(null);
 
   const [email, setEmail] = useState('');
+
+  const usescrollDirection = ScrollDirection();
 
   const handleEmailChange = (value: string) => {
     setEmail(value);
@@ -235,17 +238,17 @@ function Home() {
       });
   }, [db]);
 
-  useEffect(() => {
-    const fetchManagerStatus = async () => {
-      // Only fetch from Firestore if the local storage does not have the manager status
-      if (localStorage.getItem('isManager') === null) {
-        await checkIfManager();
-        // console.log("called function check Manager status");
-      }
-    };
+  // useEffect(() => {
+  //   const fetchManagerStatus = async () => {
+  //     // Only fetch from Firestore if the local storage does not have the manager status
+  //     if (localStorage.getItem('isManager') === null) {
+  //       await checkIfManager();
+  //       // console.log("called function check Manager status");
+  //     }
+  //   };
 
-    fetchManagerStatus();
-  }, []);
+  //   fetchManagerStatus();
+  // }, []);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -565,7 +568,7 @@ function Home() {
           <div className="calendar-text">
             Events on {selectedDate.toDateString()}:
           </div>
-          <Events data={filteredEvents} />
+          <Events data={filteredEvents} scrollDirection={usescrollDirection}/>
           <div className="view-calendar-button-container">
           <div style={{ borderRadius: '50%', overflow: 'hidden' }}>
             <ViewCalendar {...passCalendarData} />

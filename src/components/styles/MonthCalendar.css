@@ -129,9 +129,11 @@
   .react-datepicker__month {
     margin: 2vw;
   }
+
   .react-datepicker__month-container {
     width: 70vw;
   }
+
   .react-datepicker__current-month {
     font-size: 4.5vw;
     margin-top: 15px;
@@ -162,4 +164,8 @@
     color: white;
     border-radius: 50%;
   }
+}
+
+.react-datepicker__day--outside-month {
+  color: #aaa; /* Change the color to gray for days outside the current month */
 }

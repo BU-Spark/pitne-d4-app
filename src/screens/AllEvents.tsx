@@ -8,6 +8,7 @@ import { APIUrl } from "./Home";
 import Events from "../components/home/calendar/Calendar";
 import LogoBar from "../components/home/LogoBar";
 import MonthCalendar from "../components/home/calendar/MonthCalendar";
+import ScrollDirection from "../components/home/calendar/ScrollDirection";
 import EventButton from "../components/home/calendar/AddEvent";
 import axios from "axios";
 import Footer from "../components/home/footer";
@@ -133,6 +134,8 @@ function AllEvents() {
     fetchEvents();
   }, []);
 
+  const usescrollDirection = ScrollDirection();
+
   return (
     <div>
     <div className="container">
@@ -147,10 +150,10 @@ function AllEvents() {
         Events on {selectedDate.toDateString()}:
       </div>
 
-      <Events data={filteredEvents} />
+      <Events data={filteredEvents} scrollDirection = 'horizontal'/>
       <div className = "calendar-text">All Upcoming Events: </div>
-        <Events data={upcomingEvents} />
-    </div>
+        <Events data={upcomingEvents} scrollDirection = 'horizontal'/>
+      </div>
     <Footer />
     </div>
   );
