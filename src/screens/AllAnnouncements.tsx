@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import LogoBar from "../components/home/LogoBar";
-import DetailedAnnouncementCard from "../components/home/announcements/detailedAnnouncements";
-import Footer from "../components/home/footer";
+import NavBar from "../components/navbar/NavBar";
+import DetailedAnnouncementCard from "../components/announcements/DetailedAnnouncements";
+import Footer from "../components/Footer";
 import type { announData } from "./Home";
 
 const AllAnnouncements: React.FC = () => {
@@ -11,14 +11,8 @@ const AllAnnouncements: React.FC = () => {
     try {
       const response = await fetch("https://pitne-d4-app-strapi-production.up.railway.app/api/announcements?populate=*");
 
-      // Log the response object to inspect it
-      console.log("Response:", response);
-
       if (response.ok) {
         const json = await response.json();
-
-        // Log the parsed JSON data
-        console.log("JSON Data:", json);
 
         const fetchedAnnouncements = json.data.map((item: any) => {
           const dateObj = new Date(item.attributes.Date);
@@ -37,9 +31,6 @@ const AllAnnouncements: React.FC = () => {
             },
           };
         });
-
-        // Log the transformed announcements data
-        console.log("Fetched Announcements:", fetchedAnnouncements);
 
         setAnnounData(fetchedAnnouncements);
       } else {
@@ -71,7 +62,7 @@ const AllAnnouncements: React.FC = () => {
       <div className="page-container">
         <div className="content-wrap">
           <div className="mb-5">
-            <LogoBar />
+            <NavBar />
           </div>
           <div className="top-heading">ALL ANNOUNCEMENTS</div>
           <div className="detailed-announcements-container">

@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { loadModules } from 'esri-loader';
-import LogoBar from "../components/home/LogoBar";
-import AssociationCard from '../components/civic_associations/associations_card';
+import NavBar from "../components/navbar/NavBar";
+import AssociationCard from '../components/civic_associations/AssociationCard';
 import { Text, TextVariants, TextInput } from '@patternfly/react-core';
-import axios from 'axios';
 import { AssociationTable } from './../interfaces';
-import Loader from '../components/home/Loader';
-import { filter } from 'esri/core/promiseUtils';
-import Footer from '../components/home/footer';
+import Loader from '../components/Loader';
+import Footer from '../components/Footer';
 
 function CivicAssociations() {
     const [associationPart, setAssociationPart] = useState(false);
@@ -39,14 +37,13 @@ function CivicAssociations() {
 
         const fetchAssociations = async () => {
             try {
-                // const token = '2f28130dd3c99e82d1b7db445c23010b0609ad7a2cc231396904349b10c6ad4bb852fe69ceec7ce0eb86d2907176064f6dd3edd225648b52db70ef5ea7e6e9a40f03e17e28c6ec7b60fff40993e330bf331dea836a9f9e64144327f3be7fc6ffe26ca749d025f5f248a3a537c26874b34ab184889d4aadfa02efadcc5d4a149b'; // Replace 'YOUR_API_TOKEN' with your actual API token
-                const response = await axios.get('http://pitne-d4-app-strapi-production.up.railway.app/api/civic-associations', {
-
-                    // headers: {
-                    //     Authorization: `Bearer ${token}`
-                    // }
+                const response = await fetch('https://pitne-d4-app-strapi-production.up.railway.app/api/civic-associations', {
+                    method: 'GET',
                 });
-                setAssociations(response.data.data);
+                if (response.ok) {
+                    const data = await response.json();
+                    setAssociations(data.data);
+                }
             } catch (error) {
                 console.error('Error fetching associations from Strapi:', error);
             }
@@ -164,69 +161,69 @@ function CivicAssociations() {
 
     return (
         <div>
-        <div>
-            <div className="mb-5">
-                <LogoBar />
-            </div>
-            <div id="viewMap" style={{ height: 400, width: "100%" }}>
-            </div>
-            {addressEntered && associationPart &&
+            <div>
+                <div className="mb-5">
+                    <NavBar />
+                </div>
+                <div id="viewMap" style={{ height: 400, width: "100%" }}>
+                </div>
+                {addressEntered && associationPart &&
+                    <div>
+                        <h1 className='mt-3'>
+                            <b>Your Association</b>
+                        </h1>
+                        <AssociationCard
+                            key={matchedAssociation?.id}
+                            association={matchedAssociation}
+                        />
+                        <hr />
+                    </div>
+                }
+
+                {addressEntered && !associationPart &&
+                    <div className='mt-3'>
+                        <Text component={TextVariants.h1} style={{ fontWeight: 'bold' }}>
+                            You are not a part of any association
+                        </Text>
+                        <hr />
+                    </div>
+                }
                 <div>
                     <h1 className='mt-3'>
-                        <b>YOUR ASSOCIATION</b>
+                        <b>All Associations</b>
+
                     </h1>
-                    <AssociationCard
-                        key={matchedAssociation?.id}
-                        association={matchedAssociation}
-                    />
-                    <hr />
-                </div>
-            }
-
-            {addressEntered && !associationPart &&
-                <div className='mt-3'>
-                    <Text component={TextVariants.h1} style={{ fontWeight: 'bold' }}>
-                        You are not a part of any association
-                    </Text>
-                    <hr />
-                </div>
-            }
-            <div>
-                <h1 className='mt-3'>
-                    <b>ALL ASSOCIATIONS</b>
-
-                </h1>
-                <div className='m-4'>
-                    <TextInput
-                        type="text"
-                        value={searchTerm}
-                        onChange={(value) => setSearchTerm(value)}
-                        placeholder="Search associations..."
-                        aria-label='Search for associations here'
-                    />
-                </div>
-                {searchTerm ? (
-                    filteredAssociations.length === 0 ? (
-                        <p>No associations found.</p>
+                    <div className='m-4'>
+                        <TextInput
+                            type="text"
+                            value={searchTerm}
+                            onChange={(value) => setSearchTerm(value)}
+                            placeholder="Search associations..."
+                            aria-label='Search for associations here'
+                        />
+                    </div>
+                    {searchTerm ? (
+                        filteredAssociations.length === 0 ? (
+                            <p>No associations found.</p>
+                        ) : (
+                            filteredAssociations.map(assoc => (
+                                <AssociationCard
+                                    key={assoc.id}
+                                    association={assoc}
+                                />
+                            ))
+                        )
                     ) : (
-                        filteredAssociations.map(assoc => (
+                        associations.map(assoc => (
                             <AssociationCard
                                 key={assoc.id}
                                 association={assoc}
                             />
                         ))
-                    )
-                ) : (
-                    associations.map(assoc => (
-                        <AssociationCard
-                            key={assoc.id}
-                            association={assoc}
-                        />
-                    ))
-                )}
+                    )}
+                </div>
             </div>
-        </div>
-        <Footer/>
+            <Footer />
         </div>
     );
 }

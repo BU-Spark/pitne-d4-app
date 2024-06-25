@@ -1,9 +1,0 @@
-.association-card {
-    margin: 20px;
-    /* Adds space between the card and the edges/sibling cards */
-    border-radius: 10px;
-    /* Rounds the corners */
-    overflow: hidden;
-    /* Ensures the rounded corners are visible */
-    text-align: left;
-}

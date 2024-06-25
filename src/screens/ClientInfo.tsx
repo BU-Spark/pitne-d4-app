@@ -1,7 +1,7 @@
 import React from 'react';
-import LogoBar from '../components/home/LogoBar';
+import NavBar from '../components/navbar/NavBar';
 import ClientImage from '../images/councilor_photo.png'; // Import the image
-import Footer from '../components/home/footer'; // Import the Footer component
+import Footer from '../components/Footer'; // Import the Footer component
 
 const ClientInfo: React.FC = () => {
   return (
@@ -9,7 +9,7 @@ const ClientInfo: React.FC = () => {
       <div className="page-container">
         <div className="content-wrap">
           <div className="mb-5">
-            <LogoBar />
+            <NavBar />
           </div>
           <div className="top-heading" style={{ fontSize: '28px' }}>ABOUT THE COUNCILOR</div>
           <div className='p-4'>

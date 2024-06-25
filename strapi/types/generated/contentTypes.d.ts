@@ -788,6 +788,38 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiAnnouncementAnnouncement extends Schema.CollectionType {
+  collectionName: 'announcements';
+  info: {
+    singularName: 'announcement';
+    pluralName: 'announcements';
+    displayName: 'Announcement';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String;
+    Date: Attribute.DateTime;
+    Description: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::announcement.announcement',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::announcement.announcement',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiCivicAssociationCivicAssociation
   extends Schema.CollectionType {
   collectionName: 'civic_associations';
@@ -819,6 +851,107 @@ export interface ApiCivicAssociationCivicAssociation
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::civic-association.civic-association',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiContactInfoContactInfo extends Schema.CollectionType {
+  collectionName: 'contact_infos';
+  info: {
+    singularName: 'contact-info';
+    pluralName: 'contact-infos';
+    displayName: 'ContactInfo';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Email: Attribute.Email;
+    PhoneNumber: Attribute.Integer;
+    Address: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::contact-info.contact-info',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::contact-info.contact-info',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCouncilorInfoCouncilorInfo extends Schema.CollectionType {
+  collectionName: 'councilor_infos';
+  info: {
+    singularName: 'councilor-info';
+    pluralName: 'councilor-infos';
+    displayName: 'CouncilorInfo';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Name: Attribute.String;
+    Info: Attribute.Text;
+    CouncilorImage: Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::councilor-info.councilor-info',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::councilor-info.councilor-info',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDevelopmentDevelopment extends Schema.CollectionType {
+  collectionName: 'developments';
+  info: {
+    singularName: 'development';
+    pluralName: 'developments';
+    displayName: 'Development';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String;
+    Date: Attribute.DateTime;
+    Description: Attribute.Text;
+    Link: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::development.development',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::development.development',
       'oneToOne',
       'admin::user'
     > &
@@ -876,6 +1009,7 @@ export interface ApiEventEvent extends Schema.CollectionType {
     ContactInfo: Attribute.String & Attribute.DefaultTo<'No Info'>;
     EventDate: Attribute.DateTime;
     Location: Attribute.String;
+    Time: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -900,6 +1034,7 @@ export interface ApiHomePageHomePage extends Schema.CollectionType {
     singularName: 'home-page';
     pluralName: 'home-pages';
     displayName: 'HomePage';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -908,12 +1043,6 @@ export interface ApiHomePageHomePage extends Schema.CollectionType {
     heroTitle: Attribute.String;
     heroDescription: Attribute.String;
     heroImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
-    councilorName: Attribute.String;
-    councilorDescription: Attribute.String;
-    councilorImage: Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -995,6 +1124,37 @@ export interface ApiResourceResource extends Schema.CollectionType {
   };
 }
 
+export interface ApiUserAddressUserAddress extends Schema.CollectionType {
+  collectionName: 'user_addresses';
+  info: {
+    singularName: 'user-address';
+    pluralName: 'user-addresses';
+    displayName: 'UserAddress';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    City: Attribute.String;
+    State: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::user-address.user-address',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::user-address.user-address',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1013,12 +1173,17 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::announcement.announcement': ApiAnnouncementAnnouncement;
       'api::civic-association.civic-association': ApiCivicAssociationCivicAssociation;
+      'api::contact-info.contact-info': ApiContactInfoContactInfo;
+      'api::councilor-info.councilor-info': ApiCouncilorInfoCouncilorInfo;
+      'api::development.development': ApiDevelopmentDevelopment;
       'api::display-image.display-image': ApiDisplayImageDisplayImage;
       'api::event.event': ApiEventEvent;
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::mailing-list.mailing-list': ApiMailingListMailingList;
       'api::resource.resource': ApiResourceResource;
+      'api::user-address.user-address': ApiUserAddressUserAddress;
     }
   }
 }

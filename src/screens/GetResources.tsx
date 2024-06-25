@@ -1,16 +1,14 @@
-import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import * as React from "react";
-import Footer from "../components/home/footer";
-import Resources from "../components/home/Resources";
+import Footer from "../components/Footer";
+import Resources from "../components/resources/Resources";
 import { APIUrl } from "./Home";
-import LogoBar from "../components/home/LogoBar";
+import NavBar from "../components/navbar/NavBar";
 import { ResourceTable } from "../interfaces";
 import axios from "axios";
 import { TextInput } from "@patternfly/react-core";
 
 function GetResources() {
-  const navigate = useNavigate();
   const [resources, setResources] = React.useState<ResourceTable[]>([]);
   const [searchTerm, setSearchTerm] = React.useState<string>('');
 
@@ -37,43 +35,43 @@ function GetResources() {
 
   return (
     <div>
-    <div className="page-container">
-      <div className="content-wrap">
-        <div className="mb-5">
-          <LogoBar />
-        </div>
-        <div className="mt-5 p-4">
-          <h1>
-            <b>ALL RESOURCES</b>
-          </h1>
-          <div className="m-4">
-            <TextInput
-              type="text"
-              value={searchTerm}
-              onChange={(value) => setSearchTerm(value)}
-              placeholder="Search resources..."
-              aria-label="Search for resources here"
-            />
+      <div className="page-container">
+        <div className="content-wrap">
+          <div className="mb-5">
+            <NavBar />
           </div>
-          {searchTerm ? (
-            filteredResources.length === 0 ? (
-              <p>No resources found.</p>
+          <div className="mt-5 p-4">
+            <h1>
+              <b>ALL RESOURCES</b>
+            </h1>
+            <div className="m-4">
+              <TextInput
+                type="text"
+                value={searchTerm}
+                onChange={(value) => setSearchTerm(value)}
+                placeholder="Search resources..."
+                aria-label="Search for resources here"
+              />
+            </div>
+            {searchTerm ? (
+              filteredResources.length === 0 ? (
+                <p>No resources found.</p>
+              ) : (
+                filteredResources.map(resource => (
+                  <Resources
+                    key={resource.id}
+                    resource={resource}
+                  />
+                ))
+              )
             ) : (
-              filteredResources.map(resource => (
+              resources.map(resource => (
                 <Resources
                   key={resource.id}
                   resource={resource}
                 />
               ))
-            )
-          ) : (
-            resources.map(resource => (
-              <Resources
-                key={resource.id}
-                resource={resource}
-              />
-            ))
-          )}
+            )}
           </div>
         </div>
       </div>

@@ -13,9 +13,9 @@ import TimesCircleIcon from "@patternfly/react-icons/dist/esm/icons/times-circle
 function AddressAPIError() {
   return (
     <div>
-      
+
       <Card >
-        <div style={{backgroundColor:"#c9190b",height:"3px"}}></div>
+        <div style={{ backgroundColor: "#c9190b", height: "3px" }}></div>
         <CardBody className="m-3">
           <div className="row">
             <div className="col-10">

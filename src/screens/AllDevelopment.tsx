@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import LogoBar from "../components/home/LogoBar";
-import Footer from "../components/home/footer";
-import DetailedDevelopmentCard from "../components/home/Developments/detailedDevs";
-
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import NavBar from "../components/navbar/NavBar";
+import Footer from "../components/Footer";
+import DetailedDevelopmentCard from "../components/developments/DetailedDevs";
 type DevelopmentData = {
   id: string;
   attributes: {
@@ -10,65 +11,34 @@ type DevelopmentData = {
     body: string;
     website?: string;
     date?: string;
+    image?: string;
   };
 };
 
-const AllDevelopments: React.FC = () => {
+function AllDevelopments() {
+  const navigate = useNavigate();
   const [developments, setDevelopments] = useState<DevelopmentData[]>([]);
 
   const fetchDevelopments = async () => {
     try {
-      const response = await fetch("https://pitne-d4-app-strapi-production.up.railway.app/api/developments?populate=*");
-      
-      console.log("Response:", response);
-      
-      if (response.ok) {
-        const json = await response.json();
-        
-        console.log("JSON Data:", json);
-        
-        const fetchedDevelopments = json.data.map((item: any) => {
-          let formattedDate = "";
-          if (item.attributes.Date) {
-            const dateObj = new Date(item.attributes.Date);
-            formattedDate = dateObj.toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric'
-            });
-          }
-
-          return {
-            id: item.id,
-            attributes: {
-              title: item.attributes.Title,
-              body: item.attributes.Description,
-              website: item.attributes.Link,
-              date: formattedDate,
-            },
-          };
-        });
-
-        console.log("Fetched Developments:", fetchedDevelopments);
-
-        setDevelopments(fetchedDevelopments);
-      } 
-      else {
-        console.log(`Status code: ${response.status}`);
-
-        setDevelopments([{
-          id: '-1',
-          attributes: {
-            title: "Uh Oh!",
-            body: "Looks like there was an issue!",
-            website: "#",
-            date: ""
-          }
-        }]);
-      }
+      const {
+        data: { data },
+      } = await axios.get("http://pitne-d4-app-strapi-production.up.railway.app/api/developments?populate=*");
+      const fetchedDevelopments = data.map((item: any) => ({
+        id: item.id,
+        attributes: {
+          title: item.attributes.title,
+          body: item.attributes.body,
+          website: item.attributes.website,
+          date: item.attributes.date,
+          image: item.attributes.image?.data && item.attributes.image.data.length > 0
+            ? "http://pitne-d4-app-strapi-production.up.railway.app" + item.attributes.image.data[0].attributes.url
+            : '',
+        },
+      }));
+      setDevelopments(fetchedDevelopments);
     } catch (error) {
-      console.error("Fetch Error:", error);
-
+      console.error("Failed to fetch developments:", error);
       setDevelopments([{
         id: '-1',
         attributes: {
@@ -90,9 +60,9 @@ const AllDevelopments: React.FC = () => {
       <div className="page-container">
         <div className="content-wrap">
           <div className="mb-5">
-            <LogoBar />
+            <NavBar />
           </div>
-          <h2 className="top-heading">ALL DEVELOPMENTS</h2>
+          <h2 className="top-heading">All Developments</h2>
           <div className="detailed-developments-container">
             {developments.map(development => (
               <DetailedDevelopmentCard
@@ -109,6 +79,6 @@ const AllDevelopments: React.FC = () => {
       <Footer />
     </div>
   );
-};
+}
 
 export default AllDevelopments;
