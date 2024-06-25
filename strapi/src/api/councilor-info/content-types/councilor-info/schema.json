@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "home_pages",
+  "collectionName": "councilor_infos",
   "info": {
-    "singularName": "home-page",
-    "pluralName": "home-pages",
-    "displayName": "HomePage",
+    "singularName": "councilor-info",
+    "pluralName": "councilor-infos",
+    "displayName": "CouncilorInfo",
     "description": ""
   },
   "options": {
@@ -12,22 +12,21 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "heroTitle": {
+    "Name": {
       "type": "string"
     },
-    "heroDescription": {
-      "type": "string"
+    "Info": {
+      "type": "text"
     },
-    "heroImage": {
-      "type": "media",
-      "multiple": true,
-      "required": false,
+    "CouncilorImage": {
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ]
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }
