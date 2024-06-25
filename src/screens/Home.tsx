@@ -1,6 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
-import { useEffect, useCallback } from "react";
+import { useEffect, useState } from "react";
 import NavBar from "../components/navbar/NavBar";
 import Announcement from "../components/announcements/Announcement";
 import { useNavigate } from "react-router-dom";
