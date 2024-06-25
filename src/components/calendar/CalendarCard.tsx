@@ -20,6 +20,7 @@ function CalendarCard(props: {
   const date = props.date ? props.date : "";
   const time = props.time ? props.time : "";
   const location = props.location ? props.location : "";
+  const image = props.image ? props.image : "";
   const { isOpen, toggle } = UseModal();
 
   return (
@@ -39,7 +40,7 @@ function CalendarCard(props: {
               style={{ width: "100%", height: "100%" }}
             />
           ) : (
-            <div></div>
+            <div>no image</div>
           )}
         </div>
         <Modal
@@ -50,6 +51,7 @@ function CalendarCard(props: {
           content={content}
           time={time}
           location={location}
+          image={image}
         ></Modal>
       </div>
     </Card>
