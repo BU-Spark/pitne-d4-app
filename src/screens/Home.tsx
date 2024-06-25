@@ -91,16 +91,16 @@ function checkIfManager() {
 
         const querySnapshot = await getDocs(q);
         if (!querySnapshot.empty) {
-          console.log("User is logged in and is an admin.");
+          // console.log("User is logged in and is an admin.");
           localStorage.setItem('isManager', 'true');
           resolve(true);  // Resolve the promise with true
         } else {
-          console.log("User is logged in but is not an admin.");
+          // console.log("User is logged in but is not an admin.");
           localStorage.setItem('isManager', 'false');
           resolve(false); // Resolve the promise with false
         }
       } else {
-        console.log("No user is currently logged in.");
+        // console.log("No user is currently logged in.");
         localStorage.setItem('isManager', 'false');
         resolve(false); // Resolve the promise with false
       }
@@ -214,11 +214,11 @@ function Home() {
           }));
           setPinned(transformedInterests);
         } else {
-          console.log("No such document!");
+          // console.log("No such document!");
         }
       })
       .catch((error) => {
-        console.log("Error getting document:", error);
+        // console.log("Error getting document:", error);
       });
   }, [db]);
 
@@ -227,7 +227,7 @@ function Home() {
       // Only fetch from Firestore if the local storage does not have the manager status
       if (localStorage.getItem('isManager') === null) {
         await checkIfManager();
-        console.log("called function check Manager status");
+        // console.log("called function check Manager status");
       }
     };
 
@@ -259,7 +259,7 @@ function Home() {
           ...doc.data()
         })) as calData[];
         //set the calendar data
-        console.log("events list");
+        // console.log("events list");
         setCalendarData(eventsList);
       } catch (error) {
         console.log(error);
@@ -278,7 +278,7 @@ function Home() {
           ...doc.data()
         })) as announData[];
         //set the calendar data
-        console.log("announ list");
+        // console.log("announ list");
         setAnnounData(announList);
       } catch (error) {
         console.log(error);
@@ -295,7 +295,7 @@ function Home() {
               setUpdateData(json.data);
             });
           } else {
-            console.log(`status code: ${res.status}`);
+            // console.log(`status code: ${res.status}`);
             setUpdateData([
               {
                 id: -1,
@@ -333,7 +333,7 @@ function Home() {
       const loadedDevelopments = snapshot.docs.map(doc => ({
         ...doc.data()
       })) as DevelopmentData[];
-      console.log(loadedDevelopments)
+      // console.log(loadedDevelopments);
       setDevelopmentData(loadedDevelopments);
     }
 
@@ -403,7 +403,7 @@ function Home() {
           time: item.attributes.Time,
         },
       }));
-      console.log(fetchedEvents);
+      // console.log(fetchedEvents);
       // console.log(image);
 
       setCalendarData(fetchedEvents);
