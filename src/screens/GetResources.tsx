@@ -86,7 +86,6 @@ function GetResources() {
     </div>
     <Footer />
     </div>
-
   );
 };
 
