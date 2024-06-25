@@ -373,7 +373,7 @@ body {
   padding: 20px;
   box-shadow: 0px 2px 2px #85CAE3;
   border-radius: 4px;
-  width: 400px; /* Optimal reading width */
+  max-width: 400px; /* Optimal reading width */
   color: #152d5c;
   text-align: left;
 }
@@ -386,7 +386,7 @@ body {
   box-shadow: 0 2px 2px #85CAE3;
   border-radius: 4px;
   background-color: white;
-  width: 400px;
+  max-width: 400px;
   color: #152d5c;
   text-align: left;
 }
@@ -837,7 +837,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding: 30px 30px;
+  padding: 15px 15px;
 }
 .content-wrap {
   flex: 1;

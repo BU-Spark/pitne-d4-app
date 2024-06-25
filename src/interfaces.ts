@@ -19,3 +19,12 @@ export interface ResourceTable {
         link: string;
     }
 }
+
+export interface ContactInfoTable {
+    id: string;
+    attributes: {
+        Email: string;
+        PhoneNumber: string;
+        Address: string;
+    }
+};
