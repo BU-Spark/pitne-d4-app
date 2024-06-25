@@ -37,45 +37,49 @@ function GetResources() {
 
   return (
     <div>
-      <div className="mb-5">
-        <LogoBar />
-      </div>
-      <div className='mt-5 p-4'>
-        <h1 >
-          <b>ALL RESOURCES</b>
-        </h1>
-        <div className='m-4'>
-          <TextInput
-            type="text"
-            value={searchTerm}
-            onChange={(value) => setSearchTerm(value)}
-            placeholder="Search resources..."
-            aria-label='Search for resources here'
-          />
+    <div className="page-container">
+      <div className="content-wrap">
+        <div className="mb-5">
+          <LogoBar />
         </div>
-        {searchTerm ? (
-          filteredResources.length === 0 ? (
-            <p>No resources found.</p>
+        <div className="mt-5 p-4">
+          <h1>
+            <b>ALL RESOURCES</b>
+          </h1>
+          <div className="m-4">
+            <TextInput
+              type="text"
+              value={searchTerm}
+              onChange={(value) => setSearchTerm(value)}
+              placeholder="Search resources..."
+              aria-label="Search for resources here"
+            />
+          </div>
+          {searchTerm ? (
+            filteredResources.length === 0 ? (
+              <p>No resources found.</p>
+            ) : (
+              filteredResources.map(resource => (
+                <Resources
+                  key={resource.id}
+                  resource={resource}
+                />
+              ))
+            )
           ) : (
-            filteredResources.map(resource => (
+            resources.map(resource => (
               <Resources
                 key={resource.id}
                 resource={resource}
               />
             ))
-          )
-        ) : (
-          resources.map(resource => (
-            <Resources
-              key={resource.id}
-              resource={resource}
-            />
-          ))
-        )}
+          )}
+          </div>
+        </div>
       </div>
+      <Footer />
     </div>
-  )
-
-}
+  );
+};
 
 export default GetResources;
