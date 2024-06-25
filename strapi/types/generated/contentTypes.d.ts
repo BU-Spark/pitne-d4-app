@@ -932,6 +932,37 @@ export interface ApiHomePageHomePage extends Schema.CollectionType {
   };
 }
 
+export interface ApiMailingListMailingList extends Schema.CollectionType {
+  collectionName: 'mailing_lists';
+  info: {
+    singularName: 'mailing-list';
+    pluralName: 'mailing-lists';
+    displayName: 'MailingList';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Email: Attribute.Email;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::mailing-list.mailing-list',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::mailing-list.mailing-list',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiResourceResource extends Schema.CollectionType {
   collectionName: 'resources';
   info: {
@@ -986,6 +1017,7 @@ declare module '@strapi/types' {
       'api::display-image.display-image': ApiDisplayImageDisplayImage;
       'api::event.event': ApiEventEvent;
       'api::home-page.home-page': ApiHomePageHomePage;
+      'api::mailing-list.mailing-list': ApiMailingListMailingList;
       'api::resource.resource': ApiResourceResource;
     }
   }
