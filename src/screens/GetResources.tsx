@@ -15,11 +15,15 @@ function GetResources() {
   useEffect(() => {
     const fetchResources = async () => {
       try {
-        const response = await axios.get('http://pitne-d4-app-strapi-production.up.railway.app/api/resources', {
+        const response = await fetch('https://pitne-d4-app-strapi-production.up.railway.app/api/resources', {
+          method: 'GET',
         });
-        setResources(response.data.data);
+        if (response.ok) {
+          const data = await response.json();
+          setResources(data.data);
+        }
       } catch (error) {
-        console.error('Error fetching resources from Strapi:', error);
+        console.error('Error fetching associations from Strapi:', error);
       }
     };
     fetchResources();
@@ -50,7 +54,7 @@ function GetResources() {
                 onChange={(value) => setSearchTerm(value)}
                 placeholder="Search resources..."
                 aria-label="Search for resources here"
-          
+
               />
             </div>
             {searchTerm ? (
