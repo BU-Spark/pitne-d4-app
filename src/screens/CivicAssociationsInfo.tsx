@@ -76,7 +76,7 @@ function CivicAssociationsInfo() {
                     ))}
                 </div>
                 {/* Find your Civic Association Button */}
-                <div className='p-2 mb-5 bottom-0' style={{ marginTop: '20vh'}}>
+                <div className='p-2 mb-5 bottom-0' style={{ marginTop: '2vh'}}>
                     <Button
                         onClick={navigateToNext}
                         className="px-5 py-1 brand-blue"
