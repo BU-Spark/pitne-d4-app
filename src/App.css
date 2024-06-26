@@ -700,67 +700,6 @@ body {
   color: #0056b3;
 }
 
-.civic-associations-section {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-image: url('./images/152d5cBlue.png'); /* Path to your background image */
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.civic-associations-section .overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgba(21, 45, 92, 0.85); /* Transparent blue background */
-}
-
-.civic-associations-content {
-  position: relative;
-  z-index: 1;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px; /* Add padding to ensure content doesn't touch the edges */
-  border-radius: 10px;
-  text-align: center;
-  color: white;
-}
-
-.civic-associations-section .heading {
-  font-family: 'Montserrat';
-  font-size: 1.6rem;
-  font-weight: bold;
-  margin-top: 20px;
-  margin-bottom: 40px;
-  color: white;
-}
-
-.civic-associations-section .description {
-  font-family: 'Lora';
-  font-size: 1.1rem;
-  margin-bottom: 20px;
-}
-
-.civic-associations-section .home-button.custom-button {
-  background-color: white !important;
-  color: white;
-  font-family: 'Lora', sans-serif;
-  padding: 20px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  text-align: center;
-}
-
-.civic-associations-section .home-button.custom-button:hover {
-  background-color: #e0e0e0 !important; /* Slightly darker background on hover */
-}
-
 .grid-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
