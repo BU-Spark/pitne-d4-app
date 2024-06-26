@@ -275,7 +275,7 @@ function Home() {
             <p className="councilor-description">
               {homePageData.attributes.councilorDescription}
             </p>
-            <button className="learn-more-button" onClick={() => window.location.href = '/client-info'}>
+            <button className="learn-more-button" onClick={() => window.location.href = '/councilor-info'}>
               Learn more
             </button>
           </div>
