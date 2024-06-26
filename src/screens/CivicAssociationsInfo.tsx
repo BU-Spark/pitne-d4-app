@@ -38,12 +38,16 @@ function CivicAssociationsInfo() {
 
     return (
         <div>
-            <div className='m-4' style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            <div className="container">
+        <div className="mb-5">
+          <NavBar />
+        </div>
+        <NavBar />
+
+        <div className="top-heading">Civic Associations</div>
+            <div className='m-4' style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start'}}>
                 <div>
                     <NavBar />
-                </div>
-                <div className='mb-5'>
-                    <h1><b>Civic Associations</b></h1>
                 </div>
                 <div>
                     {cards.map((card) => (
@@ -51,7 +55,7 @@ function CivicAssociationsInfo() {
                             <Card isHoverable isExpanded={expandedCardId === card.id}>
                                 <CardHeader>
                                     <CardTitle>
-                                        <div style={{ backgroundColor: "white", display: 'flex', alignItems: 'center', textAlign: 'left' }}>
+                                        <div style={{ backgroundColor: "white", display: 'flex', alignItems: 'center', textAlign: 'left', color: '#152d5c'}}>
                                             <p><b>Q. </b>{card.question}</p>
                                         </div>
                                     </CardTitle>
@@ -72,7 +76,7 @@ function CivicAssociationsInfo() {
                     ))}
                 </div>
                 {/* Find your Civic Association Button */}
-                <div className='p-2 mb-5 bottom-0'>
+                <div className='p-2 mb-5 bottom-0' style={{ marginTop: '350px'}}>
                     <Button
                         onClick={navigateToNext}
                         className="px-5 py-1 brand-blue"
@@ -82,8 +86,11 @@ function CivicAssociationsInfo() {
                     </Button>
                 </div>
             </div>
-            <Footer />
+
         </div>
+        <Footer />
+        </div>
+        
     );
 }
 
