@@ -48,7 +48,7 @@ function AllEvents() {
 
       if (response.ok) {
         const json = await response.json();
-
+        
         const fetchedEvents = json.data.map((item: any) => ({
           id: item.id,
           attributes: {
@@ -61,6 +61,7 @@ function AllEvents() {
           },
         }));
         setCalendarData(fetchedEvents);
+
       } else {
         // console.log(`Status code: ${response.status}`);
 
