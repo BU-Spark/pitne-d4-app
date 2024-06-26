@@ -33,15 +33,15 @@ function CalendarCard(props: {
         <div className="row mt-2 ">
           {location && <small className="text-start text-secondary">{"Location: " + location}</small>}
 
-          {props.image ? (
+          {/* {props.image ? (
             <img
+              className="EventImagePreview"
               src={props.image}
               alt="Event Image"
-              style={{ width: "100%", height: "100%" }}
             />
           ) : (
-            <div>no image</div>
-          )}
+            <div></div>
+          )} */}
         </div>
         <Modal
           isOpen={isOpen}

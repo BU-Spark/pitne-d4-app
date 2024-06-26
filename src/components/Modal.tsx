@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import { Text } from "@patternfly/react-core";
-
+import "./Modal.css";
 
 interface ModalType {
   children?: ReactNode;
