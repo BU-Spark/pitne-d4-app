@@ -148,26 +148,19 @@ function Home() {
       if (response.ok) {
         const json = await response.json();
 
-        console.log("JSON Data:", json);
-
         const fetchedHomePageData = {
           id: json.data.id,
           attributes: {
-            heroTitle: json.data.attributes.welcomeTitle,
-            heroDescription: json.data.attributes.welcomeDescription,
-            heroImage: json.data.attributes.welcomeImage?.data 
-              ? `https://pitne-d4-app-strapi-production.up.railway.app${json.data.attributes.welcomeImage.data.attributes.url}` 
-              : "",
-            councilorDescription: json.data.attributes.CouncilorDesc,
-            councilorImage: json.data.attributes.CouncilorImage?.data 
-              ? `https://pitne-d4-app-strapi-production.up.railway.app${json.data.attributes.CouncilorImage.data.attributes.url}` 
-              : "",
+            heroTitle: json.data[0].attributes.welcomeTitle,
+            heroDescription: json.data[0].attributes.welcomeDescription,
+            heroImage: `https://pitne-d4-app-strapi-production.up.railway.app`+json.data[0].attributes.welcomeImage.data[0].attributes.url,
+            councilorDescription: json.data[0].attributes.CouncilorDesc,
+            councilorImage:`https://pitne-d4-app-strapi-production.up.railway.app`+json.data[0].attributes.CouncilorImage.data.attributes.url,
           },
         };
 
-        console.log("Fetched Home Page Data:", fetchedHomePageData);
-
         setHomePageData(fetchedHomePageData);
+
       } else {
         console.log(`Status code: ${response.status}`);
         setHomePageData(null);
@@ -181,6 +174,7 @@ function Home() {
   useEffect(() => {
     fetchHomePageData();
   }, []);
+  console.log(homePageData)
 
 
   // create object to pass as props to Calendar component
@@ -281,21 +275,22 @@ function Home() {
         </div>
       </div>
       <div className="page-container">
-        <div className="councilor-section">
-          <div className="councilor-background" style={{ backgroundImage: `url(${homePageData.attributes.councilorImage})` }}>
-            <div className="overlay"></div>
-            <div className="councilor-content">
-              <h2 className="councilor-heading">ABOUT THE COUNCILOR</h2>
-              <p className="councilor-description">
-                {homePageData.attributes.councilorDescription}
-              </p>
-              <button className="learn-more-button" onClick={() => window.location.href = '/client-info'}>
-                Learn more
-              </button>
-            </div>
+      <div className="councilor-section">
+        <div className="overlay"></div>
+          <div className="councilor-content">
+            <h2 className="councilor-heading">ABOUT THE COUNCILOR</h2>
+          <div className='p-4'>
+            <img src={homePageData.attributes.councilorImage} alt="Councilor" style={{ maxWidth: '100%', height: 'auto' }} />
+          </div>
+          <p className="councilor-description">
+            {homePageData.attributes.councilorDescription}
+          </p>
+            <button className="learn-more-button" onClick={() => window.location.href = '/client-info'}>
+              Learn more
+            </button>
           </div>
         </div>
-        </div>
+      </div>
 
 
       <div className="blue-background-container">
