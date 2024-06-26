@@ -152,7 +152,7 @@ function AddressEntry() {
         <NavBar />
       </div>
       <div>
-        <h1><b>Address Entry</b></h1>
+        <h1 className='top-heading'>Address Entry</h1>
       </div>
       <div>
         <div className="text-start mt-5">Address</div>

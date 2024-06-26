@@ -34,7 +34,6 @@ const AllAnnouncements: React.FC = () => {
 
         setAnnounData(fetchedAnnouncements);
       } else {
-        console.log(`Status code: ${response.status}`);
 
         setAnnounData([
           {

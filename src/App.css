@@ -401,6 +401,11 @@ body {
 .development-body {
   margin-top: 10px;
 }
+.detailed-developments-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers items horizontally */
+}
 
 .website-link {
   color: blue;

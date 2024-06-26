@@ -17,6 +17,7 @@ interface ModalType {
 export default function Modal(props: ModalType) {
   let realDate = props.date;
   let day = realDate.substring(5, 7) + "/" + realDate.substring(8, 10) + "/" + realDate.substring(2, 4);
+  
   return (
     <>
       {props.isOpen && (
@@ -31,6 +32,10 @@ export default function Modal(props: ModalType) {
 
               {props.location && (<Text>
                 <b>Location: </b>{props.location}
+              </Text>)}
+
+              {props.time && (<Text>
+                <b>Time: </b>{props.time}
               </Text>)}
 
               <p className="modal-text">
