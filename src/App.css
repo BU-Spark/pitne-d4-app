@@ -925,3 +925,7 @@ body {
 .announcements {
   margin-left: 30px;
 }
+
+.resource-item {
+  margin-bottom: 20px;
+}
