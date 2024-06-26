@@ -175,10 +175,10 @@
   .dot-indicator {
     color: red;
     position: absolute;
-    bottom: -4vw;
+    bottom: -3vw;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 5vw;
+    font-size: 2vw;
   }
 
   .react-datepicker__day--selected {
