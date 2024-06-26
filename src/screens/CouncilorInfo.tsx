@@ -20,6 +20,7 @@ const CouncilorInfo: React.FC = () => {
           const data = await response.json();
           // console.log(`https://pitne-d4-app-strapi-production.up.railway.app`+ data.data[0].attributes.CouncilorImage.data.attributes.url);
           setCouncilorName(data.data[0].attributes.Name);
+          setCouncilorDescription(data.data[0].attributes.Info);
           setConsilorImage(`https://pitne-d4-app-strapi-production.up.railway.app${data.data[0].attributes.CouncilorImage.data.attributes.url}`);
         }
       } catch (error) {
