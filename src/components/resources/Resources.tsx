@@ -27,7 +27,7 @@ const Resources: React.FC<ResourcesProps> = ({ resource }) => {
                 <Card isHoverable>
                     <CardHeader>
                         <CardTitle>
-                            <div className='heading m-1' style={{ backgroundColor: "white" }}>
+                            <div className='m-1' style={{ backgroundColor: "white", fontSize: '20px', textAlign: 'center' }}>
                                 <p>{resource.attributes.title}</p>
                             </div>
                         </CardTitle>
