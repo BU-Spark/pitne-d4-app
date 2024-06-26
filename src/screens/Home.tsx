@@ -12,6 +12,7 @@ import Events from "../components/calendar/Calendar";
 import ClientImage from '../images/BrianW.png'
 import ScrollDirection from "../components/calendar/ScrollDirection";
 import { ContactInfoTable } from "../interfaces";
+import { METHODS } from "http";
 
 const APIUrl = "https://pitne-d4-app-strapi-production.up.railway.app/api/";
 
@@ -56,12 +57,14 @@ type DevelopmentData = {
 };
 
 type HomePageData = {
-  heroTitle: string;
-  heroDescription: string;
-  heroImage: { url: string };
-  councilorName: string;
-  councilorDescription: string;
-  councilorImage: { url: string };
+  id: number
+  attributes: {
+    heroTitle: string;
+    heroDescription: string;
+    heroImage: string;
+    councilorDescription: string;
+    councilorImage: string;
+  }
 };
 
 function Home() {
@@ -73,8 +76,7 @@ function Home() {
   const [announData, setAnnounData] = React.useState<announData[]>([]);
 
   const [developmentData, setDevelopmentData] = React.useState<DevelopmentData[]>([]);
-  const [homePageData, setHomePageData] = useState<HomePageData | null>(null);
-
+  const [homePageData, setHomePageData] = useState<HomePageData|null>(null);
   const [email, setEmail] = useState('');
   const [mailingListError, setMailingListError] = useState('');
 
@@ -137,27 +139,49 @@ function Home() {
 
 
   // Reading in home page data from Strapi
-  useEffect(() => {
-    const fetchHomePageData = async () => {
-      try {
-        // Adjust the URL to match your Strapi API endpoint
-        const response = await axios.get('https://pitne-d4-app-strapi-production.up.railway.app/api/home-page?populate=*');
-        const data = response.data.data.attributes;
-        setHomePageData({
-          heroTitle: data.heroTitle,
-          heroDescription: data.heroDescription,
-          heroImage: data.heroImage.data.attributes.url,
-          councilorName: data.councilorName,
-          councilorDescription: data.councilorDescription,
-          councilorImage: data.councilorImage.data.attributes.url
-        });
-      } catch (error) {
-        console.error('Fetching home page data failed:', error);
-      }
-    };
+  const fetchHomePageData = async () => {
+    try {
+      const response = await fetch(APIUrl + "home-pages?populate=*");
 
+      console.log("Response:", response);
+
+      if (response.ok) {
+        const json = await response.json();
+
+        console.log("JSON Data:", json);
+
+        const fetchedHomePageData = {
+          id: json.data.id,
+          attributes: {
+            heroTitle: json.data.attributes.welcomeTitle,
+            heroDescription: json.data.attributes.welcomeDescription,
+            heroImage: json.data.attributes.welcomeImage?.data 
+              ? `https://pitne-d4-app-strapi-production.up.railway.app${json.data.attributes.welcomeImage.data.attributes.url}` 
+              : "",
+            councilorDescription: json.data.attributes.CouncilorDesc,
+            councilorImage: json.data.attributes.CouncilorImage?.data 
+              ? `https://pitne-d4-app-strapi-production.up.railway.app${json.data.attributes.CouncilorImage.data.attributes.url}` 
+              : "",
+          },
+        };
+
+        console.log("Fetched Home Page Data:", fetchedHomePageData);
+
+        setHomePageData(fetchedHomePageData);
+      } else {
+        console.log(`Status code: ${response.status}`);
+        setHomePageData(null);
+      }
+    } catch (error) {
+      console.error("Fetch Error:", error);
+      setHomePageData(null);
+    }
+  };
+
+  useEffect(() => {
     fetchHomePageData();
   }, []);
+
 
   // create object to pass as props to Calendar component
   const passCalendarData = {
@@ -237,17 +261,20 @@ function Home() {
   useEffect(() => {
     fetchEvents();
   }, []);
+  if (!homePageData) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <body>
-      <div className="hero-section">
+      <div className="hero-section" style={{backgroundImage: `url(${homePageData.attributes.heroImage})` }}>
         <div className="mb-5">
           <NavBar />
         </div>
         <div className="overlay"></div>
         <div className="hero-content">
-          <div className="top-heading-white">WELCOME TO THE DISTRICT 4 WEBSITE</div>
-          <p>District 4 includes Mattapan, Dorchester, and parts of Jamaica Plain and Roslindale</p>
+          <div className="top-heading-white">{homePageData.attributes.heroTitle}</div>
+          <p>{homePageData.attributes.heroDescription}</p>
         </div>
         <div className="scroll-down-container">
           <div className="scroll-down">
@@ -256,26 +283,22 @@ function Home() {
           </div>
         </div>
       </div>
-      <div className="container">
-      </div>
-
-      <div className="councilor-section">
-        <div className="councilor-background">
-          <div className="overlay"></div>
-          <div className="councilor-content">
-            <h2 className="councilor-heading">ABOUT THE COUNCILOR</h2>
-            <div className='p-4'>
-              <img src={ClientImage} alt="Client image" />
+      <div className="page-container">
+        <div className="councilor-section">
+          <div className="councilor-background" style={{ backgroundImage: `url(${homePageData.attributes.councilorImage})` }}>
+            <div className="overlay"></div>
+            <div className="councilor-content">
+              <h2 className="councilor-heading">ABOUT THE COUNCILOR</h2>
+              <p className="councilor-description">
+                {homePageData.attributes.councilorDescription}
+              </p>
+              <button className="learn-more-button" onClick={() => window.location.href = '/client-info'}>
+                Learn more
+              </button>
             </div>
-            <p className="councilor-description">
-              Councilor Brian Worrell has been dedicated to serving the community of District 4 for many years. His efforts focus on improving local infrastructure, increasing public safety, and ensuring that every voice in the district is heard and valued.
-            </p>
-            <button className="learn-more-button" onClick={() => window.location.href = '/councilor-info'}>
-              Learn more
-            </button>
           </div>
         </div>
-      </div>
+        </div>
 
 
       <div className="blue-background-container">
