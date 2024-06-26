@@ -76,7 +76,7 @@ function Home() {
   const [announData, setAnnounData] = React.useState<announData[]>([]);
 
   const [developmentData, setDevelopmentData] = React.useState<DevelopmentData[]>([]);
-  const [homePageData, setHomePageData] = useState<HomePageData|null>(null);
+  const [homePageData, setHomePageData] = useState<HomePageData | null>(null);
   const [email, setEmail] = useState('');
   const [mailingListError, setMailingListError] = useState('');
 
@@ -98,7 +98,6 @@ function Home() {
         if (response.ok) {
           const data = await response.json();
           setContactInfo(data.data[0]);
-          console.log(data.data[0]);
         }
       } catch (error) {
         console.error('Error fetching associations from Strapi:', error);
@@ -143,8 +142,6 @@ function Home() {
     try {
       const response = await fetch(APIUrl + "home-pages?populate=*");
 
-      console.log("Response:", response);
-
       if (response.ok) {
         const json = await response.json();
 
@@ -153,16 +150,15 @@ function Home() {
           attributes: {
             heroTitle: json.data[0].attributes.welcomeTitle,
             heroDescription: json.data[0].attributes.welcomeDescription,
-            heroImage: `https://pitne-d4-app-strapi-production.up.railway.app`+json.data[0].attributes.welcomeImage.data[0].attributes.url,
+            heroImage: `https://pitne-d4-app-strapi-production.up.railway.app` + json.data[0].attributes.welcomeImage.data[0].attributes.url,
             councilorDescription: json.data[0].attributes.CouncilorDesc,
-            councilorImage:`https://pitne-d4-app-strapi-production.up.railway.app`+json.data[0].attributes.CouncilorImage.data.attributes.url,
+            councilorImage: `https://pitne-d4-app-strapi-production.up.railway.app` + json.data[0].attributes.CouncilorImage.data.attributes.url,
           },
         };
 
         setHomePageData(fetchedHomePageData);
 
       } else {
-        console.log(`Status code: ${response.status}`);
         setHomePageData(null);
       }
     } catch (error) {
@@ -174,8 +170,6 @@ function Home() {
   useEffect(() => {
     fetchHomePageData();
   }, []);
-  console.log(homePageData)
-
 
   // create object to pass as props to Calendar component
   const passCalendarData = {
@@ -196,8 +190,6 @@ function Home() {
   // Filters events to match the user's selected date
   const filteredEvents = calendarData.filter(event => {
     const eventDate = new Date(event.attributes.date);
-    // console.log(` ${eventDate},  ${selectedDate},  ${event.attributes.date}`);
-
     return (
       // Returns an event if the date matches the selection
       eventDate.getFullYear() === selectedDate.getFullYear() &&
@@ -227,8 +219,6 @@ function Home() {
         }));
         setCalendarData(fetchedEvents);
       } else {
-        console.log(`Status code: ${response.status}`);
-
         setCalendarData([
           {
             id: -1,
@@ -258,7 +248,7 @@ function Home() {
 
   return (
     <body>
-      <div className="hero-section" style={{backgroundImage: `url(${homePageData.attributes.heroImage})` }}>
+      <div className="hero-section" style={{ backgroundImage: `url(${homePageData.attributes.heroImage})` }}>
         <div className="mb-5">
           <NavBar />
         </div>
@@ -275,16 +265,16 @@ function Home() {
         </div>
       </div>
       <div className="page-container">
-      <div className="councilor-section">
-        <div className="overlay"></div>
+        <div className="councilor-section">
+          <div className="overlay"></div>
           <div className="councilor-content">
             <h2 className="councilor-heading">ABOUT THE COUNCILOR</h2>
-          <div className='p-4'>
-            <img src={homePageData.attributes.councilorImage} alt="Councilor" style={{ maxWidth: '100%', height: 'auto' }} />
-          </div>
-          <p className="councilor-description">
-            {homePageData.attributes.councilorDescription}
-          </p>
+            <div className='p-4'>
+              <img src={homePageData.attributes.councilorImage} alt="Councilor" style={{ maxWidth: '100%', height: 'auto' }} />
+            </div>
+            <p className="councilor-description">
+              {homePageData.attributes.councilorDescription}
+            </p>
             <button className="learn-more-button" onClick={() => window.location.href = '/client-info'}>
               Learn more
             </button>

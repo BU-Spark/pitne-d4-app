@@ -20,12 +20,8 @@ const AllDevelopments: React.FC = () => {
     try {
       const response = await fetch("https://pitne-d4-app-strapi-production.up.railway.app/api/developments?populate=*");
 
-      console.log("Response:", response);
-
       if (response.ok) {
         const json = await response.json();
-
-        console.log("JSON Data:", json);
 
         const fetchedDevelopments = json.data.map((item: any) => {
           let formattedDate = "";
@@ -48,8 +44,6 @@ const AllDevelopments: React.FC = () => {
             },
           };
         });
-
-        console.log("Fetched Developments:", fetchedDevelopments);
 
         setDevelopments(fetchedDevelopments);
       }
