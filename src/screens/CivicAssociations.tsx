@@ -189,7 +189,7 @@ function CivicAssociations() {
                     </div>
                 }
                 <div>
-                    <h1 className='mt-3'>
+                    <h1 className='top-heading'>
                         <b>All Associations</b>
 
                     </h1>
@@ -207,18 +207,22 @@ function CivicAssociations() {
                             <p>No associations found.</p>
                         ) : (
                             filteredAssociations.map(assoc => (
+                                <div style={{color: "#152d5c"}}>
                                 <AssociationCard
                                     key={assoc.id}
                                     association={assoc}
                                 />
+                                </div>
                             ))
                         )
                     ) : (
                         associations.map(assoc => (
+                            <div style={{color: "#152d5c"}}>
                             <AssociationCard
                                 key={assoc.id}
                                 association={assoc}
                             />
+                            </div>
                         ))
                     )}
                 </div>
