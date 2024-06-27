@@ -39,13 +39,13 @@ function CivicAssociationsInfo() {
     return (
         <div>
             <div className="container">
-        <div className="mb-5">
-          <NavBar />
-        </div>
+            <div className="mb-5">
+            <NavBar />
+            </div>
         <NavBar />
 
         <div className="top-heading">Civic Associations</div>
-            <div className='m-4' style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start'}}>
+            <div className='m-4' style={{ height: '63vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start'}}>
                 <div>
                     <NavBar />
                 </div>
@@ -76,7 +76,7 @@ function CivicAssociationsInfo() {
                     ))}
                 </div>
                 {/* Find your Civic Association Button */}
-                <div className='p-2 mb-5 bottom-0' style={{ marginTop: '350px'}}>
+                <div className='p-2 mb-5 bottom-0' style={{ marginTop: '2vh'}}>
                     <Button
                         onClick={navigateToNext}
                         className="px-5 py-1 brand-blue"
@@ -90,7 +90,6 @@ function CivicAssociationsInfo() {
         </div>
         <Footer />
         </div>
-        
     );
 }
 
