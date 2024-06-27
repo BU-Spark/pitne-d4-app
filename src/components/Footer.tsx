@@ -24,27 +24,27 @@ const Footer = () => {
 
   return (
     <footer className="footer">
-      <div className="footer-content" style={{ padding: '0 15px' }}>
-        <div className="footer-section about">
-          <p style={{ fontFamily: 'lora', fontWeight: "light", fontSize: "14px", color: 'white', margin: '5px 0' }}>
-            <a href={`mailto:${contactInfo?.attributes.Email}`} style={{ color: 'white', fontWeight: "450", fontSize: '14px' }}>Mail To: {contactInfo?.attributes.Email}</a>
-          </p>
-          <p style={{ fontFamily: 'lora', fontWeight: "light", fontSize: "14px", color: 'white', margin: '5px 0' }}>
-            <a href={`tel:+1${contactInfo?.attributes.Email}`} style={{ color: 'white', fontWeight: "450", fontSize: '14px' }}>Call: +1 {contactInfo?.attributes.PhoneNumber}</a>
-          </p>
-          <p className='mb-3' style={{ fontFamily: 'lora', fontWeight: "light", fontSize: "14px", color: 'white', margin: '5px 0', marginBottom: '10px' }}>
-            {contactInfo?.attributes.Address && (
-              <a href={`https://www.google.com/maps/dir//${encodeURIComponent(contactInfo.attributes.Address)} ?entry=ttu`} style={{ color: 'white', fontWeight: "450", fontSize: '14px' }}>
-                District office: {contactInfo?.attributes.Address}
-              </a>
-            )}
-          </p>
-        </div>
-      </div >
-      <div className="footer-bottom">
-        &copy; 2024 District 4. All rights reserved.
-      </div>
-    </footer>
+  <div className="footer-content">
+    <div className="footer-section about">
+      <p>
+        Mail To:<span className="underline-link"><a href={`mailto:${contactInfo?.attributes.Email ?? ''}`}>{contactInfo?.attributes.Email}</a></span>
+      </p>
+      <p>
+        Call:<span className="underline-link"><a href={`tel:+1${contactInfo?.attributes.PhoneNumber ?? ''}`}>+1 {contactInfo?.attributes.PhoneNumber}</a></span>
+      </p>
+      {contactInfo?.attributes.Address && (
+        <p>
+          District office:<span className="underline-link"><a href={`https://www.google.com/maps/dir//${encodeURIComponent(contactInfo.attributes.Address)}?entry=ttu`}>{contactInfo.attributes.Address}</a></span>
+        </p>
+      )}
+    </div>
+  </div>
+  <div className="footer-bottom">
+    &copy; 2024 District 4. All rights reserved.
+  </div>
+</footer>
+
+
   );
 };
 
