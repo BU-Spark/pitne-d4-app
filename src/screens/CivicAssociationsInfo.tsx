@@ -45,7 +45,7 @@ function CivicAssociationsInfo() {
         <NavBar />
 
         <div className="top-heading">Civic Associations</div>
-            <div className='m-4' style={{ height: '63vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start'}}>
+            <div className='m-4' style={{ height: 'max-content', minHeight: '63vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start'}}>
                 <div>
                     <NavBar />
                 </div>
@@ -86,7 +86,6 @@ function CivicAssociationsInfo() {
                     </Button>
                 </div>
             </div>
-
         </div>
         <Footer />
         </div>
