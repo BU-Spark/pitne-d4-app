@@ -35,7 +35,7 @@ This will deploy the D4 Dashboard, making it accessible to users.
 ## Known Bugs and Limitations
 There are no known bugs, but there are some limitations with the current implementation of the D4 Dashboard. These include:
 - We didn't get the time to verify if the email in the mailing list feature belongs to the user or not. This would allow the users to subscribe any email to the mailing list.
-- Organize the CSS.
+- The CSS isn't organized.
 
 ## Adding Users
 If you'd like to contribute to the D4 Dashboard, we welcome your help! To add yourself as a collaborator, simply open a Pull Request and modify the `COLLABORATORS` file by adding your GitHub username on a new line.
