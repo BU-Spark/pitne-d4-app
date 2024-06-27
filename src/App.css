@@ -759,24 +759,29 @@ body {
 
 .footer-section.about p {
   display: flex;
-  gap: 20px; /* Adjust the space between links */
+  gap: 7px; /* Adjust the space between links */
 }
 
 .footer-section p,
 .footer-section a {
   color: white;
   font-size: 1rem;
-  text-decoration: none;
+  text-decoration: none; /* Remove underline from all links by default */
+}
+
+.underline-link a {
+  text-decoration: underline; /* Only underline links within this class */
 }
 
 .footer-section a:hover {
-  text-decoration: underline;
+  text-decoration: underline; /* Keeps the underline on hover */
 }
 
 .footer-bottom {
   border-top: 1px solid white;
   font-size: 0.9rem;
 }
+
 .page-container {
   display: flex;
   flex-direction: column;
@@ -787,6 +792,7 @@ body {
   flex: 1;
   padding-bottom: 50px;
 }
+
 
 .popup {
   position: fixed;
