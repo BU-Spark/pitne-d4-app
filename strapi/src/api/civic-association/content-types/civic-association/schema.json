@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "civic_associations",
+  "info": {
+    "singularName": "civic-association",
+    "pluralName": "civic-associations",
+    "displayName": "civic-association",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "Description": {
+      "type": "text",
+      "default": "No Information"
+    },
+    "Link": {
+      "type": "string"
+    },
+    "MeetingTime": {
+      "type": "string"
+    },
+    "MeetingLocation": {
+      "type": "string"
+    },
+    "Image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "ContactInfo": {
+      "type": "string",
+      "default": "No Info"
+    }
+  }
+}

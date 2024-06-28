@@ -4,6 +4,21 @@
 # Jetbrains Products
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+/build
+.firebase/*
+.firebaserc
+.firebase/*
+.firebasehosting.*
+*.log
+/.firestore.indexes.json
+/.firestore.rules
+/.firestore.exports
+/.firebase/
+/src/config/config.ts
+
+*.log
+*.cache
+*.tmp
 
 # User-specific stuff
 .idea/**/workspace.xml
@@ -11,6 +26,9 @@
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+node_modules
+
+package-lock.json
 
 # AWS User-specific
 .idea/**/aws.xml
@@ -168,3 +186,6 @@ $RECYCLE.BIN/
 
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
+src/config/config.ts
+
+package-lock.json

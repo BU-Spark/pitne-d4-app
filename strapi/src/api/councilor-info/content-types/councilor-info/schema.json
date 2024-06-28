@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "councilor_infos",
+  "info": {
+    "singularName": "councilor-info",
+    "pluralName": "councilor-infos",
+    "displayName": "CouncilorInfo",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Info": {
+      "type": "text"
+    },
+    "CouncilorImage": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}

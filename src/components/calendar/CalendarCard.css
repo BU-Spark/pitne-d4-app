@@ -1,0 +1,15 @@
+.calendar-card-content {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Number of lines to show before truncating */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .calendar-card-title {
+    margin-bottom: 0; /* Removes margin below the title */
+  }
+  
+  .calendar-card-location {
+    margin-top: 0; /* Removes margin above the location */
+  }
