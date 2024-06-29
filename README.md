@@ -65,24 +65,29 @@ npm run develop
 
 ## Setting Up Your `.env` File in Root directory
 
-### Step 1: Create a .env File
-Navigate to the root directory of your React project using a text editor or command line interface. You can do this directly from the command line using:
+### Step 1: Open your terminal and navigate to the root directory of this project
+
+```bash
+cd path/to/thisproject
+```
+
+### Step 2: Create the .env file.
 
 ```bash
 touch .env
 ```
 
-### Step 2: Define Environment Variables
-Inside the .env file, define your environment variables. For example:
+### Step 3: Open the .env file with your preferred text editor and add the following content.
 
 ```plaintext
 REACT_APP_API_URL=https://api.example.com
-REACT_APP_STRAPI_USER=user_name
+REACT_APP_STRAPI_USER=username
 REACT_APP_STRAPI_PASSWORD=password
 ```
-Replace https://api.example.com, user_name, password with the actual value you want to assign to it.
 
-### Step 3: Save the file
+### Step 4: Fill in your values by replacing placeholders with your actual values.
+
+### Step 5: Save and rebuild the app.
 
 ## Deployment
 To deploy the D4 Dashboard, you'll need to do the following:
