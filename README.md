@@ -22,6 +22,73 @@ To get started with the D4 Dashboard, you'll need to have [node.js](https://node
 
 To start the app in development mode, run `npm start`. This will launch the app in your default browser, where you can begin using it.
 
+## Setting Up Your `.env` File in Strapi
+
+To configure your Strapi project with environment variables, follow these steps:
+
+### Step 1: Open your terminal and navigate to the root directory of your Strapi project.
+
+```bash
+cd path/to/your/strapi-project
+```
+
+### Step 2: Create the .env file.
+
+```bash
+touch .env
+```
+
+### Step 3: Open the .env file with your preferred text editor and add the following content.
+
+```plaintext
+HOST=0.0.0.0
+PORT=1334
+APP_KEYS=your_app_keys
+API_TOKEN_SALT=your_api_token_salt
+ADMIN_JWT_SECRET=your_admin_jwt_secret
+TRANSFER_TOKEN_SALT=your_transfer_token_salt
+
+# Database
+DATABASE_CLIENT=postgres
+DATABASE_FILENAME=.tmp/data.db
+JWT_SECRET=your_jwt_secret
+DATABASE_URL=your_database_url
+```
+
+### Step 4: Fill in your values by replacing placeholders with your actual values.
+
+### Step 5: Save the file and restart your Strapi server.
+
+```bash
+npm run develop
+```
+
+## Setting Up Your `.env` File in Root directory
+
+### Step 1: Open your terminal and navigate to the root directory of this project
+
+```bash
+cd path/to/thisproject
+```
+
+### Step 2: Create the .env file.
+
+```bash
+touch .env
+```
+
+### Step 3: Open the .env file with your preferred text editor and add the following content.
+
+```plaintext
+REACT_APP_API_URL=https://api.example.com
+REACT_APP_STRAPI_USER=username
+REACT_APP_STRAPI_PASSWORD=password
+```
+
+### Step 4: Fill in your values by replacing placeholders with your actual values.
+
+### Step 5: Save and rebuild the app.
+
 ## Deployment
 To deploy the D4 Dashboard, you'll need to do the following:
 
