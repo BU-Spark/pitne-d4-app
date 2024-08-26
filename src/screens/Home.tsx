@@ -152,10 +152,10 @@ function Home() {
             heroDescription: json.data[0].attributes.welcomeDescription,
             heroImage: `https://pitne-d4-app-strapi-production.up.railway.app` + json.data[0].attributes.welcomeImage.data[0].attributes.url,
             councilorDescription: json.data[0].attributes.CouncilorDesc,
-            councilorImage: `https://pitne-d4-app-strapi-production.up.railway.app` + json.data[0].attributes.CouncilorImage.data.attributes.url,
+            councilorImage: `https://pitne-d4-app-strapi-production.up.railway.app` + json.data[0].attributes.CouncilorImage.data[0].attributes.url,
           },
         };
-
+        
         setHomePageData(fetchedHomePageData);
 
       } else {
