@@ -15,7 +15,7 @@
       "type": "email"
     },
     "PhoneNumber": {
-      "type": "integer"
+      "type": "string"
     },
     "Address": {
       "type": "string"
