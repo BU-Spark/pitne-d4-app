@@ -1,15 +1,8 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Welcome from "./screens/Welcome";
 import AddressInfo from "./screens/AddressInfo";
-import Register from "./screens/Register";
-import Login from "./screens/Login";
-import UserProfileScreen from "./screens/Profile";
-import Interests from "./screens/Interests";
 import Home from "./screens/Home";
-import Portal from "./screens/Portal";
-import AllPosts from "./screens/AllPosts";
 import GetResources from './screens/GetResources';
 import "@patternfly/react-core/dist/styles/base.css";
 import "bootstrap/dist/css/bootstrap.css";
@@ -18,7 +11,7 @@ import AllEvents from "./screens/AllEvents";
 import CivicAssociations from "./screens/CivicAssociations";
 import AddressEntry from "./screens/AddressEntry";
 import CivicAssociationsInfo from "./screens/CivicAssociationsInfo";
-import ClientInfo from "./screens/ClientInfo";
+import CouncilorInfo from "./screens/CouncilorInfo";
 
 // init firebase app
 import { initializeApp } from "firebase/app";
@@ -27,7 +20,7 @@ import DownloadApp from "./screens/downloadApp";
 import DevelopmentsPage from "./screens/AllDevelopment";
 import NonEmergencyForms from "./screens/311Forms";
 
-import ScrollToTop from './components/home/ScrollToTop';
+import ScrollToTop from './components/ScrollToTop';
 
 initializeApp(config.firebaseConfig);
 
@@ -35,16 +28,10 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <ScrollToTop />
+        <ScrollToTop />
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Register />} />
           <Route path="/" element={<Home />} />
-          <Route path="/profile" element={<UserProfileScreen />} />
-          <Route path="/interests" element={<Interests />} />
-          <Route path="/portal" element={<Portal />} />
           <Route path="/getresources" element={<GetResources />} />
-          <Route path="/all-posts" element={<AllPosts />} />
           <Route path="/all-announcements" element={<AllAnnouncements />} />
           <Route path="/all-events" element={<AllEvents />} />
           <Route path="/address-info" element={<AddressInfo />} />
@@ -54,7 +41,7 @@ function App() {
           <Route path="/downloadApp" element={<DownloadApp />} />
           <Route path="/all-developments" element={<DevelopmentsPage />} />
           <Route path="/311Forms" element={<NonEmergencyForms />} />
-          <Route path="/client-info" element={<ClientInfo />} />
+          <Route path="/councilor-info" element={<CouncilorInfo />} />
         </Routes>
       </BrowserRouter>
     </div>

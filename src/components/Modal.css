@@ -1,0 +1,87 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1050;
+}
+
+.modal-box {
+    position: relative;
+    width: 60vw; /* Large modal but respects screen size */
+    height: auto; /* Avoids touching the very top and bottom of the screen */
+    max-height: 90vh;
+    overflow-y: auto; /* Allows scrolling vertically if content overflows */
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex; /* Ensures flexbox properties are applied */
+    align-items: center; /* Centers items horizontally within the box */
+    flex-direction: column; /* Stacks children vertically */
+}
+
+.closeModal {
+    position: absolute;
+    /* top: 1vw; */
+    /* right: 1vw; */
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.modal-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.4vw;
+}
+
+.modal-image {
+    max-width: 100%; /* Ensures the image is contained within the container */
+    height: auto; /* Maintains aspect ratio */
+    margin-top: 1vw;
+}
+
+.modal-text {
+    margin-top: 1vw; /* Spacing between content elements */
+    font-size: 1.4vw;
+}
+
+.Text {
+    margin-bottom: 1vw; /* Spacing for each text component */
+}
+
+@media (max-width: 700px) {
+    .modal-box {
+        position: relative;
+        width: 80vw; /* Large modal but respects screen size */
+        height: auto; /* Avoids touching the very top and bottom of the screen */
+        overflow-y: auto; /* Allows scrolling vertically if content overflows */
+        overflow-x: hidden; /* Prevents horizontal scrolling */
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        display: flex; /* Ensures flexbox properties are applied */
+        align-items: center; /* Centers items horizontally within the box */
+        flex-direction: column; /* Stacks children vertically */
+    }
+    .modal-wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        font-size: 3.4vw;
+    }
+    .modal-text {
+        margin-top: 1vw; /* Spacing between content elements */
+        font-size: 4vw;
+    }
+}

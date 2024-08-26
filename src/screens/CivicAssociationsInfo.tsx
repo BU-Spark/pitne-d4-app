@@ -1,10 +1,8 @@
 import * as React from 'react';
 import { Button, Card, CardHeader, CardFooter, CardTitle, CardExpandableContent } from '@patternfly/react-core';
-import ProgressBar from '../components/home/Progressbar'; // Adjust the import path as needed
 import { useNavigate } from "react-router-dom";
-import associationsImage from "../images/associations.png";
-import LogoBar from "../components/home/LogoBar";
-import Footer from '../components/home/footer';
+import NavBar from "../components/navbar/NavBar";
+import Footer from '../components/Footer';
 
 function CivicAssociationsInfo() {
     const navigate = useNavigate();
@@ -40,51 +38,56 @@ function CivicAssociationsInfo() {
 
     return (
         <div>
-        <div className='m-4' style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-            <div>
-                <LogoBar />
+            <div className="container">
+            <div className="mb-5">
+            <NavBar />
             </div>
-            <div className='mb-5'>
-                <h1><b>Civic Associations</b></h1>
-            </div>
-            <div>
-                {cards.map((card) => (
-                    <div key={card.id} className='mt-3 box-shadow-brand' onClick={() => handleExpand(card.id)}>
-                        <Card isHoverable isExpanded={expandedCardId === card.id}>
-                            <CardHeader>
-                                <CardTitle>
-                                    <div style={{ backgroundColor: "white", display: 'flex', alignItems: 'center', textAlign: 'left' }}>
-                                        <p><b>Q. </b>{card.question}</p>
-                                    </div>
-                                </CardTitle>
-                            </CardHeader>
-                            {expandedCardId === card.id && (
-                                <CardExpandableContent>
-                                    <CardFooter>
-                                        <div style={{ backgroundColor: "white" }}>
-                                            <div style={{ textAlign: 'left' }}>
-                                                <b>A. </b> {card.answer}
-                                            </div>
+        <NavBar />
+
+        <div className="top-heading">Civic Associations</div>
+            <div className='m-4' style={{ height: 'max-content', minHeight: '63vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start'}}>
+                <div>
+                    <NavBar />
+                </div>
+                <div>
+                    {cards.map((card) => (
+                        <div key={card.id} className='mt-3 box-shadow-brand' onClick={() => handleExpand(card.id)}>
+                            <Card isHoverable isExpanded={expandedCardId === card.id}>
+                                <CardHeader>
+                                    <CardTitle>
+                                        <div style={{ backgroundColor: "white", display: 'flex', alignItems: 'center', textAlign: 'left', color: '#152d5c'}}>
+                                            <p><b>Q. </b>{card.question}</p>
                                         </div>
-                                    </CardFooter>
-                                </CardExpandableContent>
-                            )}
-                        </Card>
-                    </div>
-                ))}
-            </div>
-            {/* Find your Civic Association Button */}
-            <div className='p-2 mb-5 bottom-0'>
-                <Button
-                    onClick={navigateToNext}
-                    className="px-5 py-1 brand-blue"
-                    variant="primary"
-                >
-                    Find your Civic Association
-                </Button>
+                                    </CardTitle>
+                                </CardHeader>
+                                {expandedCardId === card.id && (
+                                    <CardExpandableContent>
+                                        <CardFooter>
+                                            <div style={{ backgroundColor: "white" }}>
+                                                <div style={{ textAlign: 'left' }}>
+                                                    <b>A. </b> {card.answer}
+                                                </div>
+                                            </div>
+                                        </CardFooter>
+                                    </CardExpandableContent>
+                                )}
+                            </Card>
+                        </div>
+                    ))}
+                </div>
+                {/* Find your Civic Association Button */}
+                <div className='p-2 mb-5 bottom-0' style={{ marginTop: '2vh'}}>
+                    <Button
+                        onClick={navigateToNext}
+                        className="px-5 py-1 brand-blue"
+                        variant="primary"
+                    >
+                        Find your Civic Association
+                    </Button>
+                </div>
             </div>
         </div>
-        <Footer/>
+        <Footer />
         </div>
     );
 }

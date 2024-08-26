@@ -1,30 +1,27 @@
-import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import * as React from "react";
-import Footer from "../components/home/footer";
-import Resources from "../components/home/Resources";
+import Footer from "../components/Footer";
+import Resources from "../components/resources/Resources";
 import { APIUrl } from "./Home";
-import LogoBar from "../components/home/LogoBar";
+import NavBar from "../components/navbar/NavBar";
 import { ResourceTable } from "../interfaces";
 import axios from "axios";
 import { TextInput } from "@patternfly/react-core";
 
 function GetResources() {
-  const navigate = useNavigate();
   const [resources, setResources] = React.useState<ResourceTable[]>([]);
   const [searchTerm, setSearchTerm] = React.useState<string>('');
 
   useEffect(() => {
     const fetchResources = async () => {
       try {
-        // const token = '2f28130dd3c99e82d1b7db445c23010b0609ad7a2cc231396904349b10c6ad4bb852fe69ceec7ce0eb86d2907176064f6dd3edd225648b52db70ef5ea7e6e9a40f03e17e28c6ec7b60fff40993e330bf331dea836a9f9e64144327f3be7fc6ffe26ca749d025f5f248a3a537c26874b34ab184889d4aadfa02efadcc5d4a149b'; // Replace 'YOUR_API_TOKEN' with your actual API token
-        const response = await axios.get('http://pitne-d4-app-strapi-production.up.railway.app/api/resources', {
-
-          // headers: {
-          //     Authorization: `Bearer ${token}`
-          // }
+        const response = await fetch('https://pitne-d4-app-strapi-production.up.railway.app/api/resources', {
+          method: 'GET',
         });
-        setResources(response.data.data);
+        if (response.ok) {
+          const data = await response.json();
+          setResources(data.data);
+        }
       } catch (error) {
         console.error('Error fetching associations from Strapi:', error);
       }
@@ -33,47 +30,56 @@ function GetResources() {
   }, []);
 
   const filteredResources = resources.filter(
-    resource => resource.attributes.title.toLowerCase().includes(searchTerm.toLowerCase()))
+    resource => resource.attributes.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const contentWidth = '80%';
 
   return (
     <div>
-      <div className="mb-5">
-        <LogoBar />
-      </div>
-      <div className='mt-5 p-4'>
-        <h1 >
-          <b>All Resources</b>
-        </h1>
-        <div className='m-4'>
-          <TextInput
-            type="text"
-            value={searchTerm}
-            onChange={(value) => setSearchTerm(value)}
-            placeholder="Search resources..."
-            aria-label='Search for resources here'
-          />
+      <div className="container">
+        <div className="mb-5">
+          <NavBar />
         </div>
-        {searchTerm ? (
-          filteredResources.length === 0 ? (
-            <p>No resources found.</p>
-          ) : (
-            filteredResources.map(resource => (
-              <Resources
-                resource={resource}
-              />
-            ))
-          )
-        ) : (
-          resources.map(resource => (
-            <Resources
-              resource={resource}
-            />
-          ))
-        )}
-      </div>
-    </div>
-  )
+        <NavBar />
 
-}
+        <div className="top-heading">ALL RESOURCES</div>
+
+        <div className="page-container">
+          <div className="content-wrap">
+            <div className="m-4">
+              <TextInput
+                type="text"
+                value={searchTerm}
+                onChange={(value) => setSearchTerm(value)}
+                placeholder="Search resources..."
+                aria-label="Search for resources here"
+
+              />
+            </div>
+            {searchTerm ? (
+              filteredResources.length === 0 ? (
+                <p>No resources found.</p>
+              ) : (
+                filteredResources.map(resource => (
+                  <div key={resource.id} style={{ marginBottom: '20px' }}>
+                    <Resources resource={resource} />
+                  </div>
+                ))
+              )
+            ) : (
+              resources.map(resource => (
+                <div key={resource.id} style={{ marginBottom: '20px' }}>
+                  <Resources resource={resource} />
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      </div>
+      <Footer />
+    </div>
+  );
+};
 
 export default GetResources;

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Button } from '@patternfly/react-core';
-import ProgressBar from '../components/home/Progressbar'; // Adjust the import path as needed
+import ProgressBar from '../components/Progressbar'; // Adjust the import path as needed
 import { useNavigate } from "react-router-dom";
 import associationsImage from "../images/associations.png";
-import LogoBar from "../components/home/LogoBar";
+import NavBar from "../components/navbar/NavBar";
 
 function AddressInfo() {
   const navigate = useNavigate();
@@ -18,14 +18,14 @@ function AddressInfo() {
   };
 
   return (
-    <div className='p-4 m-3' style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+    <div className='p-4 m-3' style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
       <div className="mb-5">
-        <LogoBar />
+        <NavBar />
       </div>
 
       {/* Heading */}
       <div>
-        <h1><b>Address Entry</b></h1>
+        <h1><b className='top-heading'>Address Entry</b></h1>
       </div>
 
       {/* Image */}
@@ -36,12 +36,12 @@ function AddressInfo() {
 
       {/* Text */}
       <div>
-        <p>If you want to be matched to a civic association according to your residence, please click Next and enter the information. (You can skip directly to look at information of all the associations in District 4).</p>
+        <p style={{color: "#152d5c"}}>If you want to be matched to a civic association according to your residence, please click Next and enter the information. (You can skip directly to look at information of all the associations in District 4).</p>
       </div>
 
       <div>
         {/* Next Button */}
-        <div className='p-2'>
+        <div className='p-2' >
           <Button
             onClick={navigateToNext}
             className="px-5 py-1 brand-blue"

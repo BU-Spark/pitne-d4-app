@@ -4,14 +4,11 @@ import AddressCheckBoxLoading from "../components/address/AddressCheckBoxLoading
 import AddressErrorBox from "../components/address/AddressErrorBox";
 import AddressInvalidBox from "../components/address/AddressInvalidBox";
 import AddressAPIErrorBox from "../components/address/AddressAPIErrorBox";
-import StateSelection from "../components/address/StateSelection";
 import { TextInput, Button } from "@patternfly/react-core";
 import { useNavigate } from "react-router-dom";
-import ProgressBar from "../components/home/Progressbar";
+import ProgressBar from "../components/Progressbar";
 import { loadModules } from "esri-loader";
-import { Query } from "firebase/firestore";
-import { tr } from "date-fns/locale";
-import LogoBar from "../components/home/LogoBar";
+import NavBar from "../components/navbar/NavBar";
 
 function AddressEntry() {
   const navigate = useNavigate();
@@ -23,9 +20,27 @@ function AddressEntry() {
 
   // Store the address, city, state, and zip in state
   const [address, setAddress] = React.useState("");
-  const city = "Boston";
-  const state = "Massachusetts";
+  const [city, setCity] = React.useState("");
+  const [state, setState] = React.useState("");
   const [zip, setZip] = React.useState("")
+
+  React.useEffect(() => {
+    const fetchAddress = async () => {
+      try {
+        const response = await fetch('https://pitne-d4-app-strapi-production.up.railway.app/api/user-addresses', {
+          method: 'GET',
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setCity(data.data[0].attributes.City);
+          setState(data.data[0].attributes.State);
+        }
+      } catch (error) {
+        console.error('Error fetching associations from Strapi:', error);
+      }
+    };
+    fetchAddress();
+  }, []);
 
   const navigateToNext = () => {
     setTimeout(() => {
@@ -55,7 +70,6 @@ function AddressEntry() {
       setShowLoading(false);
       setShowInvalid(true);
     }
-    /***Can also implement some sort of address validity checking here before going into the main ArcGIS query check*/
     else {
       // Get coordinates from address using openstreetmap API
       const url = "https://nominatim.openstreetmap.org/search?"
@@ -135,10 +149,10 @@ function AddressEntry() {
 
     <div className='p-4 m-3' style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
       <div className="mb-5">
-        <LogoBar />
+        <NavBar />
       </div>
       <div>
-        <h1><b>Address Entry</b></h1>
+        <h1 className='top-heading'>Address Entry</h1>
       </div>
       <div>
         <div className="text-start mt-5">Address</div>
