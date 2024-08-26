@@ -870,7 +870,7 @@ export interface ApiContactInfoContactInfo extends Schema.CollectionType {
   };
   attributes: {
     Email: Attribute.Email;
-    PhoneNumber: Attribute.Integer;
+    PhoneNumber: Attribute.String;
     Address: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
