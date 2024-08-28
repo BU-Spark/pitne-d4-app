@@ -21,7 +21,7 @@ const CouncilorInfo: React.FC = () => {
           // console.log(`https://pitne-d4-app-strapi-production.up.railway.app`+ data.data[0].attributes.CouncilorImage.data.attributes.url);
           setCouncilorName(data.data[0].attributes.Name);
           setCouncilorDescription(data.data[0].attributes.Info);
-          setConsilorImage(`https://pitne-d4-app-strapi-production.up.railway.app${data.data[0].attributes.CouncilorImage.data.attributes.url}`);
+          setConsilorImage(`https://pitne-d4-app-strapi-production.up.railway.app${data.data[0].attributes.CouncilorImage.data[0].attributes.url}`);
         }
       } catch (error) {
         console.error('Error fetching councilor info from Strapi:', error);
